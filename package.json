@@ -1,0 +1,24 @@
+{
+  "name": "developer-osf-io",
+  "author": "Casey Rollins <case.rollins@gmail.com>",
+  "description": "Developer documentation for the Open Science Framework API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caseyrollins/dev-docs.git"
+  },
+  "scripts": {
+    "bundle": "gulp",
+    "test": "gulp",
+    "serve": "gulp serve"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-run": "^1.7.1",
+    "http-server": "^0.10.0",
+    "swagger-cli": "^1.0.1"
+  },
+  "readmeFilename": "README.md"
+}
