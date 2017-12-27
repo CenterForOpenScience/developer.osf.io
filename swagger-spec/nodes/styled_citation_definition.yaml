@@ -1,0 +1,21 @@
+type: object
+title: Styled Citation
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the citation style, e.g. APA.'
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier of the citation style entity (`styled-citations`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the citation style entity.'
+    properties:
+      citation:
+        type: string
+        readOnly: true
+        description: 'The complete entity citation in the requested style.'

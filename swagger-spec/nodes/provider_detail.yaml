@@ -1,0 +1,60 @@
+# /nodes/{node_id}/files/providers/{provider}/
+get:
+  summary: Retrieve a storage provider
+  description: >-
+    Retrieves the details of a storage provider enabled on this node.
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    file object, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+
+    - in: path
+      type: string
+      name: provider
+      required: true
+      description: 'The unique identifier of the storage provider.'
+
+  tags:
+    - Nodes
+  operationId: nodes_providers_read
+  x-response-schema: File
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../files/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/files/osfstorage/
+                    meta: {}
+            links:
+              storage_addons: https://api.osf.io/v2/addons/?filter%5Bcategories%5D=storage
+              upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/
+              new_folder: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/?kind=folder
+            attributes:
+              node: ezcuj
+              path: "/"
+              kind: folder
+              name: osfstorage
+              provider: osfstorage
+            type: files
+            id: ezcuj:osfstorage

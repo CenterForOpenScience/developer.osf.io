@@ -1,0 +1,46 @@
+# /nodes/{node_id}/view_only_links/{link_id}/
+get:
+  summary: Retrieve a view only link
+  description: >-
+    Retrieves the details of a view only link on a node.
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    view only link, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+    ####Permissions
+
+
+    View only links on a node, public or private, are readable and writeable only by users that are administrators on the node.
+  parameters:
+
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+
+    - in: path
+      type: string
+      name: link_id
+      required: true
+      description: 'The unique identifier of the view only link.'
+
+
+  tags:
+    - Nodes
+  operationId: nodes_view_only_links_read
+  x-response-schema: 'View Only Link'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../view_only_links/definition.yaml'
+      examples:
+        application/json:

@@ -1,0 +1,303 @@
+# /registrations/{registration_id}/linked_nodes/
+get:
+  summary: List all linked nodes
+  description: >-
+    List of all nodes linked to the registration.
+
+    ####Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 nodes.
+    Each resource in the array is a separate node object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+    ####Filtering
+
+    You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wucr8/linked_nodes/?filter[title]=reproducibility/?filter[title]=reproducibility.
+
+
+    Nodes may be filtered by their `title`, `category`, `description`, `public`, `registration`, or `tags`.
+    `title`, `description`, and `category` are string fields and will be filteres using simple substring matching.
+    `public`, `registration` are boolean and can be filtered using truthy values, such as `true`, `false`, `0`, `1`.
+    `tags` is an array of simple strings.
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: 'The unique identifier of the registration.'
+
+  tags:
+    - Registrations
+
+  operationId: registrations_linked_nodes_list
+  x-response-schema: Node
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../nodes/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/citation/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/draft_registrations/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/comments/?filter%5Btarget%5D=bifc7
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/registrations/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/node_links/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/bifc7/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/bifc7/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/children/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/preprints/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bifc7/logs/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/bifc7/
+              html: https://osf.io/bifc7/
+            attributes:
+              category: project
+              fork: false
+              preprint: false
+              description: 'This is an independent replication as part of the Reproducibility
+                Project: Psychology.'
+              current_user_permissions:
+              - read
+              date_modified: '2017-03-03T05:00:31.512000'
+              title: Replication of WA Cunningham, JJ Van Bavel, IR Johnsen (2008, PS 19(2))
+              collection: false
+              registration: false
+              date_created: '2014-07-28T13:53:04.508000'
+              current_user_can_comment: false
+              node_license:
+              public: true
+              tags: []
+            type: nodes
+            id: bifc7
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/citation/
+                    meta: {}
+              license:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/identifiers/
+                    meta: {}
+              forked_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/kxhz5/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/comments/?filter%5Btarget%5D=73pnd
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/registrations/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/logs/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/node_links/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/73pnd/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/73pnd/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/children/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/preprints/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/draft_registrations/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/73pnd/
+              html: https://osf.io/73pnd/
+            attributes:
+              category: project
+              fork: true
+              preprint: false
+              description:
+              current_user_permissions:
+              - read
+              date_modified: '2016-10-02T19:50:23.605000'
+              title: Replication of Hajcak &amp; Foti (2008, PS, Study 1)
+              collection: false
+              registration: false
+              date_created: '2012-10-31T18:50:46.111000'
+              current_user_can_comment: false
+              node_license:
+                copyright_holders:
+                - ''
+                year: '2016'
+              public: true
+              tags:
+              - anxiety
+              - EMG
+              - EEG
+              - motivation
+              - ERN
+            type: nodes
+            id: 73pnd
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 2
+              per_page: 10

@@ -1,0 +1,180 @@
+get:
+  summary: List all nodes
+  description: >-
+    A paginated list of nodes that the user is a contributor to.
+    The returned nodes are sorted by their `date_modified`, with the most recently updated nodes appearing first.
+
+
+    If the user ID in the path is the same as the logged-in user, all nodes will be returned.
+    Otherwise, only the user's public nodes will be returned.
+
+
+    User registrations are not available at this endpoint.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 nodes.
+    Each resource in the array is a separate node object and contains the full representation of the node, meaning additional requests to a node's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+    #### Filtering
+
+    You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/users/cdi38/nodes/?filter[title]=open.
+
+
+    Nodes may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, `preprint`, and `contributors`.
+
+  parameters:
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+  tags:
+    - Users
+  operationId: users_nodes_list
+  x-response-schema: Node
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../nodes/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/citation/
+                    meta: {}
+              parent:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/p7ayb/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/comments/?filter%5Btarget%5D=0hezb
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/registrations/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/logs/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/node_links/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/0hezb/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/0hezb/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/children/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/preprints/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/0hezb/draft_registrations/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/0hezb/
+              html: https://osf.io/0hezb/
+            attributes:
+              category: project
+              fork: false
+              preprint: false
+              description:
+              current_user_permissions:
+              - read
+              date_modified: '2017-02-09T20:37:49.060000'
+              title: 'Study 8: Replication of Hatzivassiliou et al., 2010 (Nature)'
+              collection: false
+              registration: false
+              date_created: '2013-10-22T20:07:57.674000'
+              current_user_can_comment: false
+              node_license:
+              public: true
+              tags: []
+            type: nodes
+            id: 0hezb
+          links:
+            first:
+            last: https://api.osf.io/v2/users/alh38/nodes/?page=23
+            prev:
+            next: https://api.osf.io/v2/users/alh38/nodes/?page=2
+            meta:
+              total: 224
+              per_page: 10
+

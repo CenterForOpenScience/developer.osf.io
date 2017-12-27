@@ -1,0 +1,25 @@
+get:
+  summary: Introduction
+  description: >-
+    Welcome to the Open Science Framework API. With this API you can access
+    users, projects, components, logs, and files from the [Open Science
+    Framework](https://osf.io/). The Open Science Framework (OSF) is a free,
+    open-source service maintained by the [Center for Open
+    Science](http://cos.io/).
+
+
+    The OSF serves as a repository and archive for study designs, materials,
+    data, manuscripts, or anything else associated with your research during
+    the research process. Every project and file on the OSF has a permanent
+    unique identifier, and every registration (a permanent, time-stamped
+    version of your projects and files) can be assigned a DOI/ARK. You can
+    use the OSF to measure your impact by monitoring the traffic to projects
+    and files you make public. With the OSF you have full control of what
+    parts of your research are public and what remains private.
+
+  operationId: introduction
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

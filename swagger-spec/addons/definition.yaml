@@ -1,0 +1,43 @@
+type: object
+title: Addon
+properties:
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: The properties of the addon entity.
+    properties:
+      url:
+        type: string
+        readOnly: true
+        description: The URL to the third-party service provider.
+      name:
+        type: string
+        readOnly: true
+        description: The name of the third-party service provider.
+      description:
+        type: string
+        readOnly: true
+        description: The description of the service provider.
+      categories:
+        type: array
+        items:
+          type: string
+          enum:
+            - documentation
+            - storage
+            - bibliography
+            - other
+            - security
+            - citations
+        readOnly: true
+        description: List of categories this addon belongs to.
+  type  :
+    type: string
+    readOnly: true
+    description: The type identifier of the addon entity (`addons`).
+
+  id:
+    type: string
+    readOnly: true
+    description: The identifier of the addon entity.

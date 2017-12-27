@@ -1,0 +1,50 @@
+get:
+  summary: General Usage
+  description: >-
+    The OSF API generally conforms to the [JSON-API v1.0 spec](http://jsonapi.org/format/1.0/).
+    Where exceptions exist, they will be noted.
+    Each endpoint will have its own documentation, but there are some general principles.
+
+
+    Note: Assume undocumented routes/features/fields are unstable.
+
+
+    #### Canonical URLs
+
+    All canonical URLs have trailing slashes.  A request to an endpoint
+    without a trailing slash will result in a **301 Redirect** to the canonical
+    URL.  There are some exceptions when working with the Files API, so if a
+    URL in a response does not have a slash, do not append one.
+
+    #### Plurals
+
+    Endpoints are always pluralized.  `/users/`, not `/user/`, `/nodes/`,
+    not `/node/`.
+
+
+    The only exception are the node and preprint citation endpoints, which are `/citation/`, not
+    `/citations/`.
+
+    #### Common Actions
+
+    Every endpoint in the OSF API responds to `GET`, `HEAD`, and `OPTION` requests.
+
+
+    You must have adequate permissions to interact with any endpoint.
+    Unauthorized use will result in **401 Unauthorized** or **403 Forbidden** responses.
+
+
+    Use `HEAD` to probe an endpoint and make sure your headers are well-formed.
+
+
+    A `GET` request will return a representation of the entity or entity collection referenced by the endpoint.
+
+
+    An `OPTIONS` request will return a JSON object that describes the endpoint, including the name, a description, the acceptable request formats, the allowed response formats, and any actions available via the endpoint.
+
+  operationId: general
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

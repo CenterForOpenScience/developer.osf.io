@@ -1,0 +1,237 @@
+get:
+  summary: List all nodes
+  description: >-
+
+    A paginated list of nodes, representing projects and components, on the OSF.
+
+
+    The returned nodes are those which are public or which the user has access to view.
+
+
+    The returned nodes are sorted by their `date_modified`, with the most recently updated nodes appearing first.
+
+
+    Registrations cannot be accessed through this endpoint (use the [registrations](#Registrations_registrations_list) endpoints instead).
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 nodes.
+    Each resource in the array is a separate node object and contains the full representation of the node, meaning additional requests to a node's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+    
+    #### Filtering
+
+    You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/nodes/?filter[title]=reproducibility.
+
+
+    Nodes may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, `preprint`, and `contributors`.
+
+
+    Most fields are string fields and will be filtered using simple substring matching.
+    Public and preprint are boolean fields, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
+    Note that quoting true or false in the query will cause the match to fail.
+
+  tags:
+    - Nodes
+  operationId: nodes_list
+  x-response-schema: Node
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/citation/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/draft_registrations/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/comments/?filter%5Btarget%5D=ezcuj
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/registrations/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/node_links/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/ezcuj/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/ezcuj/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/children/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/preprints/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/logs/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/ezcuj/
+              html: https://osf.io/ezcuj/
+            attributes:
+              category: project
+              fork: false
+              preprint: false
+              description: ''
+              current_user_permissions:
+              - read
+              date_modified: '2016-12-08T21:45:17.058000'
+              title: 'Reproducibility Project: Psychology'
+              collection: false
+              registration: false
+              date_created: '2012-04-01T15:49:07.702000'
+              current_user_can_comment: true
+              node_license:
+              public: true
+              tags:
+              - replication
+              - reproducibility
+              - open science
+              - reproduction
+              - psychological science
+              - psychology
+              - metascience
+              - crowdsource
+            type: nodes
+            id: ezcuj
+          links:
+            first:
+            last: https://api.osf.io/v2/nodes/?page=1954
+            prev:
+            next: https://api.osf.io/v2/nodes/?page=2
+            meta:
+              total: 19536
+              per_page: 10
+
+
+post:
+  summary: Create a node
+  description: >-
+    Creates a new node.
+
+
+    On the OSF, nodes are considered **projects** or **components**.
+    The difference between a project and a component is that a project is a top-level node, and a component is a child of a project.
+
+
+    Additionally, nodes have a `category` field that includes **project** as an option.
+    The categorization determines what icon is displayed with the node on the OSF, and helps with search organization.
+    Projects (top-level nodes) may have a category other than project, and components (children) may have a category of **project**.
+
+    #### Required
+
+    Required fields for creating a node include:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp`title`
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp`category`
+
+
+    Note: Nodes default to **private** unless the `public` field is explicitly set to **true** in the request payload.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the created node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+  parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: 'definition.yaml'
+  tags:
+    - Nodes
+  operationId: nodes_create
+  consumes:
+    - application/json
+  x-response-schema: Node
+  responses:
+    '201':
+      description: 'Success'

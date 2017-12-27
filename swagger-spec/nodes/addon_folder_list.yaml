@@ -1,0 +1,68 @@
+# /nodes/{node_id}/addons/{provider}/folders/
+get:
+  summary: List all addon folders
+  description: >-
+
+    A paginated list of folders retrieved from the associated third-party (provider) service.
+
+    #### Permissions
+
+    Folders are visible only to the user that authorized the addon.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of addon folder objects.
+    Each resource in the array is a separate addon folder object and contains the full representation of the addon folder, meaning additional requests to a addon folder's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: provider
+      required: true
+      description: 'The unique identifier of the provider'
+
+  tags:
+    - Nodes
+  operationId: nodes_addons_folders_list
+  x-response-schema: 'Addon Folder'
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '../addons/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links:
+              root: https://api.osf.io/v2/nodes/<node_id>/addons/<provider_id>/folders/
+              children: https://api.osf.io/v2/nodes/<node_id>/addons/<provider_id>/folders/?path=/&id=/
+            attributes:
+              path: "/"
+              kind: folder
+              provider: <provider_id>
+              name: "/ ()"
+              folder_id: "/"
+            type: "node_addon_folders"
+            id: "/"
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 1000

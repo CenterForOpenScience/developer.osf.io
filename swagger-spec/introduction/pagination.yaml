@@ -1,0 +1,26 @@
+get:
+  summary: Pagination
+  description: >-
+    All entity collection endpoints respond to the `page` query parameter as described in the [JSON-API spec](http://jsonapi.org/format/#fetching-pagination).
+
+
+    However, links to the first, last, previous, and next pages of results are provided in the `links` key of the response,
+    and you are encouraged to use those rather than adding query parameters by hand.
+
+
+    If there are only enough results to fill one page, the `first`, `last`, `prev`, and `next` links will be null.
+
+    #### Versioning
+
+    As of version `2.3`, pagination links conform to the JSON API specification.
+    Meta information was pulled out of the `links` object and placed in a top-level `meta` object.
+
+
+    The `meta` key contains the total number of entities available, as well as the current number of results displayed per page.
+
+  operationId: pagination
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

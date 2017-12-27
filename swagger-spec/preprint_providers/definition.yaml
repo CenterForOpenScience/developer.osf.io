@@ -1,0 +1,110 @@
+type: object
+title: Preprint Providers
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the preprint provider entity.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the preprint provider entity (`preprint_providers`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the preprint provider entity.'
+    properties:
+      social_instagram:
+        type: string
+        readOnly: true
+        description: 'The preprint provider''s Instagram account ID. This field is deprecated as of verson 2.4.'
+      advisory_board:
+        type: string
+        readOnly: true
+        description: 'The HTML representation of the preprint provider''s advisory board.'
+      email_support:
+        type: string
+        readOnly: true
+        description: 'The preprint providers''s support email address.'
+      banner_path:
+        type: string
+        readOnly: true
+        description: 'A static path to the preprint provider''s banner image. This field is deprecated as of verson 2.4.'
+      logo_path:
+        type: string
+        readOnly: true
+        description: 'A static path to the preprint provider''s logo image. This field is deprecated as of verson 2.4.'
+      subjects_acceptable:
+        type: string
+        readOnly: true
+        description: 'A nested array structure defining allowed subjects for this preprint provider, in the BePress taxonomy.'
+      description:
+        type: string
+        readOnly: true
+        description: 'The description of the preprint provider.'
+      social_facebook:
+        type: string
+        readOnly: true
+        description: 'The preprint provider''s Facebook account ID. This field is deprecated as of verson 2.4.'
+      email_contact:
+        type: string
+        readOnly: true
+        description: 'The preprint provider''s contact email address. This field is deprecated as of verson 2.4.'
+      example:
+        type: string
+        readOnly: true
+        description: 'The GUID for an example preprint from this preprint provider.'
+      name:
+        type: string
+        readOnly: true
+        description: 'The name of the preprint provider.'
+      domain:
+        type: string
+        readOnly: true
+        description: 'The preprint provider''s domain, if the provider is using a domain to for their preprint service.'
+      domain_redirect_enabled:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not redirects are enabled for the provider''s domain.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'Links to other entities or entity collections that have a relationship to the preprint provider.'
+    properties:
+      licenses_acceptable:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to licenses the preprint provider allows.'
+      taxonomies:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the taxonomies the preprint provider allows.'
+      preprints:
+        type: string
+        readOnly: true
+        description: 'A link to the preprint list page for the preprint provider.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'Links to alternative representations of the preprint entity.'
+    properties:
+      external_url:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the external website for the preprint provider.'
+      preprints:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the preprint list page for the preprint provider.'
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for the preprint provider.'

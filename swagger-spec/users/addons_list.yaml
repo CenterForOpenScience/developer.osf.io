@@ -1,0 +1,111 @@
+# /users/{user_id}/addons/
+get:
+  summary: List all user addons
+  description: >-
+
+    A paginated list of authorized user addons
+
+
+    #### Permissions
+
+
+    User addons are visible only to the user that authorized the addon.
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 addons.
+    Each resource in the array is a separate addon object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+
+    Attempting to request the accounts for an addon that is not enabled will result in a **404 Not Found** response.
+
+  parameters:
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+
+
+  tags:
+    - Users
+  operationId: users_addons_list
+  x-response-schema: User Addon
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'user_addon_definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links:
+              self: https://api.osf.io/v2/users/me/addons/box/
+              accounts:
+                562d9acf8c5e4a14112e489e:
+                  nodes_connected:
+                  - https://api.osf.io/v2/nodes/t3y58/
+                  account: https://api.osf.io/v2/users/q7fts/addons/box/accounts/562d9acf8c5e4a14112e489e/
+            attributes:
+              user_has_auth: true
+            type: user_addons
+            id: box
+          - links:
+              self: https://api.osf.io/v2/users/me/addons/dropbox/
+              accounts:
+                56742db88c5e4a396d689e3e:
+                  nodes_connected: []
+                  account: https://api.osf.io/v2/users/q7fts/addons/dropbox/accounts/56742db88c5e4a396d689e3e/
+            attributes:
+              user_has_auth: true
+            type: user_addons
+            id: dropbox
+          - links:
+              self: https://api.osf.io/v2/users/me/addons/github/
+              accounts:
+                570edf7f9ad5a101f90030f6:
+                  nodes_connected:
+                  - https://api.osf.io/v2/nodes/t3y58/
+                  account: https://api.osf.io/v2/users/q7fts/addons/github/accounts/570edf7f9ad5a101f90030f6/
+            attributes:
+              user_has_auth: true
+            type: user_addons
+            id: github
+          - links:
+              self: https://api.osf.io/v2/users/me/addons/googledrive/
+              accounts:
+                58fe1cb59ad5a1025c8ae281:
+                  nodes_connected: []
+                  account: https://api.osf.io/v2/users/q7fts/addons/googledrive/accounts/58fe1cb59ad5a1025c8ae281/
+                563c1c518c5e4a36e7dc5450:
+                  nodes_connected:
+                  - https://api.osf.io/v2/nodes/6y5jf/
+                  - https://api.osf.io/v2/nodes/t3y58/
+                  account: https://api.osf.io/v2/users/q7fts/addons/googledrive/accounts/563c1c518c5e4a36e7dc5450/
+            attributes:
+              user_has_auth: true
+            type: user_addons
+            id: googledrive
+          links:
+            first:
+            last:
+            prev:
+            next: 
+            meta:
+              total: 4
+              per_page: 10

@@ -1,0 +1,254 @@
+get:
+  summary: 'List all child nodes'
+  description: >-
+
+    A paginated list of the next level child nodes for the given node.
+    The returned nodes are sorted by their `date_modified`, with the most recently updated child nodes appearing first.
+
+
+    The list will include child nodes that are public, as well as child nodes that are private, if the authenticated user has permission to view them.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 child nodes.
+    If the given node has zero child nodes, the `data` key will contain an empty array.
+    Each resource in the array is a separate node object and contains the full representation of the child node, meaning additional requests to the child node's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/nodes/ezcuj/children/?filter[title]=reproducibility.
+
+
+    Nodes may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, `preprint`, and `contributors`.
+
+
+    Most fields are string fields and will be filtered using simple substring matching.
+    Public and preprint are boolean fields, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
+    Note that quoting true or false in the query will cause the match to fail.
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: nodes_children_list
+  x-response-schema: Node
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/citation/
+                    meta: {}
+              parent:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/comments/?filter%5Btarget%5D=ezum7
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/registrations/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/logs/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/node_links/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/ezum7/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/ezum7/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/children/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/preprints/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezum7/draft_registrations/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/ezum7/
+              html: https://osf.io/ezum7/
+            attributes:
+              category: communication
+              fork: false
+              preprint: true
+              description: Reproducibility is a defining feature of science, but the extent
+                to which it characterizes current research is unknown. We conducted replications
+                of 100 experimental and correlational studies published in three psychology
+                journals using high-powered designs and original materials when available. Replication
+                effects were half the magnitude of original effects, representing a substantial
+                decline. Ninety-seven percent of original studies had statistically significant
+                results. Thirty-six percent of replications had statistically significant results;
+                47% of original effect sizes were in the 95% confidence interval of the replication
+                effect size; 39% of effects were subjectively rated to have replicated the original
+                result; and if no bias in original results is assumed, combining original and
+                replication results left 68% with statistically significant effects. Correlational
+                tests suggest that replication success was better predicted by the strength
+                of original evidence than by characteristics of the original and replication
+                teams.
+              current_user_permissions:
+              - read
+              date_modified: '2016-11-02T21:25:12.572000'
+              title: Estimating the Reproducibility of Psychological Science
+              collection: false
+              registration: false
+              date_created: '2015-07-20T17:42:16.496000'
+              current_user_can_comment: false
+              node_license:
+              public: true
+              tags:
+              - replication
+              - reproducibility
+              - effect size
+            type: nodes
+            id: ezum7
+          links:
+            first:
+            last: https://api.osf.io/v2/nodes/ezcuj/children/?page=5
+            prev:
+            next: https://api.osf.io/v2/nodes/ezcuj/children/?page=2
+            meta:
+              total: 49
+              per_page: 10
+
+post:
+  summary: Create a child node
+  description: >-
+    Creates a new child node.
+
+
+    Note: Creating a child node via this endpoint will function the same as creating a node via the node list endpoint,
+    but the child node will have the given node set as its parent.
+
+    #### Permissions
+
+    Only write contributors may create children nodes.
+
+    #### Required
+
+    Required fields for creating a node include:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp`title`
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp`category`
+
+
+    Note: nodes default to **private** unless the `public` field is explicitly set to **true** in the request payload.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the created node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: node_id
+    required: true
+    description: 'The unique identifier of the node.'
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: definition.yaml
+  tags:
+    - Nodes
+  operationId: nodes_children_create
+  consumes:
+    - application/json
+  x-response-schema: Node
+  responses:
+    '201':
+      description: 'Created'

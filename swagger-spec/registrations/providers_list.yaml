@@ -1,0 +1,77 @@
+# /registrations/{registration_id}/files
+
+get:
+  summary: List all storage providers
+  description: >-
+    A paginated list of storage providers enabled on the registration
+
+
+    Users of the OSF may access their data on a [number of cloud-storage services](https://api.osf.io/v2/#storage-providers) that have integrations with the OSF.
+    We call these **providers**. By default, every node has access to the OSF-provided storage but may use as many of
+    the supported providers as desired.
+
+
+
+    ####Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 files.
+    Each resource in the array is a separate file object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+    Note: In the OSF filesystem model, providers are treated as folders, but with special properties that distinguish
+    them from regular folders. Every provider folder is considered a root folder, and may not be deleted through the regular file API.
+
+  parameters:
+
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: 'The unique identifier of the registration.'
+
+  tags:
+    - Registrations
+  operationId: registrations_providers_list
+  x-response-schema: File
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../files/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/files/osfstorage/
+                    meta: {}
+            links:
+              storage_addons: https://api.osf.io/v2/addons/?filter%5Bcategories%5D=storage
+              upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/
+              new_folder: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/?kind=folder
+            attributes:
+              node: ezcuj
+              path: "/"
+              kind: folder
+              name: osfstorage
+              provider: osfstorage
+            type: files
+            id: ezcuj:osfstorage
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10

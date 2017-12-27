@@ -1,0 +1,52 @@
+type: object
+title: Metaschema
+required:
+  - id
+  - type
+  - attributes
+  - links
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the metaschema entity.'
+
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the metaschema entity (`metaschemas`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the metaschema entity.'
+    properties:
+      name:
+        type: string
+        readOnly: true
+        description: 'The name of the metaschema'
+      schema_version:
+        type: integer
+        readOnly: true
+        description: 'The latest version of the schema'
+      schema:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        readOnly: true
+        description: 'The details of the metaschema which contains the supplemental questions to accompany a registration'
+
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the metaschema entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for a metaschema.'

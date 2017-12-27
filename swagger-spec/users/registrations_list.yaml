@@ -1,0 +1,197 @@
+get:
+  summary: List all registrations
+  description: >-
+    A paginated list of registrations that the user is a contributor to.
+    The returned registrations are sorted by their `date_modified`, with the most recently updated registrations appearing first.
+
+
+    If the user ID in the path is the same as the logged-in user, all registrations will be returned.
+    Otherwise, only the user's public registrations will be returned.
+
+
+    User nodes are not available at this endpoint.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 registrations.
+    Each resource in the array is a separate registration object and contains the full representation of the registration, meaning additional requests to a registration's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+    #### Filtering
+
+    You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/users/cdi38/registrations/?filter[title]=replication.
+
+
+    Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
+
+  parameters:
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+  tags:
+    - Users
+  operationId: users_registrations_list
+  x-response-schema: Registration
+  responses:
+    '200':
+      description: 'OK'
+      # schema:
+      #   type: array
+      #   items:
+      #     $ref: '../registrations/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/citation/
+                    meta: {}
+              registration_schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2c0/
+                    meta: {}
+              parent:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/sdbdx/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/sdbdx/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/comments/?filter%5Btarget%5D=d5r99
+                    meta: {}
+              registered_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/qce75/
+                    meta: {}
+              registered_by:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/dnhrw/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/registrations/d5r99/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/children/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/logs/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/registrations/d5r99/
+              html: https://osf.io/d5r99/
+            attributes:
+              registration_supplement: OSF-Standard Pre-Data Collection Registration
+              pending_embargo_approval: false
+              registration: true
+              embargo_end_date:
+              withdrawn: false
+              withdrawal_justification:
+              category: communication
+              preprint: false
+              current_user_permissions:
+              - read
+              title: Replication Reports
+              registered_meta:
+                looked:
+                  value: 'No'
+                  comments: []
+                  extra: []
+                datacompletion:
+                  value: No, data collection has not begun
+                  comments: []
+                  extra: []
+                comments:
+                  value: ''
+                  comments: []
+                  extra: []
+              public: true
+              fork: false
+              description: ''
+              tags: []
+              collection: false
+              current_user_can_comment: true
+              pending_registration_approval: false
+              date_modified: '2016-11-18T19:14:42.873000'
+              date_registered: '2016-11-18T19:16:56.962000'
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/d5r99/node_links/
+                    meta: {}
+              date_created: '2016-09-27T01:12:42.135000'
+              pending_withdrawal: false
+              node_license:
+            type: registrations
+            id: d5r99
+          links:
+            first:
+            last: https://api.osf.io/v2/users/cdi38/registrations/?page=17
+            prev:
+            next: https://api.osf.io/v2/users/cdi38/registrations/?page=2
+            meta:
+              total: 170
+              per_page: 10

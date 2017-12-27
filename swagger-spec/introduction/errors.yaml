@@ -1,0 +1,49 @@
+get:
+  summary: Errors
+  description: >-
+    When a request fails for any reason, the OSF API will return an appropriate [HTTP response code](#Introduction_error_codes) and include a descriptive error in the body of the response.
+
+
+    The response body will be a JSON object with a key, `errors`, pointing to an array of error objects.
+
+
+    In general, these error objects will consist of a `detail` key with a detailed error message and a `source` object that may contain a field `pointer` that is a
+    [JSON Pointer](https://tools.ietf.org/html/rfc6901) to the error-causing attribute.
+
+
+    The `error` objects may include additional information in accordance with the [JSON-API error spec](http://jsonapi.org/format/1.0/#error-objects).
+
+
+    #### Example
+
+    An error response from an incorrect create node request:
+
+        {
+          "errors": [
+            {
+              "source": {
+                "pointer": "/data/attributes/category"
+              },
+              "detail": "This field is required."
+            },
+            {
+              "source": {
+                "pointer": "/data/type"
+              },
+              "detail": "This field may not be null."
+            },
+            {
+              "source": {
+                "pointer": "/data/attributes/title"
+              },
+              "detail": "This field is required."
+            }
+          ]
+        }
+
+  operationId: errors
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

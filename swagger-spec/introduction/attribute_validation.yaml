@@ -1,0 +1,22 @@
+get:
+  summary: Attribute Validation
+  description: >-
+    Endpoints that allow creation or modification of entities generally limit updates to certain attributes of the entity.
+
+
+    If you attempt to set an attribute that does not permit updates (such as a `date_created` timestamp), the API will silently ignore that attribute.
+
+
+    This will not affect the response from the API: if the request would have succeeded without the updated attribute, it will still report as successful.
+    Likewise, if the request would have failed without the attribute update, the API will still report a failure.
+
+
+    Typoed or non-existent attributes will behave the same as non-updatable attributes and will be silently ignored.
+    If a request is not working the way you expect, make sure to double check your spelling.
+
+  operationId: attribute_validation
+  responses:
+    '200':
+      description: OK
+  tags:
+    - Introduction

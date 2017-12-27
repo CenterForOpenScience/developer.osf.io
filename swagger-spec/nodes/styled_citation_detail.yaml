@@ -1,0 +1,42 @@
+# /nodes/{node_id}/citation/{style_id}/
+    get:
+      summary: Retrieve a styled citation
+      description: >-
+        The citation for a node in a specific style.
+
+        #### Returns
+
+        Returns a JSON object with a `data` key that contains the representation of the node
+        citation, in the requested style.
+
+      parameters:
+        - description: 'The unique identifier of the citation style.'
+          required: true
+          type: string
+          name: style_id
+          in: path
+        - description: 'The unique identifier of the node.'
+          required: true
+          type: string
+          name: node_id
+          in: path
+      tags:
+        - Nodes
+      operationId: nodes_citation_read
+      x-response-schema: Styled Citation
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: styled_citation_definition.yaml
+          examples:
+            application/json:
+              data:
+                links: {}
+                attributes:
+                  citation: 'Aarts, A. A., Anderson, C. J., Anderson, J., van Assen, M. A. L. M.,
+                    Attridge, P. R., Attwood, A. S., … Grange, J. (2016, December 8). Reproducibility
+                    Project: Psychology. Retrieved from osf.io/ezcuj'
+                type: styled-citations
+                id: apa
+

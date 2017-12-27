@@ -1,0 +1,117 @@
+type: object
+title: Comment
+required:
+  - id
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the comment entity.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the comment entity (`comments`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the comment entity.'
+    properties:
+      can_edit:
+        type: boolean
+        readOnly: true
+        description: Whether or not the current user has permission to edit this comment
+      content:
+        type: string
+        readOnly: false
+        description: The content of the comment.
+      date_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the comment was created, as an iso8601 formatted timestamp.'
+      date_modified:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the comment was last modified, as an iso8601 formatted timestamp.'
+      modified:
+        type: boolean
+        readOnly: true
+        description: Whether or not the comment has been edited.
+      deleted:
+        type: boolean
+        readOnly: true
+        description: Whether or not the comment is deleted.
+      is_abuse:
+        type: boolean
+        readOnly: true
+        description: Whether or not the comment is flagged or confirmed spam.
+      is_ham:
+        type: boolean
+        readOnly: true
+        description: Whether or not an admin checked the legitimacy of this comment.
+      has_report:
+        type: boolean
+        readOnly: true
+        description: Whether or not the comment the current user reported this as spam.
+      has_children:
+        type: boolean
+        readOnly: true
+        description: Whether or not the comment has replies.
+      page:
+        description: 'The page type the comment is on, e.g. `node`, `registration`, `wiki`, `files`.'
+        readOnly: true
+        type: string
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'URLs to other entities or entity collections that have a relationship to the comment entity.'
+    properties:
+      node:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A relationship to the node the comment is on.'
+      replies:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A relationship to the replies to the comment.'
+      target:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A relationship to the target of the comment.'
+      reports:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A relationship to the reports connected to the comment.'
+      user:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A relationship to the user who created the comment.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the comment entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for the comment.'
+example:
+  data:
+    type: comments
+    attributes:
+      content: 'comment content'
+    relationships:
+      target:
+        data:
+          type: '{target_type}'
+          id: '{target_id}'

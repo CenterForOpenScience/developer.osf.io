@@ -1,0 +1,51 @@
+type: object
+title: Addon Account
+required:
+  - id
+  - type
+  - attributes
+  - links
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the addon account entity.'
+
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the addon account entity (`external_accounts`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the addon account entity.'
+    required:
+      - display_name
+      - provider
+    properties:
+      display_name:
+        type: string
+        readOnly: true
+        description: 'The user''s display name on the third-party service'
+      provider:
+        type: string
+        readOnly: true
+        description: 'The short name of the third-party service'
+      profile_url:
+        type: string
+        readOnly: true
+        description: 'The link to user''s profile on third-party service'
+
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the addon account entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'The canonical api endpoint of this addon account'

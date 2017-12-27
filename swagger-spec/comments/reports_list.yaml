@@ -1,0 +1,58 @@
+# /comments/{comment_id}/reports/
+get:
+  summary: Retrieve comment reports
+  description: >-
+    Retrieve a paginated list of your reports for a comment.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment from which you want reports.'
+  tags:
+    - Comments
+  operationId: comments_report_list
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links:
+              self: https://api.osf.io/v2/comments/24v6wzyn9q83/reports/9nufg/
+            attributes:
+              category: violence
+              message: This comment contains a threat.
+            type: comment_reports
+            id: 9nufg
+
+post:
+  summary: Report a comment
+  description: >-
+    Report a comment. Comments must have a category (`spam`, `violence`, or `hate`).
+    Message text is not required.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment from which you want to create a report.'
+  tags:
+    - Comments
+  operationId: comments_report_create
+  responses:
+    '201':
+      description: 'CREATED'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            type: comment_reports
+            attributes:
+              category: hate
+              message: This comment contains hate speech.

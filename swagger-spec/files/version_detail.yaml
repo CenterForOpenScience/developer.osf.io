@@ -1,0 +1,50 @@
+get:
+  summary: Retrieve a file version
+  description: >-
+    Retrieves the details of a file version
+
+    ####Returns
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    file, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: file_id
+      description: 'The unique identifier of the file from which you want to retrieve versions.'
+    - in: path
+      type: string
+      required: true
+      name: version_id
+      description: 'The file version number you want to retrieve.'
+  tags:
+    - Files
+  operationId: files_version_detail
+  x-response-schema: File Version
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'version_definition.yaml'
+      examples:
+        application/json:
+          data:
+            links:
+              self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/versions/1/
+              html: https://osf.io/ezcuj/files/osfstorage/553e69248c5e4a219919ea54?revision=1
+            attributes:
+              content_type: application/octet-stream
+              date_created: '2017-01-01T12:34:56.78910'
+              size: 216945
+            type: file_versions
+            id: '1'

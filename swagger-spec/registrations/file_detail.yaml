@@ -1,0 +1,96 @@
+# /registrations/{registration_id}/files/{provider}/{path}
+get:
+  summary: Retrieve a file
+  description: >-
+    Retrieves the details of a registration file
+    for the given storage provider.
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    registration file object, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+
+    - in: path
+      type: string
+      name: provider
+      required: true
+      description: 'The unique identifier of the storage provider.'
+
+    - in: path
+      type: string
+      name: path
+      required: true
+      description: 'The unique identifier of the file path.'
+
+
+  tags:
+    - Registrations
+  operationId: registrations_files_read
+  x-response-schema: File
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../files/definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/comments/?filter%5Btarget%5D=sejcv
+                    meta: {}
+              versions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/versions/
+                    meta: {}
+            links:
+              info: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
+              self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
+              move: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              download: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              delete: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+            attributes:
+              extra:
+                hashes:
+                  sha256: 2450eb9ff3db92a1bff370368b0552b270bd4b5ca0745b773c37d2662f94df8e
+                  md5: 44325d4f13b09f3769ede09d7c20a82c
+                downloads: 447
+              kind: file
+              name: OSC2012.pdf
+              last_touched: '2015-09-18T01:11:16.328000'
+              materialized_path: "/OSC2012.pdf"
+              date_modified: '2014-10-17T19:24:12.264Z'
+              current_version: 1
+              delete_allowed: true
+              date_created: '2014-10-17T19:24:12.264Z'
+              provider: osfstorage
+              path: "/553e69248c5e4a219919ea54"
+              current_user_can_comment: true
+              guid: sejcv
+              checkout:
+              tags: []
+              size: 216945
+            type: files
+            id: 553e69248c5e4a219919ea54

@@ -1,0 +1,455 @@
+swagger: '2.0'
+info:
+  title: OSF APIv2 Documentation
+  version: '2.0'
+  description: >-
+    Welcome to the documentation for the Open Science Framework API. With this
+    API you can access users, projects, components, registrations, preprints,
+    logs, and files on the Open Science Framework.
+  contact:
+    name: OSF
+    email: support@osf.io
+    url: 'https://osf.io/support'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'test-api.osf.io'
+schemes:
+  - https
+basePath: /v2
+paths:
+
+  ####################
+  #   INTRODUCTION   #
+  ####################
+
+  # These are fake enpoints used for sidebar documentation
+  /introduction/:
+    $ref: 'introduction/introduction.yaml'
+
+  /general_api_usage/:
+    $ref: 'introduction/general_api_usage.yaml'
+
+  /attribute_validation/:
+    $ref: 'introduction/attribute_validation.yaml'
+
+  /authentication/:
+    $ref: 'introduction/authentication.yaml'
+
+  /create_update_requests/:
+    $ref: 'introduction/create_update_requests.yaml'
+
+  /embedding/:
+    $ref: 'introduction/embedding.yaml'
+
+  /entities/:
+    $ref: 'introduction/entities.yaml'
+
+  /entity_collections/:
+    $ref: 'introduction/entity_collections.yaml'
+
+  /enum_fields/:
+    $ref: 'introduction/enum_fields.yaml'
+
+  /errors/:
+    $ref: 'introduction/errors.yaml'
+
+  /error_codes/:
+    $ref: 'introduction/error_codes.yaml'
+
+  /filtering/:
+    $ref: 'introduction/filtering.yaml'
+
+  /pagination/:
+    $ref: 'introduction/pagination.yaml'
+
+  /sparse_fieldsets/:
+    $ref: 'introduction/sparse_fieldsets.yaml'
+
+  /testing/:
+    $ref: 'introduction/testing.yaml'
+
+  /versioning/:
+    $ref: 'introduction/versioning.yaml'
+
+  ##############
+  #   ADDONS   #
+  ##############
+
+  /addons/:
+    $ref: 'addons/list.yaml'
+
+  ############
+  #   BASE   #
+  ############
+
+  /:
+    get:
+      summary: Root
+      description: >-
+        Welcome to the Open Science Framework API. With this API you can access
+        users, projects, components, logs, and files from the [Open Science
+        Framework](https://osf.io/). The Open Science Framework (OSF) is a free,
+        open-source service maintained by the [Center for Open
+        Science](http://cos.io/).
+
+
+        #### Returns
+
+        A JSON object with `meta` and `links` keys.
+
+
+        The `meta` key contains information such as a welcome message from the API, the specified version of the request,
+        and the full representation of the current user, if authentication credentials were provided in the request.
+
+
+        The `links` key contains links to the following entity collections: [addons](), [collections](),
+        [institutions](#Institutions_institutions_list), [licenses](#Licenses_license_list), [metaschemas](),
+        [nodes](#Nodes_nodes_list), [registrations](), [users](#Users_users_list)
+
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Base
+      operationId: base_read
+
+  #################
+  #   CITATIONS   #
+  #################
+
+  /citations/styles/:
+    $ref: 'citations/style_list.yaml'
+
+  /citations/styles/{style_id}/:
+      $ref: 'citations/style_detail.yaml'
+
+  ################
+  #   COMMENTS   #
+  ################
+
+  /comments/{comment_id}/:
+    $ref: 'comments/detail.yaml'
+
+  # /comments/{comment_id}/reports/:
+  #   $ref: 'comments/reports_list.yaml'
+
+  # /comments/{comment_id}/reports/{user_id}/:
+  #   $ref: 'comments/report_detail.yaml'
+
+  #############
+  #   FILES   #
+  #############
+
+  /files/{file_id}/:
+    $ref: 'files/detail.yaml'
+
+  /files/{file_id}/versions/:
+    $ref: 'files/versions_list.yaml'
+
+  /files/{file_id}/versions/{version_id}/:
+    $ref: 'files/version_detail.yaml'
+
+  #################
+  #    LICENSES   #
+  #################
+
+  /licenses/:
+    $ref: 'licenses/list.yaml'
+
+  /license/{license_id}/:
+    $ref: 'licenses/detail.yaml'
+
+  ############
+  #   LOGS   #
+  ############
+
+  /logs/{log_id}/:
+    $ref: 'logs/detail.yaml'
+
+  # this is a fake endpoint for sidebar documentation
+  /actions/:
+    $ref: 'logs/actions.yaml'
+
+  ####################
+  #   INSTITUTIONS   #
+  ####################
+
+  /institutions/:
+    $ref: 'institutions/list.yaml'
+
+  /institutions/{institution_id}/:
+    $ref: 'institutions/detail.yaml'
+
+  /institutions/{institution_id}/users/:
+    $ref: 'institutions/users_list.yaml'
+
+  /institutions/{institution_id}/nodes/:
+    $ref: 'institutions/nodes_list.yaml'
+
+  /institutions/{institution_id}/registrations/:
+    $ref: 'institutions/registrations_list.yaml'
+
+  # /institutions/{institution_id}/relationships/nodes/:
+  #   $ref: 'institutions/nodes_relationships.yaml'
+
+  ###################
+  #   METASCHEMAS   #
+  ###################
+
+  /metaschemas/:
+    $ref: 'metaschemas/list.yaml'
+  /metaschemas/{metaschema_id}:
+    $ref: 'metaschemas/detail.yaml'
+
+  #############
+  #   NODES   #
+  #############
+
+  /nodes/:
+    $ref: 'nodes/list.yaml'
+
+  /nodes/{node_id}/:
+    $ref: 'nodes/detail.yaml'
+
+  /nodes/{node_id}/addons/:
+    $ref: 'nodes/addons_list.yaml'
+
+  /nodes/{node_id}/addons/{provider}/folders/:
+    $ref: 'nodes/addon_folder_list.yaml'
+
+  /nodes/{node_id}/addons/{provider}/:
+    $ref: 'nodes/addon_detail.yaml'
+
+  /nodes/{node_id}/children/:
+    $ref: 'nodes/children_list.yaml'
+
+  /nodes/{node_id}/citation/:
+    $ref: 'nodes/citation_detail.yaml'
+
+  /nodes/{node_id}/citation/{style_id}/:
+    $ref: 'nodes/styled_citation_detail.yaml'
+
+  /nodes/{node_id}/comments/:
+    $ref: 'nodes/comments_list.yaml'
+
+  /nodes/{node_id}/contributors/:
+    $ref: 'nodes/contributors_list.yaml'
+
+  /nodes/{node_id}/contributors/{user_id}/:
+    $ref: 'nodes/contributor_detail.yaml'
+
+  /nodes/{node_id}/draft_registrations/:
+    $ref: 'nodes/draft_registrations_list.yaml'
+
+  /nodes/{node_id}/draft_registrations/{draft_id}/:
+    $ref: 'nodes/draft_registration_detail.yaml'
+
+  /nodes/{node_id}/files/:
+    $ref: 'nodes/providers_list.yaml'
+
+  /nodes/{node_id}/files/providers/{provider}/:
+    $ref: 'nodes/provider_detail.yaml'
+
+  /nodes/{node_id}/files/{provider}/:
+    $ref: 'nodes/files_list.yaml'
+
+  /nodes/{node_id}/files/{provider}/{path}/:
+    $ref: 'nodes/file_detail.yaml'
+
+  /nodes/{node_id}/identifiers/:
+    $ref: 'nodes/identifiers_list.yaml'
+
+  /nodes/{node_id}/institutions/:
+    $ref: 'nodes/institutions_list.yaml'
+
+  /nodes/{node_id}/forks/:
+    $ref: 'nodes/forks_list.yaml'
+
+  /nodes/{node_id}/linked_nodes/:
+    $ref: 'nodes/linked_nodes_list.yaml'
+
+  /nodes/{node_id}/logs/:
+    $ref: 'nodes/logs_list.yaml'
+
+  /nodes/{node_id}/preprints/:
+    $ref: 'nodes/preprints_list.yaml'
+
+  /nodes/{node_id}/registrations/:
+    $ref: 'nodes/registrations_list.yaml'
+
+  /nodes/{node_id}/view_only_links/:
+    $ref: 'nodes/view_only_links_list.yaml'
+
+  /nodes/{node_id}/view_only_links/{link_id}/:
+    $ref: 'nodes/view_only_link_detail.yaml'
+
+  /nodes/{node_id}/wikis/:
+    $ref: 'nodes/wikis_list.yaml'
+
+  #/nodes/{node_id}/relationships/institutions:
+  #  $ref: 'nodes/institutions_relationships.yaml'
+
+  #/nodes/{node_id}/relationships/linked_nodes:
+  #  $ref: 'nodes/linked_nodes_relationships.yaml'
+
+  #################
+  #   PREPRINTS   #
+  #################
+
+  /preprints/:
+    $ref: 'preprints/list.yaml'
+
+  /preprints/{preprint_id}/:
+    $ref: 'preprints/detail.yaml'
+
+  /preprints/{preprint_id}/citation/:
+    $ref: 'preprints/citation_detail.yaml'
+
+  /preprints/{preprint_id}/citation/{style_id}/:
+    $ref: 'preprints/citation_style_detail.yaml'
+
+
+  ##########################
+  #   PREPRINT PROVIDERS   #
+  ##########################
+
+  /preprint_providers/:
+    $ref: 'preprint_providers/list.yaml'
+
+  /preprint_providers/{preprint_provider_id}/:
+    $ref: 'preprint_providers/detail.yaml'
+
+  /preprint_providers/{preprint_provider_id}/preprints/:
+    $ref: 'preprint_providers/preprints_list.yaml'
+
+  /preprint_providers/{preprint_provider_id}/taxonomies/:
+    $ref: 'preprint_providers/taxonomies_list.yaml'
+
+  /preprint_providers/{preprint_provider_id}/licenses/:
+    $ref: 'preprint_providers/licenses_list.yaml'
+
+  #####################
+  #   REGISTRATIONS   #
+  #####################
+
+  /registrations/:
+    $ref: 'registrations/list.yaml'
+
+  /registrations/{registration_id}/:
+    $ref: 'registrations/detail.yaml'
+
+  /registrations/{registration_id}/citations/:
+    $ref: 'registrations/style_list.yaml'
+
+  /registrations/{registration_id}/citations/{citation_id}/:
+    $ref: 'registrations/style_detail.yaml'
+
+  /registrations/{registration_id}/children/:
+    $ref: 'registrations/children_list.yaml'
+
+  /registrations/{registration_id}/comments/:
+    $ref: 'registrations/comments_list.yaml'
+
+  /registrations/{registration_id}/contributors/:
+    $ref: 'registrations/contributors_list.yaml'
+
+  /registrations/{registration_id}/contributors/{user_id}/:
+    $ref: 'registrations/contributor_detail.yaml'
+
+  /registrations/{registration_id}/files/:
+    $ref: 'registrations/providers_list.yaml'
+
+  /registrations/{registration_id}/files/{provider}/:
+    $ref: 'registrations/files_list.yaml'
+
+  /registrations/{registration_id}/files/{provider}/{path}/:
+    $ref: 'registrations/file_detail.yaml'
+
+  /registrations/{registration_id}/forks/:
+    $ref: 'registrations/forks_list.yaml'
+
+  /registrations/{registration_id}/identifiers/:
+    $ref: 'registrations/identifiers_list.yaml'
+
+  /registrations/{registration_id}/institutions/:
+    $ref: 'registrations/institutions_list.yaml'
+
+  /registrations/{registration_id}/linked_nodes/:
+    $ref: 'registrations/linked_nodes_list.yaml'
+
+  /registrations/{registration_id}/logs/:
+    $ref: 'registrations/logs_list.yaml'
+
+  /registrations/{registration_id}/view_only_links/:
+    $ref: 'registrations/view_only_links_list.yaml'
+
+  /registrations/{registration_id}/view_only_links/{link_id}/:
+    $ref: 'registrations/view_only_link_detail.yaml'
+
+  /registrations/{registration_id}/wikis/:
+    $ref: 'registrations/wikis_list.yaml'
+
+  ##################
+  #   TAXONOMIES   #
+  ##################
+
+  /taxonomies/:
+    $ref: 'taxonomies/list.yaml'
+
+  /taxonomies/{taxonomy_id}/:
+    $ref: 'taxonomies/detail.yaml'
+
+  #############
+  #   USERS   #
+  #############
+
+  /users/:
+    $ref: 'users/list.yaml'
+
+  /users/{user_id}/:
+    $ref: 'users/detail.yaml'
+
+  /users/{user_id}/institutions/:
+    $ref: 'users/institutions_list.yaml'
+
+  /users/{user_id}/nodes/:
+    $ref: 'users/nodes_list.yaml'
+
+  /users/{user_id}/preprints/:
+    $ref: 'users/preprints_list.yaml'
+
+  /users/{user_id}/registrations/:
+    $ref: 'users/registrations_list.yaml'
+
+  /users/{user_id}/addons/:
+    $ref: 'users/addons_list.yaml'
+
+  /users/{user_id}/addons/{provider}/:
+    $ref: 'users/addon_detail.yaml'
+
+  /users/{user_id}/addons/{provider}/accounts/:
+    $ref: 'users/addon_accounts_list.yaml'
+
+  /users/{user_id}/addons/{provider}/accounts/{account_id}/:
+    $ref: 'users/addon_account_detail.yaml'
+
+
+  ######################
+  #   View Only Links  #
+  ######################
+
+  /view_only_links/{link_id}/:
+    $ref: 'view_only_links/detail.yaml'
+  /view_only_links/{link_id}/nodes/:
+    $ref: 'view_only_links/nodes.yaml'
+
+  #############
+  #   WIKIS   #
+  #############
+
+  /wikis/{wiki_id}/:
+    $ref: 'wikis/detail.yaml'
+
+  /wikis/{wiki_id}/content/:
+    $ref: 'wikis/content.yaml'

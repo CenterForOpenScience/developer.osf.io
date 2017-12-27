@@ -1,0 +1,145 @@
+# /comments/{comment_id}/
+get:
+  summary: Retrieve a comment
+  description: >-
+    Retrieves the details of a comment
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    comment, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment you wish to retrieve.'
+  tags:
+    - Comments
+  operationId: comments_read
+  x-response-schema: Comment
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/gvuew/
+                    meta: {}
+              replies:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/gvuew/comments/?filter%5Btarget%5D=twpgrpv78d8s
+                    meta: {}
+              target:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/gvuew/
+                    meta:
+                      type: nodes
+              reports:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/comments/twpgrpv78d8s/reports/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/rnizy/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/comments/twpgrpv78d8s/
+            attributes:
+              can_edit: true
+              date_modified: '2017-02-10T20:44:03.193000'
+              deleted: false
+              is_ham: false
+              has_children: false
+              modified: false
+              content: "comments about things"
+              has_report: false
+              is_abuse: false
+              date_created: '2017-02-10T20:44:03.185000'
+              page: node
+            type: comments
+            id: twpgrpv78d8s
+
+put:
+  summary: Update a comment
+  description: >-
+      Updates the specified comment by setting the values of the parameters passed.
+      Any parameters not provided will be left unchanged.
+
+      #### Returns
+
+      Returns JSON with a `data` key containing the new representation of the updated
+      comment, if the request is successful.
+
+
+      If the request is unsuccessful, JSON with an `errors` key containing
+      information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+      to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment you wish to update.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: comments
+            id: '{comment_id}'
+            attributes:
+              content: "changed comment content"
+
+  tags:
+    - Comments
+  operationId: comments_put
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a comment
+  description: >-
+    Deletes a comment. This action can be undone by setting deleted to False in a comment update request.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment you wish to delete.'
+  tags:
+    - Comments
+  operationId: comments_delete
+  responses:
+    '204':
+      description: 'No content'

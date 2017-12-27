@@ -1,0 +1,47 @@
+# /taxonomies/{taxonomy_id}/
+get:
+  summary: Retrieve a taxonomy
+  description: >-
+    Retrieves the details of a taxonomy.
+
+    #### Returns
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    taxonomy, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: taxonomy_id
+      description: 'The unique identifier of the taxonomy.'
+  tags:
+    - Taxonomies
+  operationId: taxonomies_read
+  x-response-schema: Taxonomy
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            links:
+              self: https://api.osf.io/v2/taxonomies/584240d954be81056ceca841/
+              parents:
+              - https://api.osf.io/v2/taxonomies/584240da54be81056cecab8f/
+            attributes:
+              text: Public Economics
+              parents:
+              - text: Economics
+                id: 584240da54be81056cecab8f
+              child_count: 0
+            type: taxonomies
+            id: 584240d954be81056ceca841

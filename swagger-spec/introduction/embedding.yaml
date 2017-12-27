@@ -1,0 +1,46 @@
+get:
+  summary: Embedding
+  description: >-
+    All related resources that appear in the `relationships` attribute are embeddable,
+    meaning it is possible to fetch a node and its contributors in a single request by adding a query parameter like:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?embed=contributors`
+
+
+    The embedded results will have the following structure:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`{relationship_name}: {full_embedded_response}`
+
+
+    Where `full_embedded_response` means the full API response resulting from a **GET** request to the `href` link of the corresponding related
+    resource.
+
+
+    This means if there are no errors in processing the embedded request the response will have the format:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`data: {response}`
+
+
+    And if there are errors processing the embedded request the response will have the format:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`errors: {errors}`
+
+
+    Multiple embeds can be achieved with multiple query parameters separated by "&".
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?embed=contributors&embed=comments`
+
+
+    Some endpoints are automatically embedded, such as the [node contributors](#Nodes_nodes_contributors_list) endpoint, which automatically embeds user information.
+
+  operationId: embedding
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

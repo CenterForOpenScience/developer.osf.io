@@ -1,0 +1,44 @@
+type: object
+title: Citation Detail
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the entity being cited.'
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier of the citation entity (either `node-citation`, `preprint-citation`, or `registration-citation`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the citation entity.'
+    properties:
+      author:
+        type: string
+        readOnly: true
+        description: 'The list of bibliographic authors, represented as dictionaries of their given and family names, for the entitiy being cited.'
+      doi:
+        type: string
+        readOnly: true
+        description: 'The DOI for the entity being cited, if one exists.'
+      publisher:
+        type: string
+        readOnly: true
+        description: 'The publisher of the entity being cited. For nodes and registrations, the publisher is the ''Open Science Framework''. For preprints, the publisher is the same as the preprint provider.'
+      title:
+        type: string
+        readOnly: true
+        description: 'The title of the entity being cited.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the citation entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the entity that is being cited.'

@@ -1,0 +1,69 @@
+type: object
+title: Node Addon
+required:
+  - id
+  - type
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the draft registration entity.'
+
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the node addon entity (`node_addons`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the node addon entity.'
+    properties:
+      external_account_id:
+        type: string
+        readOnly: true
+        description: 'The ID of the associated node addon account, if any.'
+      folder_id:
+        type: string
+        readOnly: true
+        description: 'The ID of the linked folder from the addon provider.'
+      folder_path:
+        type: string
+        readOnly: true
+        description: 'The folder path of the linked folder from the addon provider. Google Drive specific'
+      configured:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this node has been configured with an addon folder.'
+      enabled:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this node has a NodeSettings object associated with it.'
+      node_has_auth:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this node is fully authorized to use this node addon.'
+      url:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'An external link specific to the addon provider.'
+      label:
+        type: string
+        readOnly: true
+        description: 'A label specific to the addon provider.'
+
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    required:
+      - self
+    description: 'URLs to alternative representations of the node addon entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the the canonical API endpoint for this node addon.'

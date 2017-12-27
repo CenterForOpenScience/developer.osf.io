@@ -1,0 +1,115 @@
+# /registrations/{registration_id}/files/{provider}/
+
+get:
+  summary: List all files
+  description: >-
+    List of all the registration's files/folders
+    for a given storage provider.
+
+
+    ####Returns
+
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of files.
+    Each resource in the array is a separate file object and contains the full representation of the file.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+    ####Filtering
+
+
+    You can optionally request that the response only include files that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wucr8/files/osfstorage/?filter[kind]=file
+
+
+    Files may be filtered by `id`, `name`, `node`, `kind`, `path`, `provider`, `size`, and `last_touched`.
+
+
+  parameters:
+
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: 'The unique identifier of the registration.'
+
+    - in: path
+      name: provider
+      type: string
+      required: true
+      description: 'The unique identifier of the storage provider.'
+
+
+  tags:
+    - Registrations
+  operationId: registrations_files_list
+  x-response-schema: File
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../files/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/comments/?filter%5Btarget%5D=sejcv
+                    meta: {}
+              versions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/versions/
+                    meta: {}
+            links:
+              info: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
+              self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
+              move: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              download: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              delete: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+            attributes:
+              extra:
+                hashes:
+                  sha256: 2450eb9ff3db92a1bff370368b0552b270bd4b5ca0745b773c37d2662f94df8e
+                  md5: 44325d4f13b09f3769ede09d7c20a82c
+                downloads: 447
+              kind: file
+              name: OSC2012.pdf
+              last_touched: '2015-09-18T01:11:16.328000'
+              materialized_path: "/OSC2012.pdf"
+              date_modified: '2014-10-17T19:24:12.264Z'
+              current_version: 1
+              delete_allowed: true
+              date_created: '2014-10-17T19:24:12.264Z'
+              provider: osfstorage
+              path: "/553e69248c5e4a219919ea54"
+              current_user_can_comment: true
+              guid: sejcv
+              checkout:
+              tags: []
+              size: 216945
+            type: files
+            id: 553e69248c5e4a219919ea54
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10

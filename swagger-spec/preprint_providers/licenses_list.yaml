@@ -1,0 +1,60 @@
+get:
+  summary: List all licenses
+  description: >-
+
+    A paginated list of the licenses allowed bya preprint provider.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 preprint providers.
+    Each resource in the array is a separate preprint provider object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: preprint_provider_id
+      description: 'The unique identifier of the preprint provider.'
+  tags:
+    - Preprint Providers
+  operationId: preprint_provider_licenses_list
+  x-response-schema: 'Licenses'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../licenses/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - links:
+                self: https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e965/
+              attributes:
+                text: Copyright {{year}} {{copyrightHolders}}
+                required_fields:
+                - year
+                - copyrightHolders
+                name: No license
+              type: licenses
+              id: 563c1cf88c5e4a3877f9e965
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 3
+              per_page: 10
+

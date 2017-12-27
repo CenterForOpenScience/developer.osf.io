@@ -1,0 +1,90 @@
+get:
+  summary: List all users
+  description: >-
+
+    A paginated list of all users registered on the OSF.
+    The returned users are sorted by their `date_registered`, with the most recently registered users appearing first.
+
+
+    The subroute `/users/me/` is a special endpoint that always points to the currently logged-in user.
+
+    #### Versioning
+
+    As of version `2.3`, merged users will not be returned from this endpoint.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 users.
+    Each resource in the array is a separate users object and contains the full representation of the user, meaning additional requests to a user's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/users/?filter[family_name]=Nosek.
+
+
+    Users may be filtered by their `id`, `full_name`, `given_name`, `middle_name`, or `family_name`.
+
+  tags:
+    - Users
+  operationId: users_list
+  x-response-schema: User
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+          - relationships:
+              nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/q7fts/nodes/
+                    meta: {}
+              institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/users/q7fts/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/users/q7fts/institutions/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/users/q7fts/
+              html: https://osf.io/q7fts/
+              profile_image: https://secure.gravatar.com/avatar/e9d9311ab2f5ab7492a86ac9adb5c8e9?d=identicon
+            attributes:
+              family_name: Rollins
+              suffix: ''
+              locale: en_US
+              date_registered: '2014-06-15T17:39:06.701000'
+              middle_names: ''
+              given_name: Casey
+              full_name: Casey Rollins
+              active: true
+              timezone: America/New_York
+            type: users
+            id: q7fts
+          links:
+            first:
+            last: https://api.osf.io/v2/users/?page=4337
+            prev:
+            next: https://api.osf.io/v2/users/?page=2
+            meta:
+              total: 43370
+              per_page: 10
+

@@ -1,0 +1,94 @@
+#/registrations/{registration_id}/contributors/{user_id}
+get:
+  summary: Retrieve a contributor
+  description: >-
+    Retrieves the details of a contributor on this registration.
+
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: registration_id
+    required: true
+    description: 'The unique identifier of the registration.'
+  - in: path
+    type: string
+    name: user_id
+    required: true
+    description: 'The unique identifier of the user.'
+  tags:
+    - Registrations
+  operationId: registrations_contributors_read
+  x-response-schema: Contributor
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../nodes/contributor_definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/wucr8/
+                    meta: {}
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/7xea5/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/registrations/wucr8/contributors/7xea5/
+            embeds:
+              users:
+                data:
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/7xea5/nodes/
+                          meta: {}
+                    institutions:
+                      links:
+                        self:
+                          href: https://api.osf.io/v2/users/7xea5/relationships/institutions/
+                          meta: {}
+                        related:
+                          href: https://api.osf.io/v2/users/7xea5/institutions/
+                          meta: {}
+                  links:
+                    html: https://osf.io/7xea5/
+                    profile_image: https://secure.gravatar.com/avatar/0ddf92ef0f0a7011c21cd07d7940bc32?d=identicon
+                  attributes:
+                    family_name: Anderl
+                    suffix: ''
+                    locale: de
+                    date_registered: '2014-10-22T13:48:22.652000'
+                    middle_names: ''
+                    given_name: Christine
+                    full_name: Christine Anderl
+                    active: true
+                    timezone: America/Los_Angeles
+                  type: users
+                  id: 7xea5
+            attributes:
+              index: 0
+              unregistered_contributor:
+              bibliographic: true
+              permission: admin
+            type: contributors
+            id: wucr8-7xea5

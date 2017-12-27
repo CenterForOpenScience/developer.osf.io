@@ -1,0 +1,60 @@
+get:
+  summary: List all file versions
+  description: >-
+
+    A paginated list of all file versions.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 file versions.
+    Each resource in the array is a separate file version object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: file_id
+      description: 'The unique identifier of the file from which you want to retrieve versions.'
+  tags:
+    - Files
+  operationId: files_versions
+  x-response-schema: File Version
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'version_definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links:
+              self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/versions/1/
+              html: https://osf.io/ezcuj/files/osfstorage/553e69248c5e4a219919ea54?revision=1
+            attributes:
+              content_type: application/octet-stream
+              date_created: '2017-01-01T12:34:56.78910'
+              size: 216945
+            type: file_versions
+            id: '1'
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10

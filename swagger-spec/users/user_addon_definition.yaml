@@ -1,0 +1,47 @@
+type: object
+title: User Addon
+required:
+  - id
+  - type
+  - attributes
+  - links
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the user addon entity.'
+
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the user addon entity (`user_addons`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the user addon entity.'
+    required:
+      - user_has_auth
+    properties:
+      user_has_auth:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the user has access to this user addon.'
+
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the user addon entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'The canonical API endpoint to this user addon.'
+      accounts:
+        type: object
+        format: URL
+        readOnly: true
+        description: 'A dictionary with addon_account id as key, an array of connected nodes and link to user account as value'

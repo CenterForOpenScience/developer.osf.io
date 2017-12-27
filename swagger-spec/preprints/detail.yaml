@@ -1,0 +1,142 @@
+get:
+  summary: Retrieve a preprint
+  description: >-
+    Retrieves the details of a preprint.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    preprint, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: preprint_id
+      description: 'The unique identifier of the preprint.'
+  tags:
+    - Preprints
+  operationId: preprints_read
+  x-response-schema: 'Preprint'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bnzx5/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/citation/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/identifiers/
+                    meta: {}
+              primary_file:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
+                    meta: {}
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprint_providers/osf/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/preprints/khbvy/
+              html: https://osf.io/khbvy/
+              doi: https://dx.doi.org/10.1371/journal.pbio.1002456
+              preprint_doi: https://dx.doi.org/10.5072/FK2OSF.IO/KHBVY
+            attributes:
+              doi: 10.1371/journal.pbio.1002456
+              license_record:
+              date_modified: '2016-08-29T14:53:51.185000'
+              is_preprint_orphan: false
+              date_published: '2016-08-29T14:53:51.185000'
+              subjects:
+              - - text: Social and Behavioral Sciences
+                  id: 584240da54be81056cecac48
+                - text: Public Affairs, Public Policy and Public Administration
+                  id: 584240da54be81056cecaab8
+                - text: Science and Technology Policy
+                  id: 584240d954be81056cecaa10
+              - - text: Social and Behavioral Sciences
+                  id: 584240da54be81056cecac48
+                - text: Library and Information Science
+                  id: 584240da54be81056cecab33
+                - text: Scholarly Publishing
+                  id: 584240db54be81056cecacd2
+              - - text: Social and Behavioral Sciences
+                  id: 584240da54be81056cecac48
+                - text: Psychology
+                  id: 584240da54be81056cecac68
+              - - text: Social and Behavioral Sciences
+                  id: 584240da54be81056cecac48
+                - text: Psychology
+                  id: 584240da54be81056cecac68
+              date_created: '2016-08-29T14:53:51.185000'
+              is_published: true
+            type: preprints
+            id: khbvy
+
+patch:
+  summary: Update a preprint
+  description: >-
+    Updates the specified preprint by setting the values of the parameters passed.
+    Any parameters not provided will be left unchanged.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    preprint, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes]()
+    to understand why this request may have failed.
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: preprint_id
+      description: 'The unique identifier of the preprint.'
+    - in: body
+      required: true
+      name: data
+      schema:
+        type: object
+        example:
+          data:
+            id: "{preprint_id}"
+            attributes:
+              doi: "{doi}"
+            relationships:
+              primary_file:
+                data:
+                  type: "primary_files"
+                  id: "{file_id}"
+
+  tags:
+    - Preprints
+  operationId: preprints_partial_update
+  consumes:
+    - application/json
+  x-response-schema: 'Preprint'
+  responses:
+    '200':
+      description: 'OK'

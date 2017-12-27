@@ -1,0 +1,115 @@
+# /taxonomies/
+get:
+  summary: List all taxonomies
+  description: >-
+
+    A paginated list of all [bepress disciplines taxonomies](https://www.bepress.com/wp-content/uploads/2016/12/Digital-Commons-Disciplines-taxonomy-2017-01.pdf).
+
+    Note: this API endpoint is under active development, and is subject to change in the future.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 taxonomies.
+    Each resource in the array is a separate taxonomy object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include taxonomies that
+    match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/taxonomies/?filter['id']='{taxonomy_id}'.
+
+
+    Taxonomies may be filtered by their `id`, `parents`, and `text`.
+
+  tags:
+    - Taxonomies
+  operationId: taxonomies_list
+  x-response-schema: Taxonomy
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links:
+              self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca838/
+              parents:
+              - https://api.osf.io/v2/taxonomies/584240d954be81056ceca97a/
+            attributes:
+              text: History of Philosophy
+              parents:
+              - text: Philosophy
+                id: 584240d954be81056ceca97a
+              child_count: 0
+            type: taxonomies
+            id: 584240d854be81056ceca838
+          - links:
+              self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca839/
+              parents:
+              - https://api.osf.io/v2/taxonomies/584240db54be81056cecacd3/
+            attributes:
+              text: Animal Law
+              parents:
+              - text: Law
+                id: 584240db54be81056cecacd3
+              child_count: 0
+            type: taxonomies
+            id: 584240d854be81056ceca839
+          - links:
+              self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca83a/
+              parents:
+              - https://api.osf.io/v2/taxonomies/584240db54be81056cecacd3/
+            attributes:
+              text: Consumer Protection Law
+              parents:
+              - text: Law
+                id: 584240db54be81056cecacd3
+              child_count: 0
+            type: taxonomies
+            id: 584240d854be81056ceca83a
+          - links:
+              self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca83b/
+              parents:
+              - https://api.osf.io/v2/taxonomies/584240da54be81056cecaa9c/
+            attributes:
+              text: Missions and World Christianity
+              parents:
+              - text: Religion
+                id: 584240da54be81056cecaa9c
+              child_count: 0
+            type: taxonomies
+            id: 584240d854be81056ceca83b
+          - links:
+              self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca83c/
+              parents:
+              - https://api.osf.io/v2/taxonomies/584240d954be81056ceca8fd/
+            attributes:
+              text: Other Teacher Education and Professional Development
+              parents:
+              - text: Teacher Education and Professional Development
+                id: 584240d954be81056ceca8fd
+              child_count: 0
+            type: taxonomies
+            id: 584240d854be81056ceca83c
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+            total: 5
+            per_page: 10

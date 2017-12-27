@@ -1,0 +1,59 @@
+# /users/{user_id}/addons/{provider}/
+get:
+  summary: Retrieve a user addon
+  description: >-
+    Retrieves the details of an authorized user addon
+
+
+    #### Permissions
+
+
+    User addons are visible only to the user that authorized the addon.
+
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    user addon, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+
+    Attempting to request the accounts for an addon that is not enabled will result in a **404 Not Found** response.
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user.'
+    - in: path
+      name: provider
+      type: string
+      required: true
+      description: 'The unique identifier of the addon provider.'
+
+  tags:
+    - Users
+  operationId: users_addons_read
+  x-response-schema: User Addon
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'user_addon_definition.yaml'
+      examples:
+        application/json:
+          data:
+            links:
+              self: https://api.osf.io/v2/users/me/addons/dropbox/
+              accounts:
+                58d16ece9ad5a10201025eb4:
+                  nodes_connected: []
+                  account: https://api.osf.io/v2/users/f542f/addons/dropbox/accounts/58d16ece9ad5a10201025eb4/
+            attributes:
+              user_has_auth: true
+            type: user_addons
+            id: dropbox

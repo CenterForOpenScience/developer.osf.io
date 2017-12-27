@@ -1,0 +1,187 @@
+# /registrations/{registration_id}/logs
+get:
+  summary: List all logs
+  description: >-
+    A paginated list of the registration's logs.
+
+
+    The returned logs are sorted by their `date`, with the most recents logs appearing
+    first.
+
+
+    ####Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 logs.
+    Each resource in the array is a separate logs object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+    ####Filtering
+
+    You can optionally request that the response only include logs that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wucr8/logs/?filter[action]=made_private.
+
+
+    Logs may be filtered by their `action`, and `date`.
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: 'The unique identifier of the registration.'
+
+  tags:
+    - Registrations
+
+  operationId: registrations_logs_list
+  x-response-schema: Log
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../logs/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/n32tp/
+                    meta: {}
+              original_node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/7eshv/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/7xea5/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/logs/57431299594d9001ead7174f/
+            attributes:
+              date: '2016-05-23T14:22:20.142000'
+              action: osf_storage_file_updated
+              params:
+                contributors: []
+                params_project:
+                  id: 5wprs
+                  title: Full Project Description
+                params_node:
+                  id: 7eshv
+                  title: Full Questionnaire [in original language]
+                urls:
+                  download: "/project/7eshv/files/osfstorage/5742f41c6c613b01de5b15dd/?action=download"
+                  view: "/project/7eshv/files/osfstorage/5742f41c6c613b01de5b15dd/"
+                preprint_provider:
+                path: "/StudyMaterials_UEH1.pdf"
+            type: logs
+            id: 57431299594d9001ead7174f
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/n32tp/
+                    meta: {}
+              original_node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/7eshv/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/7xea5/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/logs/57431299594d9001ead7174d/
+            attributes:
+              date: '2016-05-23T12:13:58.371000'
+              action: project_created
+              params:
+                preprint_provider:
+                params_node:
+                  id: 7eshv
+                  title: Full Questionnaire [in original language]
+                params_project:
+                contributors: []
+            type: logs
+            id: 57431299594d9001ead7174d
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/
+                    meta: {}
+              original_node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/5wprs/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/7xea5/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/logs/57431299594d9001ead71746/
+            attributes:
+              date: '2016-05-23T12:11:14.853000'
+              action: project_created
+              params:
+                preprint_provider:
+                params_node:
+                  id: 5wprs
+                  title: Full Project Description
+                params_project:
+                contributors: []
+            type: logs
+            id: 57431299594d9001ead71746
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/wucr8/
+                    meta: {}
+              original_node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/6gbkh/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/7xea5/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/logs/57431299594d9001ead71742/
+            attributes:
+              date: '2016-05-23T12:10:48.868000'
+              action: project_created
+              params:
+                preprint_provider:
+                params_node:
+                  id: 6gbkh
+                  title: Investigating fluctuations in cooperative preferences across the natural
+                    female menstrual cycle in a within-subjects-design
+                params_project:
+                contributors: []
+            type: logs
+            id: 57431299594d9001ead71742
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 5
+              per_page: 10

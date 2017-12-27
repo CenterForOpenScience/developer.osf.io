@@ -1,0 +1,42 @@
+get:
+  summary: Retrieve a citation style
+  description: >-
+    Retrieves the details of a citation style.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    citation style, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - description: 'The unique identifier of the citation style.'
+      required: true
+      type: string
+      name: style_id
+      in: path
+  tags:
+    - Citations
+  operationId: citations_styles_read
+  x-response-schema: Citation Style
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            links: {}
+            attributes:
+              date_parsed: '2015-02-16T04:16:26.233000'
+              summary:
+              short_title: APA
+              title: American Psychological Association 6th edition
+            type: citation-styles
+            id: apa
+

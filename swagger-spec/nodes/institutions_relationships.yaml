@@ -1,0 +1,112 @@
+# /nodes/{node_id}/relationships/institutions/
+get:
+  summary: Retrieve institution-node relationships
+  description: >-
+    Retrieves all institutions affiliated with a node.
+
+    ####Permissions
+
+    The user must have write access to the node and be affiliated with the given institution.
+
+    ####Returns
+
+    Returns an array of dictionaries, each with `type` and `id` keys. The ids correspond
+    to affiliated institutions ids.
+
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: nodes_relationships_institutions
+  x-response-schema: Institution
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '../institutions/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - type: institutions
+            id: cos
+          - type: institutions
+            id: uva
+          - type: institutions
+            id: ljaf
+          links:
+            self: https://api.osf.io/v2/nodes/ezcuj/relationships/institutions/
+            html: https://api.osf.io/v2/nodes/ezcuj/institutions/
+post:
+  summary: Create an institution-node relationship
+  description: >-
+    Create a relationship between an institution and a node.
+
+
+    ####Permissions
+
+
+    The user must have write access to the node and be affiliated with the given institution.
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: 'The unique identifier of the node.'
+
+  tags:
+    - Nodes
+  operationId: nodes_relationships_institutions_create
+  responses:
+    '201':
+      description: OK
+      examples:
+        application/json:
+          data:
+          - type: institutions
+            id: api6f
+
+delete:
+  summary: Delete an institution-node relationship
+  description: >-
+    Delete a relationship between an institution and a node.
+
+    ####Permissions
+
+
+    The user must have write access to the node and be affiliated with the given institution.
+
+
+    If the user no longer has the institutional affiliation and removes an institution from a node,
+    they will not be able to add it back.
+
+    ####Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an errors key containing information
+    about the failure will be returned. Refer to the list of error codes to understand why this request may have failed.
+
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: 'The unique identifier of the node.'
+
+
+  tags:
+    - Nodes
+  operationId: nodes_relationships_institutions_delete
+  responses:
+    '204':
+      description: No content

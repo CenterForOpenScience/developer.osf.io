@@ -1,0 +1,75 @@
+get:
+  summary: List all institutions
+  description: >-
+
+    A paginated list of all verified institutions.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 institutions.
+    Each resource in the array is a separate institution object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include institutions that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/institutions/?filter[id]=cos.
+
+
+    Institutions may be filtered by their `id`, `name`, and `auth_url`
+  tags:
+    - Institutions
+  operationId: institutions_list
+  x-response-schema: Institution
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - relationships:
+                nodes:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/institutions/cos/nodes/
+                      meta: {}
+                users:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/institutions/cos/users/
+                      meta: {}
+                registrations:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/institutions/cos/registrations/
+                      meta: {}
+              links:
+                self: https://api.osf.io/v2/institutions/cos/
+              attributes:
+                auth_url: null
+                logo_path: /static/img/institutions/shields/cos-shield.png
+                name: Center For Open Science
+                description: COS is a non-profit technology company providing free and open services to increase inclusivity and transparency of research. Find out more at <a href="https://cos.io">cos.io</a>.
+              type: institutions
+              id: cos
+          links:
+            first: null
+            last: https://api.osf.io/v2/institutions/cos/nodes/?page=2
+            prev: null
+            next: https://api.osf.io/v2/institutions/cos/nodes/?page=2
+            meta:
+              total: 15
+              per_page: 10

@@ -1,0 +1,77 @@
+get:
+  summary: 'List all institutions'
+  description: >-
+    A paginated list of institutions that the user is affiliated with.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 institutions.
+    Each resource in the array is a complete institution object and contains the full representation of the institution, meaning additional requests to a institution's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+  tags:
+    - Users
+  parameters:
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+  operationId: users_institutions_list
+  x-response-schema: Institution
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../institutions/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/uva/nodes/
+                    meta: {}
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/uva/users/
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/uva/registrations/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/institutions/uva/
+            attributes:
+              auth_url: https://accounts.osf.io/Shibboleth.sso/Login?entityID=urn%3Amace%3Aincommon%3Avirginia.edu
+              logo_path: "/static/img/institutions/shields/uva-shield.png"
+              name: University of Virginia
+              description: In partnership with the <a href="http://www.virginia.edu/vpr/">Vice
+                President for Research</a>, <a href="http://dsi.virginia.edu">Data Science Institute</a>,
+                <a href="https://www.hsl.virginia.edu">Health Sciences Library</a>, and <a href="http://data.library.virginia.edu">University
+                Library</a>. Learn more about <a href="http://cadre.virginia.edu">UVA resources
+                for computational and data-driven research</a>. Projects must abide by the <a
+                href="http://www.virginia.edu/informationpolicy/security.html">University Security
+                and Data Protection Policies</a>.
+            type: institutions
+            id: uva
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 2
+              per_page: 10
+

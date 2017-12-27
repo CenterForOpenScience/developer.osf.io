@@ -1,0 +1,43 @@
+# /preprints/{preprint_id}/citation/{style_id}/
+get:
+  summary: 'Retrieve a styled citation'
+  description: >-
+    The citation for a preprint in a specific style.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key that contains the representation of the preprint
+    citation, in the requested style.
+
+  parameters:
+    - description: 'The unique identifier of the citation style.'
+      required: true
+      type: string
+      name: style_id
+      in: path
+    - description: 'The unique identifier of the preprint.'
+      required: true
+      type: string
+      name: preprint_id
+      in: path
+  tags:
+    - Preprints
+  operationId: preprints_citation_read
+  x-response-schema: 'Styled Citation'
+  responses:
+    '200':
+      description: ''
+      schema:
+        $ref: '../nodes/styled_citation_definition.yaml'
+      examples:
+        application/json:
+          data:
+            links: {}
+            attributes:
+              citation: 'Kidwell, M., Lazarevic, L. B., Baranski, E., Hardwicke, T. E., Piechowski,
+                S., Falkenberg, L.-S., … Nosek, B. A. (2016, August 29). Badges to Acknowledge
+                Open Practices: A Simple, Low-Cost, Effective Method for Increasing Transparency.
+                http://doi.org/10.1371/journal.pbio.1002456'
+            type: styled-citations
+            id: apa
+

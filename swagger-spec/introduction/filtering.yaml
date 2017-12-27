@@ -1,0 +1,46 @@
+get:
+  summary: Filtering
+  description: >-
+    Entity collections can be filtered by adding a query parameter in the
+    form:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`filter[<fieldname>]=<matching information>`
+
+
+    String queries are filtered using substring matching. For example, if
+    you were trying to find [Lise Meitner](http://en.wikipedia.org/wiki/Lise_Meitner):
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/users/?filter[full_name]=meitn`
+
+
+    You can filter on multiple fields, or the same field in different ways, by &-ing the query parameters together.
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/users/?filter[full_name]=lise&filter[family_name]=mei`
+
+
+    Boolean fields should be queried with `true` or `false`.
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[registered]=true`
+
+
+    You can request multiple resources by filtering on id and placing comma-separated values in your query parameter.
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[id]=aegu6,me23a`
+
+
+    You can filter with case-sensitivity or case-insensitivity by using `contains` and `icontains`, respectively.
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[tags][icontains]=help`
+
+  operationId: filtering
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

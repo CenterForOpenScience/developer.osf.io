@@ -1,0 +1,68 @@
+# /users/{user_id}/addons/{provider}/accounts/
+get:
+  summary: List all addon accounts
+  description: >-
+
+    A paginated list of addon accounts authorized by this user.
+
+
+    #### Permissions
+
+
+    Addon accounts are visible only to the user that authorized the account.
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of at most 10 addon account objects.
+    Each resource in the array is a separate  addon account object and
+    contains the full representation of the addon account.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user.'
+    - in: path
+      name: provider
+      type: string
+      required: true
+      description: 'The unique identifier of the addon provider.'
+
+  tags:
+    - Users
+  operationId: Users_addon_accounts_list
+  x-response-schema: Addon Account
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'addon_account_definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links:
+              self: https://api.osf.io/v2/users/me/addons/dropbox/accounts/58d16ece9ad5a10201027eb4/
+            attributes:
+              display_name: 'Fabrice Mizero'
+              profile_url:
+              provider: dropbox
+            type: external_accounts
+            id: 58d16ece9ad5a10201027eb4
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10

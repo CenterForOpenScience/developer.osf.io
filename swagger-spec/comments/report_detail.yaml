@@ -1,0 +1,93 @@
+# /comments/{comment_id}/reports/{user_id}/
+get:
+  summary: Retrieve comment report detail
+  description: >-
+    Retrieve a specific report. 
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment from which you want reports.'
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user from which you want a report.'
+  tags:
+    - Comments
+  operationId: comments_report_detail_get
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            links:
+              self: https://api.osf.io/v2/comments/24v6wzyn9q83/reports/9nufg/
+            attributes:
+              category: violence
+              message: This comment contains a threat
+            type: comment_reports
+            id: 9nufg
+
+put:
+  summary: Modify comment report
+  description: >-
+    Modify a specific comment report.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment from which you want to modify a report.'
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user from which you want to modify a report.'
+  tags:
+    - Comments
+  operationId: comment_report_detail_put
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            type: comment_reports
+            id: 9nufg
+            attributes:
+              category: spam
+              message: actually the comment was spam
+
+delete:
+  summary: Delete comment report
+  description: >-
+    Delete a specific comment report.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: comment_id
+      description: 'The unique identifier of the comment from which you want to delete a report.'
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user from which you want to delete a report.'
+  tags:
+    - Comments
+  operationId: comment_report_detail_put
+  responses:
+    '204':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'

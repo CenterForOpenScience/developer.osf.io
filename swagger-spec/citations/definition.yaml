@@ -1,0 +1,47 @@
+type: object
+title: Citation Style
+required:
+  - id
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the citation style, e.g. APA.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the citation style entity (`citation-styles`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    required:
+      - date_parsed
+      - title
+    description: 'The properties of the citation style entity.'
+    properties:
+      date_parsed:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the citation style was first parsed, as an iso8601 formatted timestamp.'
+      short_title:
+        type: string
+        readOnly: true
+        description: 'The short name for the citation style.'
+      summary:
+        type: string
+        readOnly: true
+        description: 'The summary of the citation style.'
+      title:
+        type: string
+        readOnly: true
+        description: 'The official name of the citation style.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the citation style entity.'
+

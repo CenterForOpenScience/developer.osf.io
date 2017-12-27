@@ -1,0 +1,98 @@
+get:
+  summary: Error Codes
+  description: >-
+    The OSF API uses conventional HTTP response codes to indicate the success or failure of an API request.
+
+
+    In general, codes in the `2xx` range indicate success,
+    codes in the `4xx` range indicate an error that failed given the information provided
+    (e.g., a required parameter was omitted, invalid authentication credentials were provided, etc.),
+    and codes in the `5xx` range indicate an error with our API servers (these are rare, and if they occur consistently, should be [reported](mailto:support@osf.io)).
+
+
+    `200` **OK**
+
+
+    The request was successful and everything worked as expected.
+
+
+    `201` **Created**
+
+
+    The request was successful and a new resource was created. The newly created resource can be referenced by the ID returned in the response.
+
+
+    `204` **No Content**
+
+
+    The request was sucessful but does not need to return an entity-body.
+
+
+    `400` **Bad Request**
+
+
+    The request was unacceptable, often due to a missing required parameter or malformed data.
+
+
+    `401` **Unauthorized**
+
+
+    The request requires user authentication, which was not provided.
+
+
+    `403` **Forbidden**
+
+
+    The request was understood but not fulfilled, most likely due to invalid permissions.
+
+
+    `404` **Not Found**
+
+
+    The requested resource does not exist.
+
+
+    `405` **Method Not Allowed**
+
+
+    The method specified in the request is not allowed for the resource.
+
+
+    `409` **Conflict**
+
+
+    The request could not be completed due to a conflict with the current state of the resource or within the request data.
+
+
+    `410` **Gone**
+
+
+    The requested resource is no longer available, most likely because it was deleted.
+
+
+    `429` **Too Many Requests**
+
+
+    The user has sent too many requests in a given amount of time.
+
+
+    Wait at least the amount of time specified in the `Retry-After` header of the response before sending another request.
+
+
+    [Authenticated](#Introduction_authentication) requests have a rate limit of 10,000/day.
+
+
+    Unauthenticated requests have a rate limit of 100/hour.
+
+
+    `5xx` **Server Errors**
+
+
+    The API server encountered an unexpected error.
+
+  operationId: error_codes
+  tags:
+    - Introduction
+  responses:
+    '200':
+      description: OK

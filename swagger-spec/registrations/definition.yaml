@@ -1,0 +1,245 @@
+type: object
+title: Registration
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the registration.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the registration entity (`registrations`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the registration entity.'
+    properties:
+      category:
+        type: string
+        readOnly: true
+        enum:
+          - analysis
+          - communication
+          - data
+          - hypothesis
+          - instrumentation
+          - methods and measures
+          - procedure
+          - project
+          - software
+          - other
+        description: 'The category of the registered node.'
+      collection:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this registration represents a collection. This value should always be `false`. This field may be deprecated in future versions.'
+      current_user_can_comment:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the current user has permission to post comments on this registration. Comments on registrations can be set to allow all users to comment or restricted to only contributors.'
+      current_user_permissions:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        description: 'A list of strings representing the permissions for the current user on this registration. Valid permissions are "admin", "read", and "write".'
+      date_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the registered node was created, as an iso8601 formatted timestamp.'
+      date_modified:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the registered node was last modified, as an iso8601 formatted timestamp.'
+      date_registered:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which this registration was created, as an iso8601 formatted timestamp.'
+      date_withdrawn:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which this registration was withdrawn, as an iso8601 formatted timestamp.'
+      description:
+        type: string
+        readOnly: true
+        description: 'The description of the registered node.'
+      embargo_end_date:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the embargo on this registration will be lifted and the registration will become public, as an iso8601 formatted timestamp.'
+      fork:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this registration represents a fork of another node.'
+      node_license:
+        type: string
+        readOnly: true
+        description: 'A dictionary containing the metadata (copyright year and holder) associated with the registered node license (required for certain license types).'
+      pending_embargo_approval:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the embargo associated with this registration is pending approval from project administrators.'
+      pending_registration_approval:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the registration is pending approval from project administrators.'
+      pending_withdrawal:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the registration is pending approval for withdrawal from project administrators.'
+      preprint:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not a preprint has been created from this node, or if this node was created for a preprint.'
+      public:
+        type: boolean
+        readOnly: false
+        description: 'Whether or not the registration is publicly visible.'
+      registration:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this is a registration. This value should always be `true`. This field may be deprecated in future versions.'
+      registered_meta:
+        type: string
+        readOnly: true
+        description: 'A dictionary with supplemental registration questions and responses.'
+      registration_supplement:
+        type: string
+        readOnly: true
+        description: 'The title of the registration schema this registration conforms to.'
+      tags:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        description: 'A list of strings that describe the registered node.'
+      template_from:
+        type: string
+        readOnly: true
+        description: 'The unique ID of the node from which the registered node was templated, if the registered node was created from a template.'
+      title:
+        type: string
+        readOnly: true
+        description: 'The title of the registered node.'
+      withdrawn:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not this registration has been withdrawn.'
+      withdrawal_justification:
+        type: string
+        readOnly: true
+        description: 'The reasoning for why this registration was withdrawn, as entered by the administrator that initiated the withdrawal.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'URLs to other entities or entity collections that have a relationship to the registration entity.'
+    properties:
+      affiliated_institutions:
+        type: string
+        readOnly: true
+        description: 'A link to the list of institutions this registration is affiliated with.'
+      children:
+        type: string
+        readOnly: true
+        description: 'A link to the list of the registered node''s children (components).'
+      citation:
+        type: string
+        readOnly: true
+        description: 'A link to the citation details of this registration.'
+      comments:
+        type: string
+        readOnly: true
+        description: 'A link to the list of comments on this registration.'
+      contributors:
+        type: string
+        readOnly: true
+        description: 'A link to the list of contributors on this registration.'
+      files:
+        type: string
+        readOnly: true
+        description: 'A link to the list of storage providers that have been enabled on this registration.'
+      forks:
+        type: string
+        readOnly: true
+        description: 'A link to the list of nodes that are forks of this registration.'
+      identifiers:
+        type: string
+        readOnly: true
+        description: 'A link to the list of identifiers for this registration (i.e. ARK and DOI identifiers).'
+      logs:
+        type: string
+        readOnly: true
+        description: 'A link to the list of log actions pertaining to this registration.'
+      linked_nodes:
+        type: string
+        readOnly: true
+        description: 'A link to the list of nodes that are linked to this registration.'
+      node_links:
+        type: string
+        readOnly: true
+        description: 'A link to the list of nodes that are linked to this registration. This field is deprecated as of verson 2.1; use the linked_nodes link instead.'
+      parent:
+        type: string
+        readOnly: true
+        description: 'A link to the node that is the direct parent of the current registration, if the current registration is a child registration.'
+      registered_by:
+        type: string
+        readOnly: true
+        description: 'A link to the user that initiated this registration.'
+      registered_from:
+        type: string
+        readOnly: true
+        description: 'A link to the node that this registration was registered from.'
+      registration_schema:
+        type: string
+        readOnly: true
+        description: 'A link to the metaschema that this registration conforms to.'
+      root:
+        type: string
+        readOnly: true
+        description: 'A link to the node that is the top-level parent of the current registration. If the current registration is the top-level node, the root is the current registration.'
+      view_only_links:
+        type: string
+        readOnly: true
+        description: 'A link to the list of view only links that have been created for this registration.'
+      wikis:
+        type: string
+        readOnly: true
+        description: 'A link to the list of wiki pages for this registration.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the registrations entity.'
+    properties:
+      html:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the registration''s page on the OSF.'
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the canonical API endpoint of this registration.'
+
+example:
+  data:
+    type: registrations
+    attributes:
+      draft_registration: '{draft_registration_id}'
+      registration_choice: embargo
+      lift_embargo: '2017-05-10T20:44:03.185000'

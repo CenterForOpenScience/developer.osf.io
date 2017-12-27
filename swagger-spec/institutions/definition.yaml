@@ -1,0 +1,65 @@
+type: object
+title: Institution
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: The identifier of the institution entity.
+  type:
+    type: string
+    readOnly: true
+    description: The type identifier of the institution entity (`institutions`).
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: The properties of the institution entity.
+    properties:
+      auth_url:
+        type: string
+        readOnly: true
+        description: Url used to authenticate institution specific login.
+      logo_path:
+        type: string
+        readOnly: true
+        description: Static path to the institution specific logo.
+      name:
+        type: string
+        readOnly: true
+        description: Full name of the institution.
+      description:
+        type: string
+        readOnly: true
+        description: Description of the institution.
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: URLs to other entities or entity collections that have a relationship to the institution entity.
+    properties:
+      nodes:
+        type: string
+        format: URL
+        readOnly: true
+        description: A relationship to the nodes affiliated with the institution.
+      users:
+        type: string
+        format: URL
+        readOnly: true
+        description: A relationship to the users affiliated with the institution.
+      registrations:
+        type: string
+        format: URL
+        readOnly: true
+        description: A relationship to the registrations affiliated with the institution.
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: URLs to alternative representations of the institutions entity.
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: A link to the detail page for the institution.

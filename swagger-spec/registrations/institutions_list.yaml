@@ -1,0 +1,104 @@
+#/registrations/{registration_id}/institutions
+
+get:
+  summary: List all institutions
+  description: >-
+    A paginated list of institutions affiliated with the registration.
+
+    ####Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 affiliated institutions.
+    Each resource in the array is a separate institution object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: 'The unique identifier of the registration.'
+
+  tags:
+    - Registrations
+  operationId: registrations_institutions_list
+  x-response-schema: Institution
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../institutions/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/cos/nodes/
+                    meta: {}
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/cos/users/
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/cos/registrations/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/institutions/cos/
+            attributes:
+              auth_url:
+              logo_path: "/static/img/institutions/shields/cos-shield.png"
+              name: Center For Open Science
+              description: COS is a non-profit technology company providing free and open services
+                to increase inclusivity and transparency of research. Find out more at <a href="https://cos.io">cos.io</a>.
+            type: institutions
+            id: cos
+          - relationships:
+              nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/uva/nodes/
+                    meta: {}
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/uva/users/
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/uva/registrations/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/institutions/uva/
+            attributes:
+              auth_url: https://accounts.osf.io/Shibboleth.sso/Login?entityID=urn%3Amace%3Aincommon%3Avirginia.edu
+              logo_path: "/static/img/institutions/shields/uva-shield.png"
+              name: University of Virginia
+              description: In partnership with the <a href="http://www.virginia.edu/vpr/">Vice
+                President for Research</a>, <a href="http://dsi.virginia.edu">Data Science Institute</a>,
+                <a href="https://www.hsl.virginia.edu">Health Sciences Library</a>, and <a href="http://data.library.virginia.edu">University
+                Library</a>. Learn more about <a href="http://cadre.virginia.edu">UVA resources
+                for computational and data-driven research</a>. Projects must abide by the <a
+                href="http://www.virginia.edu/informationpolicy/security.html">University Security
+                and Data Protection Policies</a>.
+            type: institutions
+            id: uva
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 2
+              per_page: 10

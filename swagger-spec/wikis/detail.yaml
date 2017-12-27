@@ -1,0 +1,69 @@
+get:
+  summary: Retrieve a Wiki
+  description: >-
+    Retrieves the details about a specific wiki.
+
+    A wiki is a collection of markdown text pages that can be used to describe
+    the project or dataset of contained in the attached node.
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    wiki, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_read
+  x-response-schema: Wiki
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              node:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/nodes/tvyxz/'
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/users/5k3hq/'
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/nodes/tvyxz/comments/?filter%5Btarget%5D=zveyb'
+                    meta: {}
+            links:
+              info: 'https://api.osf.io/v2/wikis/zveyb/'
+              download: 'https://api.osf.io/v2/wikis/zveyb/content/'
+              self: 'https://api.osf.io/v2/wikis/zveyb/'
+            attributes:
+              kind: 'file'
+              name: 'home'
+              date_modified: '2017-02-16T15:45:57.671957'
+              extra:
+                version: 47
+              content_type: 'text/markdown'
+              path: '/zveyb'
+              current_user_can_comment: true
+              materialized_path: '/zveyb'
+              size: 552
+            type: 'wikis'
+            id: 'xu77p'

@@ -1,0 +1,203 @@
+get:
+  summary: List all registrations
+  description: >-
+    A paginated list of registrations on the OSF to which the user has access.
+
+
+    The returned registrations are those which are public or which the user has access to view.
+
+
+    Non-registered nodes cannot be accessed through this endpoint (use the [nodes](#Nodes_nodes_list) endpoints instead).
+
+
+    #### Registrations
+
+    A registration on the OSF creates a frozen, time-stamped version of a project that cannot be edited or deleted.
+    The *original project* can still be edited, while the registered version cannot.
+
+
+    Registrations can be made public immediately or embargoed for up to 4 years.
+
+
+    #### Withdrawals
+
+    Registrations cannot be deleted, but they can be withdrawn.
+    Withdrawing a registration removes the content of the registration but leaves behind basic metadata.
+    A withdrawn registration will display a limited subset of information, namely, title, description, date_created, date_registered, date_withdrawn, registration, withdrawn, withdrawal_justification, and registration supplement.
+    All other fields will be displayed as null.
+    Additionally, the only relationship that remains accesible for a withdrawn registration is the contributors.
+    All other relationships will return a **403 Forbidden** response.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 registrations.
+    Each resource in the array is a separate registration object and contains the full representation of the registration, meaning additional requests to a registration's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/?filter[title]=open.
+
+
+    Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
+
+  tags:
+    - Registrations
+  operationId: registrations_list
+  x-response-schema: Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+          - id: ipkea
+            type: registrations
+            attributes:
+              registration_supplement: OSF-Standard Pre-Data Collection Registration
+              pending_embargo_approval: false
+              registration: true
+              embargo_end_date:
+              withdrawn: false
+              withdrawal_justification:
+              category: project
+              preprint: false
+              current_user_permissions:
+              - read
+              title: The Effect of Badges on Availability of Data and Materials
+              registered_meta:
+                looked:
+                  value: 'No'
+                datacompletion:
+                  value: 'No'
+                comments:
+                  value: ''
+              public: true
+              fork: false
+              description: This investigation seeks to evaluate the impact of badges on the
+                availability and accessibility of open data and materials.
+              tags:
+              - badges
+              - methodology
+              - signals
+              - open science
+              - open data
+              - open materials
+              collection: false
+              current_user_can_comment: false
+              pending_registration_approval: false
+              date_modified: '2016-02-04T20:58:11.042000'
+              date_registered: '2015-06-01T14:47:40.064000'
+              date_created: '2015-05-21T19:38:55.398000'
+              date_withdrawn:
+              pending_withdrawal: false
+              node_license:
+            relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/citation/
+                    meta: {}
+              registration_schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2c0/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/logs/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/comments/?filter%5Btarget%5D=ipkea
+                    meta: {}
+              registered_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/rfgdw/
+                    meta: {}
+              registered_by:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/z2u9w/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/registrations/ipkea/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/ipkea/children/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/registrations/ipkea/
+              html: https://osf.io/ipkea/
+          links:
+            first:
+            last: https://api.osf.io/v2/registrations/?page=856
+            prev:
+            next: https://api.osf.io/v2/registrations/?page=2
+            meta:
+              total: 8559
+              per_page: 10

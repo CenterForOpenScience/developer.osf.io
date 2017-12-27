@@ -1,0 +1,68 @@
+# /registrations/{registration_id}/view_only_links/{link_id}/
+get:
+  summary: Retrieve a view only link
+  description: >-
+    Retrieves the details of a view only link created from this registration.
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    view only link, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+    ####Permissions
+
+
+    View only links on a registration, public or private, are readable and writeable only by users that are administrators on the registration.
+  parameters:
+
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+
+    - in: path
+      type: string
+      name: link_id
+      required: true
+      description: 'The unique identifier of the view only link.'
+
+
+  tags:
+    - Registrations
+  operationId: registrations_view_only_links_read
+  x-response-schema: 'View Only Link'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../view_only_links/definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              nodes:
+                links:
+                  self:
+                    href: http://api.osf.io/v2/view_only_links/<link_id>/relationships/nodes/
+                    meta: {}
+                  related:
+                    href: http://api.osf.io/v2/view_only_links/<link_id>/nodes/
+                    meta: {}
+              creator:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/users/<user_id>/
+                    meta: {}
+            attributes:
+              date_created: '2017-03-20T20:11:01.603851'
+              anonymous: false
+              key: <view_only_link_key>
+              name: Test View Only Link
+            type: view-only-links
+            id: <link_id>

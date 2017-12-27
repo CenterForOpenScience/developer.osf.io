@@ -1,0 +1,47 @@
+# /identifiers/{identifier_id}/
+get:
+  summary: Retrieve an identifier
+  description: >-
+    Retrieves the details of an identifier
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    identifier, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: identifier_id
+      description: 'The unique id of the identifier.'
+  tags:
+    - Identifiers
+  operationId: identifiers_read
+  x-response-schema: Identifier
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            relationships:
+              referent:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/identifiers/57f1641db83f6901ed94b45a/
+            attributes:
+              category: ark
+              value: c7605/osf.io/73pnd
+            type: identifiers
+            id: 57f1641db83f6901ed94b45a

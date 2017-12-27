@@ -1,0 +1,91 @@
+get:
+  summary: List all wikis
+  description: >-
+    List of wiki pages on a node.
+
+    ####Returns
+
+    Paginated list of the node's current wiki page versions ordered by their date_modified.
+    Each resource contains the full representation of the wiki, meaning additional requests
+    to an individual wiki's detail view are not necessary.
+
+
+    Note that if an anonymous view_only key is being used, the user relationship will not be exposed.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+    #### Filtering
+
+    Wiki pages can be filtered based on their `name` and `date_modified` fields.
+
+    + `filter[name]=<Str>` -- filter wiki pages by name
+
+    + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
+
+
+    Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: nodes_wikis_list
+  x-response-schema: Wiki
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '../wikis/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - relationships:
+                node:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/nodes/tvyxz/'
+                      meta: {}
+                user:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/users/5k3hq/'
+                      meta: {}
+                comments:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/nodes/tvyxz/comments/?filter%5Btarget%5D=zveyb'
+                      meta: {}
+              links:
+                info: 'https://api.osf.io/v2/wikis/zveyb/'
+                download: 'https://api.osf.io/v2/wikis/zveyb/content/'
+                self: 'https://api.osf.io/v2/wikis/zveyb/'
+              attributes:
+                kind: 'file'
+                name: 'home'
+                date_modified: '2017-02-16T15:45:57.671957'
+                extra:
+                  version: 47
+                content_type: 'text/markdown'
+                path: '/zveyb'
+                current_user_can_comment: true
+                materialized_path: '/zveyb'
+                size: 552
+              type: 'wikis'
+              id: 'xu77p'
+          links:
+            first: ''
+            last: https://api.osf.io/v2/wikis/zveyb/?page=2
+            prev: ''
+            next: https://api.osf.io/v2/wikis/zveyb/?page=2
+            meta:
+              total: 12
+              per_page: 10

@@ -1,0 +1,118 @@
+get:
+  summary: Retrieve a user
+  description: >-
+    Retrieves the details of a given users.
+
+
+    The returned information includes the user's bibliographic information and the date the user was registered.
+
+
+    Additionally, relationships to the list of institutions with which the user is affiliated,
+    and to the list of nodes which the user contributes to (that the requesting user has permission to see) are returned.
+
+
+    If `me` is given as the `user_id` in the request path, the record of the currently logged-in user will be returned.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    user, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: user_id
+    required: true
+    description: 'The unique identifier of the user.'
+  tags:
+    - Users
+  operationId: users_read
+  x-response-schema: User
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            relationships:
+              nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/q7fts/nodes/
+                    meta: {}
+              institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/users/q7fts/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/users/q7fts/institutions/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/users/q7fts/
+              html: https://osf.io/q7fts/
+              profile_image: https://secure.gravatar.com/avatar/e9d9311ab2f5ab7492a86ac9adb5c8e9?d=identicon
+            attributes:
+              family_name: Rollins
+              suffix: ''
+              locale: en_US
+              date_registered: '2014-06-15T17:39:06.701000'
+              middle_names: ''
+              given_name: Casey
+              full_name: Casey Rollins
+              active: true
+              timezone: America/New_York
+            type: users
+            id: q7fts
+
+patch:
+  summary: Update a user
+  description: >-
+    Updates a user by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged.
+
+
+    Users can be updated with either a **PUT** or **PATCH** request.
+    The `full_name` field is mandatory in a **PUT** request, and optional in a **PATCH**.
+
+
+    **Note**: if you make a PUT/PATCH request to the `/users/me/` endpoint, you must still provide your full user ID in the ID field of the request.
+    We do not support using the `me` alias in request bodies at this time.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: definition.yaml
+  tags:
+    - Users
+  operationId: users_partial_update
+  consumes:
+    - application/json
+  x-response-schema: User
+  responses:
+    '200':
+      description: 'OK'

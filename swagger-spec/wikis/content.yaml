@@ -1,0 +1,24 @@
+get:
+  summary: Retrieve the Content of a Wiki
+  description: >-
+    Retrieves the plaintext content of a wiki in markdown format.
+
+    ####Returns
+
+    Returns `text/markdown` of the wiki content itself.
+
+    If the request is unsuccessful, plaintext with the error message will be displayed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_content
+  x-response-schema: Wiki
+  responses:
+    '200':
+      description: 'OK'

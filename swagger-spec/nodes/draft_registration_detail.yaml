@@ -1,0 +1,175 @@
+get:
+  summary: Retrieve a draft registration
+  description: >-
+    Retrieve the details of a given draft registration.
+
+    Draft registrations contain the supplemental registration questions that accompany a registration.
+    A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+
+
+    Your original project remains editable but will now have the draft registration linked to it.
+
+    #### Permissions
+
+    Only project administrators may view draft registrations.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    draft registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Nodes
+  operationId: nodes_draft_registrations_read
+  x-response-schema: Draft Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: draft_registration_definition.yaml
+      examples:
+        application/json:
+          data:
+          - id: ''
+            type: 'draft_registrations'
+            attributes:
+              datetime_initiated: ''
+              datetime_updated: ''
+              registration_metadata: {}
+              registration_supplement: ''
+            relationships:
+              branched_from:
+                links:
+                  related:
+                    href: ''
+                    meta: {}
+              initiator:
+                links:
+                  related:
+                    href: ''
+                    meta: {}
+              registration_schema:
+                links:
+                  related:
+                    href: ''
+                    meta: {}
+            links:
+              html: ''
+          links:
+            first: ''
+            last: ''
+            prev: ''
+            next: ''
+            meta:
+              total: ''
+              per_page: 10
+
+patch:
+  summary: Update a draft registration
+  description: >-
+    Updates a draft registration by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged.
+
+
+    Draft registrations contain the supplemental registration questions that accompany a registration.
+    Answer the questions in the draft registration supplement by sending update requests until you are ready to submit the draft.
+
+
+    The registration supplement of a draft registration cannot be updated after the draft has been created.
+
+
+    When updating a draft registration, `registration_metadata` is required.
+    It must be a dictionary with keys as question ids in the registration form,
+    and values as nested dictionaries matching the specific format in the [registration schema](TODO: link me pls).
+
+
+    If a question is multiple-choice, the question response must exactly match one of the possible choices.
+
+    #### Permissions
+
+    Only project administrators may update draft registrations.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated draft registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: draft_registration_definition.yaml
+  tags:
+    - Nodes
+  operationId: nodes_draft_registrations_partial_update
+  x-response-schema: Draft Registration
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a draft registration
+  description: >-
+    Permanently deletes a draft registration.
+    A draft that has already been registered cannot be deleted.
+
+    #### Permissions
+
+    Only project administrators may delete draft registrations.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes]() to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Nodes
+  operationId: nodes_draft_registrations_delete
+  responses:
+    '204':
+      description: 'No Content'

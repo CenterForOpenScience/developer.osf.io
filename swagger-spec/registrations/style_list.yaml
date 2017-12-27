@@ -1,0 +1,62 @@
+# /registrations/{registration_id}/citations/
+get:
+  summary: List all citation styles
+  description: >-
+
+    A paginated list of the registration's alternative citation styles
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 citation styles.
+    Each resource in the array is a separate citation styles object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+    #### Filtering
+
+    You can optionally request that the response only include citation styles that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wucr8/citations/?filter[title]=open.
+
+
+    Citation styles may be filtered by their `id`, `title`, `short-title`, and `summary`.
+  parameters:
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+  tags:
+    - Registrations
+  operationId: registrations_citations_list
+  x-response-schema: Citation Style
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: '../citations/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - links: {}
+            attributes:
+              date_parsed: '2015-02-16T04:16:25.732000'
+              summary:
+              short_title: AMR
+              title: Academy of Management Review
+            type: citation-styles
+            id: academy-of-management-review
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10

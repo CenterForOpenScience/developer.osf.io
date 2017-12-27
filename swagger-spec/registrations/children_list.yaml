@@ -1,0 +1,205 @@
+# /registrations/{registration_id}/children/
+get:
+  summary: List all child registrations
+  description: >-
+
+    A paginated list of children of a registration.
+
+
+    The list consists of the next level child registrations for the given registration.
+    The returned registrations are sorted by their `date_modified`, with the most recently updated child registrations appearing first.
+
+
+    The list will include child registrations that are public, as well as child registrations that are private, if the authenticated user has permission to view them.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 child registrations.
+    If the given registration has zero child registrations, the `data` key will contain an empty array.
+    Each resource in the array is a separate registration object and contains the full representation of the child registration.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+    #### Filtering
+
+    You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wucr8/children/?filter[title]=reproducibility.
+
+
+    Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
+
+
+    Most fields are string fields and will be filtered using simple substring matching.
+    Public is a boolean field, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
+    Note that quoting true or false in the query will cause the match to fail.
+  parameters:
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+  tags:
+    - Registrations
+  operationId: registrations_children_list
+  x-response-schema: Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/citation/
+                    meta: {}
+              registration_schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2c0/
+                    meta: {}
+              parent:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/wucr8/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/wucr8/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/comments/?filter%5Btarget%5D=4cmnz
+                    meta: {}
+              registered_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/5wprs/
+                    meta: {}
+              registered_by:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/7xea5/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/registrations/4cmnz/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/children/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/logs/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/registrations/4cmnz/
+              html: https://osf.io/4cmnz/
+            attributes:
+              registration_supplement: OSF-Standard Pre-Data Collection Registration
+              pending_embargo_approval: false
+              registration: true
+              embargo_end_date:
+              withdrawn: false
+              withdrawal_justification:
+              category: project
+              preprint: false
+              current_user_permissions:
+              - read
+              title: Full Project Description
+              registered_meta:
+                looked:
+                  comments: []
+                  value: 'No'
+                  extra: []
+                datacompletion:
+                  comments: []
+                  value: Yes, data collection is underway or complete
+                  extra: []
+                comments:
+                  comments: []
+                  value: Data collection for measurement time T1 is underway, but no data has
+                    been collected for T2 (when menstrual cycle information will be assessed).
+                    Therefore, data cannot be analysed at the time of preregistration.
+                  extra: []
+              public: true
+              fork: false
+              description: ''
+              tags: []
+              collection: false
+              current_user_can_comment: false
+              pending_registration_approval: false
+              date_modified: '2016-05-23T14:22:03.885000'
+              date_registered: '2016-05-23T14:24:25.478000'
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/4cmnz/node_links/
+                    meta: {}
+              date_created: '2016-05-23T12:11:14.853000'
+              pending_withdrawal: false
+              node_license:
+            type: registrations
+            id: 4cmnz
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10

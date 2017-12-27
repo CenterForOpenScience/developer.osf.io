@@ -1,0 +1,66 @@
+get:
+  summary: List all licenses
+  description: >-
+    A paginated list of licenses.
+    The returned licenses are sorted by their name.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of 10 licenses.
+    Each resource in the array is a separate license object and contains the full representation
+    of the license, meaning additional requests to a license's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include licenses that
+    match your filters by utilizing the `filter` query parameter, e.g.
+    [https://api.osf.io/v2/licenses/?filter[name]=apache](https://api.osf.io/v2/licenses/?filter[name]=apache).
+
+
+    Licenses may be filtered by their `id`, and `name`.
+
+  tags:
+    - Licenses
+  operationId: license_list
+  x-response-schema: License
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - links:
+                self: https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e968/
+              attributes:
+                text: |
+                  Copyright (c) {{year}}, {{copyrightHolders}}
+                  All rights reserved.
+
+                  The full descriptive text of the License.
+                required_fields:
+                - year
+                - copyrightHolders
+                name: BSD 2-Clause "Simplified" License
+              type: licenses
+              id: 563c1cf88c5e4a3877f9e968
+          links:
+            first: ''
+            last: https://api.osf.io/v2/licenses/?page=2
+            prev: ''
+            next: https://api.osf.io/v2/licenses/?page=2
+            meta:
+              total: 16
+              per_page: 10

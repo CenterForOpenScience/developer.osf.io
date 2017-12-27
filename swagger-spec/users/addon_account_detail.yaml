@@ -1,0 +1,62 @@
+# /users/{user_id}/addons/{provider}/accounts/{account_id}/
+get:
+  summary: Retrieve an addon account
+  description: >-
+    Retrieves the details of an addon account
+
+
+    #### Permissions
+
+
+    Addon accounts are visible only to the user that authorized the account.
+
+
+    ####Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    addon account, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user.'
+    - in: path
+      name: provider
+      type: string
+      required: true
+      description: 'The unique identifier of the addon provider.'
+    - in: path
+      name: account_id
+      type: string
+      required: true
+      description: 'The unique identifier of the addon account.'
+
+
+  tags:
+    - Users
+  operationId: Users_addon_accounts_read
+  x-response-schema: Addon Account
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'addon_account_definition.yaml'
+      examples:
+        application/json:
+          data:
+            data:
+              links:
+                self: https://api.osf.io/v2/users/me/addons/dropbox/accounts/58d16ece9ad5a10201027eb4/
+              attributes:
+                display_name: Fabrice Mizero
+                profile_url:
+                provider: dropbox
+              type: external_accounts
+              id: 58d16ece9ad5a10201027eb4

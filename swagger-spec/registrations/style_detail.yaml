@@ -1,0 +1,49 @@
+# /registrations/{registration_id}/citations/{citation_id}/
+get:
+  summary: Retrieve a citation
+  description: >-
+    Retrieves the citation style details for a registration, in CSL format.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key that contains the representation of the details
+    necessary for the citation style.
+
+  parameters:
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+    - in: path
+      type: string
+      name: citation_id
+      required: true
+      description: 'The unique identifier of the citation.'
+  tags:
+    - Registrations
+  operationId: registrations_citation_read
+  x-response-schema: Citation Detail
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../nodes/citation_detail_definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: bg4di
+            type: node-citation
+            attributes:
+              publisher: Open Science Framework
+              author:
+              - given: Timothy M
+                family: Errington
+              - given: Nicole
+                family: Vasilevsky
+              - given: Melissa A
+                family: Haendel
+              type: webpage
+              title: Identification Analysis of RP:CB
+            links:
+              self: osf.io/bg4di

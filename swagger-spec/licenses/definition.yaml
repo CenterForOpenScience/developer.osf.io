@@ -1,0 +1,44 @@
+type: object
+title: License
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the license.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the license (`license`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the license.'
+    properties:
+      name:
+        type: string
+        readOnly: true
+        description: 'Name of the license.'
+      text:
+        type: string
+        readOnly: true
+        description: 'Full text of the license.'
+      required_fields:
+        type: array
+        readOnly: true
+        description: 'Fields required for this license (provided to help front-end validators). Maps to properties on the NodeLicense model.'
+        items:
+          type: string
+          readOnly: true
+          description: 'Individual fields required by this license.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the license.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for the license.'

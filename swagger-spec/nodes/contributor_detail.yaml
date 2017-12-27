@@ -1,0 +1,192 @@
+get:
+  summary: Retrieve a contributor
+  description: >-
+    Retrieves the details of a given contributor.
+
+
+    Contributors are users who can make changes to the node or, in the case of private nodes, have read access to the node.
+
+
+    Contributors are categorized as either "bibliographic" or "non-bibliographic".
+    From a permissions standpoint, both are the same, but bibliographic contributors are included in citations and are listed on the project overview page on the OSF, while non-bibliographic contributors are not.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: node_id
+    required: true
+    description: 'The unique identifier of the node.'
+  - in: path
+    type: string
+    name: user_id
+    required: true
+    description: 'The unique identifier of the user.'
+  tags:
+    - Nodes
+  operationId: nodes_contributors_read
+  x-response-schema: Contributor
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: contributor_definition.yaml
+      examples:
+        application/json:
+          data:
+            relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/y9jdt/
+                    meta: {}
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/typ46/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/y9jdt/contributors/typ46/
+            embeds:
+              users:
+                data:
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/typ46/nodes/
+                          meta: {}
+                    institutions:
+                      links:
+                        self:
+                          href: https://api.osf.io/v2/users/typ46/relationships/institutions/
+                          meta: {}
+                        related:
+                          href: https://api.osf.io/v2/users/typ46/institutions/
+                          meta: {}
+                  links:
+                    self: https://api.osf.io/v2/users/typ46/
+                    html: https://osf.io/typ46/
+                    profile_image: https://secure.gravatar.com/avatar/3dd8757ba100b8406413706886243811?d=identicon
+                  attributes:
+                    family_name: Geiger
+                    suffix: ''
+                    locale: en_us
+                    date_registered: '2014-03-18T19:11:57.252000'
+                    middle_names: J.
+                    given_name: Brian
+                    full_name: Brian J. Geiger
+                    active: true
+                    timezone: America/New_York
+                  type: users
+                  id: typ46
+            attributes:
+              index: 0
+              unregistered_contributor:
+              bibliographic: true
+              permission: admin
+            type: contributors
+            id: y9jdt-typ46
+
+patch:
+  summary: Update a contributor
+  description: >-
+    Updates a contributor by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged.
+
+
+    Contributors can be updated with either a **PUT** or **PATCH** request.
+    Since this endpoint has no mandatory attributes, PUT and PATCH are functionally the same.
+
+    #### Permissions
+
+    Only project administrators can update the contributors on a node.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+
+    If the given user is not already in the contributor list, a 404 Not Found error will be returned.
+    A node must always have at least one admin, and any attempt to downgrade the permissions of a sole admin will result in a 400 Bad Request error.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: 'contributor_definition.yaml'
+  tags:
+    - Nodes
+  operationId: nodes_contributors_partial_update
+  x-response-schema: Contributor
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a contributor
+  description: >-
+    Removes a contributor from a node.
+    This request only removes the relationship between the node and the user, it does not delete the user itself.
+
+
+    A node must always have at least one admin, and attempting to remove the only admin from a node will result in a **400 Bad Request** response.
+
+    #### Permissions
+
+    A user can remove themselves as a node contributor. Otherwise, only project administrators can remove contributors.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+  tags:
+    - Nodes
+  operationId: nodes_contributors_delete
+  responses:
+    '204':
+      description: 'No content'

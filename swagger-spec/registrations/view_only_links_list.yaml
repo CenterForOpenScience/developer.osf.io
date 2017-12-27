@@ -1,0 +1,109 @@
+# /registrations/{registration_id}/view_only_links/
+
+get:
+  summary: List all view only links
+  description: >-
+    A paginated list of view only links created for this registration.
+
+    ####Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 view only links.
+    Each resource in the array is a view only link object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+
+    ####Permissions
+
+
+    View only links on a registration, public or private, are readable and writeable only by users that are administrators on the registration.
+
+
+    ####Filtering
+
+
+    You can optionally request that the response only include view only links that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wu3a4/view_only_links/?filter[anonymous]=true.
+
+
+    View Only Links may be filtered based on their `name`, `anonymous` and `date_created` fields.
+    Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
+
+  parameters:
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+  tags:
+    - Registrations
+  operationId: registrations_view_only_links_list
+  x-response-schema: 'View Only Link'
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '../view_only_links/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              nodes:
+                links:
+                  self:
+                    href: http://api.osf.io/v2/view_only_links/58d03846a170c50025baae61/relationships/nodes/
+                    meta: {}
+                  related:
+                    href: http://api.osf.io/v2/view_only_links/58d03846a170c50025baae61/nodes/
+                    meta: {}
+              creator:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/users/4xpu9/
+                    meta: {}
+            links:
+              self: http://api.osf.io/v2/nodes/gaz5n/view_only_links/58d03846a170c50025baae61/
+            attributes:
+              date_created: '2017-03-20T20:15:02.488643'
+              anonymous: false
+              key: c1df490be3294a9bac01ff05c4097ab7
+              name: 'vol name'
+            type: view_only_links
+            id: 58d03846a170c50025baae61
+          - relationships:
+              nodes:
+                links:
+                  self:
+                    href: http://api.osf.io/v2/view_only_links/58d13827a170c50025baae6e/relationships/nodes/
+                    meta: {}
+                  related:
+                    href: http://api.osf.io/v2/view_only_links/58d13827a170c50025baae6e/nodes/
+                    meta: {}
+              creator:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/users/4xpu9/
+                    meta: {}
+            links:
+              self: http://api.osf.io/v2/nodes/gaz5n/view_only_links/58d13827a170c50025baae6e/
+            attributes:
+              date_created: '2017-03-21T14:26:47.507504'
+              anonymous: false
+              key: 9794ac36085e4d7086ff4dab49daf1cb
+              name: 'vol name'
+            type: view_only_links
+            id: 58d13827a170c50025baae6e
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 2
+              per_page: 10

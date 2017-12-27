@@ -1,0 +1,247 @@
+get:
+  summary: Retrieve a node
+  description: >-
+    Retrieves the details of a given node (project or component).
+
+    #### Permissions
+
+    Only project contributors may retrieve the details of a private node.
+    Attempting to retreive a private node for which you are not a contributor will result in a **403 Forbidden** response.
+
+
+    Authentication is not required to view the details of a public node, as public nodes give read-only access to everyone.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: nodes_read
+  x-response-schema: Node
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            id: e81xl
+            type: nodes
+            attributes:
+              category: project
+              fork: false
+              preprint: false
+              description: We are conducting a study to investigate the replicability of cancer
+                biology studies. Selected results from a substantial number of high-profile
+                papers in the field of cancer biology published between 2010-2012 are being
+                replicated by the Science Exchange network.
+              current_user_permissions:
+              - read
+              date_modified: '2017-01-18T20:46:11.076000'
+              title: 'Reproducibility Project: Cancer Biology'
+              collection: false
+              registration: false
+              date_created: '2013-10-08T23:31:56.153000'
+              current_user_can_comment: true
+              node_license:
+              public: true
+              tags:
+              - cancer biology
+              - reproducibility
+              - replication
+              - open science
+            links:
+              self: https://api.osf.io/v2/nodes/e81xl/
+              html: https://osf.io/e81xl/
+            relationships:
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/files/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/citation/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/draft_registrations/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/contributors/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/forks/
+                    meta: {}
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/identifiers/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/comments/?filter%5Btarget%5D=e81xl
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/registrations/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/node_links/
+                    meta: {}
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/e81xl/relationships/linked_nodes/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/linked_nodes/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/wikis/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/nodes/e81xl/relationships/institutions/
+                    meta: {}
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/children/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/preprints/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/logs/
+                    meta: {}
+
+patch:
+  summary: Update a node
+  description: >-
+    Updates a node by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged.
+
+
+    Nodes can be updated with either a **PUT** or **PATCH** request.
+    The `title` and `category` fields are mandatory in a **PUT** request, and optional in a **PATCH**.
+
+    #### Permissions
+
+    Only write contributors may update a node.
+    Attempting to update a node for which you do not have write access will result in a **403 Forbidden** response.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: 'nodes'
+            id: '{node_id}'
+            attributes:
+              description: 'An updated abstract.'
+              tags:
+                - cancer biology
+                - reproducibility
+              public: true
+
+  tags:
+    - Nodes
+  operationId: nodes_partial_update
+  x-response-schema: Node
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a node
+  description: >-
+
+    Permanently deletes a node. This action cannot be undone.
+
+    #### Permissions
+
+    Only project administrators may delete a node.
+    Attempting to delete a node for which you are not an administrator will result in a **403 Forbidden** response.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: nodes_delete
+  responses:
+    '204':
+      description: 'No content'

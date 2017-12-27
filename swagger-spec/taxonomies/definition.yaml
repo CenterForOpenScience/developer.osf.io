@@ -1,0 +1,48 @@
+type: object
+title: Taxonomy
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the taxonomy entity.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the taxonomy entity (`taxonomies`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the taxonomy entity.'
+    properties:
+      text:
+        type: string
+        readOnly: true
+        description: 'The text name of the taxonomy'
+      child_count:
+        type: integer
+        readOnly: true
+        description: 'The number of children this taxonomy contains.'
+      parents:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        description: 'An array of JSON objects containing keys for `text` (name) and `id` (unique identifier) of this taxonomy''s parents'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the taxonomy entity.'
+    properties:
+      parents:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        description: 'An array of links to to this taxonomy''s parents. This field is deprecated as of verson 2.4.'
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for the taxonomy.'

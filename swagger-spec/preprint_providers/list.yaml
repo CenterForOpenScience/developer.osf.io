@@ -1,0 +1,82 @@
+# /preprint_providers/
+get:
+  summary: List all preprint providers
+  description: >-
+
+    A paginated list of all preprint providers.
+    The returned preprint providers are sorted by their creation date, with the most recent
+    preprints appearing first.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 preprint providers.
+    Each resource in the array is a separate preprint provider object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include preprint providers that
+    match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/preprint_providers/?filter[id]=osf.
+
+
+    Preprint Providers may be filtered by their `id`, `name`,  and `description`
+
+  tags:
+    - Preprint Providers
+  operationId: preprint_provider_list
+  x-response-schema: 'Preprint Provider'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - relationships:
+                licenses_acceptable:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/preprint_providers/osf/licenses/
+                      meta: {}
+                taxonomies:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/preprint_providers/osf/taxonomies/
+                      meta: {}
+                preprints:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/preprint_providers/osf/preprints/
+                      meta: {}
+              links:
+                self: https://api.osf.io/v2/preprint_providers/osf/
+                preprints: https://api.osf.io/v2/preprint_providers/osf/preprints/
+                external_url: https://osf.io/preprints/
+              attributes:
+                social_instagram: ''
+                advisory_board: ''
+                email_support: ''
+                banner_path: "/static/img/preprint_providers/cos-logo.png"
+                logo_path: "/static/img/preprint_providers/cos-logo.png"
+                subjects_acceptable: []
+                description: A scholarly commons to connect the entire research cycle
+                social_facebook: ''
+                header_text: ''
+                social_twitter: ''
+                email_contact: ''
+                example: khbvy
+                name: Open Science Framework
+                domain: 'osf.io'
+              type: preprint_providers
+              id: osf

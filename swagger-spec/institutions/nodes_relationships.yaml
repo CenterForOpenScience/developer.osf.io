@@ -1,0 +1,58 @@
+# /institutions/{institution_id}/relationships/nodes/
+get:
+  summary: Retrieve node-institution relationships
+  description: >-
+    Returns all nodes affiliated with an institution. Users that have an institutional
+    affiliation can add the affiliation to nodes that they have write access over. This
+    displays an institutional logo on the node page.
+
+  tags:
+    - Institutions
+  operationId: institutions_relationships_nodes
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+      examples:
+        application/json:
+          data:
+          - type: nodes
+            id: api6f
+          - type: nodes
+            id: y9jdt
+          links:
+            self: https://api.osf.io/v2/institutions/cos/relationships/nodes/
+            html: https://api.osf.io/v2/institutions/cos/nodes/
+
+post:
+  summary: Create a node-institution relationship
+  description: >-
+    Create a relationship between a node and an institution. This requires the user to be affiliated with the institution and
+    to have write access to the node. 
+
+  tags:
+    - Institutions
+  operationId: institutions_relationships_nodes
+  responses:
+    '201':
+      description: OK
+      examples:
+        application/json:
+          data:
+          - type: nodes
+            id: api6f
+
+delete:
+  summary: Delete a node-institution relationship
+  description: >-
+    Delete a relationship between a node and an institution. This requires the user
+    to have write access to the node. If the user no longer has the institutional affiliation and
+    removes an institution from a node, they will not be able to add it back. 
+
+  tags:
+    - Institutions
+  operationId: institutions_relationships_nodes
+  responses:
+    '204':
+      description: No content

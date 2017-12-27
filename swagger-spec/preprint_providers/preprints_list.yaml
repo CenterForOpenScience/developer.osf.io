@@ -1,0 +1,109 @@
+get:
+  summary: List all preprints
+  description: >-
+
+    A paginated list of preprints from the specified preprint provider.
+    The returned preprints are sorted by their creation date, with the most recent
+    preprints appearing first.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 preprints.
+    Each resource in the array is a separate preprint object.
+
+
+    The `links` key contains a dictionary with keys that can be used
+    for [pagination](#Introduction_pagination).
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+
+    #### Filtering
+
+    You can optionally request that the response only include preprints that
+    match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/preprint_providers/osf/preprints/?filter[is_published]=true.
+
+
+    Preprints may be filtered by their `id`, `is_published`, `date_created`,
+    `date_modified`, and `provider`.
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: preprint_provider_id
+      description: 'The unique identifier of the preprint provider.'
+  tags:
+    - Preprint Providers
+  operationId: preprint_providers_preprints_list
+  x-response-schema: 'Preprint'
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '../preprints/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - relationships:
+                node:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/nodes/5xuck/'
+                      meta: {}
+                citation:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/citation/'
+                      meta: {}
+                primary_file:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/files/5894204f594d900200ed23f2/'
+                      meta: {}
+                license:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/'
+                      meta: {}
+                provider:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprint_providers/socarxiv/'
+                      meta: {}
+              links:
+                self: 'https://api.osf.io/v2/preprints/hqb2p/'
+                html: 'https://osf.io/preprints/socarxiv/hqb2p/'
+              attributes:
+                doi: null
+                license_record:
+                  copyright_holders: []
+                  year: '2017'
+                date_modified: '2017-02-03T06:19:00.158000'
+                is_preprint_orphan: false
+                date_published: '2017-02-03T06:18:59.788000'
+                subjects:
+                  - - text: Social and Behavioral Sciences
+                      id: 584240da54be81056cecac48
+                    - text: Political Science
+                      id: 584240da54be81056cecac1a
+                date_created: '2017-02-03T06:16:57.129000'
+                is_published: true
+              type: preprints
+              id: hqb2p
+          links:
+            first:
+            last: https://api.osf.io/v2/preprints/?page=172
+            prev:
+            next: https://api.osf.io/v2/preprints/?page=2
+            meta:
+              total: 1720
+              per_page: 10

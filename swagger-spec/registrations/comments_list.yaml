@@ -1,0 +1,174 @@
+# /registrations/{registration_id}/comments/
+get:
+  summary: List all comments
+  description: >-
+
+    A paginated list of the registration's comments.
+
+
+    The returned comments are sorted by their creation date, with the most recent
+    comments appearing first.
+
+    ####Permissions
+
+    Comments of public registrations are given read-only access to everyone.
+
+
+    If the comment-level is `private`, only registration contributors have permission to comment.
+
+
+    If the comment-level is `public`, any logged-in OSF user can comment.
+
+
+    Comments of private registrations are only visible to contributors and administrators on the registration.
+
+    ####Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of comment objects.
+    Each resource in the array is a separate comment object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+
+    #### Filtering
+
+    You can optionally request that the response only include comments that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registrations/wuerf/comments/?filter[target]=wuerf
+
+
+    Comments may be filtered by their `deleted`, `target`, `date_created`, `date_modified`.
+
+
+    Most fields are string fields and will be filtered using simple substring matching.
+    Deleted is a boolean field, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
+    Note that quoting `true` or `false` in the query will cause the match to fail.
+
+  parameters:
+    - in: path
+      type: string
+      name: registration_id
+      required: true
+      description: 'The unique identifier of the registration.'
+
+  tags:
+    - Registrations
+  operationId: registrations_comments_list
+  x-response-schema: Comment
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: '../comments/definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              replies:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/comments/?filter%5Btarget%5D=jg7sezmdnt93
+                    meta: {}
+              target:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta:
+                      type: nodes
+              reports:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/comments/jg7sezmdnt93/reports/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/6yc8z/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/comments/jg7sezmdnt93/
+            attributes:
+              can_edit: false
+              date_modified: '2016-04-01T04:45:44.123000'
+              deleted: false
+              is_ham: false
+              has_children: false
+              modified: false
+              content: |-
+                We have published a Bayesian reanalysis of this project at PLOS ONE: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794
+
+                I explain some of the context on my blog: http://alexanderetz.com/2016/02/26/the-bayesian-rpp-take-2/
+
+                Please note that the analysis we use in this paper is very different from the analysis used in the blog I posted in the previous comment, so the results are different as well.
+              has_report: false
+              is_abuse: false
+              date_created: '2016-02-27T13:50:24.240000'
+              page: node
+            type: comments
+            id: jg7sezmdnt93
+          - relationships:
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta: {}
+              replies:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/comments/?filter%5Btarget%5D=23pk9
+                    meta: {}
+              target:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/
+                    meta:
+                      type: nodes
+              reports:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/comments/23pk9/reports/
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/6yc8z/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/comments/23pk9/
+            attributes:
+              can_edit: false
+              date_modified: '2016-04-01T04:45:37.437000'
+              deleted: false
+              is_ham: false
+              has_children: false
+              modified:
+              content: In this blog http://wp.me/p4sgtg-o6 I conduct a Bayesian Re-analysis
+                of the Reproducibility Project that gives a graded measure of replication success.
+                In an attempt to avoid dichotomous success/fail replication outcomes, I calculate
+                a continous outcome (Bayes factor) that answers the question, does the replication
+                result fit more with the original reported effect or a null effect? Many replications
+                are strong successes, many are strong failures, and there are many that lie
+                somewhere in between.
+              has_report: false
+              is_abuse: false
+              date_created: '2015-08-30T14:50:21.093000'
+              page: node
+            type: comments
+            id: 23pk9
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 2
+              per_page: 10

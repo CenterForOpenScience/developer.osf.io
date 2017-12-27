@@ -1,0 +1,261 @@
+# /nodes/{node_id}/relationships/linked_nodes/
+get:
+  summary: Retrieve linked_nodes-node relationships
+  description: >-
+    Returns ids of the linked nodes attached to this collection.
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: 'The unique identifier of the node.'
+
+  tags:
+    - Nodes
+  operationId: nodes_relationships_linked_nodes
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+      examples:
+        application/json:
+          data:
+          - type: linked_nodes
+            id: ng6cc
+          - type: linked_nodes
+            id: swrhy
+          - type: linked_nodes
+            id: sq8k9
+          - type: linked_nodes
+            id: 73pnd
+          - type: linked_nodes
+            id: gcj7x
+          - type: linked_nodes
+            id: kez47
+          - type: linked_nodes
+            id: atgp5
+          - type: linked_nodes
+            id: h84qd
+          - type: linked_nodes
+            id: ke43j
+          - type: linked_nodes
+            id: qthf2
+          - type: linked_nodes
+            id: k9gp6
+          - type: linked_nodes
+            id: 8j9cg
+          - type: linked_nodes
+            id: gxvd3
+          - type: linked_nodes
+            id: ahpik
+          - type: linked_nodes
+            id: qwkum
+          - type: linked_nodes
+            id: tf8ky
+          - type: linked_nodes
+            id: b98zw
+          - type: linked_nodes
+            id: nr7d9
+          - type: linked_nodes
+            id: vmipw
+          - type: linked_nodes
+            id: tv82z
+          - type: linked_nodes
+            id: ivfu6
+          - type: linked_nodes
+            id: bifc7
+          - type: linked_nodes
+            id: dncxa
+          - type: linked_nodes
+            id: c5pbg
+          - type: linked_nodes
+            id: xtsq6
+          - type: linked_nodes
+            id: vj65s
+          - type: linked_nodes
+            id: 4dvzb
+          - type: linked_nodes
+            id: 4bv5f
+          - type: linked_nodes
+            id: cxmf6
+          - type: linked_nodes
+            id: 38ges
+          - type: linked_nodes
+            id: 3h29d
+          - type: linked_nodes
+            id: siaqe
+          - type: linked_nodes
+            id: p9thw
+          - type: linked_nodes
+            id: n2m7p
+          - type: linked_nodes
+            id: 94j6h
+          - type: linked_nodes
+            id: 7dyp5
+          - type: linked_nodes
+            id: 7rtcz
+          - type: linked_nodes
+            id: fxqsk
+          - type: linked_nodes
+            id: mxryb
+          - type: linked_nodes
+            id: yaeu7
+          - type: linked_nodes
+            id: wdhc5
+          - type: linked_nodes
+            id: ne9dy
+          - type: linked_nodes
+            id: su6bm
+          - type: linked_nodes
+            id: ta3j8
+          - type: linked_nodes
+            id: k4y9i
+          - type: linked_nodes
+            id: dnaxe
+          - type: linked_nodes
+            id: pj5hb
+          - type: linked_nodes
+            id: mua6d
+          - type: linked_nodes
+            id: rx9ph
+          - type: linked_nodes
+            id: abxcj
+          - type: linked_nodes
+            id: 5dx4v
+          - type: linked_nodes
+            id: tg2wd
+          - type: linked_nodes
+            id: r5gpv
+          - type: linked_nodes
+            id: mjasz
+          - type: linked_nodes
+            id: bk53t
+          - type: linked_nodes
+            id: 2gkjt
+          - type: linked_nodes
+            id: sqim7
+          - type: linked_nodes
+            id: rmvk5
+          - type: linked_nodes
+            id: bscfe
+          - type: linked_nodes
+            id: 76qc5
+          - type: linked_nodes
+            id: 7ux8p
+          - type: linked_nodes
+            id: hp27x
+          - type: linked_nodes
+            id: rgm6p
+          - type: linked_nodes
+            id: etg7c
+          - type: linked_nodes
+            id: 93tkw
+          - type: linked_nodes
+            id: 5tbxf
+          - type: linked_nodes
+            id: aczvt
+          links:
+            self: https://api.osf.io/v2/nodes/ezcuj/relationships/linked_nodes/
+            html: https://api.osf.io/v2/nodes/ezcuj/linked_nodes/
+
+patch:
+
+  summary: Update a linked_nodes-node relationship
+  description: >-
+    Replace the contents of the node links for this collection with the contents of the request.
+    It will delete all node links that do not have a node_id in the data array, create node links for the node_ids
+    that do not currently have a node id, and do nothing for node_ids that already have a corresponding node_link.
+
+    linked_nodes-node relationships can be updated with either a **PUT** or **PATCH** request.
+    The `title` and `category` fields are mandatory in a **PUT** request, and optional in a **PATCH**.
+
+
+    #### Permissions
+
+
+    Requires edit permission on the collection.
+
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        example:
+          data:
+          - type: linked_nodes
+            id: bscfe
+          - type: linked_nodes
+            id: 76qc5
+          - type: linked_nodes
+            id: 7ux8p
+          - type: linked_nodes
+            id: hp27x
+
+  tags:
+    - Nodes
+  operationId: nodes_relationships_linked_nodes_update
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+post:
+  summary: Create a linked_nodes-node relationship
+  description: >-
+    Creates a node_link for all node_ids in the request that do not already have a corresponding node_link
+    in this collection.
+
+    #### Permissions
+
+    Requires edit permission on the collection.
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: 'The unique identifier of the node.'
+
+  tags:
+    - Nodes
+  operationId: nodes_relationships_linked_nodes_create
+  responses:
+    '201':
+      description: OK
+      examples:
+        application/json:
+          data:
+          - type: linked_nodes
+            id: api6f
+
+delete:
+  summary: Delete an linked_nodes-node relationship
+  description: >-
+    Delete a relationship between a linked_node and a node.
+
+    #### Permissions
+
+    Requires edit permission on the collection.
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: 'The unique identifier of the node.'
+
+  tags:
+    - Nodes
+  operationId: nodes_relationships_linked_nodes_delete
+  responses:
+    '204':
+      description: No content
