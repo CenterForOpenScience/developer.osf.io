@@ -12,13 +12,16 @@
   "scripts": {
     "bundle": "gulp",
     "test": "gulp",
-    "serve": "gulp serve"
+    "serve": "gulp serve",
+    "watch": "gulp livereload"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-run": "^1.7.1",
+    "gulp-cache-bust": "^1.1.0",
     "http-server": "^0.10.0",
-    "swagger-cli": "^1.0.1"
+    "swagger-cli": "^1.0.1",
+    "watch-http-server": "^0.7.6"
   },
   "readmeFilename": "README.md"
 }
