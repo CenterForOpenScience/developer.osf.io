@@ -1,24 +1,21 @@
 {
   "name": "developer-osf-io",
-  "author": "Casey Rollins <case.rollins@gmail.com>",
+  "author": "Casey Rollins <casey@cos.io>",
   "description": "Developer documentation for the Open Science Framework API",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caseyrollins/dev-docs.git"
+    "url": "https://github.com/CenterForOpenScience/developer.osf.io.git"
   },
   "scripts": {
-    "bundle": "gulp",
-    "test": "gulp",
-    "serve": "gulp serve",
-    "watch": "gulp livereload"
+    "validate": "swagger-cli validate swagger-spec/swagger.yaml",
+    "build": "yarn run validate && swagger-cli bundle -r -o swagger.json swagger-spec/swagger.yaml",
+    "test": "yarn run build",
+    "serve": "http-server -p 8080",
+    "watch": "watch-http-server -p 8080"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-run": "^1.7.1",
-    "gulp-cache-bust": "^1.1.0",
     "http-server": "^0.10.0",
     "swagger-cli": "^1.0.1",
     "watch-http-server": "^0.7.6"
