@@ -410,7 +410,7 @@ tags:
       &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?embed=contributors&embed=comments`
 
 
-      Some endpoints are automatically embedded, such as the [node contributors](#Nodes_nodes_contributors_list) endpoint, which automatically embeds user information.
+      Some endpoints are automatically embedded, such as the [node contributors](#operation/nodes_contributors_list) endpoint, which automatically embeds user information.
 
   - name: Request Formatting
     x-traitTag: true
@@ -497,7 +497,7 @@ tags:
     description: >-
       ## Errors
 
-      When a request fails for any reason, the OSF API will return an appropriate [HTTP response code](#Introduction_error_codes) and include a descriptive error in the body of the response.
+      When a request fails for any reason, the OSF API will return an appropriate HTTP response code and include a descriptive error in the body of the response.
 
 
       The response body will be a JSON object with a key, `errors`, pointing to an array of error objects.
@@ -617,7 +617,7 @@ tags:
       Wait at least the amount of time specified in the `Retry-After` header of the response before sending another request.
 
 
-      [Authenticated](#Introduction_authentication) requests have a rate limit of 10,000/day.
+      Authenticated requests have a rate limit of 10,000/day.
 
 
       Unauthenticated requests have a rate limit of 100/hour.
@@ -675,7 +675,7 @@ tags:
 
       #### Embeds
 
-      Please see the [embedding](#Introduction_embedding) documentation.
+      Please see the [embedding](#tag/Embedding) documentation.
 
       #### Links
 
@@ -746,9 +746,9 @@ paths:
         and the full representation of the current user, if authentication credentials were provided in the request.
 
 
-        The `links` key contains links to the following entity collections: [addons](), [collections](),
-        [institutions](#Institutions_institutions_list), [licenses](#Licenses_license_list), [metaschemas](),
-        [nodes](#Nodes_nodes_list), [registrations](), [users](#Users_users_list)
+        The `links` key contains links to the following entity collections: [addons](#tag/Addons), [collections](),
+        [institutions](#tag/Institutions), [licenses](#tag/Licenses), [metaschemas](#tag/Metaschemas),
+        [nodes](#tag/Nodes), [registrations](#tag/Registrations), [users](#tag/Users)
 
       responses:
         '200':

@@ -22,7 +22,7 @@ get:
     contains the full representation of the addon account.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
   parameters:
     - in: path

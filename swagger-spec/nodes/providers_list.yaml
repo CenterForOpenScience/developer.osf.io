@@ -21,7 +21,7 @@ get:
     Each resource in the array is a separate file object.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
     Note: In the OSF filesystem model, providers are treated as folders, but with special properties that distinguish

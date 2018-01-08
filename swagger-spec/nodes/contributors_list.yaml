@@ -24,7 +24,7 @@ get:
     Additionally, the full representation of the user this contributor represents is automatically embedded within the `data` key of the response.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
     #### Filtering
 
@@ -146,7 +146,7 @@ post:
 
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
-    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
   parameters:
     - in: path
