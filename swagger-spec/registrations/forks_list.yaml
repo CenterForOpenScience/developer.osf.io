@@ -21,7 +21,7 @@ get:
     Each resource in the array is a separate registration object and contains the full representation of the registration's fork.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
   parameters:
     - in: path
@@ -220,7 +220,7 @@ post:
     Returns a JSON object with a `data` key containing the complete representation of the forked registration, if the request is successful.
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
-    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
   parameters:
     - in: path
