@@ -11,7 +11,7 @@ get:
     The returned nodes are sorted by their `date_modified`, with the most recently updated nodes appearing first.
 
 
-    Registrations cannot be accessed through this endpoint (use the [registrations](#Registrations_registrations_list) endpoints instead).
+    Registrations cannot be accessed through this endpoint (use the [registrations](#tag/Registrations) endpoints instead).
 
     #### Returns
 
@@ -22,11 +22,11 @@ get:
     Each resource in the array is a separate node object and contains the full representation of the node, meaning additional requests to a node's detail view are not necessary.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
     This request should never return an error.
-    
+
     #### Filtering
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
@@ -218,7 +218,7 @@ post:
 
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
-    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
   parameters:
   - in: body

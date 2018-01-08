@@ -18,7 +18,7 @@ get:
 
 
     If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
   parameters:
     - in: path
@@ -181,7 +181,7 @@ patch:
 
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
-    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
   parameters:
     - in: path
@@ -232,7 +232,7 @@ delete:
 
 
     If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
-    Refer to the [list of error codes](#Introduction_error_codes) to understand why this request may have failed.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
   parameters:
     - in: path
       type: string

@@ -13,7 +13,7 @@ get:
     Each resource in the array is a separate institution object.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
   parameters:
     - in: path

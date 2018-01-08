@@ -15,7 +15,7 @@ get:
         view only link, if the request is successful.
 
         If the request is unsuccessful, an `errors` key containing
-        information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+        information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
         to understand why this request may have failed.
 
   parameters:

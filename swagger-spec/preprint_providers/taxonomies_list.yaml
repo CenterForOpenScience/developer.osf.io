@@ -16,11 +16,11 @@ get:
 
 
     The `links` key contains a dictionary of links that can be used
-    for [pagination](#Introduction_pagination).
+    for [pagination](#tag/Pagination).
 
 
     If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
   parameters:

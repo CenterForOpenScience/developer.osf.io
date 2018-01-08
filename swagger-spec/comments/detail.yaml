@@ -11,7 +11,7 @@ get:
 
 
     If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
   parameters:
@@ -89,7 +89,7 @@ put:
 
 
       If the request is unsuccessful, JSON with an `errors` key containing
-      information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+      information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
       to understand why this request may have failed.
 
   parameters:
@@ -128,7 +128,7 @@ delete:
 
 
     If the request is unsuccessful, a JSON object with an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
   parameters:

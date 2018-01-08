@@ -21,7 +21,7 @@ get:
 
 
     The `links` key contains a dictionary of links that can be used
-    for [pagination](#Introduction_pagination).
+    for [pagination](#tag/Pagination).
 
     #### Filtering
 

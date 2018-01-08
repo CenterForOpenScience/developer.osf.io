@@ -22,7 +22,7 @@ get:
     Each resource in the array is a separate registration object and contains the full representation of the child registration.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
     #### Filtering

@@ -27,7 +27,7 @@ get:
     Additionally, the full representation of the user this contributor represents is automatically embedded within the `data` key of the response.
 
 
-    The `links` key contains a dictionary of links that can be used for [pagination](#Introduction_pagination).
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
     #### Filtering
 
