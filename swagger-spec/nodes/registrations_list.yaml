@@ -182,3 +182,84 @@ get:
               node_license:
             type: registrations
             id: esa63
+
+post:
+  summary: Create a registration
+  description: >-
+    Initiate a registration of the current draft registration.
+
+    Draft registrations contain the supplemental registration questions that accompany a registration.
+    A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+
+
+    Your original project remains editable but will now have the registration linked to it.
+
+    #### Permissions
+
+    Only project administrators may view create registrations.
+
+    #### Required
+
+    Required fields for creating a registration include:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp`draft_registration`
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the created
+    registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - description: ''
+      required: true
+      type: string
+      name: node_id
+      in: path
+    - schema:
+        required:
+          - type
+          - draft_registration
+          - registration_choice
+        type: object
+        properties:
+          registration_choice:
+            type: string
+            description: 'either embargo or immediate'
+          lift_embargo:
+            type: string
+            description: 'only availble if your registration_choice is embargo and will be in the format of 2017-05-10T20:44:03.185000'
+          type:
+            type: string
+            description: 'can only be registrations'
+          draft_registration:
+            type: string
+            description: 'the guid for the draft registration to be registered'
+      name: data
+      in: body
+  tags:
+    - Nodes
+
+  operationId: nodes_registrations_list
+  x-response-schema: Registration
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: ''
+      schema:
+        type: array
+        items:
+          $ref: '../registrations/definition.yaml'
+      example:
+        data:
+          type: registrations
+          attributes:
+            draft_registration: '{draft_registration_id}'
+            registration_choice: 'embargo'
+            lift_embargo: '2017-05-10T20:44:03.185000'
