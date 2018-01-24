@@ -183,6 +183,7 @@ get:
             type: registrations
             id: esa63
 
+# /nodes/{node_id}/registrations/
 post:
   summary: Create a registration
   description: >-
@@ -245,10 +246,8 @@ post:
   tags:
     - Nodes
 
-  operationId: nodes_registrations_list
+  operationId: nodes_registrations
   x-response-schema: Registration
-  consumes:
-    - application/json
   responses:
     '201':
       description: ''
@@ -257,9 +256,10 @@ post:
         items:
           $ref: '../registrations/definition.yaml'
       example:
-        data:
-          type: registrations
-          attributes:
-            draft_registration: '{draft_registration_id}'
-            registration_choice: 'embargo'
-            lift_embargo: '2017-05-10T20:44:03.185000'
+        application/json:
+          data:
+            type: registrations
+            attributes:
+              draft_registration: '{draft_registration_id}'
+              registration_choice: 'embargo'
+              lift_embargo: '2017-05-10T20:44:03.185000'
