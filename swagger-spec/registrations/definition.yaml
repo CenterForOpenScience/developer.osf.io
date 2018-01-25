@@ -20,6 +20,9 @@ properties:
     title: Attributes
     readOnly: true
     description: 'The properties of the registration entity.'
+    required:
+      - draft_registration
+      - registration_choice
     properties:
       category:
         type: string
@@ -141,6 +144,14 @@ properties:
         type: string
         readOnly: true
         description: 'The reasoning for why this registration was withdrawn, as entered by the administrator that initiated the withdrawal.'
+      draft_registration:
+        type: string
+        readOnly: true
+        description: 'The unique ID of the draft registration from which the registration was created.'
+      registration_choice:
+        type: string
+        readOnly: true
+        description: 'Type of registration you want to choose to be, immediate or embargo. If you choose to be embargo, you need to provide with a lift_embargo datetime.'
   relationships:
     type: object
     title: Relationships
