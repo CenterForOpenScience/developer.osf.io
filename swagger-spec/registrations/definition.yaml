@@ -18,7 +18,7 @@ properties:
   attributes:
     type: object
     title: Attributes
-    readOnly: true
+    readOnly: false
     description: 'The properties of the registration entity.'
     required:
       - draft_registration
@@ -108,7 +108,7 @@ properties:
         description: 'Whether or not a preprint has been created from this node, or if this node was created for a preprint.'
       public:
         type: boolean
-        readOnly: false
+        readOnly: true
         description: 'Whether or not the registration is publicly visible.'
       registration:
         type: boolean
@@ -146,12 +146,17 @@ properties:
         description: 'The reasoning for why this registration was withdrawn, as entered by the administrator that initiated the withdrawal.'
       draft_registration:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'The unique ID of the draft registration from which the registration was created.'
       registration_choice:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'Type of registration you want to choose to be, immediate or embargo. If you choose to be embargo, you need to provide with a lift_embargo datetime.'
+      lift_embargo:
+        type: string
+        format: date-time
+        readOnly: false
+        description: 'The time at which the registered node will become public only avaible when you choose embargo for registration_choice.'
   relationships:
     type: object
     title: Relationships
