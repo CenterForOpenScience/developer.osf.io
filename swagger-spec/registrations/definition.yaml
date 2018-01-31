@@ -147,16 +147,16 @@ properties:
       draft_registration:
         type: string
         readOnly: false
-        description: 'The unique ID of the draft registration from which the registration was created.'
+        description: 'The ID of the draft registration from which the registration will be created.'
       registration_choice:
         type: string
         readOnly: false
-        description: 'Type of registration you want to choose to be, immediate or embargo. If you choose to be embargo, you need to provide with a lift_embargo datetime.'
+        description: 'Describes when the registration will become public, either "immediate" or "embargo". If this field is "embargo", you will need to supply a datetime in the "lift_embargo" field.'
       lift_embargo:
         type: string
         format: date-time
         readOnly: false
-        description: 'The time at which the registered node will become public only avaible when you choose embargo for registration_choice.'
+        description: 'A future datetime when the registration will become public. This field should be set when "registration_choice" is set to "embargo" in the range from 2 days to 4 years.'
   relationships:
     type: object
     title: Relationships

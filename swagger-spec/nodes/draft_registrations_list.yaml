@@ -101,7 +101,7 @@ post:
     Required fields for creating a draft registration include:
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`registration_supplement`
+    &nbsp;&nbsp;&nbsp;&nbsp;`registration_supplement`
 
     #### Returns
 

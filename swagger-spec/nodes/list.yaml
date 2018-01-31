@@ -204,10 +204,10 @@ post:
     Required fields for creating a node include:
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`title`
+    &nbsp;&nbsp;&nbsp;&nbsp;`title`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`category`
+    &nbsp;&nbsp;&nbsp;&nbsp;`category`
 
 
     Note: Nodes default to **private** unless the `public` field is explicitly set to **true** in the request payload.

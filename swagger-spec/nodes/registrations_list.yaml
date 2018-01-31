@@ -187,12 +187,12 @@ get:
 post:
   summary: Create a registration
   description: >-
-    Initiate a registration of the current draft registration.
+    Finalize the registration process of the current draft registration.
 
-    Draft registrations contain the supplemental registration questions that accompany a registration.
+    A registration is created from a completed draft registration (containing the supplemental registration questions).
+    Information about whether the registration will become public immediately or be embargoed, and conditionally,
+    the datetime at which the registration will become public.
     A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
-
-
     Your original project remains editable but will now have the registration linked to it.
 
     #### Permissions
@@ -204,13 +204,16 @@ post:
     Required fields for creating a registration include:
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`type`
+    &nbsp;&nbsp;&nbsp;&nbsp;`type`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`draft_registration`
+    &nbsp;&nbsp;&nbsp;&nbsp;`draft_registration`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`registration_choice`
+    &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice`
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice` (Only required when `registration_choice` is "embargo")
 
 
     #### Returns
