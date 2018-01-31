@@ -83,7 +83,13 @@ patch:
   summary: Update a draft registration
   description: >-
     Updates a draft registration by setting the values of the attributes specified in the request body.
-    Any unspecified attributes will be left unchanged.
+    Any unspecified attributes will be left unchanged. It is the second step in creating a registration.
+
+
+    Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
+
+
+    Refer to step 3: [How to create a registration from a completed draft registration](#operation/nodes_registrations_create)
 
 
     Draft registrations contain the supplemental registration questions that accompany a registration.
@@ -127,7 +133,7 @@ patch:
       name: body
       required: true
       schema:
-        $ref: draft_registration_definition.yaml
+        $ref: 'draft_registration_definition.yaml'
   tags:
     - Nodes
   operationId: nodes_draft_registrations_partial_update

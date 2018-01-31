@@ -188,9 +188,14 @@ post:
   summary: Create a registration
   description: >-
     Finalize the registration process of the current draft registration.
-
-
     A registration is created from a completed draft registration (containing the supplemental registration questions).
+    It is the final step in creating a registration.
+
+
+    Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
+
+
+    Refer to step 2: [How to complete the supplemental registration questions of a draft registration](#operation/nodes_draft_registrations_partial_update)
 
 
     Information about whether the registration will become public immediately or be embargoed, and conditionally,

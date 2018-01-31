@@ -88,6 +88,13 @@ post:
 
     Draft registrations contain the supplemental registration questions that accompany a registration.
     A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+    It is the first step in creating a registration.
+
+
+    Refer to step 2: [How to complete the supplemental registration questions of a draft registration](#operation/nodes_draft_registrations_partial_update)
+
+
+    Refer to step 3: [How to create a registration from a completed draft registration](#operation/nodes_registrations_create)
 
 
     Your original project remains editable but will now have the draft registration linked to it.
