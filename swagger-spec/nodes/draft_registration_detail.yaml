@@ -133,7 +133,19 @@ patch:
       name: body
       required: true
       schema:
-        $ref: 'draft_registration_definition.yaml'
+        type: object
+        example:
+          data:
+            id: '{registration_supplement_id}'
+            type: 'draft_registrations'
+            attributes:
+              registration_metadata:
+                datacompletion:
+                  value: 'No, data collection has not begun'
+                looked:
+                  value: 'No'
+                comments:
+                  value: 'This is my first registration.'
   tags:
     - Nodes
   operationId: nodes_draft_registrations_partial_update
