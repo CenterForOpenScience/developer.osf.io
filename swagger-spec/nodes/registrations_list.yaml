@@ -214,9 +214,6 @@ post:
     Required fields for creating a registration include:
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`type`
-
-
     &nbsp;&nbsp;&nbsp;&nbsp;`draft_registration`
 
 

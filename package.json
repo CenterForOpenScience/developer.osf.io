@@ -12,8 +12,8 @@
     "validate": "swagger-cli validate swagger-spec/swagger.yaml",
     "build": "yarn run validate && swagger-cli bundle -r -o swagger.json swagger-spec/swagger.yaml",
     "test": "yarn run build",
-    "serve": "http-server -p 9010",
-    "watch": "watch-http-server -p 9010"
+    "serve": "http-server -p 8080",
+    "watch": "watch-http-server -p 8080"
   },
   "devDependencies": {
     "http-server": "^0.10.0",
