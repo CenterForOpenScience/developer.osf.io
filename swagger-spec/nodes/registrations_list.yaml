@@ -189,7 +189,7 @@ post:
   description: >-
     Finalize the registration process of the current draft registration.
     A registration is created from a completed draft registration (containing the supplemental registration questions).
-    It is the final step in creating a registration.
+    It also needs information about whether the registration will become public immediately or be embargoed, and conditionally, the datetime at which the registration will become public.
 
 
     Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
@@ -198,16 +198,12 @@ post:
     Refer to step 2: [How to complete the supplemental registration questions of a draft registration](#operation/nodes_draft_registrations_partial_update)
 
 
-    Information about whether the registration will become public immediately or be embargoed, and conditionally,
-    the datetime at which the registration will become public.
-
-
     A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
     Your original project remains editable but will now have the registration linked to it.
 
     #### Permissions
 
-    Only project administrators may view create registrations.
+    Only project administrators may create registrations.
 
     #### Required
 
@@ -220,7 +216,7 @@ post:
     &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice` (Only required when `registration_choice` is "embargo")
+    &nbsp;&nbsp;&nbsp;&nbsp;`lift_embargo` (Only required when `registration_choice` is "embargo")
 
 
     #### Returns

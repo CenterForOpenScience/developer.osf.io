@@ -82,8 +82,18 @@ get:
 patch:
   summary: Update a draft registration
   description: >-
-    Updates a draft registration by setting the values of the attributes specified in the request body.
-    Any unspecified attributes will be left unchanged. It is the second step in creating a registration.
+    Update a draft registration by answering the supplemental registration questions. This is the second step in creating a registration.
+    The answers will go under registration_metadata.
+    Registration_metadata must be a dictionary with keys as question ids in the registration form, and values as nested dictionaries matching the specific format in the registration metaschema.
+
+
+    [To view all active registration schemas](#operation/metaschemas_list)
+
+
+    [To retrive the format of a certain registration schema](#operation/metaschemas_read)
+
+
+    If a question is multiple-choice, the question response must exactly match one of the possible choices.
 
 
     Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
@@ -91,20 +101,6 @@ patch:
 
     Refer to step 3: [How to create a registration from a completed draft registration](#operation/nodes_registrations_create)
 
-
-    Draft registrations contain the supplemental registration questions that accompany a registration.
-    Answer the questions in the draft registration supplement by sending update requests until you are ready to submit the draft.
-
-
-    The registration supplement of a draft registration cannot be updated after the draft has been created.
-
-
-    When updating a draft registration, `registration_metadata` is required.
-    It must be a dictionary with keys as question ids in the registration form,
-    and values as nested dictionaries matching the specific format in the [registration schema](TODO: link me pls).
-
-
-    If a question is multiple-choice, the question response must exactly match one of the possible choices.
 
     #### Permissions
 
