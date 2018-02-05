@@ -90,7 +90,7 @@ patch:
     [To view all active registration schemas](#operation/metaschemas_list)
 
 
-    [To retrive the format of a certain registration schema](#operation/metaschemas_read)
+    [To retrieve the format of a certain registration schema](#operation/metaschemas_read)
 
 
     If a question is multiple-choice, the question response must exactly match one of the possible choices.
