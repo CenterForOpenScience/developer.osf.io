@@ -3,17 +3,18 @@ get:
   description: >-
     Retrieves the details of a file (or folder)
 
-    ####Returns
+    #### Returns
 
-    Returns a JSON object with a `data` key containing the representation of the requested
-    file, if the request was successful.
+    Returns a JSON object with a `data` key containing the metadata for the requested file or folder.
+    If a metadata request is issued against a folder path the call will return the return the metadata for the folder's children.
+    To retrieve metadata for an individual folder, issue a GET request against the folder with the query parameter `info`, you will return the metadata for that folder instead of the metadata for it's children.
 
 
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
-    ###Waterbutler API actions
+    ### Waterbutler API actions
 
 
     Files can be modified through the Waterbutler API routes found in `links` (`new_folder`, `move`, `upload`, `download`, and `delete`).
