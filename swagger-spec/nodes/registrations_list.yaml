@@ -182,3 +182,70 @@ get:
               node_license:
             type: registrations
             id: esa63
+
+# /nodes/{node_id}/registrations/
+post:
+  summary: Create a registration
+  description: >-
+    Finalize the registration process of the current draft registration.
+    A registration is created from a completed draft registration (containing the supplemental registration questions).
+    It also needs information about whether the registration will become public immediately or be embargoed, and conditionally, the datetime at which the registration will become public.
+
+
+    Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
+
+
+    Refer to step 2: [How to complete the supplemental registration questions of a draft registration](#operation/nodes_draft_registrations_partial_update)
+
+
+    A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+    Your original project remains editable but will now have the registration linked to it.
+
+    #### Permissions
+
+    Only project administrators may create registrations.
+
+    #### Required
+
+    Required fields for creating a registration include:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`draft_registration`
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice`
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`lift_embargo` (Only required when `registration_choice` is "embargo")
+
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the created
+    registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: '../registrations/definition.yaml'
+  tags:
+    - Nodes
+  operationId: nodes_registrations_create
+  x-response-schema: Registration
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'Created'

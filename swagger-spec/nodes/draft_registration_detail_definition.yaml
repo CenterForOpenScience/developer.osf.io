@@ -1,0 +1,47 @@
+type: object
+title: Draft Registration Detail
+required:
+  - id
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the draft registration entity.'
+
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the draft registration entity (`draft_registrations`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the draft registration entity.'
+    required:
+      - registration_supplement
+    properties:
+      registration_metadata:
+        type: string
+        readOnly: false
+        description: 'A dictionary of question IDs and responses from the registration schema.'
+      registration_supplement:
+        type: string
+        readOnly: false
+        description: 'The ID of an active registration schema that this registration will conform to.'
+
+
+example:
+  data:
+    id: '{registration_supplement_id}'
+    type: 'draft_registrations'
+    attributes:
+      registration_metadata:
+        datacompletion:
+          value: 'No, data collection has not begun'
+        looked:
+          value: 'No'
+        comments:
+          value: 'This is my first registration.'
