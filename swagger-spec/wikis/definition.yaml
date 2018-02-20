@@ -74,6 +74,7 @@ properties:
       - node
       - user
       - comments
+      - versions
     properties:
       node:
         type: string
@@ -87,6 +88,10 @@ properties:
         type: string
         readOnly: false
         description: 'A relationship to the comments related to this wiki.'
+      versions:
+        type: string
+        readOnly: false
+        description: 'A relationship to the versions related to this wiki.'
   links:
     type: object
     title: Links
