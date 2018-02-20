@@ -1,3 +1,4 @@
+# /wikis/{wiki_id}/
 get:
   summary: Retrieve a Wiki
   description: >-
@@ -5,8 +6,6 @@ get:
 
     A wiki is a collection of markdown text pages that can be used to describe
     the project or dataset of contained in the attached node.
-
-    ####Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     wiki, if the request was successful.
@@ -44,6 +43,11 @@ get:
                 links:
                   related:
                     href: 'https://api.osf.io/v2/users/5k3hq/'
+                    meta: {}
+              versions:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/wikis/zveyb/versions/'
                     meta: {}
               comments:
                 links:
