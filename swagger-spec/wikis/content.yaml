@@ -1,11 +1,11 @@
 get:
-  summary: Retrieve the Content of a Wiki
+  summary: Retrieve the content of a wiki
   description: >-
     Retrieves the plaintext content of a wiki in markdown format.
 
-    ####Returns
 
     Returns `text/markdown` of the wiki content itself.
+
 
     If the request is unsuccessful, plaintext with the error message will be displayed.
 

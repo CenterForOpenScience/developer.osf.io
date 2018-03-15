@@ -25,15 +25,15 @@ properties:
       date_created:
         type: string
         format: date-time
-        readOnly: true
+        readOnly: false
         description: 'The date and time at which the wiki version was saved, as an iso8601 formatted timestamp.'
       content_type:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'Content type of the wiki version (`text/markdown`).'
       size:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'Size of the wiki version.'
   relationships:
     type: object
@@ -68,3 +68,10 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the detail page for the wiki version.'
+
+example:
+  data:
+    id: '{wiki_id}'
+    type: 'wiki-versions'
+    attributes:
+      content: 'Your wiki content goes here.'

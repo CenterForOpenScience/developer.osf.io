@@ -1,10 +1,12 @@
 # /wikis/{wiki_id}/versions/{version_id}/content/
 get:
-  summary: Retrieve the Content of a Wiki Version
+  summary: Retrieve the content of a wiki version
   description: >-
     Retrieves the plaintext content of a specific wiki version in markdown format.
 
+
     Returns `text/markdown` of the wiki content itself.
+
 
     If the request is unsuccessful, plaintext with the error message will be displayed.
 
@@ -18,7 +20,7 @@ get:
       type: string
       required: true
       name: version_id
-      description: 'The unique identifier of the wiki version'
+      description: 'The unique identifier of the wiki version.'
   tags:
     - Wikis
   operationId: wiki_version_content

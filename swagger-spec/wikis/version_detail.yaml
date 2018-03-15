@@ -1,10 +1,11 @@
 # /wikis/{wiki_id}/versions/{version_id}/
 get:
-  summary: Retrieve a Wiki Version
+  summary: Retrieve a wiki version
   description: >-
     A wiki is a collection of markdown text pages that can be used to describe
     the project or dataset contained in the attached node.  Every time the content
     of a wiki is updated, a new version is created.
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     wiki, if the request was successful.

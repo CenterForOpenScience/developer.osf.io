@@ -1,12 +1,14 @@
 # /wikis/{wiki_id}/versions/
 get:
-  summary: Retrieve all Wiki Versions
+  summary: List all wiki versions
   description: >-
-    Retrieves all versions of a wiki.
+    Lists all versions of a wiki.
 
-    A wiki is a collection of markdown text pages that can be used to describe
+
+    The wiki is a collection of markdown text pages that can be used to describe
     the project or dataset contained in the attached node.  Every time the content
-    of a wiki is updated, a new version is created.
+    of a wiki page is updated, a new version is created.
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     wiki, if the request was successful.
@@ -76,3 +78,40 @@ get:
               size: 108
             type: 'wiki-versions'
             id: '1'
+
+
+post:
+  summary: Update a wiki
+  description: >-
+    Updates the content of the given wiki page by creating a new wiki version.
+
+
+    `content` is the only required field when updating a wiki page.
+
+
+    Returns a JSON object with a `data` key containing the representation of the created wiki version, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '../wikis/version_definition.yaml'
+  - in: path
+    type: string
+    name: wiki_id
+    required: true
+    description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_versions_create
+  consumes:
+    - application/json
+  x-response-schema: Wiki
+  responses:
+    '201':
+      description: 'Success'

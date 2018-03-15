@@ -39,7 +39,7 @@ properties:
         description: 'The type of object.'
       name:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'The name/title of the wiki page.'
       extra:
         type: string
@@ -113,3 +113,10 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the detail page for the wiki.'
+
+example:
+  data:
+    type: 'wikis'
+    attributes:
+      name: 'A brand new wiki page'
+      content: 'Your wiki content goes here.'
