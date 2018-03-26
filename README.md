@@ -13,7 +13,8 @@ The developer documentation is generated from this specification by [ReDoc](http
 
 ## Development
 
-- `yarn install`
+- `yarn`
+(Note that if you have `brew upgrade`d recently, you'll have to use  ` yarn --python python2` here.)
 - `yarn run build` (spec validation)
 - `yarn run serve` (serves at localhost:8080)
   - OR `yarn run watch` (serves at localhost:8080 with livereload)
@@ -21,7 +22,7 @@ The developer documentation is generated from this specification by [ReDoc](http
 ## Spec validation
 
 ```
-yarn run bundle
+yarn run build
 ```
 
 ## Starting a local server
