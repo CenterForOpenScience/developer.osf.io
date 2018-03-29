@@ -32,6 +32,7 @@ x-tagGroups:
       - Request Formatting
       - Errors & Error Codes
       - Entities & Entity Collections
+      - External Libraries
   - name: API Reference
     tags:
       - Addons
@@ -712,6 +713,18 @@ tags:
 
 
       If there are only enough results to fill one page, the `first`, `last`, `prev`, and `next` values will be null.
+
+  - name: External Libraries
+    x-traitTag: true
+    description: >-
+      ### OSF Client
+
+      OSF Client ([Github](https://github.com/osfclient/osfclient) | `[Docs](https://osfclient.readthedocs.io/en/latest/)) is a python library and command-line client for file storage on the OSF.
+
+      ### OSFR
+
+      OSFR ([Github](https://github.com/chartgerink/osfr)) is a work-in-progress R interface for OSF's API.
+
 
 paths:
 
