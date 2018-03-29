@@ -214,6 +214,14 @@ tags:
       the default version is `3.0` and the URL path is `/v2/`, then the
       version returned will be `2.0`)
 
+      + For any additions to the api (new fields, routes, methods, or
+      relationships), those additions will be added simultaneously to all
+      versions. For any breaking changes and deletions, a new API version will
+      be released. Requesting the base API takes the most compatible version of
+      the API, not the one with the latest changes. Note that, in the case of
+      the OSF model changing, legacy API functionality *may* break. We try very
+      hard not to let this happen, but sometimes it's unavoidable.
+
 
       #### Query Parameter Versioning
 
