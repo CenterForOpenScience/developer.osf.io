@@ -25,6 +25,10 @@ get:
 
     * `node_forked`: A Node is forked
 
+    * `preprint_initiated`: A preprint is made from the node
+
+    * `preprint_license_updated`: A license is added or updated to the preprint
+
     ---
 
     * `made_public`: A Node is made public
