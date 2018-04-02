@@ -336,7 +336,7 @@ tags:
 
       You can also filter on complex fields, including sets, datetimes, and integers.
 
-      For example, you can filter using comparisons by using the follow syntax:
+      You can filter using comparisons by using the follow syntax:
 
 
       &nbsp;&nbsp;&nbsp;&nbsp;`?filter[date_modified][gte]=2014-10-10`
@@ -358,6 +358,22 @@ tags:
 
 
       [ne] = does not equal
+
+
+      These comparison filters work for dates and integers. For example, you can
+      use two comparison filters to specify
+
+
+      &nbsp;&nbsp;&nbsp;&nbsp;`[date_modified][gte]=2014-10-10&[date_modified][lt]=2014-11-10`
+
+
+      or exclude
+
+
+      &nbsp;&nbsp;&nbsp;&nbsp;`[date_created][lt]=2014-10-10&[date_created][gt]=2014-11-10`
+
+
+      a range of dates from your search.
 
 
   - name: Sparse Fieldsets
