@@ -343,7 +343,7 @@ tags:
       For example, you can filter using comparisons by using the follow syntax:
 
 
-      `?filter[date_modified][gte]=2014-10-10`
+      &nbsp;&nbsp;&nbsp;&nbsp;`?filter[date_modified][gte]=2014-10-10`
 
 
       [gte] = greater than or equal
