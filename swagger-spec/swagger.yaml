@@ -27,6 +27,7 @@ x-tagGroups:
       - Pagination
       - Versioning
       - Filtering
+      - Complex Filtering
       - Sparse Fieldsets
       - Embedding
       - Request Formatting
@@ -344,10 +345,15 @@ tags:
         &nbsp;&nbsp;&nbsp;&nbsp;`?filter[date_modified][gte]=2014-10-10`
 
         [gte] = greater than or equal
+
         [gt] = greater than
+
         [lte] = less than or equal
+
         [lt] = less than
+
         [eq] = equals
+
         [ne] = does not equal
 
 
