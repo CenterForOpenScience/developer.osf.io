@@ -13,7 +13,7 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
-    ###Waterbutler API actions
+    ### Waterbutler API actions
 
 
     Files can be modified through the Waterbutler API routes found in `links` (`new_folder`, `move`, `upload`, `download`, and `delete`).
@@ -56,7 +56,7 @@ get:
 
     Files and folders can also be moved between nodes and providers. The resource parameter is the id of the node under which the file/folder should be moved. It must agree with the path parameter, that is the path must identify a valid folder under the node identified by resource. Likewise, the provider parameter may be used to move the file/folder to another storage provider, but both the resource and path parameters must belong to a node and folder already extant on that provider. Both resource and provider default to the current node and providers.
 
-    If a moved/copied file is overwriting an existing file, a 200 OK response will be returned. Otherwise, a 201 Created will be returned.
+    If a moved/copied file has the same name as an existing file in the same directory, a 409 Conflict response will be returned and the file will not be moved/copied. Otherwise, a 201 Created will be returned.
 
 
     #### Delete (file, folders)
