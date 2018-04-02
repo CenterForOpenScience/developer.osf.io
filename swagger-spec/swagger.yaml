@@ -340,7 +340,7 @@ tags:
     description: >-
       You can also filter on complex fields, including sets, datetimes, and integers.
 
-      For example, comparisons can be filtered on by using the follow syntax:
+      For example, you can filter using comparisons by using the follow syntax:
 
 
       `?filter[date_modified][gte]=2014-10-10`
