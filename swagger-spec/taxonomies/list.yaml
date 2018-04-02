@@ -35,6 +35,7 @@ get:
     - Taxonomies
   operationId: taxonomies_list
   x-response-schema: Taxonomy
+  deprecated: true
   responses:
     '200':
       description: OK
