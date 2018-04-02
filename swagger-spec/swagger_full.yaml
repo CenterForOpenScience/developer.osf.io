@@ -103,7 +103,7 @@ paths:
         to interact with the endpoint.  Unauthorized use will result in 401
         Unauthorized or 403 Forbidden responses.  Use
 
-        `HEAD` to probe an endpoint and make sure your headers are well-formed. 
+        `HEAD` to probe an endpoint and make sure your headers are well-formed.
         `GET` will return a representation of the
 
         entity or entity collection referenced by the endpoint.  An `OPTIONS`
@@ -3193,7 +3193,7 @@ paths:
         folders is actually handled for us by a
 
         nifty piece of software called
-        [WaterButler](https://github.com/CenterForOpenScience/waterbutler). 
+        [WaterButler](https://github.com/CenterForOpenScience/waterbutler).
         WaterButler lets
 
         us interact with files stored on different cloud storage platforms
@@ -3473,7 +3473,7 @@ paths:
         folders is actually handled for us by a
 
         nifty piece of software called
-        [WaterButler](https://github.com/CenterForOpenScience/waterbutler). 
+        [WaterButler](https://github.com/CenterForOpenScience/waterbutler).
         WaterButler lets
 
         us interact with files stored on different cloud storage platforms
@@ -3776,7 +3776,7 @@ paths:
         folders is actually handled for us by a
 
         nifty piece of software called
-        [WaterButler](https://github.com/CenterForOpenScience/waterbutler). 
+        [WaterButler](https://github.com/CenterForOpenScience/waterbutler).
         WaterButler lets
 
         us interact with files stored on different cloud storage platforms
@@ -10666,31 +10666,31 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        list of lists of dictionaries       ids
         of Subject in the PLOS taxonomy. Dictrionary, containing the subject
         text and subject ID
 
-        provider                        string                             
+        provider                        string
         original source of the preprint
 
         doi                             string                              bare
@@ -12289,24 +12289,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        array of tuples of dictionaries     ids
@@ -12436,24 +12436,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        list of lists of dictionaries       ids
@@ -12570,24 +12570,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        list of lists of dictionaries       ids
@@ -12718,24 +12718,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        array of tuples of dictionaries     ids
@@ -12809,24 +12809,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        array of tuples of dictionaries     ids
@@ -12931,24 +12931,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        array of tuples of dictionaries     ids
@@ -13053,24 +13053,24 @@ paths:
         OSF Preprint entities have the "preprints" `type`.
 
 
-        name                            type                               
+        name                            type
         description
 
         ====================================================================================
 
-        date_created                    iso8601 timestamp                  
+        date_created                    iso8601 timestamp
         timestamp that the preprint was created
 
-        date_modified                   iso8601 timestamp                  
+        date_modified                   iso8601 timestamp
         timestamp that the preprint was last modified
 
-        date_published                  iso8601 timestamp                  
+        date_published                  iso8601 timestamp
         timestamp when the preprint was published
 
-        is_published                    boolean                            
+        is_published                    boolean
         whether or not this preprint is published
 
-        is_preprint_orphan              boolean                            
+        is_preprint_orphan              boolean
         whether or not this preprint is orphaned
 
         subjects                        array of tuples of dictionaries     ids
@@ -15090,6 +15090,7 @@ paths:
         - registrations
       summary: Node Links to other nodes. *Writeable*.
       operationId: registrations_node_links_list
+      deprecated: true
       responses:
         '200':
           description: ''
@@ -15153,6 +15154,7 @@ paths:
         - registrations
       summary: Node Link details. *Writeable*.
       operationId: registrations_node_links_read
+      deprecated: true
       responses:
         '200':
           description: ''
