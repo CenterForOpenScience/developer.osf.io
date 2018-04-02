@@ -40,6 +40,10 @@ get:
     Public and preprint are boolean fields, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
     Note that quoting true or false in the query will cause the match to fail.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
+
   tags:
     - Nodes
   operationId: nodes_list

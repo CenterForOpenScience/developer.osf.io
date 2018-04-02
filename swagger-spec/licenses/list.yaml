@@ -28,6 +28,10 @@ get:
 
     Licenses may be filtered by their `id`, and `name`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
   tags:
     - Licenses
   operationId: license_list

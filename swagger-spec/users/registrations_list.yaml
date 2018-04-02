@@ -31,6 +31,10 @@ get:
 
     Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
+
   parameters:
     - in: path
       type: string

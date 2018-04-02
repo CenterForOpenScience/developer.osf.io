@@ -27,6 +27,11 @@ get:
 
 
     Users may be filtered by their `id`, `full_name`, `given_name`, `middle_names`, and `family_name`
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   parameters:
     - in: path
       type: string

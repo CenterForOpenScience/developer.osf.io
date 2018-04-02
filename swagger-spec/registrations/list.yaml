@@ -12,6 +12,7 @@ get:
 
     #### Registrations
 
+
     A registration on the OSF creates a frozen, time-stamped version of a project that cannot be edited or deleted.
     The *original project* can still be edited, while the registered version cannot.
 
@@ -21,6 +22,7 @@ get:
 
     #### Withdrawals
 
+
     Registrations cannot be deleted, but they can be withdrawn.
     Withdrawing a registration removes the content of the registration but leaves behind basic metadata.
     A withdrawn registration will display a limited subset of information, namely, title, description, date_created, date_registered, date_withdrawn, registration, withdrawn, withdrawal_justification, and registration supplement.
@@ -28,7 +30,9 @@ get:
     Additionally, the only relationship that remains accesible for a withdrawn registration is the contributors.
     All other relationships will return a **403 Forbidden** response.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -43,7 +47,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/registrations/?filter[title]=open.
@@ -51,6 +57,10 @@ get:
 
     Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   tags:
     - Registrations
   operationId: registrations_list

@@ -8,6 +8,7 @@ get:
 
     #### Returns
 
+
     Returns a JSON object containing `data` and `links` keys.
 
 
@@ -17,13 +18,20 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include citation styles that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/registrations/wucr8/citations/?filter[title]=open.
 
 
     Citation styles may be filtered by their `id`, `title`, `short-title`, and `summary`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
   parameters:
     - in: path
       type: string

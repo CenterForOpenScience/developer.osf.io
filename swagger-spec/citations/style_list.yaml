@@ -27,6 +27,9 @@ get:
 
     Citation styles may be filtered by their `id`, `title`, `short-title`, and `summary`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
   tags:
     - Citations
   operationId: citations_styles_list
@@ -57,4 +60,3 @@ get:
             meta:
               total: 1149
               per_page: 10
-

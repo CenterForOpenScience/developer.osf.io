@@ -35,6 +35,11 @@ get:
     Most fields are string fields and will be filtered using simple substring matching.
     Public and preprint are boolean fields, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
     Note that quoting true or false in the query will cause the match to fail.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   parameters:
     - in: path
       type: string

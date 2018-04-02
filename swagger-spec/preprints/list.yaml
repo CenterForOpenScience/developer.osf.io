@@ -6,7 +6,9 @@ get:
     The returned preprints are sorted by their creation date, with the most recent
     preprints appearing first.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -21,7 +23,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include preprints that
     match your filters by utilizing the `filter` query parameter, e.g.
@@ -30,6 +34,11 @@ get:
 
     Preprints may be filtered by their `id`, `is_published`, `date_created`,
     `date_modified`, and `provider`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   tags:
     - Preprints
   operationId: preprints_list

@@ -31,6 +31,10 @@ get:
 
     Taxonomies may be filtered by their `id`, `parents`, and `text`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
+
   tags:
     - Taxonomies
   operationId: taxonomies_list

@@ -4,6 +4,7 @@ get:
   description: >-
     List of all registrations of the given node.
 
+
     ####Returns
 
 
@@ -16,6 +17,7 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     ####Filtering
 
 
@@ -24,6 +26,9 @@ get:
 
     Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
 
   parameters:
     - in: path

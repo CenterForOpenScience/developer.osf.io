@@ -24,6 +24,10 @@ get:
 
     Identifiers may be filtered by their `category` e.g `ark` or `doi`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
+
   parameters:
 
     - in: path

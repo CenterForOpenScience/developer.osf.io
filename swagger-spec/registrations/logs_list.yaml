@@ -11,6 +11,7 @@ get:
 
     ####Returns
 
+
     Returns a JSON object containing `data` and `links` keys.
 
 
@@ -20,13 +21,19 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     ####Filtering
+
 
     You can optionally request that the response only include logs that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/registrations/wucr8/logs/?filter[action]=made_private.
 
 
     Logs may be filtered by their `action`, and `date`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
     - in: path

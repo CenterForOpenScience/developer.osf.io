@@ -26,6 +26,10 @@ get:
 
     Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   parameters:
     - in: path
       type: string

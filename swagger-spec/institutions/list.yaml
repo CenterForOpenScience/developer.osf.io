@@ -26,6 +26,11 @@ get:
 
 
     Institutions may be filtered by their `id`, `name`, and `auth_url`
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   tags:
     - Institutions
   operationId: institutions_list

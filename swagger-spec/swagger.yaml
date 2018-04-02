@@ -373,7 +373,7 @@ tags:
       &nbsp;&nbsp;&nbsp;&nbsp;`[date_created][lt]=2014-10-10&[date_created][gt]=2014-11-10`
 
 
-      a range of dates from your search.
+      a range of dates from your search. Note that the dates must be in YYYY-MM-DD format.
 
 
   - name: Sparse Fieldsets

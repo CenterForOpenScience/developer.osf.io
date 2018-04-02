@@ -31,6 +31,10 @@ get:
 
     Preprint Providers may be filtered by their `id`, `name`,  and `description`
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
+
   tags:
     - Preprint Providers
   operationId: preprint_provider_list

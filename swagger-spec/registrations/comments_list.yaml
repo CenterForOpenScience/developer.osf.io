@@ -9,7 +9,9 @@ get:
     The returned comments are sorted by their creation date, with the most recent
     comments appearing first.
 
+
     ####Permissions
+
 
     Comments of public registrations are given read-only access to everyone.
 
@@ -22,7 +24,9 @@ get:
 
     Comments of private registrations are only visible to contributors and administrators on the registration.
 
+
     ####Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -33,7 +37,9 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include comments that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/registrations/wuerf/comments/?filter[target]=wuerf
@@ -45,6 +51,10 @@ get:
     Most fields are string fields and will be filtered using simple substring matching.
     Deleted is a boolean field, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
     Note that quoting `true` or `false` in the query will cause the match to fail.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
 
   parameters:
     - in: path

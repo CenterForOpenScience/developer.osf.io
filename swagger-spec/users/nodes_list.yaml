@@ -31,6 +31,10 @@ get:
 
     Nodes may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, `preprint`, and `contributors`.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+    
   parameters:
     - in: path
       type: string
@@ -177,4 +181,3 @@ get:
             meta:
               total: 224
               per_page: 10
-

@@ -26,6 +26,10 @@ get:
     `public`, `registration` are boolean and can be filtered using truthy values, such as `true`, `false`, `0`, `1`.
     `tags` is an array of simple strings.
 
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+    
+
   parameters:
     - in: path
       name: node_id

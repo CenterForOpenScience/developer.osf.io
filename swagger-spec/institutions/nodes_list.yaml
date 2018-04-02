@@ -30,7 +30,12 @@ get:
     https://api.osf.io/v2/institutions/cos/nodes?filter[title]=science.
 
 
-    Nodes may be filtered by their `id`, `title`, `description`, `public`, `tags`, `category`, `date_created`, `date_modified`, `root`, `parent`, `contributors`, and `preprint`
+    Nodes may be filtered by their `id`, `title`, `description`, `public`, `tags`, `category`, `date_created`, `date_modified`, `root`, `parent`, `contributors`, and `preprint`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
   parameters:
     - in: path
       type: string

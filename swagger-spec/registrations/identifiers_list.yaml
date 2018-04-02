@@ -4,7 +4,9 @@ get:
   description: >-
     A paginated list of the registration's identifiers.
 
+
     ####Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -15,6 +17,7 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     ####Filtering
 
 
@@ -23,6 +26,10 @@ get:
 
 
     Identifiers may be filtered by their `category` e.g `ark` or `doi`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
 
