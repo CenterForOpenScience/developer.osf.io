@@ -32,6 +32,7 @@ x-tagGroups:
       - Request Formatting
       - Errors & Error Codes
       - Entities & Entity Collections
+      - External Libraries
   - name: API Reference
     tags:
       - Addons
@@ -146,7 +147,7 @@ tags:
     description: >-
       #### Token Auth
 
-      To use a Personal Access Token, make an `Authorization` header with the contents `Bearer <token>` as shown in the example below, replacing `<token>` with your token.
+      To use a Personal Access Token (PAT), make an `Authorization` header with the contents `Bearer <token>` as shown in the example below, replacing `<token>` with your token.
 
           curl -X "GET" "https://api.osf.io/v2/users/me/" \
           -H "Authorization: Bearer <token>"
@@ -166,6 +167,12 @@ tags:
       We've also created a [test application](https://github.com/abought/osf_oauth2_demo) for verifying that our OAuth workflow works correctly.
       If you set up an OAuth application on https://test.osf.io/, you should be able to add the client secret and client id to the settings file and it should work properly.
       If it does not, please let us know.
+
+      #### Which one should I choose?
+
+      Personal Access Tokens are best for scripts and things that don't have
+      their own web presence. OAuth is best for web pages and web applications
+      not hosted on osf.io which require access to the OSF API.
 
   - name: Pagination
     x-traitTag: true
@@ -212,6 +219,14 @@ tags:
       specified in the URL path, the URL path version will be applied (i.e. if
       the default version is `3.0` and the URL path is `/v2/`, then the
       version returned will be `2.0`)
+
+      + For any additions to the api (new fields, routes, methods, or
+      relationships), those additions will be added simultaneously to all
+      versions. For any breaking changes and deletions, a new API version will
+      be released. Requesting the base API takes the most compatible version of
+      the API, not the one with the latest changes. Note that, in the case of
+      the OSF model changing, legacy API functionality *may* break. We try very
+      hard not to let this happen, but sometimes it's unavoidable.
 
 
       #### Query Parameter Versioning
@@ -317,6 +332,33 @@ tags:
 
 
       &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[tags][icontains]=help`
+
+
+      You can also filter on complex fields, including sets, datetimes, and integers.
+
+      For example, you can filter using comparisons by using the follow syntax:
+
+
+      &nbsp;&nbsp;&nbsp;&nbsp;`?filter[date_modified][gte]=2014-10-10`
+
+
+      [gte] = greater than or equal
+
+
+      [gt] = greater than
+
+
+      [lte] = less than or equal
+
+
+      [lt] = less than
+
+
+      [eq] = equals
+
+
+      [ne] = does not equal
+
 
   - name: Sparse Fieldsets
     x-traitTag: true
@@ -712,6 +754,18 @@ tags:
 
 
       If there are only enough results to fill one page, the `first`, `last`, `prev`, and `next` values will be null.
+
+  - name: External Libraries
+    x-traitTag: true
+    description: >-
+      ### OSF Client
+
+      OSF Client ([Github](https://github.com/osfclient/osfclient) | `[Docs](https://osfclient.readthedocs.io/en/latest/)) is a python library and command-line client for file storage on the OSF.
+
+      ### OSFR
+
+      OSFR ([Github](https://github.com/chartgerink/osfr)) is a work-in-progress R interface for OSF's API.
+
 
 paths:
 

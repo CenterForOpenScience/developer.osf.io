@@ -167,7 +167,7 @@ properties:
       node_links:
         type: string
         readOnly: true
-        description: 'A link to the list of nodes that are linked to the current node. This field is deprecated as of verson 2.1; use the linked_nodes link instead.'
+        description: 'A link to the list of nodes that are linked to the current node. This field has been deprecated as of verson 2.1; use the linked_nodes link instead.'
       parent:
         type: string
         readOnly: true
@@ -220,4 +220,3 @@ example:
     attributes:
       title: 'An Excellent Project Title'
       category: 'software'
-
