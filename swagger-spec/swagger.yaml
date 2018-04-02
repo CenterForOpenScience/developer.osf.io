@@ -27,7 +27,6 @@ x-tagGroups:
       - Pagination
       - Versioning
       - Filtering
-      - Complex Filtering
       - Sparse Fieldsets
       - Embedding
       - Request Formatting
@@ -335,9 +334,6 @@ tags:
       &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[tags][icontains]=help`
 
 
-  - name: Complex Filtering
-    x-traitTag: true
-    description: >-
       You can also filter on complex fields, including sets, datetimes, and integers.
 
       For example, you can filter using comparisons by using the follow syntax:
