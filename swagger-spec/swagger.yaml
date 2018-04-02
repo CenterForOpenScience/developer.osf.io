@@ -333,6 +333,24 @@ tags:
 
       &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[tags][icontains]=help`
 
+
+  - name: Complex Filtering
+      x-traitTag: true
+      description: >-
+        You can also filter on complex fields, including sets, datetimes, and integers.
+
+        Comparisons can be filtered on using the follow syntax:
+
+        &nbsp;&nbsp;&nbsp;&nbsp;`?filter[date_modified][gte]=2014-10-10`
+
+        [gte] = greater than or equal
+        [gt] = greater than
+        [lte] = less than or equal
+        [lt] = less than
+        [eq] = equals
+        [ne] = does not equal
+
+
   - name: Sparse Fieldsets
     x-traitTag: true
     description: |
