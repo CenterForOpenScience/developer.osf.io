@@ -334,7 +334,7 @@ tags:
       &nbsp;&nbsp;&nbsp;&nbsp;`/nodes/?filter[tags][icontains]=help`
 
 
-      You can also filter on complex fields, including sets, datetimes, and integers.
+      You can also filter on comparable, ordered fields, including datetimes and integers.
 
       You can filter using comparisons by using the follow syntax:
 
