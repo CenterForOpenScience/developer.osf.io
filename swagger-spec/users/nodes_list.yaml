@@ -11,7 +11,9 @@ get:
 
     User registrations are not available at this endpoint.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -23,7 +25,9 @@ get:
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/users/cdi38/nodes/?filter[title]=open.
@@ -34,7 +38,7 @@ get:
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
-    
+
   parameters:
     - in: path
       type: string

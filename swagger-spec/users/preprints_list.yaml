@@ -4,7 +4,9 @@ get:
     A paginated list of preprints that the user contributes to.
     The returned preprints are sorted by their creation date, with the most recent preprints appearing first.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -16,7 +18,9 @@ get:
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include preprints that
     match your filters by utilizing the `filter` query parameter, e.g.

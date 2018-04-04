@@ -2,12 +2,14 @@
 get:
   summary: List all taxonomies
   description: >-
-
     A paginated list of all [bepress disciplines taxonomies](https://www.bepress.com/wp-content/uploads/2016/12/Digital-Commons-Disciplines-taxonomy-2017-01.pdf).
+
 
     Note: this API endpoint is under active development, and is subject to change in the future.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -22,7 +24,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include taxonomies that
     match your filters by utilizing the `filter` query parameter, e.g.
@@ -33,7 +37,7 @@ get:
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
-    
+
 
   tags:
     - Taxonomies

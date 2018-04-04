@@ -3,11 +3,15 @@ get:
   description: >-
     A paginated list of all nodes affiliated with an institution.
 
+
     #### Versioning
+
 
     As of version `2.2`, affiliated components (in addition to affiliated top-level projects) are returned from this endpoint.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -24,7 +28,9 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/institutions/cos/nodes?filter[title]=science.

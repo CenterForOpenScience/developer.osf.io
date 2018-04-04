@@ -4,10 +4,13 @@
       description: >-
         The citation for a node in a specific style.
 
+
         #### Returns
+
 
         Returns a JSON object with a `data` key that contains the representation of the node
         citation, in the requested style.
+
 
       parameters:
         - description: 'The unique identifier of the citation style.'
@@ -39,4 +42,3 @@
                     Project: Psychology. Retrieved from osf.io/ezcuj'
                 type: styled-citations
                 id: apa
-

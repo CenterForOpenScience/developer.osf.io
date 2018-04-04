@@ -5,7 +5,9 @@ get:
   description: >-
     A paginated list of institutions affiliated with the registration.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -15,6 +17,7 @@ get:
 
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
 
   parameters:
     - in: path

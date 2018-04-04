@@ -4,7 +4,7 @@ get:
     List of wiki pages on a node.
 
 
-    ####Returns
+    #### Returns
 
 
     Paginated list of the node's current wiki page versions ordered by their date_modified.
@@ -36,7 +36,7 @@ get:
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
-    
+
 
   parameters:
     - in: path

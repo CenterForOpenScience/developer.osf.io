@@ -4,6 +4,7 @@ get:
   description: >-
     Retrieve a paginated list of your reports for a comment.
 
+
   parameters:
     - in: path
       type: string
@@ -34,6 +35,7 @@ post:
   description: >-
     Report a comment. Comments must have a category (`spam`, `violence`, or `hate`).
     Message text is not required.
+
 
   parameters:
     - in: path

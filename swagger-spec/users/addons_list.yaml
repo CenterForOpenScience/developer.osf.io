@@ -2,7 +2,6 @@
 get:
   summary: List all user addons
   description: >-
-
     A paginated list of authorized user addons
 
 
@@ -13,6 +12,7 @@ get:
 
 
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -31,6 +31,7 @@ get:
 
 
     Attempting to request the accounts for an addon that is not enabled will result in a **404 Not Found** response.
+
 
   parameters:
     - in: path

@@ -2,7 +2,6 @@
 get:
   summary: List all child registrations
   description: >-
-
     A paginated list of children of a registration.
 
 

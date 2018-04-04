@@ -4,10 +4,13 @@ get:
   description: >-
     Retrieves the citation style details for a registration, in CSL format.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key that contains the representation of the details
     necessary for the citation style.
+
 
   parameters:
     - in: path

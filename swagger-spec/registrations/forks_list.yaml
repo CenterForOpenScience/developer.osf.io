@@ -2,7 +2,6 @@
 get:
   summary: List all forks
   description: >-
-
     A paginated list of the registration’s forks
 
 
@@ -11,7 +10,9 @@ get:
 
     Forking a registration creates a copy of an existing registration and all of its contents.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -22,6 +23,7 @@ get:
 
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
 
   parameters:
     - in: path

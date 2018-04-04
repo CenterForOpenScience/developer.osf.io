@@ -4,10 +4,13 @@ get:
   description: >-
     The citation details for a preprint, in CSL format.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key that contains the representation of the details
     necessary for the preprint citation.
+
 
   parameters:
     - in: path

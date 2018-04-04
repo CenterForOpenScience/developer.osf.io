@@ -3,10 +3,13 @@ get:
   description: >-
     Retrieves the details about a specific wiki.
 
+
     A wiki is a collection of markdown text pages that can be used to describe
     the project or dataset of contained in the attached node.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     wiki, if the request was successful.
@@ -15,6 +18,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - in: path

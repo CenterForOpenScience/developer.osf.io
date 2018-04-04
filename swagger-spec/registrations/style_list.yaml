@@ -2,7 +2,6 @@
 get:
   summary: List all citation styles
   description: >-
-
     A paginated list of the registration's alternative citation styles
 
 

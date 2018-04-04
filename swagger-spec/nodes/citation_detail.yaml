@@ -3,10 +3,13 @@ get:
   description: >-
     The citation details for a node, in CSL format.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key that contains the representation of the details
     necessary for the node citation.
+
 
   parameters:
     - in: path
@@ -41,4 +44,3 @@ get:
               title: Identification Analysis of RP:CB
             links:
               self: osf.io/bg4di
-

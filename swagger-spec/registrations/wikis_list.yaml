@@ -4,7 +4,9 @@ get:
   description: >-
     A paginated list of the registration's wiki pages
 
-    ####Returns
+
+    #### Returns
+
 
     A list of all registration's current wiki page versions ordered by their date_modified.
     Each resource contains the full representation of the wiki, meaning additional requests
@@ -15,11 +17,15 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
     #### Filtering
+
 
     Wiki pages can be filtered based on their `name` and `date_modified` fields.
 
+
     + `filter[name]=<Str>` -- filter wiki pages by name
+
 
     + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
 
@@ -29,7 +35,7 @@ get:
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
-    
+
   parameters:
     - in: path
       type: string

@@ -3,7 +3,9 @@ get:
   description: >-
     Retrieves the details of a preprint provider.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     preprint provider, if the request is successful.
@@ -16,9 +18,12 @@ get:
 
     #### Acceptable Subjects Structure
 
+
     Each preprint provider specifies acceptable subjects.
 
+
     `subjects_acceptable` is an array found in `attributes`.
+
 
     Subjects consist of general parent subjects (e.g., Engineering),
     more specific child subjects (e.g., Aerospace Engineering),
@@ -59,8 +64,10 @@ get:
             ]
         ]
 
+
     The above structure would allow Architecture, Architectural Engineering, all of Architectural Engineering's children,
     Engineering, Aerospace Engineering, and Aerodynamics and Fluid Mechanics.
+
 
   parameters:
     - in: path

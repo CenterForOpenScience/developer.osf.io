@@ -1,10 +1,11 @@
 get:
   summary: List all institutions
   description: >-
-
     A paginated list of all verified institutions.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -19,7 +20,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include institutions that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/institutions/?filter[id]=cos.
@@ -30,7 +33,7 @@ get:
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
-    
+
   tags:
     - Institutions
   operationId: institutions_list

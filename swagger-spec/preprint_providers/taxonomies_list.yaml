@@ -1,12 +1,15 @@
 get:
   summary: List all taxonomies
   description: >-
-
     A paginated list of the taxonomies for a preprint provider.
+
+
     The returned preprint providers taxonomies are sorted by their creation date, with the most recent
     preprints appearing first.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -22,6 +25,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - in: path

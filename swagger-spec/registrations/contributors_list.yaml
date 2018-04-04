@@ -4,6 +4,7 @@ get:
   description: >-
     A paginated list of all contributors on this registration.
 
+
     The returned contributors are sorted by their index.
 
 
@@ -42,7 +43,7 @@ get:
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
-    
+
 
   parameters:
     - in: path

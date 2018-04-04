@@ -6,7 +6,9 @@ get:
     List of all the files/folders that are attached to your project
     for a given storage provider.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -18,7 +20,7 @@ get:
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
-    ####Filtering
+    #### Filtering
 
 
     You can optionally request that the response only include files that match your filters by utilizing the `filter` query parameter, e.g.
@@ -31,7 +33,7 @@ get:
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
 
-    ###Waterbutler API actions
+    ### Waterbutler API actions
 
 
     Files can be modified through the Waterbutler API routes found in `links` (`new_folder`, `move`, `upload`, `download`, and `delete`).
@@ -72,7 +74,9 @@ get:
 
     Move and copy actions both use the same request structure, a POST to the move url, but with different values for the action body parameters. The path parameter is also required and should be the OSF path attribute of the folder being written to. The rename and conflict parameters are optional. If you wish to change the name of the file or folder at its destination, set the rename parameter to the new name. The conflict param governs how name clashes are resolved. Possible values are replace and keep. replace is the default and will overwrite the file that already exists in the target folder. keep will attempt to keep both by adding a suffix to the new file's name until it no longer conflicts. The suffix will be ' (x)' where x is a increasing integer starting from 1. This behavior is intended to mimic that of the OS X Finder. The response will contain either a folder entity or file entity with the new name.
 
+
     Files and folders can also be moved between nodes and providers. The resource parameter is the id of the node under which the file/folder should be moved. It must agree with the path parameter, that is the path must identify a valid folder under the node identified by resource. Likewise, the provider parameter may be used to move the file/folder to another storage provider, but both the resource and path parameters must belong to a node and folder already extant on that provider. Both resource and provider default to the current node and providers.
+
 
     If a moved/copied file is overwriting an existing file, a 200 OK response will be returned. Otherwise, a 201 Created will be returned.
 

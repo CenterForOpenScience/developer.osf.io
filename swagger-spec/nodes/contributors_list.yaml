@@ -16,6 +16,7 @@ get:
 
     #### Returns
 
+
     Returns a JSON object containing `data` and `links` keys.
 
 
@@ -26,7 +27,9 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include contributors that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/nodes/y9jdt/contributors/?filter[bibliographic]=true.
@@ -36,7 +39,7 @@ get:
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
-    
+
 
   parameters:
     - in: path

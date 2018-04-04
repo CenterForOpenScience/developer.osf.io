@@ -2,7 +2,8 @@
 get:
   summary: Retrieve comment report detail
   description: >-
-    Retrieve a specific report. 
+    Retrieve a specific report.
+
 
   parameters:
     - in: path
@@ -38,6 +39,7 @@ put:
   summary: Modify comment report
   description: >-
     Modify a specific comment report.
+
 
   parameters:
     - in: path

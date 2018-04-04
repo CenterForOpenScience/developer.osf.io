@@ -12,7 +12,8 @@ get:
 
 
 
-    ####Returns
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -26,6 +27,7 @@ get:
 
     Note: In the OSF filesystem model, providers are treated as folders, but with special properties that distinguish
     them from regular folders. Every provider folder is considered a root folder, and may not be deleted through the regular file API.
+
 
   parameters:
 

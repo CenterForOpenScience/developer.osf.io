@@ -5,7 +5,9 @@ get:
     Retrieves the details of a registration file
     for the given storage provider.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     registration file object, if the request is successful.
@@ -15,6 +17,7 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
   parameters:
 
     - in: path
@@ -22,6 +25,7 @@ get:
       name: registration_id
       required: true
       description: 'The unique identifier of the registration.'
+
 
     - in: path
       type: string

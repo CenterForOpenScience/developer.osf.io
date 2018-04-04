@@ -161,12 +161,12 @@ get:
             html: https://api.osf.io/v2/nodes/ezcuj/linked_nodes/
 
 patch:
-
   summary: Update a linked_nodes-node relationship
   description: >-
     Replace the contents of the node links for this collection with the contents of the request.
     It will delete all node links that do not have a node_id in the data array, create node links for the node_ids
     that do not currently have a node id, and do nothing for node_ids that already have a corresponding node_link.
+
 
     linked_nodes-node relationships can be updated with either a **PUT** or **PATCH** request.
     The `title` and `category` fields are mandatory in a **PUT** request, and optional in a **PATCH**.
@@ -214,9 +214,12 @@ post:
     Creates a node_link for all node_ids in the request that do not already have a corresponding node_link
     in this collection.
 
+
     #### Permissions
 
+
     Requires edit permission on the collection.
+
 
   parameters:
     - in: path
@@ -242,9 +245,12 @@ delete:
   description: >-
     Delete a relationship between a linked_node and a node.
 
+
     #### Permissions
 
+
     Requires edit permission on the collection.
+
 
   parameters:
     - in: path

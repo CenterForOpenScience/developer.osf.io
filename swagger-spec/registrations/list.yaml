@@ -60,7 +60,7 @@ get:
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
-    
+
   tags:
     - Registrations
   operationId: registrations_list

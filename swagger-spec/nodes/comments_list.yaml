@@ -2,14 +2,15 @@
 get:
   summary: List all comments
   description: >-
-
     A paginated list of comments related to a given node.
 
 
     The returned comments are sorted by their creation date, with the most recent
     comments appearing first.
 
-    ####Permissions
+
+    #### Permissions
+
 
     Comments on public nodes are given read-only access to everyone.
 
@@ -22,7 +23,9 @@ get:
 
     Comments on private nodes are only visible to contributors and administrators on the parent node.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -33,7 +36,9 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include comments that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/nodes/ezcuj/comments/?filter[target_id]=jg7sezmdnt93
@@ -48,7 +53,7 @@ get:
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
-    
+
 
   parameters:
     - in: path
@@ -110,7 +115,9 @@ get:
               content: |-
                 We have published a Bayesian reanalysis of this project at PLOS ONE: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794
 
+
                 I explain some of the context on my blog: http://alexanderetz.com/2016/02/26/the-bayesian-rpp-take-2/
+
 
                 Please note that the analysis we use in this paper is very different from the analysis used in the blog I posted in the previous comment, so the results are different as well.
               has_report: false
@@ -187,13 +194,18 @@ post:
 
     To reply to a comment on this node, the target `type` would be "comments" and the target `id` would be the `id` of the comment to reply to.
 
-    ####Required
+
+    #### Required
+
 
     A relationship object with a `data` key, containing the target (`comments` or `nodes`) type and a target `id` is required.
 
+
     In addition, the `content` attribute describing the relationship between the node and the comment is required.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object with a data key containing the representation of the new comment, if the request is successful.
 

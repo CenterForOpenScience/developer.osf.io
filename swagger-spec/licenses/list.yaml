@@ -4,9 +4,12 @@ get:
     A paginated list of licenses.
     The returned licenses are sorted by their name.
 
+
     #### Returns
 
+
     Returns a JSON object containing `data` and `links` keys.
+
 
     The `data` key contains an array of 10 licenses.
     Each resource in the array is a separate license object and contains the full representation
@@ -19,7 +22,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include licenses that
     match your filters by utilizing the `filter` query parameter, e.g.

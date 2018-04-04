@@ -72,10 +72,10 @@ paths:
         Assume undocumented routes/features/fields are unstable.
 
 
-        ##Requests
+        ## Requests
 
 
-        ###Canonical URLs
+        ### Canonical URLs
 
 
         All canonical URLs have trailing slashes.  A request to an endpoint
@@ -87,14 +87,14 @@ paths:
         does not have a slash, do not append one.
 
 
-        ###Plurals
+        ### Plurals
 
 
         Endpoints are always pluralized.  `/users/`, not `/user/`, `/nodes/`,
         not `/node/`.
 
 
-        ###Common Actions
+        ### Common Actions
 
 
         Every endpoint in the OSF API responds to `GET`, `HEAD`, and `OPTION`
@@ -115,7 +115,7 @@ paths:
         actions available via the endpoint.
 
 
-        ###Versioning
+        ### Versioning
 
         Versioning can be specified in three different ways:
 
@@ -197,7 +197,7 @@ paths:
         precedence over the other).
 
 
-        ###Filtering
+        ### Filtering
 
 
         Entity collections can be filtered by adding a query parameter in the
@@ -243,7 +243,7 @@ paths:
         /nodes/?filter[tags][icontains]=help
 
 
-        ###Embedding
+        ### Embedding
 
 
         All related resources that appear in the `relationships` attribute are
@@ -279,7 +279,7 @@ paths:
         Paginated list of addons associated with third-party services
 
 
-        ##Permissions
+        ## Permissions
 
 
         No restrictions.
@@ -657,13 +657,13 @@ paths:
         *Read-only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##Citation Attributes
+        ## Citation Attributes
 
 
         name           type               description
@@ -721,13 +721,13 @@ paths:
         Detail for a citation style *Read-only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##Citation Attributes
+        ## Citation Attributes
 
 
         name           type               description
@@ -790,7 +790,7 @@ paths:
         though that could change one day.
 
 
-        ##Collection Attributes
+        ## Collection Attributes
 
 
         OSF Organizer Collection entities have the "nodes" `type`.
@@ -810,17 +810,17 @@ paths:
 
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Creating New Organizer Collections
+        ### Creating New Organizer Collections
       parameters:
         - description: ''
           required: true
@@ -876,7 +876,7 @@ paths:
         though that could change one day.
 
 
-        ##Collection Attributes
+        ## Collection Attributes
 
 
         OSF Organizer Collection entities have the "nodes" `type`.
@@ -896,17 +896,17 @@ paths:
 
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Creating New Organizer Collections
+        ### Creating New Organizer Collections
       parameters:
         - description: ''
           required: true
@@ -957,7 +957,7 @@ paths:
         though that could change one day.
 
 
-        ##Collection Attributes
+        ## Collection Attributes
 
 
         OSF Organizer Collection entities have the "nodes" `type`.
@@ -976,10 +976,10 @@ paths:
         updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node links
+        ### Node links
 
 
         Node links are pointers or aliases to nodes. This relationship lists all
@@ -988,7 +988,7 @@ paths:
         is pointing to. New node links can be created with this collection.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -1024,7 +1024,7 @@ paths:
         though that could change one day.
 
 
-        ##Collection Attributes
+        ## Collection Attributes
 
 
         OSF Organizer Collection entities have the "nodes" `type`.
@@ -1043,10 +1043,10 @@ paths:
         updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node links
+        ### Node links
 
 
         Node links are pointers or aliases to nodes. This relationship lists all
@@ -1055,7 +1055,7 @@ paths:
         is pointing to. New node links can be created with this collection.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -1114,7 +1114,7 @@ paths:
         though that could change one day.
 
 
-        ##Collection Attributes
+        ## Collection Attributes
 
 
         OSF Organizer Collection entities have the "nodes" `type`.
@@ -1133,10 +1133,10 @@ paths:
         updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node links
+        ### Node links
 
 
         Node links are pointers or aliases to nodes. This relationship lists all
@@ -1145,7 +1145,7 @@ paths:
         is pointing to. New node links can be created with this collection.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -1200,7 +1200,7 @@ paths:
         though that could change one day.
 
 
-        ##Collection Attributes
+        ## Collection Attributes
 
 
         OSF Organizer Collection entities have the "nodes" `type`.
@@ -1219,10 +1219,10 @@ paths:
         updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node links
+        ### Node links
 
 
         Node links are pointers or aliases to nodes. This relationship lists all
@@ -1231,7 +1231,7 @@ paths:
         is pointing to. New node links can be created with this collection.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -1279,7 +1279,7 @@ paths:
         project.
 
 
-        ##Linked Node Attributes
+        ## Linked Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -1315,14 +1315,14 @@ paths:
         publicly-visible?
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -1411,7 +1411,7 @@ paths:
         relationships will return a 403.
 
 
-        ##Linked Registration Attributes
+        ## Linked Registration Attributes
 
 
         <!--- Copied Attributes from RegistrationDetail -->
@@ -1496,14 +1496,14 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -1587,23 +1587,23 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Node Link Attributes
+        ## Node Link Attributes
 
 
         *None*
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -1663,23 +1663,23 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Node Link Attributes
+        ## Node Link Attributes
 
 
         *None*
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -1730,16 +1730,16 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Attributes
+        ## Attributes
 
 
         *None*
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -1774,16 +1774,16 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Attributes
+        ## Attributes
 
 
         *None*
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -1819,10 +1819,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -1867,10 +1867,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -1912,10 +1912,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -1957,10 +1957,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2000,10 +2000,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2035,10 +2035,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2086,10 +2086,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2134,10 +2134,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2182,10 +2182,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2228,10 +2228,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2258,7 +2258,7 @@ paths:
         Details about a specific comment. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Comments on public nodes are given read-only access to everyone.
@@ -2274,7 +2274,7 @@ paths:
         relationship will not be exposed.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment entities have the "comments" `type`.
@@ -2309,22 +2309,22 @@ paths:
         comment?
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###User
+        ### User
 
 
         The user who created the comment.
 
 
-        ###Node
+        ### Node
 
 
         The project associated with this comment.
 
 
-        ###Target
+        ### Target
 
 
         The "parent" of the comment. If the comment was made on a node, the
@@ -2333,13 +2333,13 @@ paths:
         is a reply, its target is the comment it was in reply to.
 
 
-        ###Replies
+        ### Replies
 
         List of replies to this comment. New replies can be created through this
         endpoint.
 
 
-        ###Reports
+        ### Reports
 
         List of spam reports for this comment. Only users with permission to
         create comments can
@@ -2348,7 +2348,7 @@ paths:
         created.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -2372,7 +2372,7 @@ paths:
         Details about a specific comment. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Comments on public nodes are given read-only access to everyone.
@@ -2388,7 +2388,7 @@ paths:
         relationship will not be exposed.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment entities have the "comments" `type`.
@@ -2423,22 +2423,22 @@ paths:
         comment?
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###User
+        ### User
 
 
         The user who created the comment.
 
 
-        ###Node
+        ### Node
 
 
         The project associated with this comment.
 
 
-        ###Target
+        ### Target
 
 
         The "parent" of the comment. If the comment was made on a node, the
@@ -2447,13 +2447,13 @@ paths:
         is a reply, its target is the comment it was in reply to.
 
 
-        ###Replies
+        ### Replies
 
         List of replies to this comment. New replies can be created through this
         endpoint.
 
 
-        ###Reports
+        ### Reports
 
         List of spam reports for this comment. Only users with permission to
         create comments can
@@ -2462,7 +2462,7 @@ paths:
         created.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -2510,7 +2510,7 @@ paths:
         Details about a specific comment. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Comments on public nodes are given read-only access to everyone.
@@ -2526,7 +2526,7 @@ paths:
         relationship will not be exposed.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment entities have the "comments" `type`.
@@ -2561,22 +2561,22 @@ paths:
         comment?
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###User
+        ### User
 
 
         The user who created the comment.
 
 
-        ###Node
+        ### Node
 
 
         The project associated with this comment.
 
 
-        ###Target
+        ### Target
 
 
         The "parent" of the comment. If the comment was made on a node, the
@@ -2585,13 +2585,13 @@ paths:
         is a reply, its target is the comment it was in reply to.
 
 
-        ###Replies
+        ### Replies
 
         List of replies to this comment. New replies can be created through this
         endpoint.
 
 
-        ###Reports
+        ### Reports
 
         List of spam reports for this comment. Only users with permission to
         create comments can
@@ -2600,7 +2600,7 @@ paths:
         created.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -2643,7 +2643,7 @@ paths:
         Details about a specific comment. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Comments on public nodes are given read-only access to everyone.
@@ -2659,7 +2659,7 @@ paths:
         relationship will not be exposed.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment entities have the "comments" `type`.
@@ -2694,22 +2694,22 @@ paths:
         comment?
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###User
+        ### User
 
 
         The user who created the comment.
 
 
-        ###Node
+        ### Node
 
 
         The project associated with this comment.
 
 
-        ###Target
+        ### Target
 
 
         The "parent" of the comment. If the comment was made on a node, the
@@ -2718,13 +2718,13 @@ paths:
         is a reply, its target is the comment it was in reply to.
 
 
-        ###Replies
+        ### Replies
 
         List of replies to this comment. New replies can be created through this
         endpoint.
 
 
-        ###Reports
+        ### Reports
 
         List of spam reports for this comment. Only users with permission to
         create comments can
@@ -2733,7 +2733,7 @@ paths:
         created.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -2765,7 +2765,7 @@ paths:
         detail view are not necessary.
 
 
-        ###Permissions
+        ### Permissions
 
 
         The comment reports endpoint can only be viewed by users with permission
@@ -2774,7 +2774,7 @@ paths:
         are only shown comment reports that they have made.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment report entities have the "comment_reports" `type`.
@@ -2791,17 +2791,17 @@ paths:
         reported
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2847,7 +2847,7 @@ paths:
         detail view are not necessary.
 
 
-        ###Permissions
+        ### Permissions
 
 
         The comment reports endpoint can only be viewed by users with permission
@@ -2856,7 +2856,7 @@ paths:
         are only shown comment reports that they have made.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment report entities have the "comment_reports" `type`.
@@ -2873,17 +2873,17 @@ paths:
         reported
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -2927,14 +2927,14 @@ paths:
         Details about a specific comment report. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         A comment report detail can only be viewed, edited and removed by the
         user who created the report.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment report entities have the "comment_reports" `type`.
@@ -2951,7 +2951,7 @@ paths:
         reported
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -2980,14 +2980,14 @@ paths:
         Details about a specific comment report. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         A comment report detail can only be viewed, edited and removed by the
         user who created the report.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment report entities have the "comment_reports" `type`.
@@ -3004,7 +3004,7 @@ paths:
         reported
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -3056,14 +3056,14 @@ paths:
         Details about a specific comment report. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         A comment report detail can only be viewed, edited and removed by the
         user who created the report.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment report entities have the "comment_reports" `type`.
@@ -3080,7 +3080,7 @@ paths:
         reported
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -3128,14 +3128,14 @@ paths:
         Details about a specific comment report. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         A comment report detail can only be viewed, edited and removed by the
         user who created the report.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment report entities have the "comment_reports" `type`.
@@ -3152,7 +3152,7 @@ paths:
         reported
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -3228,7 +3228,7 @@ paths:
         applicable types are listed by each heading.
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -3237,7 +3237,7 @@ paths:
         entity, or no content.
 
 
-        ####File Entity
+        #### File Entity
 
 
         name            type              description
@@ -3299,7 +3299,7 @@ paths:
         sha256      string            SHA-256 hash of file
 
 
-        ####Folder Entity
+        #### Folder Entity
 
 
         name          type    description
@@ -3325,7 +3325,7 @@ paths:
 
 
 
-        ##Attributes
+        ## Attributes
 
 
         For an OSF File entity, the `type` is "files" regardless of whether the
@@ -3414,31 +3414,31 @@ paths:
         Node Files List endpoint.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
 
         The `node` endpoint describes the project or registration that this file
         belongs to.
 
 
-        ###Files (*folders*)
+        ### Files (*folders*)
 
 
         The `files` endpoint lists all of the subfiles and folders of the
         current folder. Will be null for files.
 
 
-        ###Versions (*files*)
+        ### Versions (*files*)
 
 
         The `versions` endpoint provides version history for files.  Will be
         null for folders.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -3508,7 +3508,7 @@ paths:
         applicable types are listed by each heading.
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -3517,7 +3517,7 @@ paths:
         entity, or no content.
 
 
-        ####File Entity
+        #### File Entity
 
 
         name            type              description
@@ -3579,7 +3579,7 @@ paths:
         sha256      string            SHA-256 hash of file
 
 
-        ####Folder Entity
+        #### Folder Entity
 
 
         name          type    description
@@ -3605,7 +3605,7 @@ paths:
 
 
 
-        ##Attributes
+        ## Attributes
 
 
         For an OSF File entity, the `type` is "files" regardless of whether the
@@ -3694,31 +3694,31 @@ paths:
         Node Files List endpoint.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
 
         The `node` endpoint describes the project or registration that this file
         belongs to.
 
 
-        ###Files (*folders*)
+        ### Files (*folders*)
 
 
         The `files` endpoint lists all of the subfiles and folders of the
         current folder. Will be null for files.
 
 
-        ###Versions (*files*)
+        ### Versions (*files*)
 
 
         The `versions` endpoint provides version history for files.  Will be
         null for folders.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -3811,7 +3811,7 @@ paths:
         applicable types are listed by each heading.
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -3820,7 +3820,7 @@ paths:
         entity, or no content.
 
 
-        ####File Entity
+        #### File Entity
 
 
         name            type              description
@@ -3882,7 +3882,7 @@ paths:
         sha256      string            SHA-256 hash of file
 
 
-        ####Folder Entity
+        #### Folder Entity
 
 
         name          type    description
@@ -3908,7 +3908,7 @@ paths:
 
 
 
-        ##Attributes
+        ## Attributes
 
 
         For an OSF File entity, the `type` is "files" regardless of whether the
@@ -3997,31 +3997,31 @@ paths:
         Node Files List endpoint.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
 
         The `node` endpoint describes the project or registration that this file
         belongs to.
 
 
-        ###Files (*folders*)
+        ### Files (*folders*)
 
 
         The `files` endpoint lists all of the subfiles and folders of the
         current folder. Will be null for files.
 
 
-        ###Versions (*files*)
+        ### Versions (*files*)
 
 
         The `versions` endpoint provides version history for files.  Will be
         null for folders.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -4091,7 +4091,7 @@ paths:
         provider's versioning semantics.
 
 
-        ##FileVersion Attributes
+        ## FileVersion Attributes
 
 
         <!--- Copied Attributes from FileVersionDetail -->
@@ -4110,20 +4110,20 @@ paths:
         unavailable.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         *None*.
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -4192,7 +4192,7 @@ paths:
         version number is incremented.
 
 
-        ##Attributes
+        ## Attributes
 
 
         For an OSF FileVersion entity the API `type` is "file_versions".
@@ -4208,13 +4208,13 @@ paths:
         unavailable.
 
 
-        ##Relationships
+        ## Relationships
 
 
         *None*.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -4283,7 +4283,7 @@ paths:
 
 
 
-        ##Identifier Attributes
+        ## Identifier Attributes
 
 
         OSF Identifier entities have the "identifiers" `type`.
@@ -4298,7 +4298,7 @@ paths:
         value          string                 the identifier value itself
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -4323,7 +4323,7 @@ paths:
         List of identifiers for a specified node. *Read-only*.
 
 
-        ##Identifier Attributes
+        ## Identifier Attributes
 
 
         OSF Identifier entities have the "identifiers" `type`.
@@ -4338,7 +4338,7 @@ paths:
         value          string                 the identifier value itself
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -4378,7 +4378,7 @@ paths:
         Paginated list of verified Institutions affiliated with COS
 
 
-        ##Institution Attributes
+        ## Institution Attributes
 
 
         OSF Institutions have the "institutions" `type`.
@@ -4440,7 +4440,7 @@ paths:
         Details about a given institution.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF Institutions have the "institutions" `type`.
@@ -4458,20 +4458,20 @@ paths:
         logo
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Nodes
+        ### Nodes
 
         List of nodes that have this institution as its primary institution.
 
 
-        ###Users
+        ### Users
 
         List of users that are affiliated with this institution.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -4495,7 +4495,7 @@ paths:
       description: |-
         Nodes that have selected an institution as their primary institution.
 
-        ##Permissions
+        ## Permissions
         Only public nodes or ones in which current user is a contributor.
       parameters:
         - description: ''
@@ -4576,10 +4576,10 @@ paths:
         nodes with this institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -4622,10 +4622,10 @@ paths:
         nodes with this institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -4665,10 +4665,10 @@ paths:
         nodes with this institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -4730,7 +4730,7 @@ paths:
 
 
 
-        ##License Attributes
+        ## License Attributes
 
 
         OSF License entities have the "licenses" `type`.
@@ -4746,20 +4746,20 @@ paths:
 
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         *None*.
 
 
-        ##Query Params
+        ## Query Params
 
 
         Licenses may be filtered by their name and id.
@@ -4952,7 +4952,7 @@ paths:
         * 'node_created': A Node is created (_deprecated_)
 
 
-        ##Log Attributes
+        ## Log Attributes
 
 
         <!--- Copied Attributes from LogList -->
@@ -4970,41 +4970,41 @@ paths:
         action         string                 Log action (see list above)
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
 
         The node this log belongs to.
 
 
-        ###Original Node
+        ### Original Node
 
 
         The node this log pertains to.
 
 
-        ###User
+        ### User
 
 
         The user who performed the logged action.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         *None*.
 
 
-        ##Query Params
+        ## Query Params
 
 
         <!--- Copied Query Params from LogList -->
@@ -5044,7 +5044,7 @@ paths:
         Only active metaschemas are returned at this endpoint.
 
 
-        ##Metaschema Attributes
+        ## Metaschema Attributes
 
 
         Metaschemas have the "metaschemas" `type`.
@@ -5062,7 +5062,7 @@ paths:
 
 
 
-        ##Links`
+        ## Links`
 
 
         See the [JSON-API spec regarding
@@ -5105,7 +5105,7 @@ paths:
         registration.
 
 
-        ##Metaschema Attributes
+        ## Metaschema Attributes
 
 
         Metaschemas have the "metaschemas" `type`.
@@ -5178,7 +5178,7 @@ paths:
         project.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -5238,17 +5238,17 @@ paths:
         license
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Creating New Nodes
+        ### Creating New Nodes
       parameters:
         - description: ''
           required: true
@@ -5311,7 +5311,7 @@ paths:
         project.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -5371,17 +5371,17 @@ paths:
         license
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Creating New Nodes
+        ### Creating New Nodes
       parameters:
         - description: ''
           required: true
@@ -5474,7 +5474,7 @@ paths:
         project.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Nodes that are made public will give read-only access to everyone.
@@ -5486,7 +5486,7 @@ paths:
         implicit read permissions for all child nodes.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF Node entities have the "nodes" `type`.
@@ -5542,24 +5542,24 @@ paths:
         applied license
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Children
+        ### Children
 
 
         List of nodes that are children of this node.  New child nodes may be
         added through this endpoint.
 
 
-        ###Comments
+        ### Comments
 
 
         List of comments on this node.  New comments can be left on the node
         through this endpoint.
 
 
-        ###Contributors
+        ### Contributors
 
 
         List of users who are contributors to this node. Contributors may have
@@ -5569,13 +5569,13 @@ paths:
         may be added via this endpoint.
 
 
-        ###Draft Registrations
+        ### Draft Registrations
 
 
         List of draft registrations of the current node.
 
 
-        ###Files
+        ### Files
 
 
         List of top-level folders (actually cloud-storage providers) associated
@@ -5584,7 +5584,7 @@ paths:
         for accessing the actual files stored within this node.
 
 
-        ###Forked From
+        ### Forked From
 
 
         If this node was forked from another node, the canonical endpoint of the
@@ -5594,20 +5594,20 @@ paths:
         will be null.
 
 
-        ###Logs
+        ### Logs
 
 
         List of read-only log actions pertaining to the node.
 
 
-        ###Node Links
+        ### Node Links
 
 
         List of links (pointers) to other nodes on the OSF.  Node links can be
         added through this endpoint.
 
 
-        ###Parent
+        ### Parent
 
 
         If this node is a child node of another node, the parent's canonical
@@ -5616,13 +5616,13 @@ paths:
         `/parent/links/related/href` key.  Otherwise, it will be null.
 
 
-        ###Registrations
+        ### Registrations
 
 
         List of registrations of the current node.
 
 
-        ###Root
+        ### Root
 
 
         Returns the top-level node associated with the current node.  If the
@@ -5631,7 +5631,7 @@ paths:
         the current node.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -5675,7 +5675,7 @@ paths:
         project.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Nodes that are made public will give read-only access to everyone.
@@ -5687,7 +5687,7 @@ paths:
         implicit read permissions for all child nodes.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF Node entities have the "nodes" `type`.
@@ -5743,24 +5743,24 @@ paths:
         applied license
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Children
+        ### Children
 
 
         List of nodes that are children of this node.  New child nodes may be
         added through this endpoint.
 
 
-        ###Comments
+        ### Comments
 
 
         List of comments on this node.  New comments can be left on the node
         through this endpoint.
 
 
-        ###Contributors
+        ### Contributors
 
 
         List of users who are contributors to this node. Contributors may have
@@ -5770,13 +5770,13 @@ paths:
         may be added via this endpoint.
 
 
-        ###Draft Registrations
+        ### Draft Registrations
 
 
         List of draft registrations of the current node.
 
 
-        ###Files
+        ### Files
 
 
         List of top-level folders (actually cloud-storage providers) associated
@@ -5785,7 +5785,7 @@ paths:
         for accessing the actual files stored within this node.
 
 
-        ###Forked From
+        ### Forked From
 
 
         If this node was forked from another node, the canonical endpoint of the
@@ -5795,20 +5795,20 @@ paths:
         will be null.
 
 
-        ###Logs
+        ### Logs
 
 
         List of read-only log actions pertaining to the node.
 
 
-        ###Node Links
+        ### Node Links
 
 
         List of links (pointers) to other nodes on the OSF.  Node links can be
         added through this endpoint.
 
 
-        ###Parent
+        ### Parent
 
 
         If this node is a child node of another node, the parent's canonical
@@ -5817,13 +5817,13 @@ paths:
         `/parent/links/related/href` key.  Otherwise, it will be null.
 
 
-        ###Registrations
+        ### Registrations
 
 
         List of registrations of the current node.
 
 
-        ###Root
+        ### Root
 
 
         Returns the top-level node associated with the current node.  If the
@@ -5832,7 +5832,7 @@ paths:
         the current node.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -5933,7 +5933,7 @@ paths:
         project.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Nodes that are made public will give read-only access to everyone.
@@ -5945,7 +5945,7 @@ paths:
         implicit read permissions for all child nodes.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF Node entities have the "nodes" `type`.
@@ -6001,24 +6001,24 @@ paths:
         applied license
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Children
+        ### Children
 
 
         List of nodes that are children of this node.  New child nodes may be
         added through this endpoint.
 
 
-        ###Comments
+        ### Comments
 
 
         List of comments on this node.  New comments can be left on the node
         through this endpoint.
 
 
-        ###Contributors
+        ### Contributors
 
 
         List of users who are contributors to this node. Contributors may have
@@ -6028,13 +6028,13 @@ paths:
         may be added via this endpoint.
 
 
-        ###Draft Registrations
+        ### Draft Registrations
 
 
         List of draft registrations of the current node.
 
 
-        ###Files
+        ### Files
 
 
         List of top-level folders (actually cloud-storage providers) associated
@@ -6043,7 +6043,7 @@ paths:
         for accessing the actual files stored within this node.
 
 
-        ###Forked From
+        ### Forked From
 
 
         If this node was forked from another node, the canonical endpoint of the
@@ -6053,20 +6053,20 @@ paths:
         will be null.
 
 
-        ###Logs
+        ### Logs
 
 
         List of read-only log actions pertaining to the node.
 
 
-        ###Node Links
+        ### Node Links
 
 
         List of links (pointers) to other nodes on the OSF.  Node links can be
         added through this endpoint.
 
 
-        ###Parent
+        ### Parent
 
 
         If this node is a child node of another node, the parent's canonical
@@ -6075,13 +6075,13 @@ paths:
         `/parent/links/related/href` key.  Otherwise, it will be null.
 
 
-        ###Registrations
+        ### Registrations
 
 
         List of registrations of the current node.
 
 
-        ###Root
+        ### Root
 
 
         Returns the top-level node associated with the current node.  If the
@@ -6090,7 +6090,7 @@ paths:
         the current node.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6186,7 +6186,7 @@ paths:
         project.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Nodes that are made public will give read-only access to everyone.
@@ -6198,7 +6198,7 @@ paths:
         implicit read permissions for all child nodes.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF Node entities have the "nodes" `type`.
@@ -6254,24 +6254,24 @@ paths:
         applied license
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Children
+        ### Children
 
 
         List of nodes that are children of this node.  New child nodes may be
         added through this endpoint.
 
 
-        ###Comments
+        ### Comments
 
 
         List of comments on this node.  New comments can be left on the node
         through this endpoint.
 
 
-        ###Contributors
+        ### Contributors
 
 
         List of users who are contributors to this node. Contributors may have
@@ -6281,13 +6281,13 @@ paths:
         may be added via this endpoint.
 
 
-        ###Draft Registrations
+        ### Draft Registrations
 
 
         List of draft registrations of the current node.
 
 
-        ###Files
+        ### Files
 
 
         List of top-level folders (actually cloud-storage providers) associated
@@ -6296,7 +6296,7 @@ paths:
         for accessing the actual files stored within this node.
 
 
-        ###Forked From
+        ### Forked From
 
 
         If this node was forked from another node, the canonical endpoint of the
@@ -6306,20 +6306,20 @@ paths:
         will be null.
 
 
-        ###Logs
+        ### Logs
 
 
         List of read-only log actions pertaining to the node.
 
 
-        ###Node Links
+        ### Node Links
 
 
         List of links (pointers) to other nodes on the OSF.  Node links can be
         added through this endpoint.
 
 
-        ###Parent
+        ### Parent
 
 
         If this node is a child node of another node, the parent's canonical
@@ -6328,13 +6328,13 @@ paths:
         `/parent/links/related/href` key.  Otherwise, it will be null.
 
 
-        ###Registrations
+        ### Registrations
 
 
         List of registrations of the current node.
 
 
-        ###Root
+        ### Root
 
 
         Returns the top-level node associated with the current node.  If the
@@ -6343,7 +6343,7 @@ paths:
         the current node.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6406,7 +6406,7 @@ paths:
         folder, from third-party service
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -6454,7 +6454,7 @@ paths:
         for this node.
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon>NodeSettings that are attached to public Nodes will give
@@ -6511,7 +6511,7 @@ paths:
         addon
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6544,7 +6544,7 @@ paths:
         for this node.
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon>NodeSettings that are attached to public Nodes will give
@@ -6601,7 +6601,7 @@ paths:
         addon
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6656,7 +6656,7 @@ paths:
         for this node.
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon>NodeSettings that are attached to public Nodes will give
@@ -6713,7 +6713,7 @@ paths:
         addon
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6768,7 +6768,7 @@ paths:
         for this node.
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon>NodeSettings that are attached to public Nodes will give
@@ -6825,7 +6825,7 @@ paths:
         addon
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6880,7 +6880,7 @@ paths:
         for this node.
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon>NodeSettings that are attached to public Nodes will give
@@ -6937,7 +6937,7 @@ paths:
         addon
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -6971,7 +6971,7 @@ paths:
         service
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon> Folders are visible only to the addon authorizer.
@@ -7004,7 +7004,7 @@ paths:
         service
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -7057,7 +7057,7 @@ paths:
         node will have the selected node set as its parent.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -7107,17 +7107,17 @@ paths:
         collection? (always false - may be deprecated in future versions)
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Child Node
+        ### Create Child Node
 
 
         <!--- Copied Creating New Node from NodeList -->
@@ -7168,7 +7168,7 @@ paths:
         node will have the selected node set as its parent.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -7218,17 +7218,17 @@ paths:
         collection? (always false - may be deprecated in future versions)
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Child Node
+        ### Create Child Node
 
 
         <!--- Copied Creating New Node from NodeList -->
@@ -7309,13 +7309,13 @@ paths:
         The node citation for a node in CSL format *read only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##NodeCitationDetail Attributes
+        ## NodeCitationDetail Attributes
 
 
         name                     type                description
@@ -7375,13 +7375,13 @@ paths:
         The node citation for a node in a specific style's format *read only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##NodeCitationDetail Attributes
+        ## NodeCitationDetail Attributes
 
 
         name                     type                description
@@ -7418,9 +7418,9 @@ paths:
       description: |-
         List of alternative citations for a project.
 
-        ##Actions
+        ## Actions
 
-        ###Create Alternative Citation
+        ### Create Alternative Citation
       parameters:
         - description: ''
           required: true
@@ -7458,9 +7458,9 @@ paths:
       description: |-
         List of alternative citations for a project.
 
-        ##Actions
+        ## Actions
 
-        ###Create Alternative Citation
+        ### Create Alternative Citation
       parameters:
         - description: ''
           required: true
@@ -7504,9 +7504,9 @@ paths:
       description: |-
         Details about an alternative citations for a project.
 
-        ##Actions
+        ## Actions
 
-        ###Update Alternative Citation
+        ### Update Alternative Citation
       parameters:
         - description: ''
           required: true
@@ -7534,9 +7534,9 @@ paths:
       description: |-
         Details about an alternative citations for a project.
 
-        ##Actions
+        ## Actions
 
-        ###Update Alternative Citation
+        ### Update Alternative Citation
       parameters:
         - description: ''
           required: true
@@ -7584,9 +7584,9 @@ paths:
       description: |-
         Details about an alternative citations for a project.
 
-        ##Actions
+        ## Actions
 
-        ###Update Alternative Citation
+        ### Update Alternative Citation
       parameters:
         - description: ''
           required: true
@@ -7630,9 +7630,9 @@ paths:
       description: |-
         Details about an alternative citations for a project.
 
-        ##Actions
+        ## Actions
 
-        ###Update Alternative Citation
+        ### Update Alternative Citation
       parameters:
         - description: ''
           required: true
@@ -7673,7 +7673,7 @@ paths:
         relationship will not be exposed.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Comments on public nodes are given read-only access to everyone. If the
@@ -7686,7 +7686,7 @@ paths:
         administrators on the parent node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment entities have the "comments" `type`.
@@ -7716,17 +7716,17 @@ paths:
         comment?
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -7776,7 +7776,7 @@ paths:
         relationship will not be exposed.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Comments on public nodes are given read-only access to everyone. If the
@@ -7789,7 +7789,7 @@ paths:
         administrators on the parent node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF comment entities have the "comments" `type`.
@@ -7819,17 +7819,17 @@ paths:
         comment?
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -7889,7 +7889,7 @@ paths:
         the contributor will be an empty string.
 
 
-        ##Node Contributor Attributes
+        ## Node Contributor Attributes
 
 
         <!--- Copied Attributes from NodeContributorDetail -->
@@ -7912,27 +7912,27 @@ paths:
         contributor hasn't yet claimed account
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail and is automatically
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Adding Contributors
+        ### Adding Contributors
       parameters:
         - description: ''
           required: true
@@ -7990,7 +7990,7 @@ paths:
         the contributor will be an empty string.
 
 
-        ##Node Contributor Attributes
+        ## Node Contributor Attributes
 
 
         <!--- Copied Attributes from NodeContributorDetail -->
@@ -8013,27 +8013,27 @@ paths:
         contributor hasn't yet claimed account
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail and is automatically
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Adding Contributors
+        ### Adding Contributors
       parameters:
         - description: ''
           required: true
@@ -8119,7 +8119,7 @@ paths:
         endpoint.
 
 
-        ##Attributes
+        ## Attributes
 
 
         `type` is "contributors"
@@ -8142,16 +8142,16 @@ paths:
         contributors reflected in the bibliography. Zero Indexed.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -8205,7 +8205,7 @@ paths:
         endpoint.
 
 
-        ##Attributes
+        ## Attributes
 
 
         `type` is "contributors"
@@ -8228,16 +8228,16 @@ paths:
         contributors reflected in the bibliography. Zero Indexed.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -8322,7 +8322,7 @@ paths:
         endpoint.
 
 
-        ##Attributes
+        ## Attributes
 
 
         `type` is "contributors"
@@ -8345,16 +8345,16 @@ paths:
         contributors reflected in the bibliography. Zero Indexed.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -8436,7 +8436,7 @@ paths:
         endpoint.
 
 
-        ##Attributes
+        ## Attributes
 
 
         `type` is "contributors"
@@ -8459,16 +8459,16 @@ paths:
         contributors reflected in the bibliography. Zero Indexed.
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -8511,14 +8511,14 @@ paths:
         registration linked to it.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Users must have admin permission on the node in order to view or create
         a draft registration.
 
 
-        ##Draft Registration Attributes
+        ## Draft Registration Attributes
 
 
 
@@ -8542,34 +8542,34 @@ paths:
         was last updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Branched From
+        ### Branched From
 
 
         Node that the draft is branched from.  The node endpoint is available in
         `/branched_from/links/related/href`.
 
 
-        ###Initiator
+        ### Initiator
 
 
         User who initiated the draft registration.  The user endpoint is
         available in `/initiator/links/related/href`.
 
 
-        ##Registration Schema
+        ## Registration Schema
 
 
         Detailed registration schema.  The schema endpoint is available in
         `/registration_schema/links/related/href`.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Draft Registration
+        ### Create Draft Registration
       parameters:
         - description: ''
           required: true
@@ -8621,14 +8621,14 @@ paths:
         registration linked to it.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Users must have admin permission on the node in order to view or create
         a draft registration.
 
 
-        ##Draft Registration Attributes
+        ## Draft Registration Attributes
 
 
 
@@ -8652,34 +8652,34 @@ paths:
         was last updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Branched From
+        ### Branched From
 
 
         Node that the draft is branched from.  The node endpoint is available in
         `/branched_from/links/related/href`.
 
 
-        ###Initiator
+        ### Initiator
 
 
         User who initiated the draft registration.  The user endpoint is
         available in `/initiator/links/related/href`.
 
 
-        ##Registration Schema
+        ## Registration Schema
 
 
         Detailed registration schema.  The schema endpoint is available in
         `/registration_schema/links/related/href`.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Draft Registration
+        ### Create Draft Registration
       parameters:
         - description: ''
           required: true
@@ -8736,14 +8736,14 @@ paths:
         Registrations endpoint.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Users must have admin permission on the node in order to view, update,
         or delete a draft registration.
 
 
-        ##Attributes
+        ## Attributes
 
 
         Draft Registrations have the "draft_registrations" `type`.
@@ -8766,34 +8766,34 @@ paths:
         was last updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Branched From
+        ### Branched From
 
 
         Node that the draft is branched from.  The node endpoint is available in
         `/branched_from/links/related/href`.
 
 
-        ###Initiator
+        ### Initiator
 
 
         User who initiated the draft registration.  The user endpoint is
         available in `/initiator/links/related/href`.
 
 
-        ##Registration Schema
+        ## Registration Schema
 
 
         Detailed registration schema.  The schema endpoint is available in
         `/registration_schema/links/related/href`.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update Draft Registration
+        ### Update Draft Registration
       parameters:
         - description: ''
           required: true
@@ -8835,14 +8835,14 @@ paths:
         Registrations endpoint.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Users must have admin permission on the node in order to view, update,
         or delete a draft registration.
 
 
-        ##Attributes
+        ## Attributes
 
 
         Draft Registrations have the "draft_registrations" `type`.
@@ -8865,34 +8865,34 @@ paths:
         was last updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Branched From
+        ### Branched From
 
 
         Node that the draft is branched from.  The node endpoint is available in
         `/branched_from/links/related/href`.
 
 
-        ###Initiator
+        ### Initiator
 
 
         User who initiated the draft registration.  The user endpoint is
         available in `/initiator/links/related/href`.
 
 
-        ##Registration Schema
+        ## Registration Schema
 
 
         Detailed registration schema.  The schema endpoint is available in
         `/registration_schema/links/related/href`.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update Draft Registration
+        ### Update Draft Registration
       parameters:
         - description: ''
           required: true
@@ -8954,14 +8954,14 @@ paths:
         Registrations endpoint.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Users must have admin permission on the node in order to view, update,
         or delete a draft registration.
 
 
-        ##Attributes
+        ## Attributes
 
 
         Draft Registrations have the "draft_registrations" `type`.
@@ -8984,34 +8984,34 @@ paths:
         was last updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Branched From
+        ### Branched From
 
 
         Node that the draft is branched from.  The node endpoint is available in
         `/branched_from/links/related/href`.
 
 
-        ###Initiator
+        ### Initiator
 
 
         User who initiated the draft registration.  The user endpoint is
         available in `/initiator/links/related/href`.
 
 
-        ##Registration Schema
+        ## Registration Schema
 
 
         Detailed registration schema.  The schema endpoint is available in
         `/registration_schema/links/related/href`.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update Draft Registration
+        ### Update Draft Registration
       parameters:
         - description: ''
           required: true
@@ -9069,14 +9069,14 @@ paths:
         Registrations endpoint.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Users must have admin permission on the node in order to view, update,
         or delete a draft registration.
 
 
-        ##Attributes
+        ## Attributes
 
 
         Draft Registrations have the "draft_registrations" `type`.
@@ -9099,34 +9099,34 @@ paths:
         was last updated
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Branched From
+        ### Branched From
 
 
         Node that the draft is branched from.  The node endpoint is available in
         `/branched_from/links/related/href`.
 
 
-        ###Initiator
+        ### Initiator
 
 
         User who initiated the draft registration.  The user endpoint is
         available in `/initiator/links/related/href`.
 
 
-        ##Registration Schema
+        ## Registration Schema
 
 
         Detailed registration schema.  The schema endpoint is available in
         `/registration_schema/links/related/href`.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update Draft Registration
+        ### Update Draft Registration
       parameters:
         - description: ''
           required: true
@@ -9189,7 +9189,7 @@ paths:
         <!--- Copied from FileDetail.Spiel -->
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -9198,7 +9198,7 @@ paths:
         entity, or no content.
 
 
-        ####File Entity
+        #### File Entity
 
 
         name          type       description
@@ -9251,7 +9251,7 @@ paths:
         sha256    string     SHA-256 hash of file
 
 
-        ####Folder Entity
+        #### Folder Entity
 
 
         name          type    description
@@ -9276,7 +9276,7 @@ paths:
         extra         object  varies depending on provider
 
 
-        ##Provider Attributes
+        ## Provider Attributes
 
 
         `type` is "files"
@@ -9298,20 +9298,20 @@ paths:
         provider  string  provider id, same as "name"
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         <!--- Copied from FileDetail.Actions -->
 
 
-        ###Create Subfolder (*folders*)
+        ### Create Subfolder (*folders*)
       parameters:
         - description: ''
           required: true
@@ -9397,7 +9397,7 @@ paths:
         <!--- Copied from FileDetail.Spiel -->
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -9406,7 +9406,7 @@ paths:
         entity, or no content.
 
 
-        ####File Entity
+        #### File Entity
 
 
         name                        type              description
@@ -9467,7 +9467,7 @@ paths:
         sha256                      string            SHA-256 hash of file
 
 
-        ####Folder Entity
+        #### Folder Entity
 
 
         name          type    description
@@ -9492,7 +9492,7 @@ paths:
         extra         object  varies depending on provider
 
 
-        ##File Attributes
+        ## File Attributes
 
 
         <!--- Copied Attributes from FileDetail -->
@@ -9583,14 +9583,14 @@ paths:
         Node Files List endpoint.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         <!--- Copied from FileDetail.Actions -->
@@ -9642,7 +9642,7 @@ paths:
         have access to will not be forked.
 
 
-        ##Node Fork Attributes
+        ## Node Fork Attributes
 
 
         <!--- Copied Attributes from NodeDetail with exception of forked_date-->
@@ -9694,17 +9694,17 @@ paths:
         representing the permissions for the current user on this node
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Node Fork
+        ### Create Node Fork
       parameters:
         - description: ''
           required: true
@@ -9753,7 +9753,7 @@ paths:
         have access to will not be forked.
 
 
-        ##Node Fork Attributes
+        ## Node Fork Attributes
 
 
         <!--- Copied Attributes from NodeDetail with exception of forked_date-->
@@ -9805,17 +9805,17 @@ paths:
         representing the permissions for the current user on this node
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Node Fork
+        ### Create Node Fork
       parameters:
         - description: ''
           required: true
@@ -9885,7 +9885,7 @@ paths:
         List of identifiers for a specified node. *Read-only*.
 
 
-        ##Identifier Attributes
+        ## Identifier Attributes
 
 
         OSF Identifier entities have the "identifiers" `type`.
@@ -9900,7 +9900,7 @@ paths:
         value          string                 the identifier value itself
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -9943,7 +9943,7 @@ paths:
         affiliated institution.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF Institutions have the "institutions" `type`.
@@ -10028,7 +10028,7 @@ paths:
         project.
 
 
-        ##Linked Node Attributes
+        ## Linked Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -10064,14 +10064,14 @@ paths:
         publicly-visible?
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -10279,7 +10279,7 @@ paths:
         * 'node_created': A Node is created (_deprecated_)
 
 
-        ##Log Attributes
+        ## Log Attributes
 
 
         <!--- Copied Attributes from LogList -->
@@ -10297,32 +10297,32 @@ paths:
         action         string                 Log action (see list above)
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
 
         The node this log belongs to.
 
 
-        ###User
+        ### User
 
 
         The user who performed the logged action.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ##Query Params
+        ## Query Params
 
 
         <!--- Copied Query Params from LogList -->
@@ -10377,7 +10377,7 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Node Link Attributes
+        ## Node Link Attributes
 
         `type` is "node_links"
 
@@ -10385,14 +10385,14 @@ paths:
         None
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Relationships
+        ## Relationships
 
 
         ### Target Node
@@ -10402,10 +10402,10 @@ paths:
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Adding Node Links
+        ### Adding Node Links
       parameters:
         - description: ''
           required: true
@@ -10450,7 +10450,7 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Node Link Attributes
+        ## Node Link Attributes
 
         `type` is "node_links"
 
@@ -10458,14 +10458,14 @@ paths:
         None
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Relationships
+        ## Relationships
 
 
         ### Target Node
@@ -10475,10 +10475,10 @@ paths:
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Adding Node Links
+        ### Adding Node Links
       parameters:
         - description: ''
           required: true
@@ -10529,7 +10529,7 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Attributes
+        ## Attributes
 
         `type` is "node_links"
 
@@ -10537,26 +10537,26 @@ paths:
         None
 
 
-        ##Links
+        ## Links
 
 
         *None*
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Target node
+        ### Target node
 
 
         This endpoint shows the target node detail and is automatically
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Remove Node Link
+        ### Remove Node Link
       parameters:
         - description: ''
           required: true
@@ -10591,7 +10591,7 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Attributes
+        ## Attributes
 
         `type` is "node_links"
 
@@ -10599,26 +10599,26 @@ paths:
         None
 
 
-        ##Links
+        ## Links
 
 
         *None*
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Target node
+        ### Target node
 
 
         This endpoint shows the target node detail and is automatically
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Remove Node Link
+        ### Remove Node Link
       parameters:
         - description: ''
           required: true
@@ -10648,7 +10648,7 @@ paths:
         List of preprints for a node. *Read-only*.
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future.**
@@ -10660,7 +10660,7 @@ paths:
         preprint.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -10697,26 +10697,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
 
         - `self` -- Preprint detail page for the current preprint
@@ -10731,7 +10731,7 @@ paths:
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -10813,7 +10813,7 @@ paths:
         <!--- Copied Attributes from RegistrationList -->
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -10886,10 +10886,10 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Registration
+        ### Create Registration
       parameters:
         - description: ''
           required: true
@@ -10964,7 +10964,7 @@ paths:
         <!--- Copied Attributes from RegistrationList -->
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -11037,10 +11037,10 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Registration
+        ### Create Registration
       parameters:
         - description: ''
           required: true
@@ -11095,10 +11095,10 @@ paths:
         a node to an institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11141,10 +11141,10 @@ paths:
         a node to an institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11184,10 +11184,10 @@ paths:
         a node to an institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11227,10 +11227,10 @@ paths:
         a node to an institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11268,10 +11268,10 @@ paths:
         a node to an institution
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11302,10 +11302,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11350,10 +11350,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11395,10 +11395,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11440,10 +11440,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11483,10 +11483,10 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11511,7 +11511,7 @@ paths:
         List of view only links on a node. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links on a node, public or private, are readable and writeable
@@ -11520,7 +11520,7 @@ paths:
         administrators on the node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         name            type                    description
@@ -11539,25 +11539,25 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11596,7 +11596,7 @@ paths:
         List of view only links on a node. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links on a node, public or private, are readable and writeable
@@ -11605,7 +11605,7 @@ paths:
         administrators on the node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         name            type                    description
@@ -11624,25 +11624,25 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -11680,7 +11680,7 @@ paths:
         Detail of a specific view only link on a node. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links on a node, public or private, are only readable and
@@ -11689,7 +11689,7 @@ paths:
         administrators on the node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         name            type                    description
@@ -11708,25 +11708,25 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -11755,7 +11755,7 @@ paths:
         Detail of a specific view only link on a node. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links on a node, public or private, are only readable and
@@ -11764,7 +11764,7 @@ paths:
         administrators on the node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         name            type                    description
@@ -11783,25 +11783,25 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -11843,7 +11843,7 @@ paths:
         Detail of a specific view only link on a node. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links on a node, public or private, are only readable and
@@ -11852,7 +11852,7 @@ paths:
         administrators on the node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         name            type                    description
@@ -11871,25 +11871,25 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -11931,7 +11931,7 @@ paths:
         Detail of a specific view only link on a node. *Writeable*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links on a node, public or private, are only readable and
@@ -11940,7 +11940,7 @@ paths:
         administrators on the node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         name            type                    description
@@ -11959,25 +11959,25 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -12018,7 +12018,7 @@ paths:
         relationship will not be exposed.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Wiki pages on public nodes are given read-only access to everyone. Wiki
@@ -12027,7 +12027,7 @@ paths:
         contributors and administrators on the parent node.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF wiki entities have the "wikis" `type`.
@@ -12058,14 +12058,14 @@ paths:
 
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `filter[name]=<Str>` -- filter wiki pages by name
@@ -12129,7 +12129,7 @@ paths:
         Assume undocumented fields are unstable.
 
 
-        ##PreprintProvider Attributes
+        ## PreprintProvider Attributes
 
 
         OSF Preprint Providers have the "preprint_providers" `type`.
@@ -12150,15 +12150,15 @@ paths:
         description    string             description of the preprint provider
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Preprints
+        ### Preprints
 
         Link to the list of preprints from this given preprint provider.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -12191,7 +12191,7 @@ paths:
         Assume undocumented fields are unstable.
 
 
-        ##PreprintProvider Attributes
+        ## PreprintProvider Attributes
 
 
         OSF Preprint Providers have the "preprint_providers" `type`.
@@ -12212,15 +12212,15 @@ paths:
         description    string             description of the preprint provider
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Preprints
+        ### Preprints
 
         Link to the list of preprints from this given preprint provider.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -12283,7 +12283,7 @@ paths:
         `<node_id>/relationships/preprint_provider` endpoint
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -12317,26 +12317,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
         - `self` -- Preprint detail page for the current preprint
 
@@ -12430,7 +12430,7 @@ paths:
         preprint.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -12464,26 +12464,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
 
         - `self` -- Preprint detail page for the current preprint
@@ -12498,7 +12498,7 @@ paths:
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -12515,7 +12515,7 @@ paths:
         matching.
 
 
-        ###Creating New Preprints
+        ### Creating New Preprints
 
 
         Create a new preprint by posting to the guid of the existing **node**,
@@ -12564,7 +12564,7 @@ paths:
         preprint.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -12598,26 +12598,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
 
         - `self` -- Preprint detail page for the current preprint
@@ -12632,7 +12632,7 @@ paths:
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -12649,7 +12649,7 @@ paths:
         matching.
 
 
-        ###Creating New Preprints
+        ### Creating New Preprints
 
 
         Create a new preprint by posting to the guid of the existing **node**,
@@ -12712,7 +12712,7 @@ paths:
         Preprint Detail  *Writeable*.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -12746,26 +12746,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
         - `self` -- Preprint detail page for the current preprint
 
@@ -12775,7 +12775,7 @@ paths:
         preprint manuscript
 
 
-        ##Updating Preprints
+        ## Updating Preprints
 
 
         Update a preprint by sending a patch request to the guid of the existing
@@ -12803,7 +12803,7 @@ paths:
         Preprint Detail  *Writeable*.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -12837,26 +12837,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
         - `self` -- Preprint detail page for the current preprint
 
@@ -12866,7 +12866,7 @@ paths:
         preprint manuscript
 
 
-        ##Updating Preprints
+        ## Updating Preprints
 
 
         Update a preprint by sending a patch request to the guid of the existing
@@ -12925,7 +12925,7 @@ paths:
         Preprint Detail  *Writeable*.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -12959,26 +12959,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
         - `self` -- Preprint detail page for the current preprint
 
@@ -12988,7 +12988,7 @@ paths:
         preprint manuscript
 
 
-        ##Updating Preprints
+        ## Updating Preprints
 
 
         Update a preprint by sending a patch request to the guid of the existing
@@ -13047,7 +13047,7 @@ paths:
         Preprint Detail  *Writeable*.
 
 
-        ##Preprint Attributes
+        ## Preprint Attributes
 
 
         OSF Preprint entities have the "preprints" `type`.
@@ -13081,26 +13081,26 @@ paths:
         DOI for the manuscript, as entered by the user
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
         The node that this preprint was created for
 
 
-        ###Primary File
+        ### Primary File
 
         The file that is designated as the preprint's primary file, or the
         manuscript of the preprint.
 
 
-        ###Provider
+        ### Provider
 
         Link to preprint_provider detail for this preprint
 
 
-        ##Links
+        ## Links
 
         - `self` -- Preprint detail page for the current preprint
 
@@ -13110,7 +13110,7 @@ paths:
         preprint manuscript
 
 
-        ##Updating Preprints
+        ## Updating Preprints
 
 
         Update a preprint by sending a patch request to the guid of the existing
@@ -13139,7 +13139,7 @@ paths:
         The citation details for a preprint, in CSL format *Read Only*
 
 
-        ##PreprintCitationDetail Attributes
+        ## PreprintCitationDetail Attributes
 
 
         name                     type                description
@@ -13199,7 +13199,7 @@ paths:
         The citation for a preprint in a specific style's format. *Read Only*
 
 
-        ##NodeCitationDetail Attributes
+        ## NodeCitationDetail Attributes
 
 
         name                     type                description
@@ -13260,7 +13260,7 @@ paths:
         cannot be accessed through this endpoint.
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -13342,29 +13342,29 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Registered from
+        ### Registered from
 
 
         The registration is branched from this node.
 
 
-        ###Registered by
+        ### Registered by
 
 
         The registration was initiated by this user.
 
 
-        ###Other Relationships
+        ### Other Relationships
 
 
         See documentation on registered_from detail view.  A registration has
         many of the same properties as a node.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -13426,7 +13426,7 @@ paths:
         relationships will return a 403.
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -13508,10 +13508,10 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -13555,7 +13555,7 @@ paths:
         relationships will return a 403.
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -13637,10 +13637,10 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -13703,7 +13703,7 @@ paths:
         relationships will return a 403.
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -13785,10 +13785,10 @@ paths:
         registration_supplement         string             registration template
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Update
+        ### Update
       parameters:
         - description: ''
           required: true
@@ -13838,7 +13838,7 @@ paths:
         node will have the selected node set as its parent.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -13888,14 +13888,14 @@ paths:
         collection? (always false - may be deprecated in future versions)
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -13961,13 +13961,13 @@ paths:
         The registration citation for a registration in CSL format *read only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##RegistraitonCitationDetail Attributes
+        ## RegistraitonCitationDetail Attributes
 
 
         name                     type                description
@@ -14028,13 +14028,13 @@ paths:
         format t *read only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##RegistrationCitationStyleDetail Attributes
+        ## RegistrationCitationStyleDetail Attributes
 
 
         name                     type                description
@@ -14378,7 +14378,7 @@ paths:
         the contributor will be an empty string.
 
 
-        ##Node Contributor Attributes
+        ## Node Contributor Attributes
 
 
         <!--- Copied Attributes from NodeContributorDetail -->
@@ -14401,27 +14401,27 @@ paths:
         contributor hasn't yet claimed account
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail and is automatically
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Adding Contributors
+        ### Adding Contributors
       parameters:
         - description: ''
           required: true
@@ -14486,7 +14486,7 @@ paths:
         endpoint.
 
 
-        ##Attributes
+        ## Attributes
 
 
         `type` is "contributors"
@@ -14506,13 +14506,13 @@ paths:
         contributor hasn't yet claimed account
 
 
-        ###Users
+        ### Users
 
 
         This endpoint shows the contributor user detail.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -14619,7 +14619,7 @@ paths:
         have access to will not be forked.
 
 
-        ##Node Fork Attributes
+        ## Node Fork Attributes
 
 
         <!--- Copied Attributes from NodeDetail with exception of forked_date-->
@@ -14671,17 +14671,17 @@ paths:
         representing the permissions for the current user on this node
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Node Fork
+        ### Create Node Fork
       parameters:
         - description: ''
           required: true
@@ -14730,7 +14730,7 @@ paths:
         have access to will not be forked.
 
 
-        ##Node Fork Attributes
+        ## Node Fork Attributes
 
 
         <!--- Copied Attributes from NodeDetail with exception of forked_date-->
@@ -14782,17 +14782,17 @@ paths:
         representing the permissions for the current user on this node
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create Node Fork
+        ### Create Node Fork
       parameters:
         - description: ''
           required: true
@@ -14862,7 +14862,7 @@ paths:
         List of identifiers for a specified node. *Read-only*.
 
 
-        ##Identifier Attributes
+        ## Identifier Attributes
 
 
         OSF Identifier entities have the "identifiers" `type`.
@@ -14877,7 +14877,7 @@ paths:
         value          string                 the identifier value itself
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -15031,7 +15031,7 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Node Link Attributes
+        ## Node Link Attributes
 
         `type` is "node_links"
 
@@ -15039,14 +15039,14 @@ paths:
         None
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Relationships
+        ## Relationships
 
 
         ### Target Node
@@ -15056,10 +15056,10 @@ paths:
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Adding Node Links
+        ### Adding Node Links
       parameters:
         - description: ''
           required: true
@@ -15106,7 +15106,7 @@ paths:
         Node Links are a direct reference to the node that they point to.
 
 
-        ##Attributes
+        ## Attributes
 
         `type` is "node_links"
 
@@ -15114,26 +15114,26 @@ paths:
         None
 
 
-        ##Links
+        ## Links
 
 
         *None*
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Target node
+        ### Target node
 
 
         This endpoint shows the target node detail and is automatically
         embedded.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Remove Node Link
+        ### Remove Node Link
       parameters:
         - description: ''
           required: true
@@ -15252,7 +15252,7 @@ paths:
         exists a node link that contains that node.
 
 
-        ##Actions
+        ## Actions
       parameters:
         - description: ''
           required: true
@@ -15611,7 +15611,7 @@ paths:
         project.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -15671,24 +15671,24 @@ paths:
         license
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Children
+        ### Children
 
 
         List of nodes that are children of this node.  New child nodes may be
         added through this endpoint.
 
 
-        ###Comments
+        ### Comments
 
 
         List of comments on this node.  New comments can be left on the node
         through this endpoint.
 
 
-        ###Contributors
+        ### Contributors
 
 
         List of users who are contributors to this node. Contributors may have
@@ -15698,13 +15698,13 @@ paths:
         may be added via this endpoint.
 
 
-        ###Draft Registrations
+        ### Draft Registrations
 
 
         List of draft registrations of the current node.
 
 
-        ###Files
+        ### Files
 
 
         List of top-level folders (actually cloud-storage providers) associated
@@ -15713,7 +15713,7 @@ paths:
         for accessing the actual files stored within this node.
 
 
-        ###Forked From
+        ### Forked From
 
 
         If this node was forked from another node, the canonical endpoint of the
@@ -15723,20 +15723,20 @@ paths:
         will be null.
 
 
-        ###Logs
+        ### Logs
 
 
         List of read-only log actions pertaining to the node.
 
 
-        ###Node Links
+        ### Node Links
 
 
         List of links (pointers) to other nodes on the OSF.  Node links can be
         added through this endpoint.
 
 
-        ###Parent
+        ### Parent
 
 
         If this node is a child node of another node, the parent's canonical
@@ -15745,13 +15745,13 @@ paths:
         `/parent/links/related/href` key.  Otherwise, it will be null.
 
 
-        ###Registrations
+        ### Registrations
 
 
         List of registrations of the current node.
 
 
-        ###Root
+        ### Root
 
 
         Returns the top-level node associated with the current node.  If the
@@ -15760,7 +15760,7 @@ paths:
         the current node.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -15801,7 +15801,7 @@ paths:
         <!-- Copied attributes from FileDetail -->
 
 
-        ####File Entity
+        #### File Entity
 
 
         name          type       description
@@ -15861,7 +15861,7 @@ paths:
         sha256    string            SHA-256 hash of file
 
 
-        ##Attributes
+        ## Attributes
 
 
         For an OSF File entity, the `type` is "files" regardless of whether the
@@ -15953,31 +15953,31 @@ paths:
         <!-- Copied relationships from FileDetail -->
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Node
+        ### Node
 
 
         The `node` endpoint describes the project or registration that this file
         belongs to.
 
 
-        ###Files (*folders*)
+        ### Files (*folders*)
 
 
         The `files` endpoint lists all of the subfiles and folders of the
         current folder. Will be null for files.
 
 
-        ###Versions (*files*)
+        ### Versions (*files*)
 
 
         The `versions` endpoint provides version history for files.  Will be
         null for folders.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -16034,7 +16034,7 @@ paths:
         project.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -16094,24 +16094,24 @@ paths:
         license
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Children
+        ### Children
 
 
         List of nodes that are children of this node.  New child nodes may be
         added through this endpoint.
 
 
-        ###Comments
+        ### Comments
 
 
         List of comments on this node.  New comments can be left on the node
         through this endpoint.
 
 
-        ###Contributors
+        ### Contributors
 
 
         List of users who are contributors to this node. Contributors may have
@@ -16121,13 +16121,13 @@ paths:
         may be added via this endpoint.
 
 
-        ###Draft Registrations
+        ### Draft Registrations
 
 
         List of draft registrations of the current node.
 
 
-        ###Files
+        ### Files
 
 
         List of top-level folders (actually cloud-storage providers) associated
@@ -16136,7 +16136,7 @@ paths:
         for accessing the actual files stored within this node.
 
 
-        ###Forked From
+        ### Forked From
 
 
         If this node was forked from another node, the canonical endpoint of the
@@ -16146,20 +16146,20 @@ paths:
         will be null.
 
 
-        ###Logs
+        ### Logs
 
 
         List of read-only log actions pertaining to the node.
 
 
-        ###Node Links
+        ### Node Links
 
 
         List of links (pointers) to other nodes on the OSF.  Node links can be
         added through this endpoint.
 
 
-        ###Parent
+        ### Parent
 
 
         If this node is a child node of another node, the parent's canonical
@@ -16168,13 +16168,13 @@ paths:
         `/parent/links/related/href` key.  Otherwise, it will be null.
 
 
-        ###Registrations
+        ### Registrations
 
 
         List of registrations of the current node.
 
 
-        ###Root
+        ### Root
 
 
         Returns the top-level node associated with the current node.  If the
@@ -16183,7 +16183,7 @@ paths:
         the current node.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -16252,7 +16252,7 @@ paths:
 
         <!--- Copied attributes from RegistrationDetail -->
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         Registrations have the "registrations" `type`.
@@ -16337,29 +16337,29 @@ paths:
 
         <!--- Copied relationships from RegistrationDetail -->
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Registered from
+        ### Registered from
 
 
         The registration is branched from this node.
 
 
-        ###Registered by
+        ### Registered by
 
 
         The registration was initiated by this user.
 
 
-        ###Other Relationships
+        ### Other Relationships
 
 
         See documentation on registered_from detail view.  A registration has
         many of the same properties as a node.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -16436,7 +16436,7 @@ paths:
         <!-- Copied attributes from UserDetail -->
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF User entities have the "users" `type`.
@@ -16468,10 +16468,10 @@ paths:
         <!-- Copied relationships from UserDetail -->
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Nodes
+        ### Nodes
 
 
         A list of all nodes the user has contributed to.  If the user id in the
@@ -16481,7 +16481,7 @@ paths:
         other user's publicly-visible nodes.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -16517,13 +16517,13 @@ paths:
         flattened form. *Read-only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##Taxonomy Attributes
+        ## Taxonomy Attributes
 
 
         name           type                   description
@@ -16536,7 +16536,7 @@ paths:
         top level subject.
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `field['id']=<subject_id>` -- Finds one subject with the given id
@@ -16604,13 +16604,13 @@ paths:
         instance. *Read-only*
 
 
-        ##Note
+        ## Note
 
         **This API endpoint is under active development, and is subject to
         change in the future**
 
 
-        ##Taxonomy Attributes
+        ## Taxonomy Attributes
 
 
         See TaxonomyList
@@ -16895,7 +16895,7 @@ paths:
         the currently logged-in user.
 
 
-        ##User Attributes
+        ## User Attributes
 
 
         <!--- Copied Attributes From UserDetail -->
@@ -16927,20 +16927,20 @@ paths:
         was created
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         *None*.
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -17012,7 +17012,7 @@ paths:
         case, either.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF User entities have the "users" `type`.
@@ -17041,10 +17041,10 @@ paths:
         was created
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Nodes
+        ### Nodes
 
 
         A list of all nodes the user has contributed to.  If the user id in the
@@ -17054,7 +17054,7 @@ paths:
         other user's publicly-visible nodes.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -17094,7 +17094,7 @@ paths:
         case, either.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF User entities have the "users" `type`.
@@ -17123,10 +17123,10 @@ paths:
         was created
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Nodes
+        ### Nodes
 
 
         A list of all nodes the user has contributed to.  If the user id in the
@@ -17136,7 +17136,7 @@ paths:
         other user's publicly-visible nodes.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -17253,7 +17253,7 @@ paths:
         case, either.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF User entities have the "users" `type`.
@@ -17282,10 +17282,10 @@ paths:
         was created
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Nodes
+        ### Nodes
 
 
         A list of all nodes the user has contributed to.  If the user id in the
@@ -17295,7 +17295,7 @@ paths:
         other user's publicly-visible nodes.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true
@@ -17397,7 +17397,7 @@ paths:
         `addon_short_name`.
 
 
-        ###Permissions
+        ### Permissions
 
 
         <Addon>UserSettings are visible only to the user that "owns" them.
@@ -17420,7 +17420,7 @@ paths:
         ExternalAccount?
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -17464,7 +17464,7 @@ paths:
         Detail of an individual addon authorized by this user *Read-only*
 
 
-        ##Permissions
+        ## Permissions
 
 
         <Addon>UserSettings are visible only to the user that "owns" them.
@@ -17487,7 +17487,7 @@ paths:
         ExternalAccount?
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -17521,7 +17521,7 @@ paths:
         List of an external_accounts authorized by this user *Read-only*
 
 
-        ##Permissions
+        ## Permissions
 
 
         ExternalAccounts are visible only to the user that has ownership of
@@ -17549,7 +17549,7 @@ paths:
         provider        string      short_name of third-party service provider
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -17599,7 +17599,7 @@ paths:
         *Read-only*
 
 
-        ##Permissions
+        ## Permissions
 
 
         ExternalAccounts are visible only to the user that has ownership of
@@ -17627,7 +17627,7 @@ paths:
         provider        string      short_name of third-party service provider
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
@@ -17717,7 +17717,7 @@ paths:
         can be used to represent the currently logged-in user.
 
 
-        ##Node Attributes
+        ## Node Attributes
 
 
         <!--- Copied Attributes from NodeDetail -->
@@ -17767,20 +17767,20 @@ paths:
         (always false - may be deprecated in future versions)
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         *None*.
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -17909,7 +17909,7 @@ paths:
         403.
 
 
-        ##Registration Attributes
+        ## Registration Attributes
 
 
         <!--- Copied Attributes from RegistrationList -->
@@ -17986,42 +17986,42 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Registered from
+        ### Registered from
 
 
         The registration is branched from this node.
 
 
-        ###Registered by
+        ### Registered by
 
 
         The registration was initiated by this user.
 
 
-        ###Other Relationships
+        ### Other Relationships
 
 
         See documentation on registered_from detail view.  A registration has
         many of the same properties as a node.
 
 
-        ##Links
+        ## Links
 
 
         See the [JSON-API spec regarding
         pagination](http://jsonapi.org/format/1.0/#fetching-pagination).
 
 
-        ##Actions
+        ## Actions
 
 
         *None*.
 
 
-        ##Query Params
+        ## Query Params
 
 
         + `page=<Int>` -- page number of results to view, default 1
@@ -18139,7 +18139,7 @@ paths:
         Details about a specific view only link. *Read-only*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         View only links are visible only to users that are administrators on all
@@ -18148,7 +18148,7 @@ paths:
         pertains to.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF view only links entities have the "view-only-links" `type`.
@@ -18171,22 +18171,22 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###Creator
+        ### Creator
 
 
         The user who created the view only link.
 
 
-        ###Nodes
+        ### Nodes
 
 
         The nodes which this view only link key gives read-only access to.
 
 
-        ##Query Params
+        ## Query Params
 
 
         *None*.
@@ -18255,10 +18255,10 @@ paths:
         link.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -18301,10 +18301,10 @@ paths:
         link.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -18344,10 +18344,10 @@ paths:
         link.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -18387,10 +18387,10 @@ paths:
         link.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -18428,10 +18428,10 @@ paths:
         link.
 
 
-        ##Actions
+        ## Actions
 
 
-        ###Create
+        ### Create
       parameters:
         - description: ''
           required: true
@@ -18456,7 +18456,7 @@ paths:
         Details about a specific wiki. *Read-only*.
 
 
-        ###Permissions
+        ### Permissions
 
 
         Wiki pages on public nodes are given read-only access to everyone. Wiki
@@ -18469,7 +18469,7 @@ paths:
         relationship will not be exposed.
 
 
-        ##Attributes
+        ## Attributes
 
 
         OSF wiki entities have the "wikis" `type`.
@@ -18500,28 +18500,28 @@ paths:
 
 
 
-        ##Relationships
+        ## Relationships
 
 
-        ###User
+        ### User
 
 
         The user who created the wiki.
 
 
-        ###Node
+        ### Node
 
 
         The project that the wiki page belongs to.
 
 
-        ###Comments
+        ### Comments
 
 
         The comments created on the wiki page.
 
 
-        ##Links
+        ## Links
       parameters:
         - description: ''
           required: true

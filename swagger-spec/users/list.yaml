@@ -1,18 +1,21 @@
 get:
   summary: List all users
   description: >-
-
     A paginated list of all users registered on the OSF.
     The returned users are sorted by their `date_registered`, with the most recently registered users appearing first.
 
 
     The subroute `/users/me/` is a special endpoint that always points to the currently logged-in user.
 
+
     #### Versioning
+
 
     As of version `2.3`, merged users will not be returned from this endpoint.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -27,7 +30,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/users/?filter[family_name]=Nosek.
@@ -38,7 +43,7 @@ get:
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
-    
+
   tags:
     - Users
   operationId: users_list

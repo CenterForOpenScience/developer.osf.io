@@ -2,7 +2,6 @@
 get:
   summary: List all comments
   description: >-
-
     A paginated list of the registration's comments.
 
 
@@ -10,7 +9,7 @@ get:
     comments appearing first.
 
 
-    ####Permissions
+    #### Permissions
 
 
     Comments of public registrations are given read-only access to everyone.
@@ -25,7 +24,7 @@ get:
     Comments of private registrations are only visible to contributors and administrators on the registration.
 
 
-    ####Returns
+    #### Returns
 
 
     Returns a JSON object containing `data` and `links` keys.
@@ -54,7 +53,7 @@ get:
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
-    
+
 
   parameters:
     - in: path

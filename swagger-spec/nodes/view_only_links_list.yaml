@@ -5,7 +5,7 @@ get:
     List of view only links on a node.
 
 
-    ####Returns
+    #### Returns
 
 
     Returns a JSON object containing `data` and `links` keys.
@@ -18,13 +18,13 @@ get:
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
-    ####Permissions
+    #### Permissions
 
 
     View only links on a node, public or private, are readable and writeable only by users that are administrators on the node.
 
 
-    ####Filtering
+    #### Filtering
 
 
     You can optionally request that the response only include view only links that match your filters by utilizing the `filter` query parameter, e.g.

@@ -4,7 +4,7 @@ get:
     Retrieves the details of a file (or folder)
 
 
-    ####Returns
+    #### Returns
 
 
     Returns a JSON object with a `data` key containing the representation of the requested
@@ -22,7 +22,8 @@ get:
     Files can be modified via the Waterbutler URLs found in the `links` key of
     the response (new_folder, move, upload, download, and delete). Further
     information about how to interact with files can be found in the
-    [Waterbutler API documentation](https://waterbutler.readthedocs.io/en/latest/api.html#v1-api). 
+    [Waterbutler API documentation](https://waterbutler.readthedocs.io/en/latest/api.html#v1-api).
+
 
   parameters:
     - in: path

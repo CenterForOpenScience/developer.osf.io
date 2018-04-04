@@ -1,7 +1,6 @@
 get:
   summary: List all preprints
   description: >-
-
     A paginated list of preprints from all preprint providers.
     The returned preprints are sorted by their creation date, with the most recent
     preprints appearing first.
@@ -38,7 +37,7 @@ get:
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
 
-    
+
   tags:
     - Preprints
   operationId: preprints_list
