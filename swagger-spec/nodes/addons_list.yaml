@@ -2,10 +2,11 @@
 get:
   summary: List all addons
   description: >-
-
     A paginated list of addons connected to the given node or project.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -16,12 +17,14 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+
   parameters:
   - in: path
     type: string
     name: node_id
     required: true
     description: 'The unique identifier of the node.'
+
 
   tags:
     - Nodes

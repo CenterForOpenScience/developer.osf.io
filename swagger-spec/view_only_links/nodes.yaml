@@ -1,18 +1,22 @@
 get:
   summary: List all nodes
   description: >-
-
     The list of nodes which this view only link gives read-only access to.
 
+
     #### Permissions
+
 
     Only project administrators may retrieve the nodes of a view only link.
     Attempting to retrieve a view only link without appropriate permissions will
     result in a 403 Forbidden response.
 
+
     #### Returns
 
+
     Returns a JSON object containing `data` and `links` keys.
+
 
     The `data` key contains an array of up to 10 nodes.
     Each resource in the array is a separate node object and contains the full
@@ -25,6 +29,7 @@ get:
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
 
   parameters:
     - in: path

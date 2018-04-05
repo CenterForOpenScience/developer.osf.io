@@ -4,10 +4,13 @@ get:
   description: >-
     The citation for a preprint in a specific style.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key that contains the representation of the preprint
     citation, in the requested style.
+
 
   parameters:
     - description: 'The unique identifier of the citation style.'
@@ -40,4 +43,3 @@ get:
                 http://doi.org/10.1371/journal.pbio.1002456'
             type: styled-citations
             id: apa
-

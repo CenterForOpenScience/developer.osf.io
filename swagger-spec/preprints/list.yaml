@@ -1,12 +1,13 @@
 get:
   summary: List all preprints
   description: >-
-
     A paginated list of preprints from all preprint providers.
     The returned preprints are sorted by their creation date, with the most recent
     preprints appearing first.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -21,7 +22,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include preprints that
     match your filters by utilizing the `filter` query parameter, e.g.
@@ -30,6 +33,11 @@ get:
 
     Preprints may be filtered by their `id`, `is_published`, `date_created`,
     `date_modified`, and `provider`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
   tags:
     - Preprints
   operationId: preprints_list
@@ -108,7 +116,15 @@ get:
 post:
   summary: Create a preprint
   description: >-
-    Creates a new preprint.
+    Create a new preprint by posting to the guid of the existing node, including
+    the file_id for the file you'd like to make the primary preprint file. Note
+    that the node id will not be accessible via the preprints detail view until
+    after the preprint has been created.
+
+
+    New preprints are created by issuing a
+    POST request to this endpoint containing the guid of the node to create a
+    preprint from. Provider defaults to osf.
 
     #### Returns
 
@@ -134,4 +150,3 @@ post:
   responses:
     '201':
       description: 'Success'
-

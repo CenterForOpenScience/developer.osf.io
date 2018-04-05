@@ -3,7 +3,9 @@ get:
   description: >-
     Retrieves the details of a license.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     license, if the request is successful.
@@ -36,6 +38,7 @@ get:
               text: |
                 Copyright (c) {{year}}, {{copyrightHolders}}
                 All rights reserved.
+
 
                 The full descriptive text of the License
               required_fields:

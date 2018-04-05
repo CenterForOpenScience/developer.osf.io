@@ -4,7 +4,9 @@ get:
   description: >-
     Retrieves the details of a view only link on a node.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     view only link, if the request is successful.
@@ -14,10 +16,13 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
-    ####Permissions
+
+    #### Permissions
 
 
     View only links on a node, public or private, are readable and writeable only by users that are administrators on the node.
+
+
   parameters:
 
     - in: path

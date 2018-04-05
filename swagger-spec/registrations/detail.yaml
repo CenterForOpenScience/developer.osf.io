@@ -3,7 +3,9 @@ get:
   description: >-
     Retrieve the details of a given registration.
 
+
     #### Permissions
+
 
     Only project contributors may retrieve the details of a registration that is embargoed, or has not yet been made public.
     Attempting to retrieve a private registration for which you are not a contributor will result in a **403 Forbidden** response.
@@ -11,9 +13,13 @@ get:
 
     Authentication is not required to view the details of a public registration, as public registrations give read-only access to everyone.
 
+
     #### Registrations
 
+
     A registration on the OSF creates a frozen, time-stamped version of a project that cannot be edited or deleted.
+
+
     The *original project* can still be edited, while the registered version cannot.
 
 
@@ -22,6 +28,7 @@ get:
 
     #### Withdrawals
 
+
     Registrations cannot be deleted, but they can be withdrawn.
     Withdrawing a registration removes the content of the registration but leaves behind basic metadata.
     A withdrawn registration will display a limited subset of information, namely, title, description, date_created, date_registered, date_withdrawn, registration, withdrawn, withdrawal_justification, and registration supplement.
@@ -29,7 +36,9 @@ get:
     Additionally, the only relationship that remains accesible for a withdrawn registration is the contributors.
     All other relationships will return a **403 Forbidden** response.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     registration, if the request is successful.
@@ -38,6 +47,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - in: path

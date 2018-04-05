@@ -11,10 +11,12 @@ properties:
     readOnly: true
     description: 'The unique identifier of the metaschema entity.'
 
+
   type:
     type: string
     readOnly: true
     description: 'The type identifier of the metaschema entity (`metaschemas`).'
+
 
   attributes:
     type: object
@@ -38,6 +40,7 @@ properties:
             type: string
         readOnly: true
         description: 'The details of the metaschema which contains the supplemental questions to accompany a registration'
+
 
   links:
     type: object

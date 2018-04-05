@@ -3,7 +3,9 @@ get:
   description: >-
     Retrieves the details of a given node (project or component).
 
+
     #### Permissions
+
 
     Only project contributors may retrieve the details of a private node.
     Attempting to retreive a private node for which you are not a contributor will result in a **403 Forbidden** response.
@@ -11,7 +13,9 @@ get:
 
     Authentication is not required to view the details of a public node, as public nodes give read-only access to everyone.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     node, if the request is successful.
@@ -169,12 +173,16 @@ patch:
     Nodes can be updated with either a **PUT** or **PATCH** request.
     The `title` and `category` fields are mandatory in a **PUT** request, and optional in a **PATCH**.
 
+
     #### Permissions
+
 
     Only write contributors may update a node.
     Attempting to update a node for which you do not have write access will result in a **403 Forbidden** response.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the new representation of the updated
     node, if the request is successful.
@@ -182,6 +190,7 @@ patch:
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
 
   parameters:
     - in: path
@@ -218,15 +227,18 @@ patch:
 delete:
   summary: Delete a node
   description: >-
-
     Permanently deletes a node. This action cannot be undone.
 
+
     #### Permissions
+
 
     Only project administrators may delete a node.
     Attempting to delete a node for which you are not an administrator will result in a **403 Forbidden** response.
 
+
     #### Returns
+
 
     If the request is successful, no content is returned.
 

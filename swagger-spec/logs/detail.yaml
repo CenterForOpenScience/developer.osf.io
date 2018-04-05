@@ -3,10 +3,13 @@ get:
   description: >-
     Retrieves the details of a log.
 
+
     A log is permanent immutable record of a node's history. A log is created when a user
     performs one of many actions. See the [actions](#Logs_logs_actions) section for more details.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     log, if the request was successful.
@@ -15,6 +18,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - description: 'The unique identifier of the log you wish to retrieve.'

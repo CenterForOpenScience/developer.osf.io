@@ -2,10 +2,11 @@
 get:
   summary: List all addons
   description: >-
-
     A paginated list of addons configurable with the OSF
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -19,6 +20,7 @@ get:
 
 
     This request should never return an error.
+
 
   tags:
     - Addons

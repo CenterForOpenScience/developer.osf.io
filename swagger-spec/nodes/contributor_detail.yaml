@@ -10,7 +10,9 @@ get:
     Contributors are categorized as either "bibliographic" or "non-bibliographic".
     From a permissions standpoint, both are the same, but bibliographic contributors are included in citations and are listed on the project overview page on the OSF, while non-bibliographic contributors are not.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     contributor, if the request is successful.
@@ -19,6 +21,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
   - in: path
