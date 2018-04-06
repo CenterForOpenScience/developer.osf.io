@@ -2,17 +2,22 @@
 get:
   summary: List all preprint providers
   description: >-
-
     A paginated list of all preprint providers.
+
+
     The returned preprint providers are sorted by their creation date, with the most recent
     preprints appearing first.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
 
     The `data` key contains an array of 10 preprint providers.
+
+
     Each resource in the array is a separate preprint provider object.
 
 
@@ -22,7 +27,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include preprint providers that
     match your filters by utilizing the `filter` query parameter, e.g.
@@ -30,6 +37,10 @@ get:
 
 
     Preprint Providers may be filtered by their `id`, `name`,  and `description`
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   tags:
     - Preprint Providers

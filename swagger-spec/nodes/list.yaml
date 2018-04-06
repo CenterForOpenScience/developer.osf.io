@@ -1,7 +1,6 @@
 get:
   summary: List all nodes
   description: >-
-
     A paginated list of nodes, representing projects and components, on the OSF.
 
 
@@ -13,7 +12,9 @@ get:
 
     Registrations cannot be accessed through this endpoint (use the [registrations](#tag/Registrations) endpoints instead).
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -27,7 +28,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/nodes/?filter[title]=reproducibility.
@@ -39,6 +42,10 @@ get:
     Most fields are string fields and will be filtered using simple substring matching.
     Public and preprint are boolean fields, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
     Note that quoting true or false in the query will cause the match to fail.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   tags:
     - Nodes

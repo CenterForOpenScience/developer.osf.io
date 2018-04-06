@@ -5,7 +5,9 @@ get:
     Retrieves the details of a registration file
     for the given storage provider.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     registration file object, if the request is successful.
@@ -15,6 +17,7 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
   parameters:
 
     - in: path
@@ -22,6 +25,7 @@ get:
       name: registration_id
       required: true
       description: 'The unique identifier of the registration.'
+
 
     - in: path
       type: string
@@ -69,7 +73,7 @@ get:
               self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
               move: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
               upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
-              download: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              download: https://osf.io/download/sejcv
               delete: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
             attributes:
               extra:

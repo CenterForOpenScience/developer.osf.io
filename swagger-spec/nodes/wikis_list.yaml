@@ -5,6 +5,7 @@ get:
 
     #### Returns
 
+
     Paginated list of the node's current wiki pages, ordered by their date_modified.
     Each resource contains the full representation of the wiki, meaning additional requests
     to an individual wiki's detail view are not necessary.
@@ -17,16 +18,24 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
     #### Filtering
+
 
     Wiki pages can be filtered based on their `name` and `date_modified` fields.
 
+
     + `filter[name]=<Str>` -- filter wiki pages by name
+
 
     + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
 
 
     Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
     - in: path

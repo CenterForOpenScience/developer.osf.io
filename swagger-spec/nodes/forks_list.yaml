@@ -16,19 +16,25 @@ post:
     When creating a fork, your fork will only contain public components of the current node and components for which you are a contributor.
     Private components that you do not have access to will not be forked.
 
+
     #### Required
+
 
     There are no required attributes when creating a fork, as all of the forked node's attributes will be copied from the current node.
 
 
     The `title` field is optional, with the default title being "Fork of " prepended to the current node's title.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the complete srepresentation of the forked node, if the request is successful.
 
+
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
 
   parameters:
     - in: path
@@ -235,4 +241,3 @@ get:
             meta:
               total: 2
               per_page: 10
-

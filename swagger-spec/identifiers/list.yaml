@@ -4,7 +4,9 @@ get:
   description: >-
     List of all identifiers for a given node.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -15,12 +17,19 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
-    ####Filtering
+
+    #### Filtering
+
 
     You can optionally request that the response only include identifiers that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/identifiers/73pnd/identifiers/?filter[category]=doi.
 
+
     Identifiers may be filtered by their `category` e.g `ark` or `doi`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
 

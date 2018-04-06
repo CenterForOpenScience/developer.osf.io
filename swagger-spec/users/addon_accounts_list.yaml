@@ -2,7 +2,6 @@
 get:
   summary: List all addon accounts
   description: >-
-
     A paginated list of addon accounts authorized by this user.
 
 
@@ -14,6 +13,7 @@ get:
 
     #### Returns
 
+
     Returns a JSON object containing `data` and `links` keys.
 
 
@@ -23,6 +23,7 @@ get:
 
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
 
   parameters:
     - in: path

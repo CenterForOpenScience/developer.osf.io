@@ -13,7 +13,8 @@ get:
     the logs of that node's children to which the current user has read-only access.
 
 
-    ####Returns
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -24,13 +25,19 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
-    ####Filtering
+
+    #### Filtering
+
 
     You can optionally request that the response only include logs that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/nodes/ezcuj/logs/?filter[action]=made_private.
 
 
     Nodes may be filtered by their `action`, and `date`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
     - in: path

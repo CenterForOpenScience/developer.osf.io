@@ -2,12 +2,11 @@
 get:
   summary: Retrieve a wiki
   description: >-
-
     Retrieves the details of a given wiki page.
 
 
-    The wiki is a collection of markdown text pages that can be used to describe
-    the project or dataset of contained in the attached node.
+    The wiki is a collection of markdown text pages that can be used to further describe
+    or document a project.
 
 
     Returns a JSON object with a `data` key containing the representation of the requested
@@ -17,6 +16,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - in: path

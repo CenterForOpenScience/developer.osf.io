@@ -2,7 +2,6 @@
 get:
   summary: List all child registrations
   description: >-
-
     A paginated list of children of a registration.
 
 
@@ -12,7 +11,9 @@ get:
 
     The list will include child registrations that are public, as well as child registrations that are private, if the authenticated user has permission to view them.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -27,6 +28,7 @@ get:
 
     #### Filtering
 
+
     You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/registrations/wucr8/children/?filter[title]=reproducibility.
 
@@ -37,6 +39,11 @@ get:
     Most fields are string fields and will be filtered using simple substring matching.
     Public is a boolean field, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
     Note that quoting true or false in the query will cause the match to fail.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
   parameters:
     - in: path
       type: string

@@ -9,6 +9,7 @@ get:
 
     If the request is unsuccessful, plaintext with the error message will be displayed.
 
+
   parameters:
     - in: path
       type: string

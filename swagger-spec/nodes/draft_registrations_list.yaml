@@ -10,11 +10,15 @@ get:
 
     Your original project remains editable but will now have the draft registration linked to it.
 
+
     #### Permissions
+
 
     Only project administrators may view draft registrations.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -26,6 +30,7 @@ get:
 
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
+
 
   parameters:
     - in: path

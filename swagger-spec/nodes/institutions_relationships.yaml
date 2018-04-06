@@ -4,11 +4,15 @@ get:
   description: >-
     Retrieves all institutions affiliated with a node.
 
-    ####Permissions
+
+    #### Permissions
+
 
     The user must have write access to the node and be affiliated with the given institution.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns an array of dictionaries, each with `type` and `id` keys. The ids correspond
     to affiliated institutions ids.
@@ -49,7 +53,7 @@ post:
     Create a relationship between an institution and a node.
 
 
-    ####Permissions
+    #### Permissions
 
 
     The user must have write access to the node and be affiliated with the given institution.
@@ -78,7 +82,7 @@ delete:
   description: >-
     Delete a relationship between an institution and a node.
 
-    ####Permissions
+    #### Permissions
 
 
     The user must have write access to the node and be affiliated with the given institution.
@@ -87,7 +91,7 @@ delete:
     If the user no longer has the institutional affiliation and removes an institution from a node,
     they will not be able to add it back.
 
-    ####Returns
+    #### Returns
 
     If the request is successful, no content is returned.
 

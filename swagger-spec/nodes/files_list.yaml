@@ -6,7 +6,9 @@ get:
     List of all the files/folders that are attached to your project
     for a given storage provider.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -18,7 +20,7 @@ get:
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
-    ####Filtering
+    #### Filtering
 
 
     You can optionally request that the response only include files that match your filters by utilizing the `filter` query parameter, e.g.
@@ -28,57 +30,16 @@ get:
     Node files may be filtered by `id`, `name`, `node`, `kind`, `path`, `provider`, `size`, and `last_touched`.
 
 
-    ###Waterbutler API actions
+    You can learn more about advanced filtering features [here](#tag/Filtering).
 
 
-    Files can be modified through the Waterbutler API routes found in `links` (`new_folder`, `move`, `upload`, `download`, and `delete`).
+    ### Waterbutler API actions
 
 
-    #### Download (files)
-
-
-    To download a file, issue a GET request against the download link. The response will have the Content-Disposition header set, which will will trigger a download in a browser.
-
-
-    #### Create Subfolder (folders)
-
-
-    You can create a subfolder of an existing folder by issuing a PUT request against the new_folder link. The ?kind=folder portion of the query parameter is already included in the new_folder link. The name of the new subfolder should be provided in the name query parameter. The response will contain a WaterButler folder entity. If a folder with that name already exists in the parent directory, the server will return a 409 Conflict error response.
-
-
-    #### Upload New File (folders)
-
-
-    To upload a file to a folder, issue a PUT request to the folder's upload link with the raw file data in the request body, and the kind and name query parameters set to 'file' and the desired name of the file. The response will contain a WaterButler file entity that describes the new file. If a file with the same name already exists in the folder, the server will return a 409 Conflict error response.
-
-
-    #### Update Existing File (file)
-
-
-    To update an existing file, issue a PUT request to the file's upload link with the raw file data in the request body and the kind query parameter set to "file". The update action will create a new version of the file. The response will contain a WaterButler file entity that describes the updated file.
-
-
-    #### Rename (files, folders)
-
-
-    To rename a file or folder, issue a POST request to the move link with the action body parameter set to "rename" and the rename body parameter set to the desired name. The response will contain either a folder entity or file entity with the new name.
-
-
-    #### Move & Copy (files, folders)
-
-
-    Move and copy actions both use the same request structure, a POST to the move url, but with different values for the action body parameters. The path parameter is also required and should be the OSF path attribute of the folder being written to. The rename and conflict parameters are optional. If you wish to change the name of the file or folder at its destination, set the rename parameter to the new name. The conflict param governs how name clashes are resolved. Possible values are replace and keep. replace is the default and will overwrite the file that already exists in the target folder. keep will attempt to keep both by adding a suffix to the new file's name until it no longer conflicts. The suffix will be ' (x)' where x is a increasing integer starting from 1. This behavior is intended to mimic that of the OS X Finder. The response will contain either a folder entity or file entity with the new name.
-
-    Files and folders can also be moved between nodes and providers. The resource parameter is the id of the node under which the file/folder should be moved. It must agree with the path parameter, that is the path must identify a valid folder under the node identified by resource. Likewise, the provider parameter may be used to move the file/folder to another storage provider, but both the resource and path parameters must belong to a node and folder already extant on that provider. Both resource and provider default to the current node and providers.
-
-    If a moved/copied file is overwriting an existing file, a 200 OK response will be returned. Otherwise, a 201 Created will be returned.
-
-
-    #### Delete (file, folders)
-
-
-    To delete a file or folder send a DELETE request to the delete link. Nothing will be returned in the response body.
-
+    Files can be modified via the Waterbutler URLs found in the `links` key of
+    the response (new_folder, move, upload, download, and delete). Further
+    information about how to interact with files can be found in the
+    [Waterbutler API documentation](https://waterbutler.readthedocs.io/en/latest/api.html#v1-api).
 
   parameters:
 
@@ -130,7 +91,7 @@ get:
               self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
               move: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
               upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
-              download: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              download: https://osf.io/download/sejcv
               delete: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
             attributes:
               extra:
