@@ -116,15 +116,7 @@ get:
 post:
   summary: Create a preprint
   description: >-
-    Create a new preprint by posting to the guid of the existing node, including
-    the file_id for the file you'd like to make the primary preprint file. Note
-    that the node id will not be accessible via the preprints detail view until
-    after the preprint has been created.
-
-
-    New preprints are created by issuing a
-    POST request to this endpoint containing the guid of the node to create a
-    preprint from. Provider defaults to osf.
+    Creates a new preprint.
 
     #### Returns
 

@@ -15,6 +15,8 @@ get:
 
     * `project_deleted`: A Node is deleted
 
+    ---
+
 
     * `created_from`: A Node is created using an existing Node as a template
 
@@ -32,13 +34,6 @@ get:
 
 
     * `node_forked`: A Node is forked
-
-
-    * `preprint_initiated`: A preprint is made from the node
-
-
-    * `preprint_license_updated`: A license is added or updated to the preprint
-
 
     ---
 
@@ -66,6 +61,8 @@ get:
 
     * `external_ids_added`: An external identifier is added to a Node (e.g.
     DOI, ARK)
+
+    ---
 
 
     * `view_only_link_added`: A view-only link was added to a Node
@@ -134,11 +131,15 @@ get:
 
     * `addon_file_renamed`: A File in a Node's linked add-on is renamed
 
+    ---
+
 
     * `node_authorized`: An addon is authorized for a project
 
 
     * `node_deauthorized`: An addon is deauthorized for a project
+
+    ---
 
 
     * `folder_created`: A Folder is created in a Node's linked add-on
@@ -182,6 +183,8 @@ get:
 
     * `embargo_completed`: A proposed Embargo of a Node is completed
 
+    ---
+
 
     * `retraction_initiated`: A Withdrawal of a Registration is proposed
 
@@ -191,6 +194,8 @@ get:
 
     * `retraction_cancelled`: A Withdrawal of a Registration is cancelled
 
+    ---
+
 
     * `registration_initiated`: A Registration of a Node is proposed
 
@@ -199,6 +204,17 @@ get:
 
 
     * `registration_cancelled`: A proposed Registration is cancelled
+
+    ---
+
+
+    * `preprint_initiated`: A preprint is made from the node
+
+
+    * `preprint_license_updated`: A license is added or updated to the preprint
+
+
+    * `preprint_file_updated`: The primary file of a preprint is updated
 
 
   responses:

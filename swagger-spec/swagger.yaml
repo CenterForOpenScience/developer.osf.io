@@ -182,17 +182,24 @@ tags:
       We will be adding narrative documentation for handling OAuth flows, but for now, if you're familiar with OAuth, you can check out the [CAS overlay documentation](https://github.com/CenterForOpenScience/cas-overlay#web-server-authorization) for options.
 
 
-      We've also created a [test application](https://github.com/abought/osf_oauth2_demo) for verifying that our OAuth workflow works correctly.
-      If you set up an OAuth application on https://test.osf.io/, you should be able to add the client secret and client id to the settings file and it should work properly.
-      If it does not, please let us know.
+      #### When to use Token Auth
+
+      You should use Token Auth if:
+
+      + You want to use the API to interact with your own OSF data
+
+      + You have scripts to push or extract data from your OSF account
+
+      + You want to use the API to programmatically automate certain actions in your own OSF account
 
 
-      #### Which one should I choose?
+      #### When to use OAuth
 
+      You should use OAuth if:
 
-      Personal Access Tokens are best for scripts and things that don't have
-      their own web presence. OAuth is best for web pages and web applications
-      not hosted on osf.io which require access to the OSF API.
+      + You are requesting access to other people's OSF accounts/data to push or extract data on their behalf
+
+      + You currently ask people for their PAT to request resources on their behalf
 
 
   - name: Pagination
@@ -221,6 +228,15 @@ tags:
   - name: Versioning
     x-traitTag: true
     description: >-
+      For any additions to the api (new fields, routes, methods, or
+      relationships), those additions will be added simultaneously to all
+      versions. For any breaking changes and deletions, a new API version will
+      be released. Requesting the base API takes the most compatible version of
+      the API, not the one with the latest changes. Note that, in the case of
+      the OSF model changing, legacy API functionality *may* break. We try very
+      hard not to let this happen, but sometimes it's unavoidable.
+
+
       Versioning can be specified in three different ways:
 
 
@@ -248,15 +264,6 @@ tags:
       specified in the URL path, the URL path version will be applied (i.e. if
       the default version is `3.0` and the URL path is `/v2/`, then the
       version returned will be `2.0`)
-
-
-      + For any additions to the api (new fields, routes, methods, or
-      relationships), those additions will be added simultaneously to all
-      versions. For any breaking changes and deletions, a new API version will
-      be released. Requesting the base API takes the most compatible version of
-      the API, not the one with the latest changes. Note that, in the case of
-      the OSF model changing, legacy API functionality *may* break. We try very
-      hard not to let this happen, but sometimes it's unavoidable.
 
 
       #### Query Parameter Versioning
@@ -391,22 +398,19 @@ tags:
       &nbsp;&nbsp;&nbsp;&nbsp;`?filter[date_modified][gte]=2014-10-10`
 
 
-      [gte] = greater than or equal
+      Valid comparison operators include:
 
+      + `[gte]` = greater than or equal
 
-      [gt] = greater than
+      + `[gt]` = greater than
 
+      + `[lte]` = less than or equal
 
-      [lte] = less than or equal
+      + `[lt]` = less than
 
+      + `[eq]` = equals
 
-      [lt] = less than
-
-
-      [eq] = equals
-
-
-      [ne] = does not equal
+      + `[ne]` = does not equal
 
 
       These comparison filters work for dates and integers. For example, you can
@@ -865,16 +869,13 @@ tags:
   - name: External Libraries
     x-traitTag: true
     description: >-
-      ### OSF Client
+      #### [osfclient](https://github.com/osfclient/osfclient)
 
+      A python library and command-line client for file storage on the OSF.
 
-      OSF Client ([Github](https://github.com/osfclient/osfclient) | `[Docs](https://osfclient.readthedocs.io/en/latest/)) is a python library and command-line client for file storage on the OSF.
+      #### [OSFR](https://github.com/chartgerink/osfr)
 
-
-      ### OSFR
-
-
-      OSFR ([Github](https://github.com/chartgerink/osfr)) is a work-in-progress R interface for OSF's API.
+      An R package to interface with the OSF.
 
 
 paths:
