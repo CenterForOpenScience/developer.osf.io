@@ -51,6 +51,7 @@ x-tagGroups:
       - Taxonomies
       - Users
       - View Only Links
+      - Wikis
 tags:
   - name: Introduction
     x-traitTag: true
@@ -1262,3 +1263,12 @@ paths:
 
   /wikis/{wiki_id}/content/:
     $ref: 'wikis/content.yaml'
+
+  /wikis/{wiki_id}/versions/:
+    $ref: 'wikis/versions_list.yaml'
+
+  /wikis/{wiki_id}/versions/{version_id}/:
+    $ref: 'wikis/version_detail.yaml'
+
+  /wikis/{wiki_id}/versions/{version_id}/content/:
+    $ref: 'wikis/version_content.yaml'
