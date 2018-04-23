@@ -4,6 +4,9 @@ get:
     Retrieves the details of a preprint provider.
 
 
+    _< v2.7 use`prepint_providers` instead of `providers/preprints`_
+
+
     #### Returns
 
 
@@ -91,28 +94,28 @@ get:
               licenses_acceptable:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/licenses/
+                    href: https://api.osf.io/v2/providers/preprints/osf/licenses/
                     meta: {}
               taxonomies:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/taxonomies/
+                    href: https://api.osf.io/v2/providers/preprints/osf/taxonomies/
                     meta: {}
               preprints:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/preprints/
+                    href: https://api.osf.io/v2/providers/preprints/osf/preprints/
                     meta: {}
             links:
-              self: https://api.osf.io/v2/preprint_providers/osf/
-              preprints: https://api.osf.io/v2/preprint_providers/osf/preprints/
+              self: https://api.osf.io/v2/providers/preprints/osf/
+              preprints: https://api.osf.io/v2/providers/preprints/osf/preprints/
               external_url: https://osf.io/preprints/
             attributes:
               social_instagram: ''
               advisory_board: ''
               email_support: ''
-              banner_path: "/static/img/preprint_providers/cos-logo.png"
-              logo_path: "/static/img/preprint_providers/cos-logo.png"
+              banner_path: "/static/img/providers/preprints/cos-logo.png"
+              logo_path: "/static/img/providers/preprints/cos-logo.png"
               subjects_acceptable: []
               description: A scholarly commons to connect the entire research cycle
               social_facebook: ''

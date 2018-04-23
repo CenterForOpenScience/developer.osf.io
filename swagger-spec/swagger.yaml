@@ -844,6 +844,12 @@ tags:
     x-traitTag: true
     description: >-
 
+      ### v2.8
+
+
+      + Deprecate the `preprint_providers` endpoint in favor of `providers/preprints`.
+
+
       #### 2.7
 
 
