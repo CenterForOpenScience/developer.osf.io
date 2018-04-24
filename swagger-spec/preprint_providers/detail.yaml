@@ -4,7 +4,7 @@ get:
     Retrieves the details of a preprint provider.
 
 
-    _< v2.7 use`prepint_providers` instead of `providers/preprints`_
+    _< v2.7 use `preprint_providers` instead of `providers/preprints`_
 
 
     #### Returns

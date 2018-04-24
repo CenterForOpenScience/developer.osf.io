@@ -4,7 +4,7 @@ get:
     A paginated list of the licenses allowed bya preprint provider.
 
 
-    _< v2.7 use`prepint_providers` instead of `providers/preprints`_
+    _< v2.7 use `preprint_providers` instead of `providers/preprints`_
 
 
     #### Returns

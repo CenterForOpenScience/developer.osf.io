@@ -1149,19 +1149,19 @@ paths:
   #   PREPRINT PROVIDERS   #
   ##########################
 
-  /preprint_providers/:
+  /providers/preprints/:
     $ref: 'preprint_providers/list.yaml'
 
-  /preprint_providers/{preprint_provider_id}/:
+  /providers/preprints/{preprint_provider_id}/:
     $ref: 'preprint_providers/detail.yaml'
 
-  /preprint_providers/{preprint_provider_id}/preprints/:
+  /providers/preprints/{preprint_provider_id}/preprints/:
     $ref: 'preprint_providers/preprints_list.yaml'
 
-  /preprint_providers/{preprint_provider_id}/taxonomies/:
+  /providers/preprints/{preprint_provider_id}/taxonomies/:
     $ref: 'preprint_providers/taxonomies_list.yaml'
 
-  /preprint_providers/{preprint_provider_id}/licenses/:
+  /providers/preprints/{preprint_provider_id}/licenses/:
     $ref: 'preprint_providers/licenses_list.yaml'
 
   #####################

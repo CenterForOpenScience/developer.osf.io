@@ -6,7 +6,7 @@ get:
     preprints appearing first.
 
 
-    _< v2.7 use`prepint_providers` instead of `providers/preprints`_
+    _< v2.7 use `preprint_providers` instead of `providers/preprints`_
 
 
     #### Returns
