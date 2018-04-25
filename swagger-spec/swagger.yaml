@@ -33,6 +33,7 @@ x-tagGroups:
       - Errors & Error Codes
       - Entities & Entity Collections
       - External Libraries
+      - Changelog
   - name: API Reference
     tags:
       - Addons
@@ -308,45 +309,6 @@ tags:
       + If both a header version and query parameter version are specified,
       the versions must match exactly or a 409 Conflict response will be
       returned (i.e. one does not take precedence over the other).
-
-
-      #### CHANGELOG
-
-
-      `v2.1`
-
-
-      + Pagination links conform to JSON API specification, i.e. `meta` information was pulled out of the `links` object and placed in a top-level `meta` object.
-
-
-      + Deprecate the `node_links` field in the **Node** and **Registration** serializers in favor of `linked_nodes` and `linked_registrations`.
-
-
-      `v2.2`
-
-
-      + Modify institution nodes list so that affiliated components are also returned from `/v2/institutions/<id>/nodes/`.
-
-
-      + Ensure all existing date fields are standardized on UTC.
-
-
-      `v2.3`
-
-
-      + Handle merged users more correctly on `/v2/users/`.
-
-
-      `v2.4`
-
-
-      + Deprecate the `parents` field in the **Taxonomies** serializer.
-
-
-      + Deprecate the following fields in the **Preprint Provider** serializer:
-          + `social_facebook`, `social_instagram`, and `social_twitter`
-          + `banner_path`, `logo_path`, and `header_text`
-          + `email_contact`
 
 
   - name: Filtering
@@ -878,6 +840,62 @@ tags:
 
       An R package to interface with the OSF.
 
+  - name: Changelog
+    x-traitTag: true
+    description: >-
+
+      #### 2.7
+
+
+      + Require `type` and `id` for all PATCH requests.
+
+
+      #### 2.6
+
+
+      + Deprecate the [**Taxonomy List**](#tag/Taxonomies) endpoint.
+
+
+      #### 2.5
+
+
+      + Deprecate the `subjects_acceptable` field in the **Preprint Provider** serializer.
+
+
+      #### 2.4
+
+
+      + Deprecate the `parents` field in the **Taxonomies** serializer.
+
+
+      + Deprecate the following fields in the **Preprint Provider** serializer:
+          + `social_facebook`, `social_instagram`, and `social_twitter`
+          + `banner_path`, `logo_path`, and `header_text`
+          + `email_contact`
+
+
+      #### 2.3
+
+
+      + Handle merged users more correctly on `/v2/users/`.
+
+
+      #### 2.2
+
+
+      + Modify institution nodes list so that affiliated components are also returned from `/v2/institutions/<id>/nodes/`.
+
+
+      + Ensure all existing date fields are standardized on UTC.
+
+
+      #### 2.1
+
+
+      + Pagination links conform to JSON API specification, i.e. `meta` information was pulled out of the `links` object and placed in a top-level `meta` object.
+
+
+      + Deprecate the `node_links` field in the **Node** and **Registration** serializers in favor of `linked_nodes` and `linked_registrations`.
 
 paths:
 
