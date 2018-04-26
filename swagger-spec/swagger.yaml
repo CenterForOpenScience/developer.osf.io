@@ -844,6 +844,12 @@ tags:
     x-traitTag: true
     description: >-
 
+      #### 2.8
+
+
+      + Wiki relationship not shown in node detail when the wiki is disabled for that project/component.
+
+
       #### 2.7
 
 
