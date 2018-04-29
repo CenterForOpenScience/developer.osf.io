@@ -844,6 +844,12 @@ tags:
     x-traitTag: true
     description: >-
 
+      #### 2.8
+
+
+      + /data/relationships/wikis not shown in node data when the wiki is disabled for that project/component.
+
+
       #### 2.7
 
 
