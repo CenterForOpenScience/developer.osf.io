@@ -93,10 +93,10 @@ patch:
     Registration_metadata must be a dictionary with keys as question ids in the registration form, and values as nested dictionaries matching the specific format in the registration metaschema.
 
 
-    [To view all active registration schemas](#operation/metaschemas_list)
+    [To view all active registration schemas](#operation/registration_metaschemas_list)
 
 
-    [To retrieve the format of a certain registration schema](#operation/metaschemas_read)
+    [To retrieve the format of a certain registration schema](#operation/registration_metaschemas_read)
 
 
     If a question is multiple-choice, the question response must exactly match one of the possible choices.

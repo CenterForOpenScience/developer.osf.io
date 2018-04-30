@@ -27,7 +27,7 @@ get:
 
   tags:
     - Metaschemas
-  operationId: registration_metaschema_list
+  operationId: registration_metaschemas_list
   x-response-schema: Metaschema
   responses:
     '200':

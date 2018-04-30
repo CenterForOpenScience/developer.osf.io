@@ -39,7 +39,7 @@ get:
         application/json:
           data:
             links:
-              self: https://api.osf.io/v2/registration/metaschemas/564d31db8c5e4a7c9694b2c0/
+              self: https://api.osf.io/v2/metaschemas/registrations/564d31db8c5e4a7c9694b2c0/
             attributes:
               name: OSF-Standard Pre-Data Collection Registration
               schema_version: 2
