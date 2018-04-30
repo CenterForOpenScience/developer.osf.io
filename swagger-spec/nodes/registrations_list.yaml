@@ -71,7 +71,7 @@ get:
               registration_schema:
                 links:
                   related:
-                    href: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2be/
+                    href: https://api.osf.io/v2/metaschemas/registrations/564d31db8c5e4a7c9694b2be/
                     meta: {}
               logs:
                 links:

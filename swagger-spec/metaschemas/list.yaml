@@ -1,9 +1,8 @@
 # /metaschemas/
 get:
-  summary: List all metaschemas
+  summary: List all metaschemas [Deprecated]
   description: >-
-    A paginated list of all active metaschemas.
-
+    A paginated list of all active metaschemas [Deprecated].
 
     Metaschemas describe the supplemental questions that accompany a registration.
 

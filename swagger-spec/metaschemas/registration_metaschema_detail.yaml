@@ -1,17 +1,17 @@
-# /metaschemas/{metaschema_id}/
+# /metaschemas/registrations/{metaschema_id}/
 get:
-  summary: Retrieve a metaschema [Deprecated]
+  summary: Retrieve a registration metaschema
   description: >-
-    Retrieves the details of a given metaschema [Deprecated].
+    Retrieves the details of a given registration metaschema.
 
 
-    Metaschemas describe the supplemental questions that accompany a registration.
+    Registration metaschemas describe the supplemental questions that accompany a registration.
 
 
     #### Returns
 
 
-    Returns a JSON object with a `data` key containing the representation of the requested
+    Returns a JSON object with a `data` key containing the representation of the requested registration
     metaschema, if the request is successful.
 
 
@@ -25,10 +25,10 @@ get:
     type: string
     name: metaschema_id
     required: true
-    description: 'The unique identifier of the metaschema.'
+    description: 'The unique identifier of the registration metaschema.'
   tags:
     - Metaschemas
-  operationId: metaschemas_read
+  operationId: registration_metaschemas_read
   x-response-schema: Metaschema
   responses:
     '200':
@@ -39,7 +39,7 @@ get:
         application/json:
           data:
             links:
-              self: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2c0/
+              self: https://api.osf.io/v2/registration/metaschemas/564d31db8c5e4a7c9694b2c0/
             attributes:
               name: OSF-Standard Pre-Data Collection Registration
               schema_version: 2
@@ -78,5 +78,5 @@ get:
                     nav: Comments
                     format: textarea
                   title: OSF-Standard Pre-Data Collection Registration
-            type: metaschemas
+            type: registration_metaschemas
             id: 564d31db8c5e4a7c9694b2c0
