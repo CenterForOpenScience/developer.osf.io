@@ -223,6 +223,10 @@ post:
 
     &nbsp;&nbsp;&nbsp;&nbsp;`lift_embargo` (Only required when `registration_choice` is "embargo")
 
+    #### Optional
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`children` (If left unspecified all children will be registered)
+
 
     #### Returns
 
