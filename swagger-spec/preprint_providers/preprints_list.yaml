@@ -6,6 +6,9 @@ get:
     preprints appearing first.
 
 
+    _< v2.8 use `preprint_providers` instead of `providers/preprints`_
+
+
     #### Returns
 
 
@@ -30,7 +33,7 @@ get:
 
     You can optionally request that the response only include preprints that
     match your filters by utilizing the `filter` query parameter, e.g.
-    https://api.osf.io/v2/preprint_providers/osf/preprints/?filter[is_published]=true.
+    https://api.osf.io/v2/providers/preprints/osf/preprints/?filter[is_published]=true.
 
 
     Preprints may be filtered by their `id`, `is_published`, `date_created`,
@@ -84,7 +87,7 @@ get:
                 provider:
                   links:
                     related:
-                      href: 'https://api.osf.io/v2/preprint_providers/socarxiv/'
+                      href: 'https://api.osf.io/v2/providers/preprints/socarxiv/'
                       meta: {}
               links:
                 self: 'https://api.osf.io/v2/preprints/hqb2p/'
