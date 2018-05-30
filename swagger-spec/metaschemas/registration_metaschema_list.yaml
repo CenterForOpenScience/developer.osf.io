@@ -1,46 +1,46 @@
-# /metaschemas/{metaschema_id}/
+# /metaschemas/registrations/
 get:
-  summary: Retrieve a metaschema
+  summary: List all registration metaschemas
   description: >-
-    Retrieves the details of a given metaschema.
+    A paginated list of all active registration metaschemas.
 
 
-    Metaschemas describe the supplemental questions that accompany a registration.
+    Registration metaschemas describe the supplemental questions that accompany a registration.
 
 
     #### Returns
 
 
-    Returns a JSON object with a `data` key containing the representation of the requested
-    metaschema, if the request is successful.
+    Returns a JSON object containing `data` and `links` keys.
 
 
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
+    The `data` key contains an array of 10 registration metaschemas.
+    Each resource in the array is a separate registration metaschema object.
 
 
-  parameters:
-  - in: path
-    type: string
-    name: metaschema_id
-    required: true
-    description: 'The unique identifier of the metaschema.'
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#tag/Pagination).
+
+
+    This request should never return an error.
+
+
   tags:
     - Metaschemas
-  operationId: metaschemas_read
+  operationId: registration_metaschemas_list
   x-response-schema: Metaschema
-  deprecated: true
   responses:
     '200':
-      description: 'OK'
+      description: OK
       schema:
-        $ref: definition.yaml
+        type: array
+        items:
+          $ref: 'definition.yaml'
       examples:
         application/json:
           data:
-            links:
-              self: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2c0/
+          - links:
+              self: https://api.osf.io/v2/metaschemas/registrations/564d31db8c5e4a7c9694b2c0/
             attributes:
               name: OSF-Standard Pre-Data Collection Registration
               schema_version: 2
@@ -79,5 +79,13 @@ get:
                     nav: Comments
                     format: textarea
                   title: OSF-Standard Pre-Data Collection Registration
-            type: metaschemas
+            type: registration_metaschemas
             id: 564d31db8c5e4a7c9694b2c0
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+            total: 1
+            per_page: 10

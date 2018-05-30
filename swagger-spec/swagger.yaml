@@ -1038,8 +1038,12 @@ paths:
 
   /metaschemas/:
     $ref: 'metaschemas/list.yaml'
+  /metaschemas/registrations/:
+    $ref: 'metaschemas/registration_metaschema_list.yaml'
   /metaschemas/{metaschema_id}:
     $ref: 'metaschemas/detail.yaml'
+  /metaschemas/registrations/{metaschema_id}:
+    $ref: 'metaschemas/registration_metaschema_detail.yaml'
 
   #############
   #   NODES   #
