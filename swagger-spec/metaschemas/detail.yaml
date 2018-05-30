@@ -1,8 +1,8 @@
 # /metaschemas/{metaschema_id}/
 get:
-  summary: Retrieve a metaschema [Deprecated]
+  summary: Retrieve a metaschema
   description: >-
-    Retrieves the details of a given metaschema [Deprecated].
+    Retrieves the details of a given metaschema.
 
 
     Metaschemas describe the supplemental questions that accompany a registration.
@@ -30,6 +30,7 @@ get:
     - Metaschemas
   operationId: metaschemas_read
   x-response-schema: Metaschema
+  deprecated: true
   responses:
     '200':
       description: 'OK'
