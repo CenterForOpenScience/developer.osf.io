@@ -151,7 +151,7 @@ properties:
       identifiers:
         type: string
         readOnly: true
-        description: 'A link to the list of identifiers for this node (i.e. ARK and DOI identifiers).'
+        description: 'A link to the list of identifiers for this node (i.e. DOI identifiers).'
       license:
         type: string
         readOnly: true
