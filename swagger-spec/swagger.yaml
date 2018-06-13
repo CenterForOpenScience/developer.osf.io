@@ -29,6 +29,7 @@ x-tagGroups:
       - Filtering
       - Sparse Fieldsets
       - Embedding
+      - Related Counts
       - Request Formatting
       - Errors & Error Codes
       - Entities & Entity Collections
@@ -492,6 +493,29 @@ tags:
 
       Some endpoints are automatically embedded, such as the [node contributors](#operation/nodes_contributors_list) endpoint, which automatically embeds user information.
 
+  - name: Related Counts
+    x-traitTag: true
+    description: >-
+     All related resources that appear in the `relationships` attribute can have a count associated with them, this allows you to see number of resources associated with a queried object before you query them. The count will appear in the `count` variable of the field’s `links.related.meta` object.
+
+
+     To view the count of objects in the relationship field add the query parameter `?related_counts=<field_name>`, for multiple fields use a comma separated list like `?related_counts=<field_name1>,<field_name2>` for all related fields use `?related_counts=True`.
+
+
+
+     For example using the the url `/v2/users/<user_id>/?related_counts=nodes` for a user with 4 nodes will return the following for the node field of the user object.
+
+         GET /v2/users/<user_id>/?related_counts=nodes/
+         "nodes": {
+           "links": {
+             "related": {
+               "href": "https://api.osf.io/v2/users/<user_id>/nodes/",
+               "meta": {
+                 "count": 4
+               }
+             }
+           }
+         },
 
   - name: Request Formatting
     x-traitTag: true
