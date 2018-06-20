@@ -59,8 +59,7 @@ get:
     * `updated_fields`: One or more of a Node's fields are changed
 
 
-    * `external_ids_added`: An external identifier is added to a Node (e.g.
-    DOI, ARK)
+    * `external_ids_added`: An external identifier is added to a Node (e.g. the DOI)
 
     ---
 

@@ -194,7 +194,7 @@ properties:
       identifiers:
         type: string
         readOnly: true
-        description: 'A link to the list of identifiers for this registration (i.e. ARK and DOI identifiers).'
+        description: 'A link to the list of identifiers for this registration (i.e. DOI identifiers).'
       logs:
         type: string
         readOnly: true

@@ -44,7 +44,7 @@ get:
             links:
               self: https://api.osf.io/v2/identifiers/57f1641db83f6901ed94b45a/
             attributes:
-              category: ark
+              category: doi
               value: c7605/osf.io/73pnd
             type: identifiers
             id: 57f1641db83f6901ed94b45a
