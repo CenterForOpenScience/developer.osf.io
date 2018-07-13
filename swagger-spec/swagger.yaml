@@ -1130,6 +1130,9 @@ paths:
   /nodes/{node_id}/wikis/:
     $ref: 'nodes/wikis_list.yaml'
 
+  /nodes/{node_id}/settings/:
+    $ref: 'nodes/node_settings_detail.yaml'
+
   #/nodes/{node_id}/relationships/institutions:
   #  $ref: 'nodes/institutions_relationships.yaml'
 
