@@ -64,6 +64,71 @@ properties:
         type: string
         readOnly: false
         description: 'The user''s timezone, e.g. ''Etc/UTC''.'
+      social:
+        type: object
+        readOnly: false
+        description: 'The social fields associated with a user.'
+        properties:
+          researcherId:
+            type: array
+            description: 'The researcherId for the given user.'
+            items:
+              type: string
+          baiduScholar:
+            description: 'The baiduScholar for the given user.'
+            type: array
+            items:
+              type: string
+          twitter:
+            description: 'The twitter for the given user.'
+            type: array
+            items:
+              type: string
+          ssrn:
+            description: 'The ssrn for the given user.'
+            type: array
+            items:
+              type: string
+          impactStory:
+            description: 'The impactStory for the given user.'
+            type: array
+            items:
+              type: string
+          researchGate:
+            description: 'The researchGate for the given user.'
+            type: array
+            items:
+              type: string
+          github:
+            description: 'The github for the given user.'
+            type: array
+            items:
+              type: string
+          scholar:
+            description: 'The scholar for the given user.'
+            type: array
+            items:
+              type: string
+          profileWebsites:
+            description: 'The profileWebsites for the given user.'
+            type: array
+            items:
+              type: string
+          linkedIn:
+            description: 'The linkedIn for the given user.'
+            type: array
+            items:
+              type: string
+          academiaProfileID:
+            description: 'The academiaProfileID for the given user.'
+            type: array
+            items:
+              type: string
+          orcid:
+            description: 'The orcid for the given user.'
+            type: array
+            items:
+              type: string
 
   relationships:
     type: object
@@ -104,3 +169,6 @@ example:
     attributes:
       full_name: "Casey M. Rollins"
       middle_names: "Marie"
+      social:
+        github:
+          - 'caseyrollins'
