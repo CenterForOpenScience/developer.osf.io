@@ -1265,6 +1265,9 @@ paths:
   /users/{user_id}/registrations/:
     $ref: 'users/registrations_list.yaml'
 
+  /users/{user_id}/settings/:
+    $ref: 'users/settings_detail.yaml'
+
   /users/{user_id}/addons/:
     $ref: 'users/addons_list.yaml'
 
