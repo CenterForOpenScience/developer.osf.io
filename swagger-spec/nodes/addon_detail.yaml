@@ -4,15 +4,20 @@ get:
   description: >-
     Retrieve details of an individual addon connected to this node.
 
+
     #### Permissions
+
 
     NodeSettings that are attached to public nodes will give read-only access to everyone.
     Private nodes require explicit read permission. Write and admin access are the same for public and private nodes.
     Administrators on a parent node have implicit read permissions for all child nodes.
 
+
     Any users with write or admin access to the node are able to deauthorize an enabled addon, but only the addon authorizer is able to change the configuration (i.e. selected folder) of an already-configured NodeSettings entity.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the details of the requested
     addon, if the request is successful.
@@ -21,6 +26,7 @@ get:
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - in: path
@@ -70,16 +76,20 @@ patch:
 
     To delete or deauthorize a node addon, issue a **PUT** with all fields set to `null` or `False`, or a **PATCH** with enabled set `False`.
 
+
     #### Permissions
+
 
     NodeSettings that are attached to public nodes will give read-only access to everyone.
     Private nodes require explicit read permission. Write and admin access are the same for public and private nodes.
     Administrators on a parent node have implicit read permissions for all child nodes.
 
+
     Any users with write or admin access to the node are able to deauthorize an enabled addon, but only the addon authorizer is able to change the configuration (i.e. selected folder) of an already-configured NodeSettings entity.
 
 
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the new representation of the updated
     node addon, if the request is successful.
@@ -87,6 +97,7 @@ patch:
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
 
   parameters:
     - in: path

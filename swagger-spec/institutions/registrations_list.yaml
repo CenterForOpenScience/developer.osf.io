@@ -3,7 +3,9 @@ get:
   description: >-
     A paginated list of all registrations affiliated with an institution.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -20,13 +22,17 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/institutions/cos/registrations?filter[title]=science.
 
 
     Registrations may be filtered by their  `id`, `title`, `description`, `public`, `tags`, `category`, `date_created`, `date_modified`, `root`, `parent`, `contributors`, and `preprint`
+
+
   parameters:
     - in: path
       type: string

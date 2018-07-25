@@ -110,7 +110,7 @@ properties:
           identifiers:
             type: string
             readOnly: true
-            description: 'Dictionary containing the DOI and ARK ID for a preprint associated with the log.'
+            description: 'Dictionary containing the DOI for a preprint associated with the log.'
           institution:
             type: string
             readOnly: true

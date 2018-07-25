@@ -1,14 +1,15 @@
 get:
   summary: 'List all child nodes'
   description: >-
-
     A paginated list of the next level child nodes for the given node.
     The returned nodes are sorted by their `date_modified`, with the most recently updated child nodes appearing first.
 
 
     The list will include child nodes that are public, as well as child nodes that are private, if the authenticated user has permission to view them.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -23,7 +24,9 @@ get:
 
     This request should never return an error.
 
+
     #### Filtering
+
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/nodes/ezcuj/children/?filter[title]=reproducibility.
@@ -35,6 +38,11 @@ get:
     Most fields are string fields and will be filtered using simple substring matching.
     Public and preprint are boolean fields, and can be filtered using truthy values, such as **true**, **false**, **0** or **1**.
     Note that quoting true or false in the query will cause the match to fail.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
   parameters:
     - in: path
       type: string
@@ -207,30 +215,37 @@ post:
     Note: Creating a child node via this endpoint will function the same as creating a node via the node list endpoint,
     but the child node will have the given node set as its parent.
 
+
     #### Permissions
+
 
     Only write contributors may create children nodes.
 
+
     #### Required
+
 
     Required fields for creating a node include:
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`title`
+    &nbsp;&nbsp;&nbsp;&nbsp;`title`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`category`
+    &nbsp;&nbsp;&nbsp;&nbsp;`category`
 
 
     Note: nodes default to **private** unless the `public` field is explicitly set to **true** in the request payload.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the created node, if the request is successful.
 
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
 
   parameters:
   - in: path

@@ -1,0 +1,117 @@
+# /wikis/{wiki_id}/versions/
+get:
+  summary: List all wiki versions
+  description: >-
+    Lists all versions of a wiki.
+
+
+    The wiki is a collection of markdown text pages that can be used to describe
+    the project or dataset contained in the attached node.  Every time the content
+    of a wiki page is updated, a new version is created.
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    wiki, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#Introduction_error_codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_versions_list
+  x-response-schema: Wiki
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: 'version_definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              wiki_page:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/wikis/3va7z/'
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/users/nrws6/'
+                    meta: {}
+            links:
+              download: 'https://api.osf.io/v2/wikis/3va7z/versions/2/content/'
+              self: 'https://api.osf.io/v2/wikis/3va7z/versions/2/'
+            attributes:
+              date_created: '2018-02-17T01:39:09.930740'
+              content_type: 'text/markdown'
+              size: 115
+            type: 'wiki-versions'
+            id: '2'
+          - relationships:
+              wiki_page:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/wikis/3va7z/'
+                    meta: {}
+              user:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/users/nrws6/'
+                    meta: {}
+            links:
+              download: 'https://api.osf.io/v2/wikis/3va7z/versions/1/content/'
+              self: 'https://api.osf.io/v2/wikis/3va7z/versions/1/'
+            attributes:
+              date_created: '2017-02-16T15:45:57.671957'
+              content_type: 'text/markdown'
+              size: 108
+            type: 'wiki-versions'
+            id: '1'
+
+
+post:
+  summary: Update a wiki
+  description: >-
+    Updates the content of the given wiki page by creating a new wiki version.
+
+
+    `content` is the only required field when updating a wiki page.
+
+
+    Returns a JSON object with a `data` key containing the representation of the created wiki version, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '../wikis/version_definition.yaml'
+  - in: path
+    type: string
+    name: wiki_id
+    required: true
+    description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_versions_create
+  consumes:
+    - application/json
+  x-response-schema: Wiki
+  responses:
+    '201':
+      description: 'Success'

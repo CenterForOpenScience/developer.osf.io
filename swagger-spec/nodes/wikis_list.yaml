@@ -3,9 +3,10 @@ get:
   description: >-
     List of wiki pages on a node.
 
-    ####Returns
+    #### Returns
 
-    Paginated list of the node's current wiki page versions ordered by their date_modified.
+
+    Paginated list of the node's current wiki pages, ordered by their date_modified.
     Each resource contains the full representation of the wiki, meaning additional requests
     to an individual wiki's detail view are not necessary.
 
@@ -17,16 +18,24 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
+
     #### Filtering
+
 
     Wiki pages can be filtered based on their `name` and `date_modified` fields.
 
+
     + `filter[name]=<Str>` -- filter wiki pages by name
+
 
     + `filter[date_modified][comparison_operator]=YYYY-MM-DDTH:M:S` -- filter wiki pages based on date modified.
 
 
     Possible comparison operators include 'gt' (greater than), 'gte'(greater than or equal to), 'lt' (less than) and 'lte' (less than or equal to). The date must be in the format YYYY-MM-DD and the time is optional.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
     - in: path
@@ -89,3 +98,40 @@ get:
             meta:
               total: 12
               per_page: 10
+
+post:
+  summary: Create a wiki
+  description: >-
+    Creates a new wiki page on the given node.
+
+
+    `name` is the only required field when creating a new wiki page.
+    The `content` of the wiki page may optionally be included.
+
+
+    Returns a JSON object with a `data` key containing the representation of the created wiki, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '../wikis/definition.yaml'
+  - in: path
+    type: string
+    name: node_id
+    required: true
+    description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: nodes_wikis_list_create
+  consumes:
+    - application/json
+  x-response-schema: Wiki
+  responses:
+    '201':
+      description: 'Success'

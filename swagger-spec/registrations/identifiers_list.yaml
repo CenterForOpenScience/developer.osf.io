@@ -4,7 +4,9 @@ get:
   description: >-
     A paginated list of the registration's identifiers.
 
-    ####Returns
+
+    #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -15,14 +17,19 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
-    ####Filtering
+
+    #### Filtering
 
 
     You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
-    https://api.osf.io/v2/registrations/wucr8/identifiers/?filter[category]=ark
+    https://api.osf.io/v2/registrations/wucr8/identifiers/?filter[category]=doi
 
 
-    Identifiers may be filtered by their `category` e.g `ark` or `doi`.
+    Identifiers may be filtered by their `category` e.g `doi`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
 
@@ -59,19 +66,6 @@ get:
               value: 10.17605/OSF.IO/73PND
             type: identifiers
             id: 57f1641db83f6901ed94b459
-          - relationships:
-              referent:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/nodes/73pnd/
-                    meta: {}
-            links:
-              self: https://api.osf.io/v2/identifiers/57f1641db83f6901ed94b45a/
-            attributes:
-              category: ark
-              value: c7605/osf.io/73pnd
-            type: identifiers
-            id: 57f1641db83f6901ed94b45a
           links:
             first:
             last:

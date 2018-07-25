@@ -11,7 +11,9 @@ get:
 
     User nodes are not available at this endpoint.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -23,13 +25,19 @@ get:
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
 
+
     #### Filtering
+
 
     You can optionally request that the response only include registrations that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/users/cdi38/registrations/?filter[title]=replication.
 
 
     Registrations may be filtered by their `id`, `title`, `category`, `description`, `public`, `tags`, `date_created`, `date_modified`, `root`, `parent`, and `contributors`.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
 
   parameters:
     - in: path
@@ -70,7 +78,7 @@ get:
               registration_schema:
                 links:
                   related:
-                    href: https://api.osf.io/v2/metaschemas/564d31db8c5e4a7c9694b2c0/
+                    href: https://api.osf.io/v2/metaschemas/registrations/564d31db8c5e4a7c9694b2c0/
                     meta: {}
               parent:
                 links:

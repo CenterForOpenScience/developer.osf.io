@@ -15,10 +15,6 @@ properties:
     readOnly: true
     description: 'The properties of the preprint provider entity.'
     properties:
-      social_instagram:
-        type: string
-        readOnly: true
-        description: 'The preprint provider''s Instagram account ID. This field is deprecated as of verson 2.4.'
       advisory_board:
         type: string
         readOnly: true
@@ -27,30 +23,10 @@ properties:
         type: string
         readOnly: true
         description: 'The preprint providers''s support email address.'
-      banner_path:
-        type: string
-        readOnly: true
-        description: 'A static path to the preprint provider''s banner image. This field is deprecated as of verson 2.4.'
-      logo_path:
-        type: string
-        readOnly: true
-        description: 'A static path to the preprint provider''s logo image. This field is deprecated as of verson 2.4.'
-      subjects_acceptable:
-        type: string
-        readOnly: true
-        description: 'A nested array structure defining allowed subjects for this preprint provider, in the BePress taxonomy.'
       description:
         type: string
         readOnly: true
         description: 'The description of the preprint provider.'
-      social_facebook:
-        type: string
-        readOnly: true
-        description: 'The preprint provider''s Facebook account ID. This field is deprecated as of verson 2.4.'
-      email_contact:
-        type: string
-        readOnly: true
-        description: 'The preprint provider''s contact email address. This field is deprecated as of verson 2.4.'
       example:
         type: string
         readOnly: true

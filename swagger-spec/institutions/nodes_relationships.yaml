@@ -6,6 +6,7 @@ get:
     affiliation can add the affiliation to nodes that they have write access over. This
     displays an institutional logo on the node page.
 
+
   tags:
     - Institutions
   operationId: institutions_relationships_nodes
@@ -29,7 +30,7 @@ post:
   summary: Create a node-institution relationship
   description: >-
     Create a relationship between a node and an institution. This requires the user to be affiliated with the institution and
-    to have write access to the node. 
+    to have write access to the node.
 
   tags:
     - Institutions
@@ -48,7 +49,8 @@ delete:
   description: >-
     Delete a relationship between a node and an institution. This requires the user
     to have write access to the node. If the user no longer has the institutional affiliation and
-    removes an institution from a node, they will not be able to add it back. 
+    removes an institution from a node, they will not be able to add it back.
+
 
   tags:
     - Institutions

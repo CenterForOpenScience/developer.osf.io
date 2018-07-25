@@ -4,19 +4,25 @@ get:
   description: >-
         Retrieves details about a specific view only link.
 
-        ####Permissions
+
+        #### Permissions
+
 
         Only project administrators may retrieve the details of a view only link.
         Attempting to retrieve a view only link without appropriate permissions will result in a 403 Forbidden response.
 
+
         #### Returns
+
 
         Returns a JSON object with a `data` key containing the representation of the requested
         view only link, if the request is successful.
 
+
         If the request is unsuccessful, an `errors` key containing
         information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
         to understand why this request may have failed.
+
 
   parameters:
     - in: path

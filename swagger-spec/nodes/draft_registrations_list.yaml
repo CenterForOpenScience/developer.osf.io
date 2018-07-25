@@ -10,11 +10,15 @@ get:
 
     Your original project remains editable but will now have the draft registration linked to it.
 
+
     #### Permissions
+
 
     Only project administrators may view draft registrations.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -26,6 +30,7 @@ get:
 
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
+
 
   parameters:
     - in: path
@@ -88,20 +93,27 @@ post:
 
     Draft registrations contain the supplemental registration questions that accompany a registration.
     A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+    It is the first step in creating a registration.
+
+
+    Refer to step 2: [How to complete the supplemental registration questions of a draft registration](#operation/nodes_draft_registrations_partial_update)
+
+
+    Refer to step 3: [How to create a registration from a completed draft registration](#operation/nodes_registrations_create)
 
 
     Your original project remains editable but will now have the draft registration linked to it.
 
     #### Permissions
 
-    Only project administrators may view create registrations.
+    Only project administrators may create draft registrations.
 
     #### Required
 
     Required fields for creating a draft registration include:
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp`registration_supplement`
+    &nbsp;&nbsp;&nbsp;&nbsp;`registration_supplement`
 
     #### Returns
 

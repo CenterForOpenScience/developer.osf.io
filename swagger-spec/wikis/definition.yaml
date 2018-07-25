@@ -39,7 +39,7 @@ properties:
         description: 'The type of object.'
       name:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'The name/title of the wiki page.'
       extra:
         type: string
@@ -74,6 +74,7 @@ properties:
       - node
       - user
       - comments
+      - versions
     properties:
       node:
         type: string
@@ -87,6 +88,10 @@ properties:
         type: string
         readOnly: false
         description: 'A relationship to the comments related to this wiki.'
+      versions:
+        type: string
+        readOnly: false
+        description: 'A relationship to the versions related to this wiki.'
   links:
     type: object
     title: Links
@@ -108,3 +113,10 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the detail page for the wiki.'
+
+example:
+  data:
+    type: 'wikis'
+    attributes:
+      name: 'A brand new wiki page'
+      content: 'Your wiki content goes here.'

@@ -3,7 +3,12 @@ get:
   description: >-
     Retrieves the details of a preprint provider.
 
+
+    _< v2.8 use `preprint_providers` instead of `providers/preprints`_
+
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     preprint provider, if the request is successful.
@@ -13,54 +18,6 @@ get:
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
 
-
-    #### Acceptable Subjects Structure
-
-    Each preprint provider specifies acceptable subjects.
-
-    `subjects_acceptable` is an array found in `attributes`.
-
-    Subjects consist of general parent subjects (e.g., Engineering),
-    more specific child subjects (e.g., Aerospace Engineering),
-    and even more specific grandchild subjects (e.g., Aerodynamics and Fluid Mechanics).
-    Subjects can only be nested 3 deep.
-
-
-        "subjects_acceptable": [
-            [
-                [
-                    # Parent Subject:
-                    # Architecture
-                    "584240d954be81056ceca9e5",
-
-                    # Child Subject:
-                    # Architectural Engineering
-                    "584240da54be81056cecac87"
-                ],
-                # Include all Architectural Engineering's children:
-                true
-            ],
-            [
-                [
-                    # Parent Subject:
-                    # Engineering
-                    "584240da54be81056cecaca9",
-
-                    # Child Subject:
-                    # Aerospace Engineering
-                    "584240db54be81056cecacd6",
-
-                    # Grandchild Subject:
-                    # Aerodynamics and Fluid Mechanics
-                    "584240da54be81056cecaa74"
-                ],
-                # All nestings 3 deep must be false
-                false
-            ]
-        ]
-
-    The above structure would allow Architecture, Architectural Engineering, all of Architectural Engineering's children,
-    Engineering, Aerospace Engineering, and Aerodynamics and Fluid Mechanics.
 
   parameters:
     - in: path
@@ -84,34 +41,26 @@ get:
               licenses_acceptable:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/licenses/
+                    href: https://api.osf.io/v2/providers/preprints/osf/licenses/
                     meta: {}
               taxonomies:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/taxonomies/
+                    href: https://api.osf.io/v2/providers/preprints/osf/taxonomies/
                     meta: {}
               preprints:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/preprints/
+                    href: https://api.osf.io/v2/providers/preprints/osf/preprints/
                     meta: {}
             links:
-              self: https://api.osf.io/v2/preprint_providers/osf/
-              preprints: https://api.osf.io/v2/preprint_providers/osf/preprints/
+              self: https://api.osf.io/v2/providers/preprints/osf/
+              preprints: https://api.osf.io/v2/providers/preprints/osf/preprints/
               external_url: https://osf.io/preprints/
             attributes:
-              social_instagram: ''
               advisory_board: ''
               email_support: ''
-              banner_path: "/static/img/preprint_providers/cos-logo.png"
-              logo_path: "/static/img/preprint_providers/cos-logo.png"
-              subjects_acceptable: []
               description: A scholarly commons to connect the entire research cycle
-              social_facebook: ''
-              header_text: ''
-              social_twitter: ''
-              email_contact: ''
               example: khbvy
               name: Open Science Framework
               domain: 'osf.io'

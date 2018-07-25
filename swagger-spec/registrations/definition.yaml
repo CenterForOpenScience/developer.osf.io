@@ -18,8 +18,11 @@ properties:
   attributes:
     type: object
     title: Attributes
-    readOnly: true
+    readOnly: false
     description: 'The properties of the registration entity.'
+    required:
+      - draft_registration
+      - registration_choice
     properties:
       category:
         type: string
@@ -105,7 +108,7 @@ properties:
         description: 'Whether or not a preprint has been created from this node, or if this node was created for a preprint.'
       public:
         type: boolean
-        readOnly: false
+        readOnly: true
         description: 'Whether or not the registration is publicly visible.'
       registration:
         type: boolean
@@ -141,6 +144,19 @@ properties:
         type: string
         readOnly: true
         description: 'The reasoning for why this registration was withdrawn, as entered by the administrator that initiated the withdrawal.'
+      draft_registration:
+        type: string
+        readOnly: false
+        description: 'The ID of the draft registration from which the registration will be created.'
+      registration_choice:
+        type: string
+        readOnly: false
+        description: 'Describes when the registration will become public, either "immediate" or "embargo". If this field is "embargo", you will need to supply a datetime in the "lift_embargo" field.'
+      lift_embargo:
+        type: string
+        format: date-time
+        readOnly: false
+        description: 'A future datetime when the registration will become public. This field should be set when "registration_choice" is set to "embargo" in the range from 2 days to 4 years.'
   relationships:
     type: object
     title: Relationships
@@ -178,7 +194,7 @@ properties:
       identifiers:
         type: string
         readOnly: true
-        description: 'A link to the list of identifiers for this registration (i.e. ARK and DOI identifiers).'
+        description: 'A link to the list of identifiers for this registration (i.e. DOI identifiers).'
       logs:
         type: string
         readOnly: true

@@ -3,17 +3,22 @@ get:
   description: >-
     Retrieve the details of a given draft registration.
 
+
     Draft registrations contain the supplemental registration questions that accompany a registration.
     A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
 
 
     Your original project remains editable but will now have the draft registration linked to it.
 
+
     #### Permissions
+
 
     Only project administrators may view draft registrations.
 
+
     #### Returns
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
     draft registration, if the request is successful.
@@ -21,6 +26,7 @@ get:
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
 
   parameters:
     - in: path
@@ -82,23 +88,25 @@ get:
 patch:
   summary: Update a draft registration
   description: >-
-    Updates a draft registration by setting the values of the attributes specified in the request body.
-    Any unspecified attributes will be left unchanged.
+    Update a draft registration by answering the supplemental registration questions. This is the second step in creating a registration.
+    The answers will go under registration_metadata.
+    Registration_metadata must be a dictionary with keys as question ids in the registration form, and values as nested dictionaries matching the specific format in the registration metaschema.
 
 
-    Draft registrations contain the supplemental registration questions that accompany a registration.
-    Answer the questions in the draft registration supplement by sending update requests until you are ready to submit the draft.
+    [To view all active registration schemas](#operation/registration_metaschemas_list)
 
 
-    The registration supplement of a draft registration cannot be updated after the draft has been created.
-
-
-    When updating a draft registration, `registration_metadata` is required.
-    It must be a dictionary with keys as question ids in the registration form,
-    and values as nested dictionaries matching the specific format in the [registration schema](TODO: link me pls).
+    [To retrieve the format of a certain registration schema](#operation/registration_metaschemas_read)
 
 
     If a question is multiple-choice, the question response must exactly match one of the possible choices.
+
+
+    Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
+
+
+    Refer to step 3: [How to create a registration from a completed draft registration](#operation/nodes_registrations_create)
+
 
     #### Permissions
 
@@ -127,7 +135,7 @@ patch:
       name: body
       required: true
       schema:
-        $ref: draft_registration_definition.yaml
+        $ref: 'draft_registration_detail_definition.yaml'
   tags:
     - Nodes
   operationId: nodes_draft_registrations_partial_update

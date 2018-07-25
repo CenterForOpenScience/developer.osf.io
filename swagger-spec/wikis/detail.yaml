@@ -1,20 +1,22 @@
+# /wikis/{wiki_id}/
 get:
-  summary: Retrieve a Wiki
+  summary: Retrieve a wiki
   description: >-
-    Retrieves the details about a specific wiki.
+    Retrieves the details of a given wiki page.
 
-    A wiki is a collection of markdown text pages that can be used to describe
-    the project or dataset of contained in the attached node.
 
-    ####Returns
+    The wiki is a collection of markdown text pages that can be used to further describe
+    or document a project.
+
 
     Returns a JSON object with a `data` key containing the representation of the requested
-    wiki, if the request was successful.
+    wiki page, if the request was successful.
 
 
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
     to understand why this request may have failed.
+
 
   parameters:
     - in: path
@@ -45,6 +47,11 @@ get:
                   related:
                     href: 'https://api.osf.io/v2/users/5k3hq/'
                     meta: {}
+              versions:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/wikis/zveyb/versions/'
+                    meta: {}
               comments:
                 links:
                   related:
@@ -67,3 +74,83 @@ get:
               size: 552
             type: 'wikis'
             id: 'xu77p'
+
+patch:
+  summary: Rename a wiki
+  description: >-
+    Renames the given wiki page.
+
+
+    Note: the "Home" wiki page may not be renamed.
+
+
+    Only write contributors may rename wiki pages.
+    Attempting to rename a wiki page for which you do not have write access will result in a **403 Forbidden** response.
+
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: 'wikis'
+            id: '{wiki_id}'
+            attributes:
+              name: 'Examination of non-newtonian fluids'
+
+  tags:
+    - Wikis
+  operationId: wiki_partial_update
+  x-response-schema: Wiki
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a wiki
+  description: >-
+
+    Permanently deletes a wiki page. This action cannot be undone.
+
+
+    Note: the "Home" wiki page cannot be deleted.
+
+
+    Only contributors with write permissions may delete a wiki page.
+    Attempting to delete a wiki for which you do not have write permission will result in a **403 Forbidden** response.
+
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_delete
+  responses:
+    '204':
+      description: 'No content'

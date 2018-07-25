@@ -2,12 +2,13 @@
 get:
   summary: List all metaschemas
   description: >-
-
     A paginated list of all active metaschemas.
 
     Metaschemas describe the supplemental questions that accompany a registration.
 
+
     #### Returns
+
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -22,10 +23,12 @@ get:
 
     This request should never return an error.
 
+
   tags:
     - Metaschemas
   operationId: metaschemas_list
   x-response-schema: Metaschema
+  deprecated: true
   responses:
     '200':
       description: OK

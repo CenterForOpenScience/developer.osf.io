@@ -18,7 +18,6 @@ properties:
       category:
         type: string
         enum:
-          - ark
           - doi
         readOnly: true
         description: 'The category of the identifier'
