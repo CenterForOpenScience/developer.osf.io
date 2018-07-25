@@ -70,65 +70,49 @@ properties:
         description: 'The social fields associated with a user.'
         properties:
           researcherId:
-            type: array
+            type: string
             description: 'The researcherId for the given user.'
-            items:
-              type: string
           baiduScholar:
             description: 'The baiduScholar for the given user.'
-            type: array
-            items:
-              type: string
+            type: string
           twitter:
-            description: 'The twitter for the given user.'
+            description: 'The twitter handles for the given user.'
             type: array
             items:
               type: string
           ssrn:
             description: 'The ssrn for the given user.'
-            type: array
-            items:
-              type: string
+            type: string
           impactStory:
             description: 'The impactStory for the given user.'
-            type: array
-            items:
-              type: string
+            type: string
           researchGate:
             description: 'The researchGate for the given user.'
-            type: array
-            items:
-              type: string
+            type: string
           github:
-            description: 'The github for the given user.'
+            description: 'The github usernames for the given user.'
             type: array
             items:
               type: string
           scholar:
-            description: 'The scholar for the given user.'
-            type: array
-            items:
-              type: string
+            description: 'The google scholar for the given user.'
+            type: string
           profileWebsites:
             description: 'The profileWebsites for the given user.'
             type: array
             items:
               type: string
           linkedIn:
-            description: 'The linkedIn for the given user.'
+            description: 'The linkedIn profiles for the given user.'
             type: array
             items:
               type: string
           academiaProfileID:
             description: 'The academiaProfileID for the given user.'
-            type: array
-            items:
-              type: string
+            type: string
           orcid:
             description: 'The orcid for the given user.'
-            type: array
-            items:
-              type: string
+            type: string
 
   relationships:
     type: object
