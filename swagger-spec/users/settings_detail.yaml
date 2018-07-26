@@ -45,6 +45,8 @@ get:
               self: https://api.osf.io/v2/users/abcde/settings/
             attributes:
               two_factor_enabled: true
+              subscribe_osf_help_email: true
+              subscribe_osf_general_email: false
             type: user-settings
             id: abcde
 
@@ -108,18 +110,28 @@ patch:
                     two_factor_enabled:
                         type: boolean
                         readOnly: false
-                        description: Whether or not two-factor authentication has been enabled
+                        description: Whether or not two-factor authentication has been enabled.
                     two_factor_verification:
                         type: integer
                         readOnly: false
                         description: Write only, enter 6 six-digit verification code.  two_factor_enabled must be set to true.
+                    subscribe_osf_general_email:
+                        type: boolean
+                        readOnly: false
+                        description: Whether you are subscribed to general OSF notifications.
+                    subscribe_osf_help_email:
+                        type: boolean
+                        readOnly: false
+                        description: Whether you are subscribed to tips on how to make the most of the OSF.
         example:
           data:
             type: 'users'
             id: '{user_id}'
             attributes:
-              two_factor_enabled: True
+              two_factor_enabled: true
               two_factor_verification: 123456
+              subscribe_osf_help_email: false
+              subscribe_osf_general_email: true
 
   tags:
     - Users
