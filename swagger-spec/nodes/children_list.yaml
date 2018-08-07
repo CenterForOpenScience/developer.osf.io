@@ -267,3 +267,166 @@ post:
   responses:
     '201':
       description: 'Created'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            attributes:
+              access_requests_enabled: true
+              category: software
+              collection: false
+              current_user_can_comment: true
+              current_user_permissions:
+              - read
+              - write
+              - admin
+              date_created: '2018-08-07T20:16:54.236943'
+              date_modified: '2018-08-07T20:16:54.236943'
+              description: ''
+              fork: false
+              node_license:
+              preprint: false
+              public: false
+              registration: false
+              subjects: []
+              tags: []
+              title: An Excellent Project Title
+            id: 8xj6n
+            links:
+              html: http://osf.io/8xj6n/
+              self: http://api.osf.io/v2/nodes/8xj6n/
+            relationships:
+              affiliated_institutions:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/institutions/
+                    meta: {}
+                  self:
+                    href: http://api.osf.io/v2/nodes/8xj6n/relationships/institutions/
+                    meta: {}
+              children:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/children/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/citation/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/comments/?filter%5Btarget%5D=8xj6n
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/contributors/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/draft_registrations/
+                    meta: {}
+              files:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/files/
+                    meta: {}
+              forks:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/forks/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/identifiers/
+                    meta: {}
+              implicit_contributors:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/implicit_contributors/
+                    meta: {}
+              linked_by_nodes:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/linked_by_nodes/
+                    meta: {}
+              linked_by_registrations:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/linked_by_registrations/
+                    meta: {}
+              linked_nodes:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/linked_nodes/
+                    meta: {}
+                  self:
+                    href: http://api.osf.io/v2/nodes/8xj6n/relationships/linked_nodes/
+                    meta: {}
+              linked_registrations:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/linked_registrations/
+                    meta: {}
+                  self:
+                    href: http://api.osf.io/v2/nodes/8xj6n/relationships/linked_registrations/
+                    meta: {}
+              logs:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/logs/
+                    meta: {}
+              node_links:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/node_links/
+                    meta: {}
+              parent:
+                data:
+                  id: mwcnb
+                  type: nodes
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/mwcnb/
+                    meta: {}
+              preprints:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/preprints/
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/registrations/
+                    meta: {}
+              root:
+                data:
+                  id: mwcnb
+                  type: nodes
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/mwcnb/
+                    meta: {}
+              settings:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/settings/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/view_only_links/
+                    meta: {}
+              wikis:
+                links:
+                  related:
+                    href: http://api.osf.io/v2/nodes/8xj6n/wikis/
+                    meta: {}
+            type: nodes
+          meta:
+            version: '2.0'
