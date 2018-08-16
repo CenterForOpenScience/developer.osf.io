@@ -1253,7 +1253,7 @@ paths:
   /users/{user_id}/:
     $ref: 'users/detail.yaml'
 
-  /users/{user_id}/identities/:
+  /users/{user_id}/settings/identities/:
     $ref: 'users/external_identities_list.yaml'
 
   /users/{user_id}/identities/{identities_id}/:
