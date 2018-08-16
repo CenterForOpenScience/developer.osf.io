@@ -32,7 +32,7 @@ get:
             id: bg4di
             type: node-citation
             attributes:
-              publisher: Open Science Framework
+              publisher: OSF
               author:
               - given: Timothy M
                 family: Errington
