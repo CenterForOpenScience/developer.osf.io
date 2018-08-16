@@ -1,0 +1,31 @@
+type: object
+title: External Identity Detail
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the external identity provider e.g. ORCID.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the external identity entity (`external-identities`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the  external identity entity.'
+    properties:
+      status:
+        type: string
+        readOnly: true
+        description: 'The status of the external identity e.g LINK or VERIFIED.'
+      external_id:
+        type: string
+        readOnly: true
+        description: 'The identifier for the user associated with that external identity.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the citation style entity.'
+

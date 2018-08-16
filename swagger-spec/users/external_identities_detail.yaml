@@ -37,7 +37,7 @@ get:
     '200':
       description: 'OK'
       schema:
-        $ref: definition.yaml
+        $ref: '../external_identities/external_identities_detail.yaml'
       examples:
         application/json:
           data:
@@ -86,19 +86,5 @@ delete:
     - Users
   operationId: external_identities_detail
   responses:
-    '200':
-      description: 'OK'
-      schema:
-        $ref: definition.yaml
-      examples:
-        application/json:
-          data:
-            links:
-              self: https://api.osf.io/v2/users/q7fts/settings/identities/ORCID/
-            attributes:
-              status: VERFIED
-              external_id: '0000-0001-9143-4652'
-              id: ORCID
-            type: users
-            id: q7fts
-
+    '204':
+      description: 'NO CONTENT'

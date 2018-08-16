@@ -32,7 +32,9 @@ get:
     '200':
       description: 'OK'
       schema:
-        $ref: definition.yaml
+        type: array
+        items:
+          $ref: '../external_identities/external_identities_detail.yaml'
       examples:
         application/json:
           data:
