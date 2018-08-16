@@ -1,18 +1,17 @@
 get:
   summary: List all external identities
   description: >-
-    Retrieves a list of a user's external identities, currently this only includes their ORCID accounts.
-
-    The returned information includes the external identity's name, status and id.
+    Retrieves a list of a user's external identities.
 
     #### Permissions
 
-    External identities can only be viewed or deleted by the user they belong to.
+    External identities may only be viewed by the user they belong to.
 
     #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     external identities, if the request is successful.
+
 
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
@@ -42,7 +41,7 @@ get:
                 self: https://api.osf.io/v2/users/q7fts/settings/identities/ORCID/
               attributes:
                 status: VERFIED
-                external_id: '0000-0001-9143-4652'
+                external_id: '0000-0001-9143-4653'
                 id: ORCID
               type: users
               id: q7fts

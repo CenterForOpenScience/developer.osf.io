@@ -27,5 +27,5 @@ properties:
     type: object
     title: Links
     readOnly: true
-    description: 'URLs to alternative representations of the citation style entity.'
+    description: 'URLs to alternative representations of the external identity.'
 
