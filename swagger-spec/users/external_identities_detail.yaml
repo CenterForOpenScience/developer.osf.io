@@ -1,9 +1,13 @@
 get:
-  summary: Retrieve user's external identities
+  summary: Retrieve a external identity
   description: >-
     Retrieves a JSON object of a user's external identity, currently this only includes their ORCID account.
 
     The returned information includes the external identity's name, status and id.
+
+    #### Permissions
+
+    External identities can only be viewed or deleted by the user they belong to.
 
     #### Returns
 
@@ -47,20 +51,24 @@ get:
             id: q7fts
 
 delete:
-  summary: Delete user's external identities
+  summary: Remove a user's external identities
   description: >-
     Deletes  a user's external identity.
 
     The returns deleted information including the external identity's name, status and id.
 
+    #### Permissions
+
+    External identities can only be viewed or deleted by the user they belong to.
+
     #### Returns
 
-    Returns a JSON object with a `data` key containing the representation of the requested
-    external identities, if the request is successful.
+    If the request is successful, no content is returned.
 
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
+
+    If the request is unsuccessful, a JSON object with an errors key containing information about the failure will
+    be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request
+    may have failed.
 
 
   parameters:
