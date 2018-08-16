@@ -1,0 +1,66 @@
+type: object
+title: Node Settings Detail
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the node that the current settings are for.'
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier for node settings. Should be node-settings.'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the node settings entity.'
+    properties:
+      access_requests_enabled:
+        type: string
+        readOnly: false
+        description: 'A boolean value indicating if access requests are allowed for the connected node.'
+      anyone_can_comment:
+        type: string
+        readOnly: false
+        description: 'A boolean value indicating if public comments are enabled on the connected node.'
+      anyone_can_edit_wiki:
+        type: string
+        readOnly: false
+        description: 'A boolean value indicating if public editing is enabled on the connected wiki.'
+      wiki_enabled:
+        type: string
+        readOnly: false
+        description: 'A boolean value indicating that there is a wiki connected to the associated node.'
+      redirect_link_enabled:
+        type: string
+        readOnly: false
+        description: 'A boolean value indicating that there is a redirect link activated for when a user visits the associated node.'
+      redirect_link_url:
+        type: string
+        readOnly: false
+        description: 'The redirect URL that has been configured for the associated node.'
+      redirect_link_label:
+        type: string
+        readOnly: false
+        description: 'The label for the redirect URL that has been configured for the associated node.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'URLs to other entities or entity collections that have a relationship to the node settings entity.'
+    properties:
+      view_only_links:
+        type: string
+        readOnly: true
+        description: 'A link to the list of view only links that have been created for the connected node.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the node settings entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the node settings entity.'

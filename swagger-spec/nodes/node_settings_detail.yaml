@@ -1,0 +1,116 @@
+# /nodes/{node_id}/settings/
+get:
+  summary: Retrieve node settings
+  description: >-
+    Retrieves the details of settings related to the node.
+
+
+    #### Returns
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    node settings, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+
+    #### Permissions
+
+
+    Settings for a node are readable by users that are contributors on the node. Most fields are writeable only by users that are administrators on the node.
+    The fields for determining redirect links are writable by a contributor who has read/write permissions on the node.
+
+
+  parameters:
+
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+
+
+  tags:
+    - Nodes
+  operationId: node_settings_detail
+  x-response-schema: 'Node Settings'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'node_settings_definition.yaml'
+      examples:
+        application/json:
+          data:
+            relationships:
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/ezcuj/view_only_links/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/ezcuj/settings/
+            attributes:
+              redirect_link_enabled: true
+              redirect_link_url: "https://reproducibility.osf.io/"
+              access_requests_enabled: false
+              redirect_link_label: "Published Study"
+              anyone_can_comment: true
+              wiki_enabled: true
+              anyone_can_edit_wiki: false
+            type: node-settings
+            id: ezcuj
+
+patch:
+  summary: Update node settings
+  description: >-
+    Updates the details of settings related to the node.
+
+
+    #### Returns
+
+
+    Returns a JSON object with a `data` key containing the updated representation of the requested
+    node settings, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+
+    #### Permissions
+
+
+    Most fields on the node settings entity are writeable only by users that are administrators on the node.
+    The fields for determining redirect links are writable by a contributor who has read/write permissions on the node.
+
+
+  parameters:
+
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+
+
+  tags:
+    - Nodes
+  operationId: node_settings_detail
+  x-response-schema: 'Node Settings'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'node_settings_definition.yaml'
+        example:
+          data:
+            type: node-settings
+            id: '{node_id}'
+            attributes:
+              wiki_enabled: false
+              access_requests_enabled: true
