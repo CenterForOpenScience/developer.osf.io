@@ -1,0 +1,87 @@
+get:
+  summary: Retrieve a external identity
+  description: >-
+    Retrieves the specified external identity, e.g. ORCID.
+
+    #### Permissions
+
+    External identities may only be viewed by the user they belong to.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    external identities, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+
+  parameters:
+  - in: path
+    type: string
+    name: user_id
+    required: true
+    description: 'The unique identifier of the user.'
+  - in: path
+    type: string
+    name: identities_id
+    required: true
+    description: "The unique identifier of a user's external identity."
+  tags:
+    - Users
+  operationId: external_identities_detail
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../external_identities/external_identities_detail.yaml'
+      examples:
+        application/json:
+          data:
+            links:
+              self: https://api.osf.io/v2/users/q7fts/settings/identities/ORCID/
+            attributes:
+              status: VERFIED
+              external_id: '0000-0001-9143-4653'
+              id: ORCID
+            type: users
+            id: q7fts
+
+delete:
+  summary: Remove a external identity
+  description: >-
+    Deletes  the specified external identity.
+
+    #### Permissions
+
+    External identities may only be deleted by the user they belong to.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an errors key containing information about the failure will
+    be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request
+    may have failed.
+
+
+  parameters:
+  - in: path
+    type: string
+    name: user_id
+    required: true
+    description: 'The unique identifier of the user.'
+  - in: path
+    type: string
+    name: identities_id
+    required: true
+    description: "The unique identifier of a user's external identity."
+  tags:
+    - Users
+  operationId: external_identities_detail
+  responses:
+    '204':
+      description: 'No content'

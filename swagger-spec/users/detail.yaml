@@ -1,7 +1,7 @@
 get:
   summary: Retrieve a user
   description: >-
-    Retrieves the details of a given users.
+    Retrieves the details for a given user.
 
 
     The returned information includes the user's bibliographic information and the date the user was registered.
