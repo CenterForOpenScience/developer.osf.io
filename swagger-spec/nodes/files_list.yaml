@@ -27,7 +27,7 @@ get:
     https://api.osf.io/v2/nodes/ezcuj/files/osfstorage/?filter[kind]=file
 
 
-    Node files may be filtered by `id`, `name`, `node`, `kind`, `path`, `provider`, `size`, and `last_touched`.
+    Node files may be filtered by `id`, `name`, `kind`, `path`, `provider`, `size`, and `last_touched`.
 
 
     You can learn more about advanced filtering features [here](#tag/Filtering).
