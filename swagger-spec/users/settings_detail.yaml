@@ -1,0 +1,144 @@
+# /users/{user_id}/settings/
+get:
+  summary: Retrieve user settings
+  description: >-
+    Retrieves a user's settings.
+
+
+    #### Permissions
+
+
+    A user's settings are only visible to that user.
+
+
+    #### Returns
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    user addon, if the request was successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: user_id
+      description: 'The unique identifier of the user.'
+
+  tags:
+    - Users
+  operationId: users_settings_read
+  x-response-schema: User Settings
+  responses:
+    '200':
+      description: 'OK'
+    #   schema:
+    #     $ref: 'user_settings_definition.yaml'
+      examples:
+        application/json:
+          data:
+            links:
+              self: https://api.osf.io/v2/users/abcde/settings/
+            attributes:
+              two_factor_enabled: true
+              subscribe_osf_help_email: true
+              subscribe_osf_general_email: false
+            type: user-settings
+            id: abcde
+
+patch:
+  summary: Update a user's settings
+  description: >-
+    Updates a user's settings by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged.
+
+    User settings can be updated with either a **PUT** or **PATCH** request.
+
+
+    #### Permissions
+
+    Attempting to update any user settings but your own will result in a **403 Forbidden** response.
+
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    node, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+
+  parameters:
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        title: User Settings
+        required:
+            - id
+            - type
+            - attributes
+            - relationships
+            - links
+        properties:
+            id:
+                type: string
+                readOnly: true
+                description: The unique identifier of the logged in user
+            type:
+                type: string
+                readOnly: true
+                description: 'The type identifier of the draft registration entity (`user-settings`).'
+            attributes:
+                type: object
+                title: Attributes
+                readOnly: false
+                description: 'The properties of the user settings'
+                properties:
+                    two_factor_enabled:
+                        type: boolean
+                        readOnly: false
+                        description: Whether or not two-factor authentication has been enabled.
+                    two_factor_verification:
+                        type: integer
+                        readOnly: false
+                        description: Write only, enter 6 six-digit verification code.  two_factor_enabled must be set to true.
+                    subscribe_osf_general_email:
+                        type: boolean
+                        readOnly: false
+                        description: Whether you are subscribed to general OSF notifications.
+                    subscribe_osf_help_email:
+                        type: boolean
+                        readOnly: false
+                        description: Whether you are subscribed to tips on how to make the most of the OSF.
+        example:
+          data:
+            type: 'users'
+            id: '{user_id}'
+            attributes:
+              two_factor_enabled: true
+              two_factor_verification: 123456
+              subscribe_osf_help_email: false
+              subscribe_osf_general_email: true
+
+  tags:
+    - Users
+  operationId: user_settings_partial_update
+  x-response-schema: User Settings
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
