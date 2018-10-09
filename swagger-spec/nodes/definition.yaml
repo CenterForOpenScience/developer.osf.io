@@ -105,6 +105,10 @@ properties:
         type: string
         readOnly: false
         description: 'The unique ID of the node from which this node was templated, if this node was created from a template.'
+      wiki_enabled:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the node has its wiki enabled.'
 
   relationships:
     type: object

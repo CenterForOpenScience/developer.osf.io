@@ -136,6 +136,10 @@ properties:
         type: string
         readOnly: true
         description: 'The title of the registered node.'
+      wiki_enabled:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the registration has its wiki enabled.'
       withdrawn:
         type: boolean
         readOnly: true
