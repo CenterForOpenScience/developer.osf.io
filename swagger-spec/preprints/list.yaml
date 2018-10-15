@@ -58,6 +58,19 @@ get:
                     related:
                       href: 'https://api.osf.io/v2/nodes/5xuck/'
                       meta: {}
+                    self:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/relationships/node/'
+                      meta: {}
+                files:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/files/'
+                      meta: {}
+                contributors:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/contributors/'
+                      meta: {}
                 citation:
                   links:
                     related:
@@ -83,16 +96,33 @@ get:
                     related:
                       href: 'https://api.osf.io/v2/preprint_providers/socarxiv/'
                       meta: {}
+                requests:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/requests/'
+                      meta: {}
+                review_actions:
+                    links:
+                        related:
+                            href: 'https://api.osf.io/v2/preprints/hqb2p/review_actions/'
+                            meta: {}
               links:
                 self: 'https://api.osf.io/v2/preprints/hqb2p/'
                 html: 'https://osf.io/preprints/socarxiv/hqb2p/'
                 preprint_doi: 'https://dx.doi.org/10.5072/FK2OSF.IO/HQB2P'
               attributes:
+                date_last_transitioned: '2018-10-15T13:44:09.478243'
                 doi: null
+                description: 'A tale of two cities'
+                title: 'A Study of Urban versus Rural'
+                reviews_state: 'accepted'
                 license_record:
                   copyright_holders: []
                   year: '2017'
                 date_modified: '2017-02-03T06:19:00.158000'
+                original_publication_date: null
+                date_withdrawn: null
+                preprint_doi_created: null
                 is_preprint_orphan: false
                 date_published: '2017-02-03T06:18:59.788000'
                 subjects:
@@ -102,6 +132,13 @@ get:
                       id: 584240da54be81056cecac1a
                 date_created: '2017-02-03T06:16:57.129000'
                 is_published: true
+                public: true
+                tags:
+                - city
+                - country
+                - suburb
+                current_user_permissions:
+                - read
               type: preprints
               id: hqb2p
           links:
@@ -116,7 +153,36 @@ get:
 post:
   summary: Create a preprint
   description: >-
-    Creates a new preprint.
+    Creates a new preprint.  Initial request to start the preprint requires a title and a provider.
+
+
+    After you've created the preprint, you will need to upload a file to the preprint
+    or copy a file from an existing OSF project, which will be a waterbutler request.
+
+
+    To upload a new file to the preprint -
+
+        1. Make a request to the preprint files' relationship to get the preprint's upload link.
+        2. Issue a PUT request to the preprint's upload link
+
+        curl -X "PUT" "https://files.us.osf.io/v1/resources/<preprint_id>/providers/osfstorage/?kind=file&name=my_preprint_file.txt" \
+            --
+            -H "Authorization: Bearer your-token-goes-here" \
+            -H "Content-Type: text/plain" \
+            -d "Contents of my preprint file go here"
+
+    To copy an existing file from a project to your preprint -
+
+        1. Make a request to the node file's list endpoint GET http://api.osf.io/v2/nodes/node_id/files/osfstorage/
+        2. Locate the "move" relationship link for the file you wish to copy from the node to the preprint
+        3. Issue a POST request to the file's move link, where the resource is the preprint id, the action is copy, and the provider is osfstorage.
+
+        curl -X "POST" "https://files.us.osf.io/v1/resources/<node_id>/providers/osfstorage/<file_id>" \
+            --
+            -H "Authorization: Bearer your-token-goes-here " \
+            -H "Content-Type: application/json" \
+            -d '{"action": "copy", "path": "/", "resource": "<preprint_id>", "provider": "osfstorage", "conflict": "replace"}'
+
 
     #### Returns
 

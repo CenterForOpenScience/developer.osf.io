@@ -17,50 +17,110 @@ properties:
     title: Attributes
     readOnly: false
     description: 'The properties of the preprint entity.'
+    required:
+      - title
     properties:
-      date_created:
+      date_last_transitioned:
+          type: string
+          format: date-time
+          readOnly: true
+          description: 'The time at which the preprint''s reviews state was last changed. For example, the time at which a preprint''s reviews state was moved from "pending" to "accepted".'
+      doi:
         type: string
-        format: date-time
+        readOnly: false
+        description: 'The DOI of the associated journal article, as entered by the user, if the preprint is published.'
+      description:
+        type: string
+        readOnly: false
+        description: 'The description of the preprint'
+      title:
+        type: string
+        readOnly: false
+        description: 'The title of the preprint'
+      reviews_state:
+        type: string
         readOnly: true
-        description: 'The time at which the preprint was created, as an iso8601 formatted timestamp.'
+        description: 'The preprint''s review status, e.g. pending, accepted, rejected, etc.'
+      license_record:
+        type: string
+        readOnly: false
+        description: 'The metadata (copyright year and holder) associated with a license, required for certain licenses.'
       date_modified:
         type: string
         format: date-time
         readOnly: true
         description: 'The time at which the preprint was last modified, as an iso8601 formatted timestamp.'
+      original_publication_date:
+        type: string
+        format: date-time
+        readOnly: false
+        description: 'User-entered, the date when the preprint was originally published'
+      date_withdrawn:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The date when the preprint was withdrawn'
+      preprint_doi_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The date when the doi was minted for the preprint'
+      is_preprint_orphan:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not the preprint is orphaned. A preprint can be orphaned if it''s primary file was removed from the preprint node. This field may be deprecated in future versions.'
       date_published:
         type: string
         format: date-time
         readOnly: true
         description: 'The time at which the preprint was published, as an iso8601 formatted timestamp.'
-      doi:
-        type: string
-        readOnly: false
-        description: 'The DOI of the associated journal article, as entered by the user, if the preprint is published.'
-      is_preprint_orphan:
-        type: boolean
-        readOnly: true
-        description: 'Whether or not the preprint is orphaned. A preprint can be orphaned if it''s primary file was removed from the preprint node. This field may be deprecated in future versions.'
-      license_record:
-        type: string
-        readOnly: false
-        description: 'The metadata (copyright year and holder) associated with a license, required for certain licenses.'
       subjects:
         type: array
         items:
           type: string
         readOnly: false
         description: 'A nested array structure that describe subjects related to the preprint, in the BePress taxonomy. Each dictionary contains the text and ID of a subject.'
+      date_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the preprint was created, as an iso8601 formatted timestamp.'
+      is_published:
+         type: boolean
+         readOnly: false
+         description: 'Whether or not a preprint is published'
+      public:
+         type: boolean
+         readOnly: false
+         description: 'Whether a preprint has been marked as public.  This is not a user-facing setting.  Legacy preprints or spammy preprints may be marked as private'
+      tags:
+          type: array
+          items:
+            type: string
+          readOnly: false
+          description: 'A list of the preprint''s tags.'
+      current_user_permissions:
+          type: array
+          items:
+             type: string
+          readOnly: true
+          description: 'The logged-in user''s permissions to the preprint'
   relationships:
     type: object
     title: Relationships
     readOnly: false
     description: 'URLs to other entities or entity collections that have a relationship to the preprint entity.'
     required:
-      - node
-      - primary_file
       - provider
     properties:
+      files:
+        type: string
+        readOnly: true
+        description: 'A relationship to the storage providers to the preprint - in this case, preprints are restricted to having just the OsfStorage provider.'
+      contributors:
+        type: string
+        readOnly: true
+        description: 'A relationship to the preprint authors'
       citation:
         type: string
         readOnly: true
@@ -76,7 +136,7 @@ properties:
       node:
         type: string
         readOnly: false
-        description: 'A relationship to the node that was created for the preprint, or from which the preprint was created.'
+        description: 'A relationship to the project containing supplemental materials for the preprints.'
       primary_file:
         type: string
         readOnly: false
@@ -113,16 +173,9 @@ properties:
         description: 'A link to the detail page for the preprint.'
 example:
   data:
-    attributes: {}
+    attributes:
+      title: 'A study of economics'
     relationships:
-      node:
-        data:
-          type: nodes
-          id: '{node_id}'
-      primary_file:
-        data:
-          type: primary_files
-          id: '{primary_file_id}'
       provider:
         data:
           type: providers

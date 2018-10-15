@@ -1,7 +1,7 @@
 get:
   summary: List all preprints
   description: >-
-    A paginated list of preprints related to a given node.
+    A paginated list of preprints for which the given node contains supplemental materials.
     The returned preprints are sorted by their creation date, with the most recent
     preprints appearing first.
 
