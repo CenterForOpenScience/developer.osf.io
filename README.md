@@ -1,4 +1,7 @@
 # OSF API Documentation
+
+[![Build Status](https://travis-ci.org/CenterForOpenScience/developer.osf.io.svg?branch=master)](https://travis-ci.org/CenterForOpenScience/developer.osf.io)
+
 The Open API specification for the Open Science Framework API lives here.
 The developer documentation is generated from this specification by [ReDoc](https://github.com/Rebilly/ReDoc).
 
