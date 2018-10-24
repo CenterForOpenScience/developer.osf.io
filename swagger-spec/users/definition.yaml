@@ -64,6 +64,55 @@ properties:
         type: string
         readOnly: false
         description: 'The user''s timezone, e.g. ''Etc/UTC''.'
+      social:
+        type: object
+        readOnly: false
+        description: 'The social fields associated with a user.'
+        properties:
+          researcherId:
+            type: string
+            description: 'The researcherId for the given user.'
+          baiduScholar:
+            description: 'The baiduScholar for the given user.'
+            type: string
+          twitter:
+            description: 'The twitter handles for the given user.'
+            type: array
+            items:
+              type: string
+          ssrn:
+            description: 'The ssrn for the given user.'
+            type: string
+          impactStory:
+            description: 'The impactStory for the given user.'
+            type: string
+          researchGate:
+            description: 'The researchGate for the given user.'
+            type: string
+          github:
+            description: 'The github usernames for the given user.'
+            type: array
+            items:
+              type: string
+          scholar:
+            description: 'The google scholar for the given user.'
+            type: string
+          profileWebsites:
+            description: 'The profileWebsites for the given user.'
+            type: array
+            items:
+              type: string
+          linkedIn:
+            description: 'The linkedIn profiles for the given user.'
+            type: array
+            items:
+              type: string
+          academiaProfileID:
+            description: 'The academiaProfileID for the given user.'
+            type: string
+          orcid:
+            description: 'The orcid for the given user.'
+            type: string
 
   relationships:
     type: object
@@ -104,3 +153,6 @@ example:
     attributes:
       full_name: "Casey M. Rollins"
       middle_names: "Marie"
+      social:
+        github:
+          - 'caseyrollins'
