@@ -55,6 +55,7 @@ get:
                     meta: {}
             links:
               self: https://api.osf.io/v2/institutions/cos/
+              html: https://osf.io/institutions/cos/
             attributes:
               auth_url: null
               logo_path: /static/img/institutions/shields/cos-shield.png
