@@ -161,6 +161,12 @@ properties:
         format: date-time
         readOnly: false
         description: 'A future datetime when the registration will become public. This field should be set when "registration_choice" is set to "embargo" in the range from 2 days to 4 years.'
+      children:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'A list of guids for children of nodes to be registered. All children must have parents being registered.'
   relationships:
     type: object
     title: Relationships
@@ -263,3 +269,4 @@ example:
       draft_registration: '{draft_registration_id}'
       registration_choice: embargo
       lift_embargo: '2017-05-10T20:44:03.185000'
+      children: ['fsd2s', 'dwsa2']
