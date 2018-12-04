@@ -1027,7 +1027,7 @@ paths:
   /groups/{group_id}/members/:
     $ref: 'groups/members_list.yaml'
 
-  /groups/{group_id}/members/{member_id}/:
+  /groups/{group_id}/members/{user_id}/:
     $ref: 'groups/member_detail.yaml'
 
   #################

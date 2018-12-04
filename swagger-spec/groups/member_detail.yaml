@@ -26,7 +26,7 @@ get:
     description: 'The unique identifier of the group.'
   - in: path
     type: string
-    name: member_id
+    name: user_id
     required: true
     description: 'The unique identifier of the user.'
   tags:
@@ -100,7 +100,7 @@ patch:
       description: 'The unique identifier of the group.'
     - in: path
       type: string
-      name: member_id
+      name: user_id
       required: true
       description: 'The unique identifier of the user.'
     - in: body
@@ -147,7 +147,7 @@ delete:
       description: 'The unique identifier of the group.'
     - in: path
       type: string
-      name: member_id
+      name: user_id
       required: true
       description: 'The unique identifier of the user.'
   tags:
