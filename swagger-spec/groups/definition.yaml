@@ -1,0 +1,71 @@
+type: object
+title: Group
+required:
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the group entity.'
+
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier of the group entity (`groups`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the group entity.'
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        readOnly: false
+        description: 'The name of the group.'
+      date_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the group was created, as an iso8601 formatted timestamp.'
+      date_modified:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the group was last modified, as an iso8601 formatted timestamp.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'URLs to other entities or entity collections that have a relationship to the group entity.'
+    properties:
+      members:
+        type: string
+        readOnly: true
+        description: 'A link to the list of the members of this group.'
+
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the group entity.'
+    properties:
+      html:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the group''s page on the OSF.'
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the canonical API endpoint of this group.'
+
+example:
+  data:
+    type: 'groups'
+    attributes:
+      title: 'My Lab Group'

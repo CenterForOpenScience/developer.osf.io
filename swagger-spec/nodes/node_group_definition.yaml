@@ -1,0 +1,76 @@
+type: object
+title: Node Group
+required:
+  - type
+  - relationships
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the node_group entity. Node group identifiers have the form {node_id}-{group_id}.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the node group entity (`node_groups`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the node group entity.'
+    properties:
+      permission:
+        type: string
+        enum:
+          - read
+          - write
+          - admin
+        readOnly: false
+        description: 'The permission level of the node group. The default value is ''write''.'
+      name:
+        type: string
+        readOnly: true
+        description: 'The name of the group that has permission to the node.'
+      date_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the group was created, as an iso8601 formatted timestamp.'
+      date_modified:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the group was last modified, as an iso8601 formatted timestamp.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'URLs to other entities or entity collections that have a relationship to the contributor entity.'
+    required:
+      - group
+      - user
+    properties:
+      group:
+        type: string
+        readOnly: true
+        description: 'A relationship to the group that has permission to the node.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the node group entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the the canonical API endpoint for the node group.'
+example:
+  data:
+    type: node_groups
+    attributes:
+        permission: write
+    relationships:
+      groups:
+        data:
+          type: groups
+          id: '{group_id}'

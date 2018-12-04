@@ -1,0 +1,158 @@
+get:
+  summary: Retrieve a group member
+  description: >-
+    Retrieves the details of a given group member.
+
+
+    Groups are collections of users that can be added to a project or several projects.  Group
+    members either have a `manager` or `member` role.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+
+  parameters:
+  - in: path
+    type: string
+    name: group_id
+    required: true
+    description: 'The unique identifier of the group.'
+  - in: path
+    type: string
+    name: member_id
+    required: true
+    description: 'The unique identifier of the user.'
+  tags:
+    - Groups
+  operationId: group_members_read
+  x-response-schema: Group Member
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: group_member_definition.yaml
+      examples:
+        application/json:
+          data:
+          - relationships:
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/typ46/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/members/
+            attributes:
+              unregistered_contributor:
+              full_name: Grapes McGee
+              role: manager
+            type: group_members
+            id: 5c0571f4b146c900085f39a3-typ46
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 9
+              per_page: 10
+              total_bibliographic: 1
+
+patch:
+  summary: Update a group member
+  description: >-
+    Updates a group member by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged.
+
+
+    Group members can be updated with either a **PUT** or **PATCH** request.
+    Since this endpoint has no mandatory attributes, PUT and PATCH are functionally the same.
+
+    #### Permissions
+
+    Only group managers can update group membership.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+
+    If the given user is not already in the member list, a 404 Not Found error will be returned.
+    A group must always have at least one manager, and any attempt to downgrade the permissions of a sole manager will result in a 400 Bad Request error.
+
+  parameters:
+    - in: path
+      type: string
+      name: group_id
+      required: true
+      description: 'The unique identifier of the group.'
+    - in: path
+      type: string
+      name: member_id
+      required: true
+      description: 'The unique identifier of the user.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: 'group_member_definition.yaml'
+  tags:
+    - Groups
+  operationId: group_members_partial_update
+  x-response-schema: Group Member
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a group member
+  description: >-
+    Removes a member froma group.
+    This request only removes the relationship between the group and the user, it does not delete the user itself.
+
+
+    A group must always have at least one manager, and attempting to remove the only manager from a group will result in a **400 Bad Request** response.
+
+    #### Permissions
+
+    A user can remove themselves as a member. Otherwise, only project managers can remove members.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: group_id
+      required: true
+      description: 'The unique identifier of the group.'
+    - in: path
+      type: string
+      name: member_id
+      required: true
+      description: 'The unique identifier of the user.'
+  tags:
+    - Groups
+  operationId: group_members_delete
+  responses:
+    '204':
+      description: 'No content'

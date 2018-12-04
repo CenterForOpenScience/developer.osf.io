@@ -1,0 +1,124 @@
+get:
+  summary: List all group members
+  description: >-
+    A paginated list of the group members.
+
+    Groups are collections of users. A user can either be a group member or a group manager.
+    Group managers can update group membership. All group members can be added as a unit to a project or several projects.
+
+    #### Returns
+
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 members.
+    Each resource in the array contains the full representation of the member, meaning additional requests to a member's detail view are not necessary.
+    The user's role in the group and full_name are top-level attributes. Additionally, if a member hasn't yet claimed their OSF account, they will
+    have an unregistered_member attribute.  To see more details about the user in the group, follow the `users` relationship.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+
+    #### Filtering
+
+    You can optionally request that the response only include members that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/members/?filter[role]=manager.
+
+
+    Contributors may be filtered by their `role` and `full_name` attributes.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
+  parameters:
+    - in: path
+      type: string
+      name: group_id
+      required: true
+      description: 'The unique identifier of the group.'
+  tags:
+    - Groups
+  operationId: group_members_list
+  x-response-schema: Group Member
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: group_member_definition.yaml
+      examples:
+        application/json:
+          data:
+          - relationships:
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/typ46/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/members/
+            attributes:
+              unregistered_contributor:
+              full_name: Grapes McGee
+              role: manager
+            type: group_members
+            id: 5c0571f4b146c900085f39a3-typ46
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 9
+              per_page: 10
+              total_bibliographic: 1
+
+post:
+  summary: Create a group member
+  description: >-
+    Adds a member to a group, effectively creating a relationship between the group and a user.
+
+    Groups are collections of users. A user can either be a group member or a group manager.
+    Group managers can update group membership. All group members can be added as a unit to a project or several projects.
+
+    #### Permissions
+
+    Only a group manager can add a member to the group.
+
+    #### Required
+
+    A relationship object with a `data` key, containing the `users` type and valid user ID is required.  You can specify the member's role
+    with the `role` attribute. Default role is `member`.  To add an unregistered member to a group, specify a `full_name` and `email`
+    combination under `attributes`.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the new group member, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: group_id
+      required: true
+      description: 'The unique identifier of the group.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: group_member_definition.yaml
+  tags:
+    - Groups
+  operationId: group_members_create
+  x-response-schema: Group Member
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'Success'

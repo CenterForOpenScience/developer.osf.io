@@ -101,6 +101,11 @@ get:
                   related:
                     href: https://api.osf.io/v2/nodes/e81xl/forks/
                     meta: {}
+              groups:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/e81xl/groups/
+                    meta: {}
               root:
                 links:
                   related:

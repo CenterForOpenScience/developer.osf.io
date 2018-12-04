@@ -1,0 +1,146 @@
+get:
+  summary: Retrieve a node group
+  description: >-
+    Retrieves the details of a given node group.
+
+
+    Groups are collections of users that can be added to a node.  All members of the group will be granted the same
+    permission to the node.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+
+  parameters:
+  - in: path
+    type: string
+    name: node_id
+    required: true
+    description: 'The unique identifier of the node.'
+  - in: path
+    type: string
+    name: group_id
+    required: true
+    description: 'The unique identifier of the group.'
+  tags:
+    - Nodes
+  operationId: nodes_groups_read
+  x-response-schema: Group
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+         $ref: node_group_definition.yaml
+      examples:
+        application/json:
+          data:
+            relationships:
+              groups:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/y9jdt/groups/5c0571f4b146c900085f39a3/
+            attributes:
+              name: My Lab
+              permission: admin
+            type: node_groups
+            id: y9jdt-5c0571f4b146c900085f39a3
+
+patch:
+  summary: Update a node group
+  description: >-
+    Updates the permission the group has to the node.
+
+    Node groups can be updated with either a **PUT** or **PATCH** request.
+    Since this endpoint has no mandatory attributes, PUT and PATCH are functionally the same.
+
+    #### Permissions
+
+    Only project administrators can update the permissions a group has to the node.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+
+    If the given group is not already in the group list, a 404 Not Found error will be returned.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: group_id
+      required: true
+      description: 'The unique identifier of the group.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: 'node_group_definition.yaml'
+  tags:
+    - Nodes
+  operationId: nodes_groups_partial_update
+  x-response-schema: Group
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+
+delete:
+  summary: Delete a node group
+  description: >-
+    Removes a group from a node.
+    This request only removes the relationship between the node and the group, it does not delete the group itself.
+
+
+    A node must always have at least one admin, and attempting to remove the only admin from a node will result in a **400 Bad Request** response.
+
+    #### Permissions
+
+    A manager of the group or a project administrator can remove the group from the node.
+
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: path
+      type: string
+      name: group_id
+      required: true
+      description: 'The unique identifier of the group.'
+  tags:
+    - Nodes
+  operationId: nodes_groups_delete
+  responses:
+    '204':
+      description: 'No content'
