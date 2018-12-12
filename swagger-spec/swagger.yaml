@@ -14,7 +14,7 @@ info:
   x-logo:
     url: 'https://cdn.cos.io/media/images/cos_center_logo_small.original.png'
     backgroundColor: 'transparent'
-host: 'test-api.osf.io'
+host: 'api.test.osf.io'
 schemes:
   - https
 basePath: /v2
@@ -144,7 +144,7 @@ tags:
       https://test.osf.io/
 
 
-      https://test-api.osf.io/v2/
+      https://api.test.osf.io/v2/
 
 
       ##### Ephemerality Notice
