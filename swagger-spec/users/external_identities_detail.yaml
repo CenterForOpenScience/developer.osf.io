@@ -81,7 +81,7 @@ delete:
     description: "The unique identifier of a user's external identity."
   tags:
     - Users
-  operationId: external_identities_detail
+  operationId: external_identities_delete
   responses:
     '204':
       description: 'No content'
