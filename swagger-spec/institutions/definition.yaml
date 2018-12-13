@@ -63,3 +63,8 @@ properties:
         format: URL
         readOnly: true
         description: A link to the detail page for the institution.
+      html:
+        type: string
+        format: URL
+        readOnly: true
+        description: A link to the detail page for the institution on the OSF.
