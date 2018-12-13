@@ -869,6 +869,32 @@ tags:
     description: >-
 
 
+      #### 2.11
+
+
+      + Only return the permissions explicitly assigned to the current user in `current_user_permissions`.
+          + No longer automatically return `read` for all public nodes.
+
+
+      #### 2.10
+
+
+      + Return and require lists for the following `social` fields:
+          + `github`
+          + `twitter`
+          + `linkedIn`
+          + `profileWebsites`
+
+
+      #### 2.9
+
+
+      + Return `null` for all empty relationships instead of ommitting them entirely.
+
+
+      + Deprecate the `metaschemas/registrations` endpoint in favor of `schemas/registrations`.
+
+
       #### 2.8
 
 
