@@ -100,7 +100,7 @@ patch:
 
   tags:
     - Nodes
-  operationId: node_settings_detail
+  operationId: node_settings_partial_update
   x-response-schema: 'Node Settings'
   responses:
     '200':

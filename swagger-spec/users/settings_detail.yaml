@@ -90,8 +90,6 @@ patch:
             - id
             - type
             - attributes
-            - relationships
-            - links
         properties:
             id:
                 type: string
