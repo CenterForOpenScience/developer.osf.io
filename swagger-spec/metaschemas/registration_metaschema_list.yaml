@@ -25,6 +25,18 @@ get:
     This request should never return an error.
 
 
+    #### Filtering
+
+
+    You can optionally request that the response only include schemas that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/schemas/registrations/?filter[active]=true.
+
+
+    Schemas may be filtered by their `active` attribute only.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
   tags:
     - Metaschemas
   operationId: registration_metaschemas_list
