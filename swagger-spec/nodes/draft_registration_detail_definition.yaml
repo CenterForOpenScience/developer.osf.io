@@ -21,21 +21,17 @@ properties:
     readOnly: false
     description: 'The properties of the draft registration entity.'
     required:
-      - registration_supplement
+      - registration_schema
     properties:
       registration_metadata:
         type: string
         readOnly: false
         description: 'A dictionary of question IDs and responses from the registration schema.'
-      registration_supplement:
-        type: string
-        readOnly: false
-        description: 'The ID of an active registration schema that this registration will conform to.'
 
 
 example:
   data:
-    id: '{registration_supplement_id}'
+    id: '{draft_registration_id}'
     type: 'draft_registrations'
     attributes:
       registration_metadata:

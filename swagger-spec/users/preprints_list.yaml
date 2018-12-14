@@ -54,66 +54,117 @@ get:
         application/json:
           data:
           - relationships:
-              node:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/nodes/bnzx5/
-                    meta: {}
-              citation:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/khbvy/citation/
-                    meta: {}
-              primary_file:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
-                    meta: {}
-              provider:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/
-                    meta: {}
-            links:
-              self: https://api.osf.io/v2/preprints/khbvy/
-              html: https://osf.io/khbvy/
-              doi: https://dx.doi.org/10.1371/journal.pbio.1002456
-            attributes:
-              doi: 10.1371/journal.pbio.1002456
-              license_record:
-              date_modified: '2016-08-29T14:53:51.185000'
-              is_preprint_orphan: false
-              date_published: '2016-08-29T14:53:51.185000'
-              subjects:
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Public Affairs, Public Policy and Public Administration
-                  id: 584240da54be81056cecaab8
-                - text: Science and Technology Policy
-                  id: 584240d954be81056cecaa10
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Library and Information Science
-                  id: 584240da54be81056cecab33
-                - text: Scholarly Publishing
-                  id: 584240db54be81056cecacd2
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Psychology
-                  id: 584240da54be81056cecac68
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Psychology
-                  id: 584240da54be81056cecac68
-              date_created: '2016-08-29T14:53:51.185000'
-              is_published: true
-            type: preprints
-            id: khbvy
+            node:
+              links:
+                related:
+                  href: https://api.osf.io/v2/nodes/bnzx5/
+                  meta: {}
+                self:
+                  href: 'https://api.osf.io/v2/preprints/khbvy/relationships/node/'
+                  meta: {}
+            files:
+              links:
+                related:
+                  href: https://api.osf.io/v2/preprints/khbvy/files/
+                  meta: {}
+            contributors:
+              links:
+              related:
+                href: https://api.osf.io/v2/preprints/khbvy/contributors/
+                meta: {}
+            citation:
+              links:
+                related:
+                  href: https://api.osf.io/v2/preprints/khbvy/citation/
+                  meta: {}
+            identifiers:
+              links:
+                related:
+                  href: https://api.osf.io/v2/preprints/khbvy/identifiers/
+                  meta: {}
+            primary_file:
+              links:
+                related:
+                  href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
+                  meta: {}
+            license:
+              links:
+                related:
+                  href: 'https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/'
+                  meta: {}
+            provider:
+              links:
+                related:
+                  href: https://api.osf.io/v2/preprint_providers/osf/
+                  meta: {}
+            requests:
+              links:
+                related:
+                  href: https://api.osf.io/v2/preprints/khbvy/requests/
+                  meta: {}
+            review_actions:
+              links:
+                related:
+                  href: https://api.osf.io/v2/preprints/khbvy/review_actions/
+                  meta: {}
           links:
-            first:
-            last:
-            prev:
-            next:
-            meta:
-              total: 4
-              per_page: 10
+            self: https://api.osf.io/v2/preprints/khbvy/
+            html: https://osf.io/khbvy/
+            doi: https://dx.doi.org/10.1371/journal.pbio.1002456
+            preprint_doi: https://dx.doi.org/10.5072/FK2OSF.IO/KHBVY
+          attributes:
+            date_last_transitioned: '2018-10-15T13:44:09.478243'
+            doi: 10.1371/journal.pbio.1002456
+            description: 'A study of Kale'
+            title: 'Kale contains vitamins'
+            reviews_state: 'accepted'
+            license_record:
+               copyright_holders: []
+               year: '2017'
+            date_modified: '2016-08-29T14:53:51.185000'
+            original_publication_date: null
+            date_withdrawn: null
+            preprint_doi_created: null
+            is_preprint_orphan: false
+            date_published: '2016-08-29T14:53:51.185000'
+            subjects:
+            - - text: Social and Behavioral Sciences
+                id: 584240da54be81056cecac48
+              - text: Public Affairs, Public Policy and Public Administration
+                id: 584240da54be81056cecaab8
+              - text: Science and Technology Policy
+                id: 584240d954be81056cecaa10
+            - - text: Social and Behavioral Sciences
+                id: 584240da54be81056cecac48
+              - text: Library and Information Science
+                id: 584240da54be81056cecab33
+              - text: Scholarly Publishing
+                id: 584240db54be81056cecacd2
+            - - text: Social and Behavioral Sciences
+                id: 584240da54be81056cecac48
+              - text: Psychology
+                id: 584240da54be81056cecac68
+            - - text: Social and Behavioral Sciences
+                id: 584240da54be81056cecac48
+              - text: Psychology
+                id: 584240da54be81056cecac68
+            date_created: '2016-08-29T14:53:51.185000'
+            is_published: true
+            public: true
+            tags:
+            - vitamin a
+            - vitamin k
+            current_user_permissions:
+            - read
+            - write
+          type: preprints
+          id: khbvy
+
+        links:
+          first:
+          last:
+          prev:
+          next:
+          meta:
+            total: 4
+            per_page: 10

@@ -86,7 +86,7 @@ properties:
       preprint:
         type: boolean
         readOnly: true
-        description: 'Whether or not a preprint has been created from this node, or if this node was created for a preprint.'
+        description: 'Whether or not the node contains supplemental material for a preprint.'
       public:
         type: boolean
         readOnly: false
@@ -179,7 +179,7 @@ properties:
       preprints:
         type: string
         readOnly: true
-        description: 'A link to the list of preprints that this node relates to.'
+        description: 'A link to the list of preprints for which this node contains supplemental materials.'
       registrations:
         type: string
         readOnly: true

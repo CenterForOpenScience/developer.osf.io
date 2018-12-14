@@ -25,7 +25,6 @@ properties:
     required:
       - datetime_initiated
       - datetime_updated
-      - registration_supplement
     properties:
       datetime_initiated:
         type: string
@@ -41,15 +40,11 @@ properties:
         type: string
         readOnly: false
         description: 'A dictionary of question IDs and responses from the registration schema.'
-      registration_supplement:
-        type: string
-        readOnly: false
-        description: 'The ID of an active registration schema that this registration will conform to.'
 
   relationships:
     type: object
     title: Relationships
-    readOnly: true
+    readOnly: false
     required:
       - branched_from
       - initiator
@@ -66,7 +61,7 @@ properties:
         description: 'A link to the user who initiated the draft registration.'
       registration_schema:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'A link to the detailed registration schema that this draft conforms to.'
 
   links:
@@ -86,6 +81,8 @@ properties:
 example:
   data:
     type: 'draft_registrations'
-    attributes:
-      registration_supplement: '{schema_id}'
-
+    relationships:
+      registration_schema:
+          data:
+              id: '{schema_id}'
+              type: registration_schemas

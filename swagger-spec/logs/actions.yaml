@@ -207,13 +207,13 @@ get:
     ---
 
 
-    * `preprint_initiated`: A preprint is made from the node
+    * `preprint_initiated`: A preprint is made from the node (deprecated log, preprints are no longer made from nodes)
 
 
-    * `preprint_license_updated`: A license is added or updated to the preprint
+    * `preprint_license_updated`: A license is added or updated to the preprint (deprecated log, preprint actions are no longer logged on the node)
 
 
-    * `preprint_file_updated`: The primary file of a preprint is updated
+    * `preprint_file_updated`: The primary file of a preprint is updated (deprecated log, this action is now logged on the preprint)
 
 
   responses:

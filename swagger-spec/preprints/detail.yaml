@@ -40,6 +40,19 @@ get:
                   related:
                     href: https://api.osf.io/v2/nodes/bnzx5/
                     meta: {}
+                  self:
+                    href: 'https://api.osf.io/v2/preprints/khbvy/relationships/node/'
+                    meta: {}
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/files/
+                    meta: {}
+              contributors:
+                links:
+                related:
+                  href: https://api.osf.io/v2/preprints/khbvy/contributors/
+                  meta: {}
               citation:
                 links:
                   related:
@@ -55,10 +68,25 @@ get:
                   related:
                     href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
                     meta: {}
+              license:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/'
+                    meta: {}
               provider:
                 links:
                   related:
                     href: https://api.osf.io/v2/preprint_providers/osf/
+                    meta: {}
+              requests:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/requests/
+                    meta: {}
+              review_actions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/review_actions/
                     meta: {}
             links:
               self: https://api.osf.io/v2/preprints/khbvy/
@@ -66,9 +94,18 @@ get:
               doi: https://dx.doi.org/10.1371/journal.pbio.1002456
               preprint_doi: https://dx.doi.org/10.5072/FK2OSF.IO/KHBVY
             attributes:
+              date_last_transitioned: '2018-10-15T13:44:09.478243'
               doi: 10.1371/journal.pbio.1002456
+              description: 'A study of Kale'
+              title: 'Kale contains vitamins'
+              reviews_state: 'accepted'
               license_record:
+                 copyright_holders: []
+                 year: '2017'
               date_modified: '2016-08-29T14:53:51.185000'
+              original_publication_date: null
+              date_withdrawn: null
+              preprint_doi_created: null
               is_preprint_orphan: false
               date_published: '2016-08-29T14:53:51.185000'
               subjects:
@@ -94,6 +131,13 @@ get:
                   id: 584240da54be81056cecac68
               date_created: '2016-08-29T14:53:51.185000'
               is_published: true
+              public: true
+              tags:
+              - vitamin a
+              - vitamin k
+              current_user_permissions:
+              - read
+              - write
             type: preprints
             id: khbvy
 
@@ -102,6 +146,21 @@ patch:
   description: >-
     Updates the specified preprint by setting the values of the parameters passed.
     Any parameters not provided will be left unchanged.
+
+
+    The file that you either uploaded to the preprint or copied from an OSF project to the preprint
+    will need to be set as the primary file before the preprint can be published.
+
+
+    To remove a supplemental project from a preprint will be a separate PATCH request to the node self relationship
+    link.
+
+
+    PATCH /v2/preprints/<preprint_id>/relationships/node/
+
+
+    {data: null}
+
 
     #### Returns
 
@@ -128,11 +187,17 @@ patch:
             id: "{preprint_id}"
             attributes:
               doi: "{doi}"
+              is_published: true
+              subjects: [["<subject_id>"]]
             relationships:
               primary_file:
                 data:
                   type: "primary_files"
                   id: "{file_id}"
+              node:
+                data:
+                  type: "nodes"
+                  id: "{node_id}"
 
   tags:
     - Preprints
