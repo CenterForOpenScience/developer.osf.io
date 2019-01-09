@@ -224,3 +224,4 @@ example:
     attributes:
       title: 'An Excellent Project Title'
       category: 'software'
+      tags: ['some', 'tags']
