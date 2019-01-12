@@ -104,13 +104,17 @@ post:
   description: >-
     Creates a new wiki page on the given node.
 
-
     `name` is the only required field when creating a new wiki page.
     The `content` of the wiki page may optionally be included.
 
 
-    Returns a JSON object with a `data` key containing the representation of the created wiki, if the request is successful.
+    This POST request creates a wiki page, and then creates a first version for the wiki -
+    adding your content to the first version. For subsequent updates to this wiki page,
+    POST to the versions relationship.  This will create new versions of this wiki.
+    For more information, see [Update a wiki](#operation/wiki_versions_create).
 
+
+    Returns a JSON object with a `data` key containing the representation of the created wiki, if the request is successful.
 
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.

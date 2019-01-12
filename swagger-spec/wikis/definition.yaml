@@ -70,11 +70,7 @@ properties:
     title: Relationships
     readOnly: false
     description: 'URLs to other entities or entity collections that have a relationship to the wiki.'
-    required:
-      - node
-      - user
-      - comments
-      - versions
+
     properties:
       node:
         type: string
