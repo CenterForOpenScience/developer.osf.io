@@ -89,6 +89,9 @@ post:
     `content` is the only required field when updating a wiki page.
 
 
+    For information on creating a wiki for a node, see [Create a wiki](#operation/nodes_wikis_list_create).
+
+
     Returns a JSON object with a `data` key containing the representation of the created wiki version, if the request is successful.
 
 
