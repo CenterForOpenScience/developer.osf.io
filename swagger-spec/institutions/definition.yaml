@@ -15,14 +15,24 @@ properties:
     readOnly: false
     description: The properties of the institution entity.
     properties:
+      assets:
+        type: object
+        title: Assets
+        readOnly: true
+        description: Assets belonging to a specific institution
+        properties:
+          logo:
+            type: string
+            readOnly: true
+            description: Static path to the institution specific normal logo
+          logo_rounded:
+            type: string
+            readOnly: true
+            description: Static path to the institution specific rounded logo
       auth_url:
         type: string
         readOnly: true
         description: Url used to authenticate institution specific login.
-      logo_path:
-        type: string
-        readOnly: true
-        description: Static path to the institution specific logo.
       name:
         type: string
         readOnly: true

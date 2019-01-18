@@ -67,8 +67,10 @@ get:
               links:
                 self: https://api.osf.io/v2/institutions/cos/
               attributes:
+                assets:
+                  logo: /static/img/institutions/shields/cos-shield.png
+                  logo_rounded: /static/img/institutions/shields-rounded-corners/cos-shield.png
                 auth_url: null
-                logo_path: /static/img/institutions/shields/cos-shield.png
                 name: Center For Open Science
                 description: COS is a non-profit technology company providing free and open services to increase inclusivity and transparency of research. Find out more at <a href="https://cos.io">cos.io</a>.
               type: institutions
