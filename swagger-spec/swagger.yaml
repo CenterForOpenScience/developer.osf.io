@@ -869,6 +869,20 @@ tags:
     description: >-
 
 
+      #### 2.13
+
+
+      + Resource types for Resource Object Identifiers have been corrected for these relationsips:
+          + `nodes.linked_nodes` (was `type: linked_nodes`, now: `type: nodes`)
+          + `nodes.linked_registrations` (was `type: linked_registrations`, now: `type: registrations`)
+          + `registrations.linked_nodes` (was `type: linked_nodes`, now: `type: nodes`)
+          + `registrations.linked_registrations` (was `type: linked_registrations`, now: `type: registrations`)
+          + `collections.linked_nodes` (was `type: linked_nodes`, now: `type: nodes`)
+          + `collections.linked_registrations` (was `type: linked_registrations`, now: `type: registrations`)
+          + `collections.linked_preprints` (was `type: linked_preprints`, now: `type: preprints`)
+          + `preprints.node` (was `type: linked_preprint_nodes`, now: `type: nodes`)
+
+
       #### 2.12
 
 
