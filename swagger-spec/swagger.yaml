@@ -869,6 +869,12 @@ tags:
     description: >-
 
 
+      #### 2.12
+
+
+      + DELETE requests to a node detail will also delete all the node's subcomponents.
+
+
       #### 2.11
 
 
