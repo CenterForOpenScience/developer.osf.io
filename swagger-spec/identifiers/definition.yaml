@@ -12,14 +12,14 @@ properties:
   attributes:
     type: object
     title: Attributes
-    readOnly: true
+    readOnly: false
     description: 'The properties of the identifier entity.'
     properties:
       category:
         type: string
         enum:
           - doi
-        readOnly: true
+        readOnly: false
         description: 'The category of the identifier'
       value:
         type: string
