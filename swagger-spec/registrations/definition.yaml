@@ -24,6 +24,10 @@ properties:
       - draft_registration
       - registration_choice
     properties:
+      article_doi:
+        type: string
+        readOnly: false
+        description: 'The DOI of the associated journal article, as entered by the user, if the resource is published.'
       category:
         type: string
         readOnly: true
@@ -47,6 +51,10 @@ properties:
         type: boolean
         readOnly: true
         description: 'Whether or not the current user has permission to post comments on this registration. Comments on registrations can be set to allow all users to comment or restricted to only contributors.'
+      custom_citation:
+        type: string
+        readOnly: false
+        description: 'User-entered custom registration citation'
       current_user_permissions:
         type: array
         items:
@@ -75,7 +83,7 @@ properties:
         description: 'The time at which this registration was withdrawn, as an iso8601 formatted timestamp.'
       description:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'The description of the registered node.'
       embargo_end_date:
         type: string
@@ -88,7 +96,7 @@ properties:
         description: 'Whether or not this registration represents a fork of another node.'
       node_license:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'A dictionary containing the metadata (copyright year and holder) associated with the registered node license (required for certain license types).'
       pending_embargo_approval:
         type: boolean
@@ -126,7 +134,7 @@ properties:
         type: array
         items:
           type: string
-        readOnly: true
+        readOnly: false
         description: 'A list of strings that describe the registered node.'
       template_from:
         type: string
@@ -151,11 +159,11 @@ properties:
       draft_registration:
         type: string
         readOnly: false
-        description: 'The ID of the draft registration from which the registration will be created.'
+        description: 'Required on POST. The ID of the draft registration from which the registration will be created.'
       registration_choice:
         type: string
         readOnly: false
-        description: 'Describes when the registration will become public, either "immediate" or "embargo". If this field is "embargo", you will need to supply a datetime in the "lift_embargo" field.'
+        description: 'Required on POST. Describes when the registration will become public, either "immediate" or "embargo". If this field is "embargo", you will need to supply a datetime in the "lift_embargo" field.'
       lift_embargo:
         type: string
         format: date-time
@@ -175,7 +183,7 @@ properties:
     properties:
       affiliated_institutions:
         type: string
-        readOnly: true
+        readOnly: false
         description: 'A link to the list of institutions this registration is affiliated with.'
       children:
         type: string
@@ -205,6 +213,10 @@ properties:
         type: string
         readOnly: true
         description: 'A link to the list of identifiers for this registration (i.e. DOI identifiers).'
+      license:
+        type: string
+        readOnly: false
+        description: 'A relationship to the license that has been applied to the registration.'
       logs:
         type: string
         readOnly: true
@@ -261,12 +273,3 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the canonical API endpoint of this registration.'
-
-example:
-  data:
-    type: registrations
-    attributes:
-      draft_registration: '{draft_registration_id}'
-      registration_choice: embargo
-      lift_embargo: '2017-05-10T20:44:03.185000'
-      children: ['fsd2s', 'dwsa2']
