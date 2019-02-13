@@ -100,7 +100,7 @@ properties:
         description: 'Whether or not the registration is pending approval from project administrators.'
       pending_withdrawal:
         type: boolean
-        readOnly: true
+        readOnly: false
         description: 'Whether or not the registration is pending approval for withdrawal from project administrators.'
       preprint:
         type: boolean
@@ -142,7 +142,7 @@ properties:
         description: 'Whether or not the registration has its wiki enabled.'
       withdrawn:
         type: boolean
-        readOnly: false
+        readOnly: true
         description: 'Whether or not this registration has been withdrawn.'
       withdrawal_justification:
         type: string
