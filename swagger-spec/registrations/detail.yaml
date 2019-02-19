@@ -66,21 +66,28 @@ get:
       schema:
         $ref: definition.yaml
 
+
 patch:
   summary: Update a registration
   description: >-
-    Updates a registration's privacy from **private** to **public**.
+    Updates selected fields on a registration - only a selection of registration fields are editable.
 
 
     Registrations can be updated with either a **PUT** or **PATCH** request.
-    The `public` field is the only field that can be modified on a registration
+    Some fields that can be edited include the `public`, `pending_withdrawal`,
+    and `withdrawal_justification` fields.
 
 
     Registrations can only be turned from private to public, not vice versa.
 
+
+    You may request a registration to be withdrawn by providing a truthy value for `pending_withdrawal` in the
+    data payload, along with an optional `withdrawal_justification`.
+
     #### Permissions
 
-    Only project administrators may update a registration.
+    Only project administrators may update most fields on a registration, but write contributors can edit
+    certain fields like tags.
 
     #### Returns
 
@@ -102,7 +109,14 @@ patch:
       name: body
       required: true
       schema:
-        $ref: definition.yaml
+        type: object
+        example:
+          data:
+            type: 'registrations'
+            id: '{registration_id}'
+            attributes:
+              pending_withdrawal: true
+              withdrawal_justification: 'Methods found to be problematic.'
   tags:
     - Registrations
   operationId: registrations_partial_update
@@ -110,4 +124,4 @@ patch:
     - application/json
   responses:
     '200':
-      description: 'Created'
+      description: 'Updated'
