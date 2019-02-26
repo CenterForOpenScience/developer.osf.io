@@ -126,6 +126,16 @@ properties:
         format: URL
         readOnly: true
         description: A link to the detail page for the file.
+      html:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the file on the OSF.'
+      render:
+        type: string
+        format: URL
+        readOnly: true
+        description: A Waterbutler API route for rendering the file.
       move:
         type: string
         format: URL
