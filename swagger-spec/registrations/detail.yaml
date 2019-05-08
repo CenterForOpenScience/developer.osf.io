@@ -70,15 +70,12 @@ get:
 patch:
   summary: Update a registration
   description: >-
-    Updates selected fields on a registration - only a selection of registration fields are editable.
-
-
     Registrations can be updated with either a **PUT** or **PATCH** request.
-    Some fields that can be edited include the `public`, `pending_withdrawal`,
-    and `withdrawal_justification` fields.
+    There are a handful of fields that can be edited by registration administrators,
+    and a few fields by users with write permissions.
 
-
-    Registrations can only be turned from private to public, not vice versa.
+    Note - one of the fields you can edit is `public`. Registrations can only be turned
+    from private to public, not vice versa.
 
 
     You may request a registration to be withdrawn by providing a truthy value for `pending_withdrawal` in the
@@ -112,11 +109,28 @@ patch:
         type: object
         example:
           data:
-            type: 'registrations'
             id: '{registration_id}'
+            type: 'registrations'
             attributes:
               pending_withdrawal: true
               withdrawal_justification: 'Methods found to be problematic.'
+              description: 'my description'
+              tags: ['dogs', 'wolves']
+              node_license:
+                year: 2009
+                copyright_holders: ['Dennis Glenn']
+              custom_citation: 'Glenn, Dennis. My Registration, 2009.'
+              public: 'True'
+              article_doi: '10.12345/elephants'
+            relationships:
+              license:
+                 data:
+                   type: 'licenses'
+                   id: '5c3e3ddsaabb2400019b7c6a'
+              affiliated_institutions:
+                  data:
+                    type: 'institutions'
+                    id: 'cos'
   tags:
     - Registrations
   operationId: registrations_partial_update
@@ -125,3 +139,5 @@ patch:
   responses:
     '200':
       description: 'Updated'
+      schema:
+        $ref: definition.yaml

@@ -248,7 +248,15 @@ post:
       name: body
       required: true
       schema:
-        $ref: '../registrations/definition.yaml'
+        type: object
+        example:
+          data:
+            type: registrations
+            attributes:
+              draft_registration: '{draft_registration_id}'
+              registration_choice: embargo
+              lift_embargo: '2017-05-10T20:44:03.185000'
+              children: ['fsd2s', 'dwsa2']
   tags:
     - Nodes
   operationId: nodes_registrations_create
