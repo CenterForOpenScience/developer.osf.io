@@ -66,6 +66,7 @@ get:
       schema:
         $ref: definition.yaml
 
+
 patch:
   summary: Update a registration
   description: >-
@@ -76,10 +77,14 @@ patch:
     Note - one of the fields you can edit is `public`. Registrations can only be turned
     from private to public, not vice versa.
 
+
+    You may request a registration to be withdrawn by providing a truthy value for `pending_withdrawal` in the
+    data payload, along with an optional `withdrawal_justification`.
+
     #### Permissions
 
-    Only project administrators may update a registration (with a few exceptions). For example,
-    write contributors can edit tags.
+    Only project administrators may update most fields on a registration, but write contributors can edit
+    certain fields like tags.
 
     #### Returns
 
@@ -104,9 +109,11 @@ patch:
         type: object
         example:
           data:
-            id: '9utb4'
+            id: '{registration_id}'
             type: 'registrations'
             attributes:
+              pending_withdrawal: true
+              withdrawal_justification: 'Methods found to be problematic.'
               description: 'my description'
               tags: ['dogs', 'wolves']
               node_license:
@@ -131,6 +138,6 @@ patch:
     - application/json
   responses:
     '200':
-      description: 'OK'
+      description: 'Updated'
       schema:
         $ref: definition.yaml

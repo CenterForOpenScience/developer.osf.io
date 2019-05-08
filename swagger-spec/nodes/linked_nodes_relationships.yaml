@@ -22,139 +22,139 @@ get:
       examples:
         application/json:
           data:
-          - type: linked_nodes
+          - type: nodes
             id: ng6cc
-          - type: linked_nodes
+          - type: nodes
             id: swrhy
-          - type: linked_nodes
+          - type: nodes
             id: sq8k9
-          - type: linked_nodes
+          - type: nodes
             id: 73pnd
-          - type: linked_nodes
+          - type: nodes
             id: gcj7x
-          - type: linked_nodes
+          - type: nodes
             id: kez47
-          - type: linked_nodes
+          - type: nodes
             id: atgp5
-          - type: linked_nodes
+          - type: nodes
             id: h84qd
-          - type: linked_nodes
+          - type: nodes
             id: ke43j
-          - type: linked_nodes
+          - type: nodes
             id: qthf2
-          - type: linked_nodes
+          - type: nodes
             id: k9gp6
-          - type: linked_nodes
+          - type: nodes
             id: 8j9cg
-          - type: linked_nodes
+          - type: nodes
             id: gxvd3
-          - type: linked_nodes
+          - type: nodes
             id: ahpik
-          - type: linked_nodes
+          - type: nodes
             id: qwkum
-          - type: linked_nodes
+          - type: nodes
             id: tf8ky
-          - type: linked_nodes
+          - type: nodes
             id: b98zw
-          - type: linked_nodes
+          - type: nodes
             id: nr7d9
-          - type: linked_nodes
+          - type: nodes
             id: vmipw
-          - type: linked_nodes
+          - type: nodes
             id: tv82z
-          - type: linked_nodes
+          - type: nodes
             id: ivfu6
-          - type: linked_nodes
+          - type: nodes
             id: bifc7
-          - type: linked_nodes
+          - type: nodes
             id: dncxa
-          - type: linked_nodes
+          - type: nodes
             id: c5pbg
-          - type: linked_nodes
+          - type: nodes
             id: xtsq6
-          - type: linked_nodes
+          - type: nodes
             id: vj65s
-          - type: linked_nodes
+          - type: nodes
             id: 4dvzb
-          - type: linked_nodes
+          - type: nodes
             id: 4bv5f
-          - type: linked_nodes
+          - type: nodes
             id: cxmf6
-          - type: linked_nodes
+          - type: nodes
             id: 38ges
-          - type: linked_nodes
+          - type: nodes
             id: 3h29d
-          - type: linked_nodes
+          - type: nodes
             id: siaqe
-          - type: linked_nodes
+          - type: nodes
             id: p9thw
-          - type: linked_nodes
+          - type: nodes
             id: n2m7p
-          - type: linked_nodes
+          - type: nodes
             id: 94j6h
-          - type: linked_nodes
+          - type: nodes
             id: 7dyp5
-          - type: linked_nodes
+          - type: nodes
             id: 7rtcz
-          - type: linked_nodes
+          - type: nodes
             id: fxqsk
-          - type: linked_nodes
+          - type: nodes
             id: mxryb
-          - type: linked_nodes
+          - type: nodes
             id: yaeu7
-          - type: linked_nodes
+          - type: nodes
             id: wdhc5
-          - type: linked_nodes
+          - type: nodes
             id: ne9dy
-          - type: linked_nodes
+          - type: nodes
             id: su6bm
-          - type: linked_nodes
+          - type: nodes
             id: ta3j8
-          - type: linked_nodes
+          - type: nodes
             id: k4y9i
-          - type: linked_nodes
+          - type: nodes
             id: dnaxe
-          - type: linked_nodes
+          - type: nodes
             id: pj5hb
-          - type: linked_nodes
+          - type: nodes
             id: mua6d
-          - type: linked_nodes
+          - type: nodes
             id: rx9ph
-          - type: linked_nodes
+          - type: nodes
             id: abxcj
-          - type: linked_nodes
+          - type: nodes
             id: 5dx4v
-          - type: linked_nodes
+          - type: nodes
             id: tg2wd
-          - type: linked_nodes
+          - type: nodes
             id: r5gpv
-          - type: linked_nodes
+          - type: nodes
             id: mjasz
-          - type: linked_nodes
+          - type: nodes
             id: bk53t
-          - type: linked_nodes
+          - type: nodes
             id: 2gkjt
-          - type: linked_nodes
+          - type: nodes
             id: sqim7
-          - type: linked_nodes
+          - type: nodes
             id: rmvk5
-          - type: linked_nodes
+          - type: nodes
             id: bscfe
-          - type: linked_nodes
+          - type: nodes
             id: 76qc5
-          - type: linked_nodes
+          - type: nodes
             id: 7ux8p
-          - type: linked_nodes
+          - type: nodes
             id: hp27x
-          - type: linked_nodes
+          - type: nodes
             id: rgm6p
-          - type: linked_nodes
+          - type: nodes
             id: etg7c
-          - type: linked_nodes
+          - type: nodes
             id: 93tkw
-          - type: linked_nodes
+          - type: nodes
             id: 5tbxf
-          - type: linked_nodes
+          - type: nodes
             id: aczvt
           links:
             self: https://api.osf.io/v2/nodes/ezcuj/relationships/linked_nodes/
@@ -190,13 +190,13 @@ patch:
       schema:
         example:
           data:
-          - type: linked_nodes
+          - type: nodes
             id: bscfe
-          - type: linked_nodes
+          - type: nodes
             id: 76qc5
-          - type: linked_nodes
+          - type: nodes
             id: 7ux8p
-          - type: linked_nodes
+          - type: nodes
             id: hp27x
 
   tags:
@@ -237,7 +237,7 @@ post:
       examples:
         application/json:
           data:
-          - type: linked_nodes
+          - type: nodes
             id: api6f
 
 delete:
