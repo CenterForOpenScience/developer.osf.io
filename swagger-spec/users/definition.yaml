@@ -128,6 +128,10 @@ properties:
         type: string
         readOnly: true
         description: 'A link to the list of nodes the user is a contributor to.'
+      default_region:
+        type: string
+        readOnly: false
+        description: The storage region where the user's files will be stored by default.
 
   links:
     type: object
