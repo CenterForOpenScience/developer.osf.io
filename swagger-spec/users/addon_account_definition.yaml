@@ -14,7 +14,7 @@ properties:
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the addon account entity (`external_accounts`).'
+    description: 'The type identifier of the addon account entity (`external-accounts`).'
 
   attributes:
     type: object

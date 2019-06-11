@@ -64,7 +64,7 @@ get:
                   account: https://api.osf.io/v2/users/q7fts/addons/box/accounts/562d9acf8c5e4a14112e489e/
             attributes:
               user_has_auth: true
-            type: user_addons
+            type: user-addons
             id: box
           - links:
               self: https://api.osf.io/v2/users/me/addons/dropbox/
@@ -74,7 +74,7 @@ get:
                   account: https://api.osf.io/v2/users/q7fts/addons/dropbox/accounts/56742db88c5e4a396d689e3e/
             attributes:
               user_has_auth: true
-            type: user_addons
+            type: user-addons
             id: dropbox
           - links:
               self: https://api.osf.io/v2/users/me/addons/github/
@@ -85,7 +85,7 @@ get:
                   account: https://api.osf.io/v2/users/q7fts/addons/github/accounts/570edf7f9ad5a101f90030f6/
             attributes:
               user_has_auth: true
-            type: user_addons
+            type: user-addons
             id: github
           - links:
               self: https://api.osf.io/v2/users/me/addons/googledrive/
@@ -100,7 +100,7 @@ get:
                   account: https://api.osf.io/v2/users/q7fts/addons/googledrive/accounts/563c1c518c5e4a36e7dc5450/
             attributes:
               user_has_auth: true
-            type: user_addons
+            type: user-addons
             id: googledrive
           links:
             first:

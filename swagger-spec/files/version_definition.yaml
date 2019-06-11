@@ -8,7 +8,7 @@ properties:
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the file versions entity (`file_versions`).'
+    description: 'The type identifier of the file versions entity (`file-versions`).'
   attributes:
     type: object
     readOnly: true

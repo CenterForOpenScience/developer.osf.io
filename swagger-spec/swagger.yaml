@@ -884,10 +884,19 @@ tags:
       Instead, to reset the client secret for an OAuth application, PATCH the
       `client_secret` property on the ApplicationDetail view (/v2/applications/<client_id>/)
 
+      + All types are now kebab-case. The following types have been changed.
+          + `draft_registrations` has been changed to `draft-registrations`
+          + `external_accounts` has been changed to `external-accounts`
+          + `file_versions` has been changed to `file-versions`
+          + `node_addons` has been changed to `node-addons`
+          + `user_addons` has been changed to `user-addons`
+          + `registration_schemas` has been changed to `registration-schemas`
+          + `file_metadata_schemas` has been changed to `file-metadata-schemas`
+
+
       #### 2.14
 
       + Deprecates the `logo_path` field off of the InstitutionSerializer.
-
 
       #### 2.13
 

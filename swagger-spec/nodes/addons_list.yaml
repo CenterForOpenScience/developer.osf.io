@@ -48,7 +48,7 @@ get:
               external_account_id:
               folder_id:
               node_has_auth: false
-            type: node_addons
+            type: node-addons
             id: <provider_id>
           - links:
               self: http://api.osf.io/v2/nodes/gaz5n/addons/<another_provider_id>/
@@ -58,7 +58,7 @@ get:
               external_account_id:
               folder_id:
               node_has_auth: false
-            type: node_addons
+            type: node-addons
             id: <another_provider_id>
           links:
             first:

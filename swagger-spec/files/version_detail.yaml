@@ -50,5 +50,5 @@ get:
               content_type: application/octet-stream
               date_created: '2017-01-01T12:34:56.78910'
               size: 216945
-            type: file_versions
+            type: file-versions
             id: '1'

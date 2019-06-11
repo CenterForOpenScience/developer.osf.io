@@ -15,7 +15,7 @@ properties:
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the draft registration entity (`draft_registrations`).'
+    description: 'The type identifier of the draft registration entity (`draft-registrations`).'
 
   attributes:
     type: object
@@ -80,9 +80,9 @@ properties:
 
 example:
   data:
-    type: 'draft_registrations'
+    type: 'draft-registrations'
     relationships:
       registration_schema:
           data:
               id: '{schema_id}'
-              type: registration_schemas
+              type: registration-schemas

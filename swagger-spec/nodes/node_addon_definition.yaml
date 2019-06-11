@@ -12,7 +12,7 @@ properties:
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the node addon entity (`node_addons`).'
+    description: 'The type identifier of the node addon entity (`node-addons`).'
 
   attributes:
     type: object

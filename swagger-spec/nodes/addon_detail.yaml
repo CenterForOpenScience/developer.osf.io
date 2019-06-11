@@ -59,7 +59,7 @@ get:
               external_account_id: null
               folder_id: null
               node_has_auth: false
-            type: node_addons
+            type: node-addons
             id: box
 
 patch:
@@ -117,7 +117,7 @@ patch:
         type: object
         example:
           data:
-            type: node_addons
+            type: node-addons
             id: "{provider}"
             attributes:
               external_account_id: "{account_id}"

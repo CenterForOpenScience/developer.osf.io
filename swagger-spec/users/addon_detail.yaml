@@ -56,5 +56,5 @@ get:
                   account: https://api.osf.io/v2/users/f542f/addons/dropbox/accounts/58d16ece9ad5a10201025eb4/
             attributes:
               user_has_auth: true
-            type: user_addons
+            type: user-addons
             id: dropbox

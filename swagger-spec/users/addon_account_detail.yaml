@@ -60,5 +60,5 @@ get:
                 display_name: Fabrice Mizero
                 profile_url:
                 provider: dropbox
-              type: external_accounts
+              type: external-accounts
               id: 58d16ece9ad5a10201027eb4

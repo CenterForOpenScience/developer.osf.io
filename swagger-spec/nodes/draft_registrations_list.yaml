@@ -53,7 +53,7 @@ get:
         application/json:
           data:
           - id: ''
-            type: 'draft_registrations'
+            type: 'draft-registrations'
             attributes:
               datetime_initiated: ''
               datetime_updated: ''
