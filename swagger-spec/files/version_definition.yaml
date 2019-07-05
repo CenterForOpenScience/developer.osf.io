@@ -6,7 +6,7 @@ properties:
     readOnly: true
     description: 'The identifier of the file version.'
   type:
-    type: string  
+    type: string
     readOnly: true
     description: 'The type identifier of the file versions entity (`file_versions`).'
   attributes:
@@ -24,7 +24,7 @@ properties:
         readOnly: true
         description: 'The date of the file version creation, as an iso8601 formatted timestamp.'
       size:
-        type: integer 
+        type: integer
         readOnly: true
         description: 'Size of the file in bytes.'
   links:
@@ -42,3 +42,13 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the html version page.'
+      render:
+        type: string
+        format: URL
+        readOnly: true
+        description: A Waterbutler API route for rendering the version.
+      download:
+        type: string
+        format: URL
+        readOnly: true
+        description: The Waterbutler API route for downloading the version.
