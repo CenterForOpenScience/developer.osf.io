@@ -1,0 +1,67 @@
+# /search/institutions/
+get:
+  summary: Search the OSF for our partner institutions
+  description: >-
+    This endpoint returns institutions which are utilitizing OSF and that have been found by the given Elasticsearch
+    query. All institutions returned are serialized as institutions.
+
+    #### Permissions
+
+    All accessible public materials are returned.
+
+    #### Filtering
+
+    The following query params allows the user to restrict their search.
+
+      - `?q=<Str>` -- Query to search projects, components, registrations, users, and files for.
+      - `?page=<Int>` -- page number of results to view, default 1
+  tags:
+    - Search
+  x-response-schema: 'Search'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: institutions_definition.yaml
+      examples:
+        application/json:
+          data:
+            - relationships:
+                nodes:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/institutions/cos/nodes/
+                      meta: {}
+                users:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/institutions/cos/users/
+                      meta: {}
+                registrations:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/institutions/cos/registrations/
+                      meta: {}
+              links:
+                self: https://api.osf.io/v2/institutions/cos/
+                html: https://osf.io/institutions/cos/
+              attributes:
+                assets:
+                  logo: /static/img/institutions/shields/cos-shield.png
+                  logo_rounded: /static/img/institutions/shields-rounded-corners/cos-shield.png
+                auth_url: null
+                name: Center For Open Science
+                description: COS is a non-profit technology company providing free and open services to increase inclusivity and transparency of research. Find out more at <a href="https://cos.io">cos.io</a>.
+              type: institutions
+              id: cos
+
+          meta:
+            total: 42
+            per_page: 10
+            version: 2.14
+          links:
+            self: https://api.osf.io/v2/search/?page=2
+            first: https://api.osf.io/v2/search/
+            last: https://api.osf.io/v2/search/?page=269577
+            prev: https://api.osf.io/v2/search/
+            next: https://api.osf.io/v2/search/?page=3

@@ -1,1 +1,86 @@
 # /search/files/
+get:
+  summary: Search the OSF for files
+  description: >-
+    This endpoint returns that have been found by the given Elasticsearch query. All files returned are serialized as
+    files.
+
+    #### Permissions
+
+    All accessible public materials are returned.
+
+    #### Filtering
+
+    The following query params allows the user to restract their search.
+
+      - `?q=<Str>` -- Query to search projects, components, registrations, users, and files for.
+      - `?page=<Int>` -- page number of results to view, default 1
+  tags:
+    - Search
+  x-response-schema: 'Search'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'files_definition.yaml'
+      examples:
+        application/json:
+          data:
+           -
+            relationships:
+              node:
+               links:
+                    related:
+                      href: https://api.osf.io/v2/nodes/ezcuj/
+                      meta: {}
+               comments:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/nodes/ezcuj/comments/?filter%5Btarget%5D=sejcv
+                      meta: {}
+               versions:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/versions/
+                      meta: {}
+            links:
+              info: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
+              self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/
+              move: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              upload: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              download: https://osf.io/download/sejcv
+              delete: https://files.osf.io/v1/resources/ezcuj/providers/osfstorage/553e69248c5e4a219919ea54
+              render: https://mfr.osf.io/render?url=https://osf.io/download/sejcv/?direct%26mode=render
+            attributes:
+              extra:
+                hashes:
+                  sha256: 2450eb9ff3db92a1bff370368b0552b270bd4b5ca0745b773c37d2662f94df8e
+                  md5: 44325d4f13b09f3769ede09d7c20a82c
+                downloads: 442
+              kind: file
+              name: OSC2012.pdf
+              last_touched: '2015-09-18T01:11:16.328000'
+              materialized_path: "/OSC2012.pdf"
+              date_modified: '2014-10-17T19:24:12.264Z'
+              current_version: 1
+              delete_allowed: true
+              date_created: '2014-10-17T19:24:12.264Z'
+              provider: osfstorage
+              path: "/553e69248c5e4a219919ea54"
+              current_user_can_comment: true
+              guid: sejcv
+              checkout:
+              tags: []
+              size: 216945
+            type: files
+            id: 553e69248c5e4a219919ea54
+          meta:
+            total: 2695768
+            per_page: 10
+            version: 2.14
+          links:
+            self: https://api.osf.io/v2/search/?page=2
+            first: https://api.osf.io/v2/search/
+            last: https://api.osf.io/v2/search/?page=269577
+            prev: https://api.osf.io/v2/search/
+            next: https://api.osf.io/v2/search/?page=3
