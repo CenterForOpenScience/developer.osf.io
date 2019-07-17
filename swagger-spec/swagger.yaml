@@ -35,7 +35,7 @@ x-tagGroups:
       - Entities & Entity Collections
       - External Libraries
       - Changelog
-      - Search
+      - Searching
   - name: API Reference
     tags:
       - Addons
@@ -979,7 +979,7 @@ tags:
 
       + Deprecate the `node_links` field in the **Node** and **Registration** serializers in favor of `linked_nodes` and `linked_registrations`.
 
-  - name: Search
+  - name: Searching
     x-traitTag: true
     description: >-
       OSF public resources and partner institutions can queried via the `/v2/search/` endpoint. The search endpoint will
