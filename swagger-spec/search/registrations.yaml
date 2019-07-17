@@ -3,7 +3,7 @@ get:
   summary: Search the OSF for registrations
   description: >-
     This endpoint returns registrations that have been found by the given Elasticsearch query. All registrations
-    returned are serialized a registrations.
+    returned are serialized as registrations.
 
     #### Permissions
 

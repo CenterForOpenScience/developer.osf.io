@@ -2,9 +2,10 @@
 get:
   summary: Search the OSF
   description: >-
-    Objects (including projects, components, registrations, users, files, and institutions) that have been found by the
-    given Elasticsearch query. Each object is serialized with the appropriate serializer for its type (files are
-    serialized as files, users are serialized as users, etc.) and returned collectively.
+    OSF search returns JSON serialized objects (including projects, components, registrations, users, files,
+     and institutions) that have been found by the given Elasticsearch query. Each object is serialized with the
+     appropriate serializer for its type (files are serialized as files, users are serialized as users, etc.) and
+     returned collectively.
 
     #### Permissions
 

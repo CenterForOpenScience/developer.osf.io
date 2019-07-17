@@ -2,7 +2,7 @@
 get:
   summary: Search the OSF for files
   description: >-
-    This endpoint returns that have been found by the given Elasticsearch query. All files returned are serialized as
+    This endpoint returns files that have been found by the given Elasticsearch query. All files returned are serialized as
     files.
 
     #### Permissions

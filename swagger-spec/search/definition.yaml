@@ -8,7 +8,7 @@ properties:
   data:
     type: array
     title: Data
-    description: "The search results, each item in this list will be serialized according to it's type."
+    description: "The search results; each item in this list will be serialized according to its type."
     items:
       type: object
   search_fields:

@@ -3,7 +3,7 @@ get:
   summary: Search the OSF for projects
   description: >-
     This endpoint returns projects that have been found by the given Elasticsearch query. All projects returned
-    are serialized a projects.
+    are serialized as projects.
 
     #### Permissions
 

@@ -3,7 +3,7 @@ get:
   summary: Search the OSF for users
   description: >-
     This endpoint returns users that have been found by the given Elasticsearch query. All users returned
-    are serialized a user.
+    are serialized as users.
 
     #### Permissions
 

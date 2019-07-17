@@ -3,7 +3,7 @@ get:
   summary: Search the OSF for components
   description: >-
     This endpoint returns components that have been found by the given Elasticsearch query. All components returned
-    are serialized a components.
+    are serialized as components.
 
     #### Permissions
 
