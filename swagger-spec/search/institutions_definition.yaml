@@ -1,0 +1,53 @@
+type: object
+title: Search
+
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      $ref: '../institutions/definition.yaml'
+  meta:
+    type: object
+    title: Meta
+    properties:
+      total:
+        type: integer
+        description: 'The total number of items returned by the search.'
+      per_page:
+        type: integer
+        description: 'The number of results returned on a single page.'
+      version:
+        type: integer
+        description: 'The API version of OSF being used.'
+  links:
+    description: 'URLs to alternative representations of the search results.'
+    type: object
+    title: Links
+    required:
+      - self
+      - first
+      - last
+      - prev
+      - next
+    properties:
+      self:
+        type: string
+        format: URL
+        description: 'A link to the detail page for the log.'
+      first:
+        type: string
+        format: URL
+        description: 'A link to the first page of search results.'
+      last:
+        type: string
+        format: URL
+        description: 'A link to the last page of search results.'
+      prev:
+        type: string
+        format: URL
+        description: 'A link to the previous page of search results.'
+      next:
+        type: string
+        format: URL
+        description: 'A link to the next page of search results.'

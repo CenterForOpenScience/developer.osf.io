@@ -1,1 +1,27 @@
 # /search/
+get:
+  summary: Search the OSF
+  description: >-
+    OSF search returns JSON serialized objects (including projects, components, registrations, users, files,
+     and institutions) that have been found by the given Elasticsearch query. Each object is serialized with the
+     appropriate serializer for its type (files are serialized as files, users are serialized as users, etc.) and
+     returned collectively.
+
+    #### Permissions
+
+    All accessible public materials are returned.
+
+    #### Filtering
+
+    The following query params allows the user to restract their search.
+
+      - `?q=<Str>` -- Query to search projects, components, registrations, users, and files for.
+      - `?page=<Int>` -- page number of results to view, default 1
+  tags:
+    - Search
+  x-response-schema: 'Search'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml

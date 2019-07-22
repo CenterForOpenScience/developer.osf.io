@@ -35,6 +35,7 @@ x-tagGroups:
       - Entities & Entity Collections
       - External Libraries
       - Changelog
+      - Searching
   - name: API Reference
     tags:
       - Addons
@@ -50,6 +51,7 @@ x-tagGroups:
       - Preprints
       - Preprint Providers
       - Registrations
+      - Search
       - Taxonomies
       - Users
       - View Only Links
@@ -977,6 +979,20 @@ tags:
 
       + Deprecate the `node_links` field in the **Node** and **Registration** serializers in favor of `linked_nodes` and `linked_registrations`.
 
+  - name: Searching
+    x-traitTag: true
+    description: >-
+      OSF public resources and partner institutions can queried via the `/v2/search/` endpoint. The search endpoint will
+      return a serialized JSON representation of the queried object.
+
+      OSF search uses the [Lucene search syntax](http://extensions.xwiki.org/xwiki/bin/view/Extension/Search+Application+Query+Syntax)
+      .This gives you many options, but can be very simple as well. Examples of
+      valid searches include:
+
+       - https://osf.io/search/?q=repro*
+       - https://osf.io/search/?q=brian+AND+title:many
+       - https://osf.io/search/?q=tags:(psychology)
+
 paths:
 
   ##############
@@ -1305,6 +1321,31 @@ paths:
 
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
+
+  ##############
+  #   SEARCH   #
+  ##############
+
+  /search/:
+    $ref: 'search/search.yaml'
+
+  /search/files/:
+    $ref: 'search/files.yaml'
+
+  /search/projects/:
+    $ref: 'search/projects.yaml'
+
+  /search/components/:
+    $ref: 'search/components.yaml'
+
+  /search/registrations/:
+    $ref: 'search/registrations.yaml'
+
+  /search/users/:
+    $ref: 'search/users.yaml'
+
+  /search/institutions/:
+    $ref: 'search/institutions.yaml'
 
   ##################
   #   TAXONOMIES   #
