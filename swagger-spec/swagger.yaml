@@ -870,6 +870,21 @@ tags:
     x-traitTag: true
     description: >-
 
+      #### 2.16
+
+        + Starts serializing `subjects` as relationships, to better adhere to JSON-API.
+        Pre-2.16, `subjects` are serialized as attributes.
+
+      #### 2.15
+
+      + Deprecates ApplicationReset view (/v2/applications/<client_id>/reset/).
+      Instead, to reset the client secret for an OAuth application, PATCH the
+      `client_secret` property on the ApplicationDetail view (/v2/applications/<client_id>/)
+
+      #### 2.14
+
+      + Deprecates the `logo_path` field off of the InstitutionSerializer.
+
 
       #### 2.13
 
