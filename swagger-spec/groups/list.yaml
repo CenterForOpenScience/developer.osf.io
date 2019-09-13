@@ -1,6 +1,10 @@
 get:
   summary: List groups
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     A paginated list of groups.  Only groups the logged-in user belongs to will be returned.
     The returned groups are sorted by their `date_modified`, with the most recently updated groups appearing first.
 
@@ -71,6 +75,10 @@ get:
 post:
   summary: Create a group
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Creates a new group.
 
     On the OSF, a group is a collection of users; examples are a lab group or a class.

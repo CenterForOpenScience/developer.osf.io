@@ -1,6 +1,10 @@
 get:
   summary: Retrieve a node group
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Retrieves the details of a given node group.
 
 
@@ -52,12 +56,16 @@ get:
             attributes:
               name: My Lab
               permission: admin
-            type: node_groups
+            type: node-groups
             id: y9jdt-5c0571f4b146c900085f39a3
 
 patch:
   summary: Update a node group
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Updates the permission the group has to the node.
 
     Node groups can be updated with either a **PUT** or **PATCH** request.
@@ -108,6 +116,10 @@ patch:
 delete:
   summary: Delete a node group
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Removes a group from a node.
     This request only removes the relationship between the node and the group, it does not delete the group itself.
 

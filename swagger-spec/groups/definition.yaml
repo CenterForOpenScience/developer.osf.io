@@ -68,4 +68,4 @@ example:
   data:
     type: 'groups'
     attributes:
-      title: 'My Lab Group'
+      name: 'My Lab Group'

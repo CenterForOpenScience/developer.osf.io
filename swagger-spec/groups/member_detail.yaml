@@ -1,6 +1,10 @@
 get:
   summary: Retrieve a group member
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Retrieves the details of a given group member.
 
 
@@ -53,7 +57,7 @@ get:
               unregistered_contributor:
               full_name: Grapes McGee
               role: manager
-            type: group_members
+            type: group-members
             id: 5c0571f4b146c900085f39a3-typ46
           links:
             first:
@@ -68,6 +72,10 @@ get:
 patch:
   summary: Update a group member
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Updates a group member by setting the values of the attributes specified in the request body.
     Any unspecified attributes will be left unchanged.
 
@@ -121,7 +129,11 @@ patch:
 delete:
   summary: Delete a group member
   description: >-
-    Removes a member froma group.
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
+    Removes a member from a group.
     This request only removes the relationship between the group and the user, it does not delete the user itself.
 
 

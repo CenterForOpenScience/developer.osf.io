@@ -1,6 +1,10 @@
 get:
   summary: List all node groups
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     A paginated list of the groups that have permissions to the node, sorted by their date_modified.
 
 
@@ -63,7 +67,7 @@ get:
             attributes:
               name: "My Lab Group"
               permission: admin
-            type: node_groups
+            type: node-groups
             id: y9jdt-5c0571f4b146c900085f39a3
           links:
             first:
@@ -78,6 +82,10 @@ get:
 post:
   summary: Create a node group
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Adds a group to a node, effectively creating a relationship between the node and a group.
 
 

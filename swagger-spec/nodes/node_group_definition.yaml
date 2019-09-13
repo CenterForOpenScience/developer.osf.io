@@ -66,7 +66,7 @@ properties:
         description: 'A link to the the canonical API endpoint for the node group.'
 example:
   data:
-    type: node_groups
+    type: node-groups
     attributes:
         permission: write
     relationships:

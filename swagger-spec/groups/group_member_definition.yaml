@@ -11,7 +11,7 @@ properties:
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the group member entity (`group_members`).'
+    description: 'The type identifier of the group member entity (`group-members`).'
   attributes:
     type: object
     title: Attributes
@@ -62,7 +62,7 @@ properties:
         description: 'A link to the the canonical API endpoint for the group member.'
 example:
   data:
-    type: group_members
+    type: group-members
     attributes: {
         role: manager,
     }

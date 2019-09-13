@@ -1,6 +1,10 @@
 get:
   summary: List all group members
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     A paginated list of the group members.
 
     Groups are collections of users. A user can either be a group member or a group manager.
@@ -64,7 +68,7 @@ get:
               unregistered_contributor:
               full_name: Grapes McGee
               role: manager
-            type: group_members
+            type: group-members
             id: 5c0571f4b146c900085f39a3-typ46
           links:
             first:
@@ -79,6 +83,10 @@ get:
 post:
   summary: Create a group member
   description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
     Adds a member to a group, effectively creating a relationship between the group and a user.
 
     Groups are collections of users. A user can either be a group member or a group manager.
