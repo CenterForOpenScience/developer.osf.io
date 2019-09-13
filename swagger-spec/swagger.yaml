@@ -43,6 +43,7 @@ x-tagGroups:
       - Citations
       - Comments
       - Files
+      - Groups
       - Licenses
       - Logs
       - Institutions
@@ -1090,10 +1091,25 @@ paths:
   /files/{file_id}/versions/{version_id}/:
     $ref: 'files/version_detail.yaml'
 
+  #############
+  #   GROUPS   #
+  #############
+
+  /groups/:
+    $ref: 'groups/list.yaml'
+
+  /groups/{group_id}/:
+    $ref: 'groups/detail.yaml'
+
+  /groups/{group_id}/members/:
+    $ref: 'groups/members_list.yaml'
+
+  /groups/{group_id}/members/{user_id}/:
+    $ref: 'groups/member_detail.yaml'
+
   #################
   #    LICENSES   #
   #################
-
   /licenses/:
     $ref: 'licenses/list.yaml'
 
@@ -1209,6 +1225,12 @@ paths:
 
   /nodes/{node_id}/forks/:
     $ref: 'nodes/forks_list.yaml'
+
+  /nodes/{node_id}/groups/:
+    $ref: 'nodes/groups_list.yaml'
+
+  /nodes/{node_id}/groups/{group_id}:
+    $ref: 'nodes/groups_detail.yaml'
 
   /nodes/{node_id}/linked_nodes/:
     $ref: 'nodes/linked_nodes_list.yaml'
@@ -1387,6 +1409,9 @@ paths:
 
   /users/{user_id}/identities/{identities_id}/:
     $ref: 'users/external_identities_detail.yaml'
+
+  /users/{user_id}/groups/:
+    $ref: 'users/groups_list.yaml'
 
   /users/{user_id}/institutions/:
     $ref: 'users/institutions_list.yaml'

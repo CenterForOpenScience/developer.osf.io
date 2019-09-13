@@ -1,0 +1,119 @@
+get:
+  summary: List groups
+  description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
+    A paginated list of groups.  Only groups the logged-in user belongs to will be returned.
+    The returned groups are sorted by their `date_modified`, with the most recently updated groups appearing first.
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 groups.
+    Each resource in the array is a separate group object and contains the full representation of the group, meaning additional requests to a group's detail view are not necessary.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#tag/Pagination).
+
+
+    #### Filtering
+
+
+    You can optionally request that the response only include groups that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/?filter[name]=lab.
+
+
+    Groups may be filtered by their `name`.
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+  tags:
+    - Groups
+  operationId: groups_list
+  x-response-schema: Group
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+          - relationships:
+              members:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/members/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/
+              html: https://osf.io/5c0571f4b146c900085f39a3/
+            attributes:
+              date_modified: '2017-02-09T20:37:49.060000'
+              name: 'COS Science Lab'
+              date_created: '2013-10-22T20:07:57.674000'
+            type: groups
+            id: 5c0571f4b146c900085f39a3
+          links:
+            self: https://api.osf.io/v2/groups/
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10
+
+post:
+  summary: Create a group
+  description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
+    Creates a new group.
+
+    On the OSF, a group is a collection of users; examples are a lab group or a class.
+    Users can add other users to groups, and then allow that group to access a project or several projects.
+
+    #### Required
+
+    Required fields for creating a group include:
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`name`
+
+
+    Note: The creator is automatically made a manager of the group.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the created group, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: 'definition.yaml'
+  tags:
+    - Groups
+  operationId: groups
+  consumes:
+    - application/json
+  x-response-schema: Group
+  responses:
+    '201':
+      description: 'Success'

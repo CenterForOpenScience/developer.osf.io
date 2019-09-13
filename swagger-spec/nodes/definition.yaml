@@ -152,6 +152,10 @@ properties:
         type: string
         readOnly: true
         description: 'A link to the list of nodes that are forks of this node.'
+      groups:
+        type: string
+        readOnly: true
+        description: 'A link to the list of groups that have permissions to the node.'
       identifiers:
         type: string
         readOnly: true
