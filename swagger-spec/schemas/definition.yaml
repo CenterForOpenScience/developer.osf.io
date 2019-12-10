@@ -1,0 +1,103 @@
+type: object
+title: File
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the schema block.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the schema block (`schema-blocks`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description:  'The properties of the schema block.'
+    properties:
+      registration_response_key:
+        type: string
+        readOnly: true
+        description: 'The key of the question in the schema.'
+      schema_block_group_key:
+        type: string
+        readOnly: true
+        description: 'Blocks can be in groups, such as pages, this is the ID of that grouping.'
+      block_type:
+        type: string
+        readOnly: true
+        description: 'Type of block, such as short-text-input, or page-heading.'
+      display_text:
+        type: string
+        readOnly: true
+        description: 'Text block that will be on the header of the schema block.'
+      help_text:
+        type: string
+        readOnly: true
+        description: 'Help text for each schema block'
+      example_text:
+        type: string
+        readOnly: true
+        description: 'An example for each schema block'
+      required:
+        type: boolean
+        readOnly: true
+        description: 'Denotes whether a response is required. Assists in validation of registry entry.'
+      index:
+        type: integer
+        readOnly: true
+        description: 'Index of the schema block.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'Relation to the registration schema.'
+    properties:
+      schema:
+        type: object
+        title: schema
+        readOnly: true
+        description: A relationship to the schema.
+        properties:
+          links:
+            type: object
+            title: Links
+            description: 'Links to the related schema.'
+            properties:
+              related:
+                type: object
+                title: related
+                description: 'All related links.'
+                properties:
+                  href:
+                    type: string
+                    format: URL
+                    title: href
+                    description: 'Link to related schema.'
+                  meta:
+                    type: object
+                    title: meta
+          data:
+            type: object
+            readOnly: true
+            description: Other descriptors of the schema
+            properties:
+              id: 
+                type: string
+                title: ID
+                description: ID of the related schema
+              type:
+                type: string
+                title: type
+                description: Object type
+  links:
+    type: object
+    title: links
+    readOnly: true
+    description: 'Link to the schema block'
+    properties:
+      self:
+        type: string
+        format: URL
+        title: self
+        description: Link to the represented schema block.

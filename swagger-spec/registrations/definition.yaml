@@ -22,7 +22,6 @@ properties:
     description: 'The properties of the registration entity.'
     required:
       - draft_registration
-      - registration_choice
     properties:
       article_doi:
         type: string
@@ -160,15 +159,6 @@ properties:
         type: string
         readOnly: false
         description: 'Required on POST. The ID of the draft registration from which the registration will be created.'
-      registration_choice:
-        type: string
-        readOnly: false
-        description: 'Required on POST. Describes when the registration will become public, either "immediate" or "embargo". If this field is "embargo", you will need to supply a datetime in the "lift_embargo" field.'
-      lift_embargo:
-        type: string
-        format: date-time
-        readOnly: false
-        description: 'A future datetime when the registration will become public. This field should be set when "registration_choice" is set to "embargo" in the range from 2 days to 4 years.'
       children:
         type: array
         items:

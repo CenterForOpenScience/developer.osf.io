@@ -218,10 +218,6 @@ post:
     &nbsp;&nbsp;&nbsp;&nbsp;`draft_registration`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice`
-
-
-    &nbsp;&nbsp;&nbsp;&nbsp;`lift_embargo` (Only required when `registration_choice` is "embargo")
 
     #### Optional
 
@@ -254,8 +250,7 @@ post:
             type: registrations
             attributes:
               draft_registration: '{draft_registration_id}'
-              registration_choice: embargo
-              lift_embargo: '2017-05-10T20:44:03.185000'
+              embargo_end_date: '2017-05-10T20:44:03.185000'
               children: ['fsd2s', 'dwsa2']
   tags:
     - Nodes

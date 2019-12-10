@@ -41,6 +41,7 @@ x-tagGroups:
       - Base
       - Citations
       - Comments
+      - Draft Registrations
       - Files
       - Licenses
       - Logs
@@ -50,6 +51,7 @@ x-tagGroups:
       - Preprints
       - Preprint Providers
       - Registrations
+      - Schemas
       - Taxonomies
       - Users
       - View Only Links
@@ -1046,6 +1048,13 @@ paths:
   # /comments/{comment_id}/reports/{user_id}/:
   #   $ref: 'comments/report_detail.yaml'
 
+  ###########################
+  #   DRAFT REGISTRATIONS   #
+  ###########################
+
+  /draft_registrations/{draft_id}/:
+    $ref: 'draft_registrations/draftregistration_detail.yaml'
+
   #############
   #   FILES   #
   #############
@@ -1305,6 +1314,16 @@ paths:
 
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
+
+  #####################
+  #   SCHEMAS   #
+  #####################
+
+  /schemas/registrations/{schema_id}/schema_blocks/:
+    $ref: 'schemas/schemablock.yaml'
+
+  /schemas/registrations/{schema_id}/schema_blocks/{schema_block_id}/:
+    $ref: 'schemas/schemablock_detail.yaml'
 
   ##################
   #   TAXONOMIES   #
