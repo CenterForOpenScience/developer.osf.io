@@ -159,7 +159,7 @@ properties:
         type: string
         readOnly: false
         description: 'Required on POST. The ID of the draft registration from which the registration will be created.'
-      children:
+      included_node_ids:
         type: array
         items:
           type: string

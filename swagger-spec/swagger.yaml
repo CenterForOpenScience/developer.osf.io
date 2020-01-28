@@ -293,7 +293,7 @@ tags:
       #### Header Versioning
 
 
-      + `Accept-Header=application/vnd.api+json;version=3.0.1`
+      + `Accept=application/vnd.api+json;version=3.0.1`
 
 
       + Pinning to a specific version via request header is **optional**.
@@ -1318,6 +1318,12 @@ paths:
   #####################
   #   SCHEMAS   #
   #####################
+
+  /schemas/registrations/:
+    $ref: 'schemas/schema_list.yaml'
+
+  /schemas/registrations/{schema_id}/:
+    $ref: 'schemas/schema_detail.yaml'
 
   /schemas/registrations/{schema_id}/schema_blocks/:
     $ref: 'schemas/schemablock.yaml'

@@ -20,7 +20,7 @@ get:
       schema:
         type: array
         items:
-          $ref: definition.yaml
+          $ref: schema_block_definition.yaml
       examples:
         application/json:
           data:

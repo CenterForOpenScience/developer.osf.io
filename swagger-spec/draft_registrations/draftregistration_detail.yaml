@@ -51,7 +51,7 @@ get:
             attributes:
               datetime_initiated: ''
               datetime_updated: ''
-              registration_metadata: {}
+              registration_responses: {}
             relationships:
               branched_from:
                 links:

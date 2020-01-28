@@ -221,7 +221,10 @@ post:
 
     #### Optional
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`children` (If left unspecified all children will be registered)
+    &nbsp;&nbsp;&nbsp;&nbsp;`children` (If left unspecified all children will be registered).
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`embargo_end_date` (Does not need to be specified, unless registration is embargoed).
 
 
     #### Returns
@@ -251,7 +254,7 @@ post:
             attributes:
               draft_registration: '{draft_registration_id}'
               embargo_end_date: '2017-05-10T20:44:03.185000'
-              children: ['fsd2s', 'dwsa2']
+              included_node_ids: ['fsd2s', 'dwsa2']
   tags:
     - Nodes
   operationId: nodes_registrations_create

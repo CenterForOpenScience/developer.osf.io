@@ -23,7 +23,7 @@ properties:
     required:
       - registration_schema
     properties:
-      registration_metadata:
+      registration_responses:
         type: string
         readOnly: false
         description: 'A dictionary of question IDs and responses from the registration schema.'
@@ -34,7 +34,7 @@ example:
     id: '{draft_registration_id}'
     type: 'draft_registrations'
     attributes:
-      registration_metadata:
+      registration_responses:
         datacompletion:
           value: 'No, data collection has not begun'
         looked:

@@ -1,59 +1,43 @@
-# /metaschemas/registrations/
 get:
-  summary: List all registration metaschemas
+  summary: Retrieve a registration schema
   description: >-
-    A paginated list of all active registration metaschemas.
+    Retrieves the detail of a registration schmea
 
-
-    Registration metaschemas describe the supplemental questions that accompany a registration.
+    Registration schemas describe the supplemental questions that accompany a registration.
 
 
     #### Returns
 
 
-    Returns a JSON object containing `data` and `links` keys.
+    Returns a JSON object containing `data` keys containing the representation of the requested
+    schema, if the request is successful.
 
 
-    The `data` key contains an array of 10 registration metaschemas.
-    Each resource in the array is a separate registration metaschema object.
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
 
 
-    The `links` key contains a dictionary of links that can be used
-    for [pagination](#tag/Pagination).
-
-
-    This request should never return an error.
-
-
-    #### Filtering
-
-
-    You can optionally request that the response only include schemas that match your filters by utilizing the `filter` query parameter, e.g.
-    https://api.osf.io/v2/schemas/registrations/?filter[active]=true.
-
-
-    Schemas may be filtered by their `active` attribute only.
-
-
-    You can learn more about advanced filtering features [here](#tag/Filtering).
-
+  parameters:
+  - in: path
+    type: string
+    name: schema_id
+    required: true
+    description: 'The unique identifier of the metaschema.'
   tags:
-    - Metaschemas
-  operationId: registration_metaschemas_list
-  x-response-schema: Metaschema
-  deprecated: true
+    - Schemas
+  operationId: metaschemas_read
+  x-response-schema: Schema
   responses:
     '200':
-      description: OK
+      description: 'OK'
       schema:
-        type: array
-        items:
-          $ref: 'definition.yaml'
+        $ref: schema_definition.yaml
       examples:
         application/json:
           data:
-          - links:
-              self: https://api.osf.io/v2/metaschemas/registrations/564d31db8c5e4a7c9694b2c0/
+            links:
+              self: https://api.osf.io/v2/schemas/registrations/564d31db8c5e4a7c9694b2c0/
             attributes:
               name: OSF-Standard Pre-Data Collection Registration
               schema_version: 2
@@ -92,13 +76,11 @@ get:
                     nav: Comments
                     format: textarea
                   title: OSF-Standard Pre-Data Collection Registration
-            type: registration_metaschemas
+            relationships:
+                schema_blocks:
+                    links:
+                        related:
+                            href: https://api.osf.io/v2/schemas/registrations/564d31db8c5e4a7c9694b2c0/schema_blocks/
+                            meta: {}
+            type: registration_schemas
             id: 564d31db8c5e4a7c9694b2c0
-          links:
-            first:
-            last:
-            prev:
-            next:
-            meta:
-            total: 1
-            per_page: 10
