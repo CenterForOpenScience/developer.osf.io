@@ -1,0 +1,133 @@
+get:
+  summary: List all node groups
+  description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
+    A paginated list of the groups that have permissions to the node, sorted by their date_modified.
+
+
+    Groups are collections of users that can be added to a node.  All members of the group will be granted the same
+    permission to the node.
+
+    #### Returns
+
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 groups.
+    Each resource in the array contains the full representation of the group, meaning additional requests to a group's detail view are not necessary.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+
+    #### Filtering
+
+
+    You can optionally request that the response only include groups that match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/nodes/y9jdt/groups/?filter[admin]=true.
+
+
+    Node Groups may be filtered by their `name` and `permission` attributes.
+
+
+    You can learn more about advanced filtering features [here](#tag/Filtering).
+
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+  tags:
+    - Nodes
+  operationId: node_groups_list
+  x-response-schema: Groups
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: node_group_definition.yaml
+      examples:
+        application/json:
+          data:
+          - relationships:
+              groups:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/groups/5c0571f4b146c900085f39a3/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/nodes/y9jdt/groups/5c0571f4b146c900085f39a3/
+            attributes:
+              name: "My Lab Group"
+              permission: admin
+            type: node-groups
+            id: y9jdt-5c0571f4b146c900085f39a3
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 9
+              per_page: 10
+              total_bibliographic: 1
+
+post:
+  summary: Create a node group
+  description: >-
+    *NOTE* This feature is experimental and subject to change at any time. It may
+    only be available on certain environments.
+
+
+    Adds a group to a node, effectively creating a relationship between the node and a group.
+
+
+    Groups are collections of users that can be added to a node.  All members of the group will be granted the same
+    permission to the node.
+
+    #### Permissions
+
+    Only group managers that also have admin permissions to a node, can add a group to a node.
+
+    #### Required
+
+    A relationship object with a `data` key, containing the `groups` type and valid group ID is required.
+
+
+    All attributes describing the relationship between the group and the node are optional.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the new node group, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: node_group_definition.yaml
+  tags:
+    - Nodes
+  operationId: node_groups_create_create
+  x-response-schema: Groups
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'Success'

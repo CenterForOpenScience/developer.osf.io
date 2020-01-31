@@ -44,6 +44,8 @@ get:
             links:
               self: https://api.osf.io/v2/files/553e69248c5e4a219919ea54/versions/1/
               html: https://osf.io/ezcuj/files/osfstorage/553e69248c5e4a219919ea54?revision=1
+              render: https://mfr.osf.io/render?url=https://osf.io/download/sejcv/?direct%26mode=render&revision=1
+              download: https://osf.io/download/sejcv/?revision=1
             attributes:
               content_type: application/octet-stream
               date_created: '2017-01-01T12:34:56.78910'

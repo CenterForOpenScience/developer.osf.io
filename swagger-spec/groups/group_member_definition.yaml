@@ -1,0 +1,73 @@
+type: object
+title: Group Member
+required:
+  - type
+  - relationships
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the group member entity. Member identifiers have the form {group_id}-{user_id}.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the group member entity (`group-members`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the contributor entity.'
+    properties:
+      full_name:
+        type: string
+        readOnly: false
+        description: 'The full name of the user, used for display on the OSF. Writeable when adding an unregistered member to your group, instead of an existing OSF user.'
+      email:
+        type: string
+        readOnly: false
+        description: 'The unregistered user email. Writeable when adding an unregistered member to your group, instead of an existing OSF user.'
+      role:
+        type: string
+        enum:
+          - manager
+          - member
+        readOnly: false
+        description: 'The permission level of the group member. The default value is ''member''.'
+      unregistered_member:
+        type: string
+        readOnly: true
+        description: 'The assigned name of the group member if the member has not yet claimed their account.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'URLs to other entities or entity collections that have a relationship to the group member entity.'
+    required:
+      - user
+    properties:
+      user:
+        type: string
+        readOnly: false
+        description: 'A relationship to the user object'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the group member entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the the canonical API endpoint for the group member.'
+example:
+  data:
+    type: group-members
+    attributes: {
+        role: manager,
+    }
+    relationships:
+      user:
+        data:
+          type: users
+          id: '{user_id}'

@@ -35,6 +35,7 @@ x-tagGroups:
       - Entities & Entity Collections
       - External Libraries
       - Changelog
+      - Searching
   - name: API Reference
     tags:
       - Addons
@@ -43,6 +44,7 @@ x-tagGroups:
       - Comments
       - Draft Registrations
       - Files
+      - Groups
       - Licenses
       - Logs
       - Institutions
@@ -871,6 +873,21 @@ tags:
     x-traitTag: true
     description: >-
 
+      #### 2.16
+
+        + Starts serializing `subjects` as relationships, to better adhere to JSON-API.
+        Pre-2.16, `subjects` are serialized as attributes.
+
+      #### 2.15
+
+      + Deprecates ApplicationReset view (/v2/applications/<client_id>/reset/).
+      Instead, to reset the client secret for an OAuth application, PATCH the
+      `client_secret` property on the ApplicationDetail view (/v2/applications/<client_id>/)
+
+      #### 2.14
+
+      + Deprecates the `logo_path` field off of the InstitutionSerializer.
+
 
       #### 2.13
 
@@ -980,6 +997,20 @@ tags:
 
       + Deprecate the `node_links` field in the **Node** and **Registration** serializers in favor of `linked_nodes` and `linked_registrations`.
 
+  - name: Searching
+    x-traitTag: true
+    description: >-
+      OSF public resources and partner institutions can queried via the `/v2/search/` endpoint. The search endpoint will
+      return a serialized JSON representation of the queried object.
+
+      OSF search uses the [Lucene search syntax](http://extensions.xwiki.org/xwiki/bin/view/Extension/Search+Application+Query+Syntax)
+      .This gives you many options, but can be very simple as well. Examples of
+      valid searches include:
+
+       - https://osf.io/search/?q=repro*
+       - https://osf.io/search/?q=brian+AND+title:many
+       - https://osf.io/search/?q=tags:(psychology)
+
 paths:
 
   ##############
@@ -1069,10 +1100,25 @@ paths:
   /files/{file_id}/versions/{version_id}/:
     $ref: 'files/version_detail.yaml'
 
+  #############
+  #   GROUPS   #
+  #############
+
+  /groups/:
+    $ref: 'groups/list.yaml'
+
+  /groups/{group_id}/:
+    $ref: 'groups/detail.yaml'
+
+  /groups/{group_id}/members/:
+    $ref: 'groups/members_list.yaml'
+
+  /groups/{group_id}/members/{user_id}/:
+    $ref: 'groups/member_detail.yaml'
+
   #################
   #    LICENSES   #
   #################
-
   /licenses/:
     $ref: 'licenses/list.yaml'
 
@@ -1188,6 +1234,12 @@ paths:
 
   /nodes/{node_id}/forks/:
     $ref: 'nodes/forks_list.yaml'
+
+  /nodes/{node_id}/groups/:
+    $ref: 'nodes/groups_list.yaml'
+
+  /nodes/{node_id}/groups/{group_id}:
+    $ref: 'nodes/groups_detail.yaml'
 
   /nodes/{node_id}/linked_nodes/:
     $ref: 'nodes/linked_nodes_list.yaml'
@@ -1382,6 +1434,9 @@ paths:
 
   /users/{user_id}/identities/{identities_id}/:
     $ref: 'users/external_identities_detail.yaml'
+
+  /users/{user_id}/groups/:
+    $ref: 'users/groups_list.yaml'
 
   /users/{user_id}/institutions/:
     $ref: 'users/institutions_list.yaml'
