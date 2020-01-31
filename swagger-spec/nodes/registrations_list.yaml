@@ -221,7 +221,7 @@ post:
 
     #### Optional
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`children` (If left unspecified all children will be registered).
+    &nbsp;&nbsp;&nbsp;&nbsp;`included_node_ids` (If left unspecified all child nodes will be registered).
 
 
     &nbsp;&nbsp;&nbsp;&nbsp;`embargo_end_date` (Does not need to be specified, unless registration is embargoed).

@@ -52,6 +52,7 @@ x-tagGroups:
       - Preprint Providers
       - Registrations
       - Schemas
+      - Search
       - Taxonomies
       - Users
       - View Only Links
@@ -1330,6 +1331,31 @@ paths:
 
   /schemas/registrations/{schema_id}/schema_blocks/{schema_block_id}/:
     $ref: 'schemas/schemablock_detail.yaml'
+
+  ##############
+  #   SEARCH   #
+  ##############
+
+  /search/:
+    $ref: 'search/search.yaml'
+
+  /search/files/:
+    $ref: 'search/files.yaml'
+
+  /search/projects/:
+    $ref: 'search/projects.yaml'
+
+  /search/components/:
+    $ref: 'search/components.yaml'
+
+  /search/registrations/:
+    $ref: 'search/registrations.yaml'
+
+  /search/users/:
+    $ref: 'search/users.yaml'
+
+  /search/institutions/:
+    $ref: 'search/institutions.yaml'
 
   ##################
   #   TAXONOMIES   #
