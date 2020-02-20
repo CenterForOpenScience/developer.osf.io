@@ -42,6 +42,7 @@ x-tagGroups:
       - Base
       - Citations
       - Comments
+      - Draft Registrations
       - Files
       - Groups
       - Licenses
@@ -52,6 +53,7 @@ x-tagGroups:
       - Preprints
       - Preprint Providers
       - Registrations
+      - Schemas
       - Search
       - Taxonomies
       - Users
@@ -294,7 +296,7 @@ tags:
       #### Header Versioning
 
 
-      + `Accept-Header=application/vnd.api+json;version=3.0.1`
+      + `Accept=application/vnd.api+json;version=3.0.1`
 
 
       + Pinning to a specific version via request header is **optional**.
@@ -1078,6 +1080,13 @@ paths:
   # /comments/{comment_id}/reports/{user_id}/:
   #   $ref: 'comments/report_detail.yaml'
 
+  ###########################
+  #   DRAFT REGISTRATIONS   #
+  ###########################
+
+  /draft_registrations/{draft_id}/:
+    $ref: 'draft_registrations/draftregistration_detail.yaml'
+
   #############
   #   FILES   #
   #############
@@ -1358,6 +1367,22 @@ paths:
 
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
+
+  #####################
+  #   SCHEMAS   #
+  #####################
+
+  /schemas/registrations/:
+    $ref: 'schemas/schema_list.yaml'
+
+  /schemas/registrations/{schema_id}/:
+    $ref: 'schemas/schema_detail.yaml'
+
+  /schemas/registrations/{schema_id}/schema_blocks/:
+    $ref: 'schemas/schemablock.yaml'
+
+  /schemas/registrations/{schema_id}/schema_blocks/{schema_block_id}/:
+    $ref: 'schemas/schemablock_detail.yaml'
 
   ##############
   #   SEARCH   #

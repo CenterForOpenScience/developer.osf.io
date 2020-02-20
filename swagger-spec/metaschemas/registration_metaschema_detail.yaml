@@ -30,6 +30,7 @@ get:
     - Metaschemas
   operationId: registration_metaschemas_read
   x-response-schema: Metaschema
+  deprecated: true
   responses:
     '200':
       description: 'OK'

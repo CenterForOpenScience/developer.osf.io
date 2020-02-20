@@ -1,0 +1,49 @@
+get:
+  summary: Retrieve a specific block in a registration schema
+  description: >-
+    A specific block in a schema
+
+
+  tags:
+    - Schemas
+  parameters:
+    - in: path
+      type: string
+      name: schema_id
+      required: true
+      description: 'The unique identifier of the target schema.'
+
+    - in: path
+      type: string
+      name: schema_block_id
+      required: true
+      description: 'The unique identifier of the schema block within the target schema.'
+  operationId: registrations_list
+  x-response-schema: Schema
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+          $ref: schema_block_definition.yaml
+      examples:
+        application/json:
+          data:
+            id: pf6383epo18lk20096c0fxx5
+            type: schema-blocks
+            attributes:
+              registration_response_key: q1
+              schema_block_group_key: 5ddeanvv158cpco101fpo2fe
+              block_type: short-text-input
+              display_text: Are you a faculty member?
+              help_text: 'If yes, enter department'
+              example_text: 'Biology'
+              required: true
+              index: 0
+            relationships:
+              schema:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/schemas/registrations/pf6347s2o18lk20096c9fxer'
+                    meta:
+            links:
+              self: https://api.osf.io/v2/schemas/registrations/pf6347s2o18lk20096c9fxer/schema_blocks/pf6383epo18lk20096c0fxx5

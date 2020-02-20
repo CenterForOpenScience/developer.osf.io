@@ -218,14 +218,13 @@ post:
     &nbsp;&nbsp;&nbsp;&nbsp;`draft_registration`
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`registration_choice`
-
-
-    &nbsp;&nbsp;&nbsp;&nbsp;`lift_embargo` (Only required when `registration_choice` is "embargo")
 
     #### Optional
 
-    &nbsp;&nbsp;&nbsp;&nbsp;`children` (If left unspecified all children will be registered)
+    &nbsp;&nbsp;&nbsp;&nbsp;`included_node_ids` (If left unspecified all child nodes will be registered).
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;`embargo_end_date` (Does not need to be specified, unless registration is embargoed).
 
 
     #### Returns
@@ -254,9 +253,8 @@ post:
             type: registrations
             attributes:
               draft_registration: '{draft_registration_id}'
-              registration_choice: embargo
-              lift_embargo: '2017-05-10T20:44:03.185000'
-              children: ['fsd2s', 'dwsa2']
+              embargo_end_date: '2017-05-10T20:44:03.185000'
+              included_node_ids: ['fsd2s', 'dwsa2']
   tags:
     - Nodes
   operationId: nodes_registrations_create

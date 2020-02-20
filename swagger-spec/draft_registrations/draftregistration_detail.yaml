@@ -1,0 +1,136 @@
+get:
+  summary: Retrieve a draft registration
+  description: >-
+    Retrieve the details of a given draft registration.
+
+
+    Draft registrations contain the supplemental registration questions that accompany a registration.
+    A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+
+
+    Your original project remains editable but will now have the draft registration linked to it.
+
+
+    #### Permissions
+
+
+    Only project administrators may view draft registrations.
+
+
+    #### Returns
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    draft registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_read
+  x-response-schema: Draft Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: draftregistration_definition.yaml
+      examples:
+        application/json:
+          data:
+          - id: ''
+            type: 'draft_registrations'
+            attributes:
+              datetime_initiated: ''
+              datetime_updated: ''
+              registration_responses: {}
+            relationships:
+              branched_from:
+                links:
+                  related:
+                    href: ''
+                    meta: {}
+              initiator:
+                links:
+                  related:
+                    href: ''
+                    meta: {}
+              registration_schema:
+                links:
+                  related:
+                    href: ''
+                    meta: {}
+            links:
+              html: ''
+          links:
+            first: ''
+            last: ''
+            prev: ''
+            next: ''
+            meta:
+              total: ''
+              per_page: 10
+
+patch:
+  summary: Update a draft registration
+  description: >-
+    Update a draft registration by answering the supplemental registration questions. This is the second step in creating a registration.
+    The answers will go under registration_metadata.
+    Registration_metadata must be a dictionary with keys as question ids in the registration form, and values as nested dictionaries matching the specific format in the registration metaschema.
+
+
+    [To view all active registration schemas](#operation/registration_metaschemas_list)
+
+
+    [To retrieve the format of a certain registration schema](#operation/registration_metaschemas_read)
+
+
+    If a question is multiple-choice, the question response must exactly match one of the possible choices.
+
+
+    Refer to step 1: [How to create a draft registration](#operation/nodes_draft_registrations_create)
+
+
+    Refer to step 3: [How to create a registration from a completed draft registration](#operation/nodes_registrations_create)
+
+
+    #### Permissions
+
+    Only project administrators may update draft registrations.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated draft registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: 'draftregistration_definition.yaml'
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_partial_update
+  x-response-schema: Draft Registration
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
