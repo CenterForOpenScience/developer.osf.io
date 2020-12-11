@@ -893,7 +893,6 @@ tags:
           + `registration_schemas` has been changed to `registration-schemas`
           + `file_metadata_schemas` has been changed to `file-metadata-schemas`
 
-
       #### 2.14
 
       + Deprecates the `logo_path` field off of the InstitutionSerializer.
