@@ -70,6 +70,10 @@ patch:
     node, if the request is successful.
 
 
+    If the update request enables two-factor authentication with the `two_factor_enabled` key, the response will include the `secret` needed to
+    complete two-factor authentication. This key will only be returned if the two-factor authentication is enabled, but not yet confirmed.
+
+
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
