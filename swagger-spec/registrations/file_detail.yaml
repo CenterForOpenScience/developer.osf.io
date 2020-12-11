@@ -5,7 +5,7 @@ get:
     Retrieves the details of a registration file
     for the given storage provider.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     registration file object, if the request is successful.

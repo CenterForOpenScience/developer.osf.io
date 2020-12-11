@@ -13,7 +13,7 @@ get:
     the logs of that node's children to which the current user has read-only access.
 
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

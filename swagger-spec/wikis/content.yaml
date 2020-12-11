@@ -3,7 +3,7 @@ get:
   description: >-
     Retrieves the plaintext content of a wiki in markdown format.
 
-    ####Returns
+    #### Returns
 
     Returns `text/markdown` of the wiki content itself.
 

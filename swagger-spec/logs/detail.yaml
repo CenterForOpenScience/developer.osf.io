@@ -6,7 +6,7 @@ get:
     A log is permanent immutable record of a node's history. A log is created when a user
     performs one of many actions. See the [actions](#Logs_logs_actions) section for more details.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     log, if the request was successful.

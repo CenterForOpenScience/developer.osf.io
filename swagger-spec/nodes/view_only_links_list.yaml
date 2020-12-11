@@ -4,7 +4,7 @@ get:
   description: >-
     List of view only links on a node.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

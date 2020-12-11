@@ -6,7 +6,7 @@ get:
     List of all the files/folders that are attached to your project
     for a given storage provider.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

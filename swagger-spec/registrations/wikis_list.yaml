@@ -4,7 +4,7 @@ get:
   description: >-
     A paginated list of the registration's wiki pages
 
-    ####Returns
+    #### Returns
 
     A list of all registration's current wiki page versions ordered by their date_modified.
     Each resource contains the full representation of the wiki, meaning additional requests

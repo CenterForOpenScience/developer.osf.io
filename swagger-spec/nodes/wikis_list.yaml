@@ -3,7 +3,7 @@ get:
   description: >-
     List of wiki pages on a node.
 
-    ####Returns
+    #### Returns
 
     Paginated list of the node's current wiki page versions ordered by their date_modified.
     Each resource contains the full representation of the wiki, meaning additional requests

@@ -4,7 +4,7 @@ get:
   description: >-
     A paginated list of the registration's identifiers.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

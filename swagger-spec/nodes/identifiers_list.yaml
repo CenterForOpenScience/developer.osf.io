@@ -4,7 +4,7 @@ get:
   description: >-
     List all identifiers associated with a given node.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

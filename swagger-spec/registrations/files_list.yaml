@@ -7,7 +7,7 @@ get:
     for a given storage provider.
 
 
-    ####Returns
+    #### Returns
 
 
     Returns a JSON object containing `data` and `links` keys.

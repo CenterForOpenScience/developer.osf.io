@@ -5,7 +5,7 @@ get:
   description: >-
     A paginated list of view only links created for this registration.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

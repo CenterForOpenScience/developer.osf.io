@@ -4,7 +4,7 @@ get:
   description: >-
     Retrieves the details of a view only link on a node.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     view only link, if the request is successful.

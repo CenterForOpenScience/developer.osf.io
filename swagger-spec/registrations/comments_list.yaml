@@ -22,7 +22,7 @@ get:
 
     Comments of private registrations are only visible to contributors and administrators on the registration.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

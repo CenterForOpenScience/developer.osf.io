@@ -4,7 +4,7 @@ get:
   description: >-
     List of all nodes linked to the registration.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
