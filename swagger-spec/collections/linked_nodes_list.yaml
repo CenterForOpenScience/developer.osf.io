@@ -1,1 +1,250 @@
 # /collections/{collection_id}/linked_nodes/
+get:
+  summary: List All Linked Nodes for a Collection
+  description: >-
+    List of all nodes linked to the given collection.
+
+    #### Permissions
+
+    This returns all public nodes associated with this collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 nodes.
+    Each resource in the array is a separate node object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_linked_nodes_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+          - id: 2vewn
+            type: nodes
+            attributes:
+              title: A Good Node Title
+              description: A good Node description.
+              category: project
+              custom_citation:
+              date_created: '2020-05-11T17:57:58.725950Z'
+              date_modified: '2020-11-20T14:31:59.946554Z'
+              registration: false
+              preprint: false
+              fork: false
+              collection: false
+              tags: []
+              node_license:
+                copyright_holders:
+                - Test User
+                year: '2020'
+              analytics_key: c438e67a7680113ee310cad8121e520bab632f3df95d443a4fadb0cbf3af890acc0d91ab6499297ec622bb827979c6005f13a80b3eddcf87a081667e6b2ac3da6eff414dc659b19e3a473f8bf7ef295bff3c036c955c8313fa6ce1da1253e74592e0b399940ca9f099b36923df8c11622d0a1768ae53f79a6061da76007061207f299a0e507f1ff47baeb902f2c403f0
+              current_user_can_comment: false
+              current_user_permissions: []
+              current_user_is_contributor: false
+              current_user_is_contributor_or_group_member: false
+              wiki_enabled: true
+              public: true
+            relationships:
+              license:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e965/
+                    meta: {}
+                data:
+                  id: 563c1cf88c5e4a3877f9e965
+                  type: licenses
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/children/
+                    meta: {}
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/comments/?filter%5Btarget%5D=2vewn
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/contributors/
+                    meta: {}
+              bibliographic_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/bibliographic_contributors/
+                    meta: {}
+              implicit_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/implicit_contributors/
+                    meta: {}
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/files/
+                    meta: {}
+              settings:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/settings/
+                    meta: {}
+                data:
+                  id: 2vewn
+                  type: nodes
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/wikis/
+                    meta: {}
+              forked_from:
+                data:
+              template_node:
+                data:
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/forks/
+                    meta: {}
+              groups:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/groups/
+                    meta: {}
+              linked_by_nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/linked_by_nodes/
+                    meta: {}
+              linked_by_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/linked_by_registrations/
+                    meta: {}
+              parent:
+                data:
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/identifiers/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/institutions/
+                    meta: {}
+                  self:
+                    href: https://api.osf.io/v2/nodes/2vewn/relationships/institutions/
+                    meta: {}
+              draft_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/draft_registrations/
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/registrations/
+                    meta: {}
+              region:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/regions/us/
+                    meta: {}
+                data:
+                  id: us
+                  type: regions
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/
+                    meta: {}
+                data:
+                  id: 2vewn
+                  type: nodes
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/logs/
+                    meta: {}
+              linked_nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/linked_nodes/
+                    meta: {}
+                  self:
+                    href: https://api.osf.io/v2/nodes/2vewn/relationships/linked_nodes/
+                    meta: {}
+              linked_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/linked_registrations/
+                    meta: {}
+                  self:
+                    href: https://api.osf.io/v2/nodes/2vewn/relationships/linked_registrations/
+                    meta: {}
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/view_only_links/
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/citation/
+                    meta: {}
+                data:
+                  id: 2vewn
+                  type: nodes
+              preprints:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/preprints/
+                    meta: {}
+              storage:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/storage/
+                    meta: {}
+                data:
+                  id: 2vewn
+                  type: nodes
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/2vewn/subjects/
+                    meta: {}
+                  self:
+                    href: https://api.osf.io/v2/nodes/2vewn/relationships/subjects/
+                    meta: {}
+            links:
+              html: https://osf.io/2vewn/
+              self: https://api.osf.io/v2/nodes/2vewn/
+          meta:
+            total: 1
+            per_page: 10
+            version: '2.20'
+          links:
+            self: https://api.osf.io/v2/collections/ux3nq/linked_nodes/
+            first:
+            last:
+            prev:
+            next:

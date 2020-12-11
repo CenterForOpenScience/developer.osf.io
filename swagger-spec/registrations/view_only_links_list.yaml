@@ -17,13 +17,13 @@ get:
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
-    ####Permissions
+    #### Permissions
 
 
     View only links on a registration, public or private, are readable and writeable only by users that are administrators on the registration.
 
 
-    ####Filtering
+    #### Filtering
 
 
     You can optionally request that the response only include view only links that match your filters by utilizing the `filter` query parameter, e.g.

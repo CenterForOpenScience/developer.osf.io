@@ -4,7 +4,7 @@ get:
   description: >-
     Retrieves all institutions affiliated with a node.
 
-    ####Permissions
+    #### Permissions
 
     The user must have write access to the node and be affiliated with the given institution.
 
@@ -49,7 +49,7 @@ post:
     Create a relationship between an institution and a node.
 
 
-    ####Permissions
+    #### Permissions
 
 
     The user must have write access to the node and be affiliated with the given institution.
@@ -78,7 +78,7 @@ delete:
   description: >-
     Delete a relationship between an institution and a node.
 
-    ####Permissions
+    #### Permissions
 
 
     The user must have write access to the node and be affiliated with the given institution.

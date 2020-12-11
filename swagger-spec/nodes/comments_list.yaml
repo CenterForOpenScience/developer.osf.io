@@ -9,7 +9,7 @@ get:
     The returned comments are sorted by their creation date, with the most recent
     comments appearing first.
 
-    ####Permissions
+    #### Permissions
 
     Comments on public nodes are given read-only access to everyone.
 

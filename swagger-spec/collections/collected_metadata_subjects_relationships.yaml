@@ -1,0 +1,48 @@
+# /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
+get:
+  summary: Retrieve specific metadata info for a collection
+  description: >-
+
+    #### Permissions
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: cgm_id
+      description: 'A short id for that piece of metadata'
+
+  tags:
+    - Collections
+  operationId: collections_linked_registrations_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            - type: subjects
+              id: 5fd228b7e64e1300aa99ee15
+          links:
+            self: https://api.osf.io/v2/collections/nywr6/collected_metadata/zjxhs/relationships/subjects/
+            html: https://api.osf.io/v2/collections/nywr6/collected_metadata/zjxhs/subjects/
+          meta:
+            version: '2.20'
