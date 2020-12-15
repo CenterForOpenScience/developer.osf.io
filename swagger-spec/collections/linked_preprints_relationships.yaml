@@ -1,12 +1,12 @@
 # /collections/{collection_id}/relationships/preprints_nodes/
 post:
-  summary: Link Registrations to Collection
+  summary: Link Preprints to Collection
   description: >-
-    This endpoint allow users to a add a registration to a collection by issuing a POST request.
+    This endpoint allow users to a add a preprint to a collection by issuing a POST request.
 
     #### Permissions
 
-    This returns all public registrations associated with this collection.
+    This returns all public preprints associated with this collection.
 
     #### Returns
 
@@ -31,18 +31,18 @@ post:
         type: object
         example:
           data:
-          - type: linked_registrations
+          - type: linked_preprints
             id: guid0
-          - type: linked_registrations
+          - type: linked_preprints
             id: newid
-          - type: linked_registrations
+          - type: linked_preprints
             id: test2
-          - type: linked_registrations
+          - type: linked_preprints
             id: guid4
 
   tags:
     - Collections
-  operationId: collections_linked_registrations_relationships
+  operationId: collections_linked_preprints_relationships
   x-response-schema: Collection
   consumes:
     - application/json
@@ -53,13 +53,13 @@ post:
         application/json:
 
 get:
-  summary: Give a Sparse List of Registrations Ids
+  summary: Give a Sparse List of Node Ids
   description: >-
-    List of all the registration ids linked to the given collection.
+    List of all the node ids linked to the given collection.
 
     #### Permissions
 
-    This returns all public registrations associated with this collection.
+    This returns all public nodes associated with this collection.
 
     #### Returns
 
@@ -79,7 +79,7 @@ get:
 
   tags:
     - Collections
-  operationId: collections_linked_registrations_relationships_create
+  operationId: collections_linked_preprints_relationships_create
   x-response-schema: Collection
   consumes:
     - application/json
@@ -90,29 +90,30 @@ get:
       examples:
         application/json:
           data:
-            - type: registrations
+            - type: preprints
               id: guid0
-            - type: registrations
+            - type: preprints
               id: newid
-            - type: registrations
+            - type: preprints
               id: test2
-            - type: registrations
+            - type: preprints
               id: guid4
           links:
-            self: https://api.osf.io/v2/collections/dse23/relationships/linked_registrations/
-            html: https://api.osf.io/v2/collections/dse23/linked_registrations/
+            self: https://api.osf.io/v2/collections/dse23/relationships/linked_preprints/
+            html: https://api.osf.io/v2/collections/dse23/linked_preprints/
           meta:
             version: '2.20'
 
+
 delete:
-  summary:  Remove Registrations From Collection
+  summary:  Remove Preprints From Collection
   description: >-
 
-    This removes associated registrations from a collection
+    This removes associated preprints from a collection
 
     #### Permissions
 
-    Any user with write permissions on this collection should be to remove registrations from this collection.
+    Any user with write permissions on this collection should be to remove preprints from this collection.
 
     #### Returns
 
@@ -131,18 +132,18 @@ delete:
         type: object
         example:
           data:
-          - type: linked_registrations
+          - type: linked_preprints
             id: guid0
-          - type: linked_registrations
+          - type: linked_preprints
             id: newid
-          - type: linked_registrations
+          - type: linked_preprints
             id: test2
-          - type: linked_registrations
+          - type: linked_preprints
             id: guid4
 
   tags:
     - Collections
-  operationId: collections_linked_registrations_relationships_delete
+  operationId: collections_linked_preprints_relationships_delete
   x-response-schema: Collection
   consumes:
     - application/json

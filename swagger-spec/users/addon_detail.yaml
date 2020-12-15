@@ -11,7 +11,7 @@ get:
     User addons are visible only to the user that authorized the addon.
 
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     user addon, if the request was successful.

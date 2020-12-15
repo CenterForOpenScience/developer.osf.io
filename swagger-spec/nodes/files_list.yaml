@@ -6,7 +6,7 @@ get:
     List of all the files/folders that are attached to your project
     for a given storage provider.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -18,7 +18,7 @@ get:
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
 
-    ####Filtering
+    #### Filtering
 
 
     You can optionally request that the response only include files that match your filters by utilizing the `filter` query parameter, e.g.

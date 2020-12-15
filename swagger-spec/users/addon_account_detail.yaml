@@ -11,7 +11,7 @@ get:
     Addon accounts are visible only to the user that authorized the account.
 
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     addon account, if the request was successful.

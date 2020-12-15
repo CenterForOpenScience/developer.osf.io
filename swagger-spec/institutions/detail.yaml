@@ -4,7 +4,7 @@ get:
   description: >-
     Retrieves the details of an institution
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
     institution, if the request was successful.

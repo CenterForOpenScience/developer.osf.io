@@ -4,7 +4,7 @@ get:
   description: >-
     List of all nodes linked to the registration.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -15,7 +15,7 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
-    ####Filtering
+    #### Filtering
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
     https://api.osf.io/v2/registrations/wucr8/linked_nodes/?filter[title]=reproducibility/?filter[title]=reproducibility.

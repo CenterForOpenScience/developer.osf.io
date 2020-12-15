@@ -1,0 +1,142 @@
+# /collections/{collection_id}/linked_preprints/
+get:
+  summary: List All Linked Preprints for a Collection
+  description: >-
+    List of all preprints linked to the given collection.
+
+    #### Permissions
+
+    This returns all public preprints associated with this collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 nodes.
+    Each resource in the array is a separate node object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_linked_preprints_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+          - id: zjxhs
+            type: preprints
+            attributes:
+              date_created: '2020-12-10T13:55:03.994648Z'
+              date_modified: '2020-12-10T13:55:05.252565Z'
+              date_published: '2020-12-10T13:55:05.046084Z'
+              original_publication_date:
+              doi: 10.123/0
+              title: A Good Preprint Title
+              description: Research physical language morning consumer front population.
+              is_published: true
+              is_preprint_orphan: false
+              license_record:
+              tags: [ ]
+              preprint_doi_created: '2020-12-10T13:55:05.230155Z'
+              date_withdrawn:
+              current_user_permissions: [ ]
+              public: true
+              reviews_state: accepted
+              date_last_transitioned: '2020-12-10T13:55:05.046084Z'
+            relationships:
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/contributors/
+                    meta: { }
+              bibliographic_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/bibliographic_contributors/
+                    meta: { }
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/citation/
+                    meta: { }
+                data:
+                  id: zjxhs
+                  type: preprints
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/identifiers/
+                    meta: { }
+              node:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/preprints/zjxhs/relationships/node/
+                    meta: { }
+              license:
+                data:
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/providers/preprints/slug1/
+                    meta: { }
+                data:
+                  id: slug1
+                  type: preprint-providers
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/files/
+                    meta: { }
+              primary_file:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/files/5fd228b8e64e1300aa99ee17/
+                    meta: { }
+                data:
+                  id: 5fd228b8e64e1300aa99ee17
+                  type: files
+              review_actions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/review_actions/
+                    meta: { }
+              requests:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/requests/
+                    meta: { }
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/zjxhs/subjects/
+                    meta: { }
+            links:
+              self: https://api.osf.io/v2/preprints/zjxhs/
+              html: https://osf.io/preprints/slug1/zjxhs/
+              doi: https://doi.org/10.123/0
+              preprint_doi: https://doi.org/None/FK2osf.io/zjxhs
+        meta:
+          total: 1
+          per_page: 10
+          version: '2.20'
+        links:
+          self: https://api.osf.io/v2/collections/nywr6/linked_preprints/
+          first:
+          last:
+          prev:
+          next:

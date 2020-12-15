@@ -4,7 +4,7 @@ get:
   description: >-
         Retrieves details about a specific view only link.
 
-        ####Permissions
+        #### Permissions
 
         Only project administrators may retrieve the details of a view only link.
         Attempting to retrieve a view only link without appropriate permissions will result in a 403 Forbidden response.

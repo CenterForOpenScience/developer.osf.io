@@ -1,1 +1,273 @@
 # /collections/{collection_id}/linked_registrations/
+get:
+  summary: List All Linked Registrations for a Collection
+  description: >-
+    List of all registrations linked to the given collection.
+
+    #### Permissions
+
+    This returns all public registrations associated with this collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of up to 10 nodes.
+    Each resource in the array is a separate node object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_linked_registrations_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+          - id: qrwhu
+            type: registrations
+            attributes:
+              title: A Good Registration Title
+              description: Half believe though on significant.
+              category: project
+              custom_citation: ''
+              date_created: '2020-12-10T14:36:42.195364Z'
+              date_modified: '2020-12-10T14:36:39.925278Z'
+              registration: true
+              preprint: false
+              fork: false
+              collection: false
+              tags: [ ]
+              access_requests_enabled: false
+              node_license:
+              analytics_key:
+              current_user_can_comment: true
+              current_user_permissions: [ ]
+              current_user_is_contributor: false
+              current_user_is_contributor_or_group_member: false
+              wiki_enabled: true
+              public: true
+              reviews_state: initial
+              article_doi:
+              pending_embargo_approval: false
+              pending_embargo_termination_approval: false
+              embargoed: false
+              pending_registration_approval: false
+              archiving: false
+              pending_withdrawal: false
+              withdrawn: false
+              date_registered: '2020-12-10T14:36:42.166193Z'
+              date_withdrawn:
+              embargo_end_date:
+              withdrawal_justification:
+              registration_supplement: Open-Ended Registration
+              registered_meta: { }
+              registration_responses:
+                summary: ''
+            relationships:
+              license:
+                data:
+              children:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/children/
+                    meta: { }
+              comments:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/comments/?filter%5Btarget%5D=qrwhu
+                    meta: { }
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/contributors/
+                    meta: { }
+              bibliographic_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/bibliographic_contributors/
+                    meta: { }
+              implicit_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/implicit_contributors/
+                    meta: { }
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/files/
+                    meta: { }
+              wikis:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/wikis/
+                    meta: { }
+              forked_from:
+                data:
+              template_node:
+                data:
+              forks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/forks/
+                    meta: { }
+              linked_by_nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/linked_by_nodes/
+                    meta: { }
+              linked_by_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/linked_by_registrations/
+                    meta: { }
+              parent:
+                data:
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/identifiers/
+                    meta: { }
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/institutions/
+                    meta: { }
+                  self:
+                    href: https://api.osf.io/v2/registrations/qrwhu/relationships/institutions/
+                    meta: { }
+              region:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/regions/us/
+                    meta: { }
+                data:
+                  id: us
+                  type: regions
+              root:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/
+                    meta: { }
+                data:
+                  id: qrwhu
+                  type: registrations
+              logs:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/logs/
+                    meta: { }
+              linked_nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/linked_nodes/
+                    meta: { }
+                  self:
+                    href: https://api.osf.io/v2/registrations/qrwhu/relationships/linked_nodes/
+                    meta: { }
+              linked_registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/linked_registrations/
+                    meta: { }
+                  self:
+                    href: https://api.osf.io/v2/registrations/qrwhu/relationships/linked_registrations/
+                    meta: { }
+              view_only_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/view_only_links/
+                    meta: { }
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/citation/
+                    meta: { }
+                data:
+                  id: qrwhu
+                  type: registrations
+              storage:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/qrwhu/storage/
+                    meta: { }
+                data:
+                  id: qrwhu
+                  type: nodes
+              registered_by:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/9hr6c/
+                    meta: { }
+                data:
+                  id: 9hr6c
+                  type: users
+              registered_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/4gnbx/
+                    meta: { }
+                data:
+                  id: 4gnbx
+                  type: nodes
+              registration_schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/schemas/registrations/5fa1bb678ccd39001e96c32b/
+                    meta: { }
+                data:
+                  id: 5fa1bb678ccd39001e96c32b
+                  type: registration-schemas
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/providers/registrations/osf/
+                    meta: { }
+                data:
+                  id: osf
+                  type: registration-providers
+              review_actions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/actions/
+                    meta: { }
+              requests:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/requests/
+                    meta: { }
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/registrations/qrwhu/subjects/
+                    meta: { }
+                  self:
+                    href: https://api.osf.io/v2/registrations/qrwhu/relationships/subjects/
+                    meta: { }
+            links:
+              html: https://osf.io/qrwhu/
+              self: https://api.osf.io/v2/registrations/qrwhu/
+        meta:
+          total: 1
+          per_page: 10
+          version: '2.20'
+        links:
+          self: https://api.osf.io/v2/collections/nywr6/linked_registrations/
+          first:
+          last:
+          prev:
+          next:

@@ -1,0 +1,380 @@
+# /collections/{collection_id}/collected_metadata/{cmg_id}
+get:
+  summary: Retrieve Specific Metadata for a Collection
+  description: >-
+
+    #### Permissions
+
+    In order to view this metadata it must be public or a user must have read permissions for collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: cgm_id
+      description: 'A short id for that piece of metadata'
+
+  tags:
+    - Collections
+  operationId: collections_linked_registrations_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        data:
+          id: zw4sh
+          type: collected-metadata
+          attributes:
+            collected_type: Action Research
+            status: ''
+            volume: ''
+            issue: ''
+            program_area: Child Welfare
+          relationships:
+            creator:
+              links:
+                related:
+                  href: https://api.osf.io/v2/users/nsx26/
+                  meta: { }
+              data:
+                id: nsx26
+                type: users
+            collection:
+              links:
+                related:
+                  href: https://api.osf.io/v2/collections/ux3nq/
+                  meta: { }
+              data:
+                id: ux3nq
+                type: collections
+            guid:
+              links:
+                related:
+                  href: https://api.osf.io/v2/guids/zw4sh/
+                  meta: { }
+            subjects:
+              links:
+                related:
+                  href: https://api.osf.io/v2/collections/ux3nq/collected_metadata/zw4sh/subjects/
+                  meta: { }
+                self:
+                  href: https://api.osf.io/v2/collections/ux3nq/collected_metadata/zw4sh/relationships/subjects/
+                  meta: { }
+          embeds:
+            guid:
+              data:
+                id: zw4sh
+                type: nodes
+                attributes:
+                  title: test
+                  description: flaksdjfasdlkfj lkjdf aslkdfj sdlfkj
+                  category: project
+                  custom_citation:
+                  date_created: '2020-06-05T18:02:28.254638Z'
+                  date_modified: '2020-10-21T15:47:17.646448Z'
+                  registration: false
+                  preprint: false
+                  fork: false
+                  collection: false
+                  tags: [ ]
+                  node_license:
+                    copyright_holders: [ ]
+                    year:
+                  analytics_key: ''
+                  current_user_can_comment: false
+                  current_user_permissions: [ ]
+                  current_user_is_contributor: false
+                  current_user_is_contributor_or_group_member: false
+                  wiki_enabled: true
+                  public: false
+                relationships:
+                  license:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/
+                        meta: { }
+                    data:
+                      id: 563c1cf88c5e4a3877f9e96a
+                      type: licenses
+                  children:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/children/
+                        meta: { }
+                  comments:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/comments/?filter%5Btarget%5D=zw4sh
+                        meta: { }
+                  contributors:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/contributors/
+                        meta: { }
+                  bibliographic_contributors:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/bibliographic_contributors/
+                        meta: { }
+                  implicit_contributors:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/implicit_contributors/
+                        meta: { }
+                  files:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/files/
+                        meta: { }
+                  settings:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/settings/
+                        meta: { }
+                    data:
+                      id: zw4sh
+                      type: nodes
+                  wikis:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/wikis/
+                        meta: { }
+                  forked_from:
+                    data:
+                  template_node:
+                    data:
+                  forks:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/forks/
+                        meta: { }
+                  groups:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/groups/
+                        meta: { }
+                  linked_by_nodes:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/linked_by_nodes/
+                        meta: { }
+                  linked_by_registrations:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/linked_by_registrations/
+                        meta: { }
+                  parent:
+                    data:
+                  identifiers:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/identifiers/
+                        meta: { }
+                  affiliated_institutions:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/institutions/
+                        meta: { }
+                      self:
+                        href: https://api.osf.io/v2/nodes/zw4sh/relationships/institutions/
+                        meta: { }
+                  draft_registrations:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/draft_registrations/
+                        meta: { }
+                  registrations:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/registrations/
+                        meta: { }
+                  region:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/regions/us/
+                        meta: { }
+                    data:
+                      id: us
+                      type: regions
+                  root:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/
+                        meta: { }
+                    data:
+                      id: zw4sh
+                      type: nodes
+                  logs:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/logs/
+                        meta: { }
+                  linked_nodes:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/linked_nodes/
+                        meta: { }
+                      self:
+                        href: https://api.osf.io/v2/nodes/zw4sh/relationships/linked_nodes/
+                        meta: { }
+                  linked_registrations:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/linked_registrations/
+                        meta: { }
+                      self:
+                        href: https://api.osf.io/v2/nodes/zw4sh/relationships/linked_registrations/
+                        meta: { }
+                  view_only_links:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/view_only_links/
+                        meta: { }
+                  citation:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/citation/
+                        meta: { }
+                    data:
+                      id: zw4sh
+                      type: nodes
+                  preprints:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/preprints/
+                        meta: { }
+                  storage:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/storage/
+                        meta: { }
+                    data:
+                      id: zw4sh
+                      type: nodes
+                  subjects:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/nodes/zw4sh/subjects/
+                        meta: { }
+                      self:
+                        href: https://api.osf.io/v2/nodes/zw4sh/relationships/subjects/
+                        meta: { }
+                links:
+                  html: https://osf.io/zw4sh/
+                  self: https://api.osf.io/v2/nodes/zw4sh/
+          links: { }
+        meta:
+          version: '2.20'
+
+
+post:
+  summary: Add Metadata or Subjects to an Entity in a Collection
+  description: >-
+    List of user created metadata for entities within a collection.
+
+    #### Permissions
+
+    To edit this collection a user must have collections write permissions
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: cgm_id
+      description: 'A short id for that piece of metadata'
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          application/json:
+            data:
+              type: collected-metadata
+              attributes:
+                volume: test
+                guid: test0
+                subjects: 5fd228b7e64e1300aa99ee15
+
+  tags:
+    - Collections
+  operationId: collections_linked_registrations_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'OK'
+
+
+delete:
+  summary: Delete Collection Metadata from entitiy
+  description: >-
+
+    #### Permissions
+
+    Only a user with collection admin permissions can delete collected metadata
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: cgm_id
+      description: 'A short id for that piece of metadata'
+
+
+  tags:
+    - Collections
+  operationId: collections_linked_registrations_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '204':
+      description: 'NO CONTENT'

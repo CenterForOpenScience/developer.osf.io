@@ -38,6 +38,7 @@ x-tagGroups:
       - Base
       - Citations
       - Comments
+      - Collections
       - Files
       - Licenses
       - Logs
@@ -1095,3 +1096,40 @@ paths:
 
   /wikis/{wiki_id}/content/:
     $ref: 'wikis/content.yaml'
+
+  ###################
+  #   COLLECTIONS   #
+  ###################
+
+  /collections/:
+    $ref: 'collections/list.yaml'
+
+  /collections/{collection_id}/:
+    $ref: 'collections/detail.yaml'
+
+  /collections/{collection_id}/linked_nodes:
+    $ref: 'collections/linked_nodes_list.yaml'
+
+  /collections/{collection_id}/linked_nodes/relationships/:
+    $ref: 'collections/linked_nodes_relationships.yaml'
+
+  /collections/{collection_id}/linked_registrations/:
+    $ref: 'collections/linked_registrations_list.yaml'
+
+  /collections/{collection_id}/linked_registrations/relationships/:
+    $ref: 'collections/linked_registrations_relationships.yaml'
+
+  /collections/{collection_id}/linked_preprints/:
+    $ref: 'collections/linked_preprints_list.yaml'
+
+  /collections/{collection_id}/collected_metadata/:
+    $ref: 'collections/collected_metadata_list.yaml'
+
+  /collections/{collection_id}/collected_metadata/{cgm_id}:
+    $ref: 'collections/collected_metadata_detail.yaml'
+
+  /collections/{collection_id}/collected_metadata/{cgm_id}/subjects/:
+    $ref: 'collections/collected_metadata_subjects.yaml'
+
+  /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
+    $ref: 'collections/collected_metadata_subjects_relationships.yaml'

@@ -1,0 +1,94 @@
+# /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
+get:
+  summary: Retrieve subjuct metadata for a specific piece of metadata in a collection
+  description: >-
+
+    #### Permissions
+
+    This is public for a logged out user when an entity is public.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: cgm_id
+      description: 'A short id for that piece of metadata'
+
+  tags:
+    - Collections
+  operationId: collections_metadata_subjects_relationships
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            - type: subjects
+              id: 5fd228b7e64e1300aa99ee15
+          links:
+            self: https://api.osf.io/v2/collections/nywr6/collected_metadata/zjxhs/relationships/subjects/
+            html: https://api.osf.io/v2/collections/nywr6/collected_metadata/zjxhs/subjects/
+          meta:
+            version: '2.20'
+
+post:
+  summary: Update subjects for a specific piece of metadata in a collection
+  description: >-
+
+    #### Permissions
+
+    This is editable for a user with a write permission for this collection.
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          application/json:
+            data:
+              type: subjects
+              id: 5fd228b7e64e1300aa99ee15
+
+  tags:
+    - Collections
+  operationId: collections_metadata_subjects_relationships_update
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'OK'

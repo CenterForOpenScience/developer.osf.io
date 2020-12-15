@@ -9,7 +9,7 @@ get:
     The returned comments are sorted by their creation date, with the most recent
     comments appearing first.
 
-    ####Permissions
+    #### Permissions
 
     Comments of public registrations are given read-only access to everyone.
 
@@ -22,7 +22,7 @@ get:
 
     Comments of private registrations are only visible to contributors and administrators on the registration.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 

@@ -9,7 +9,7 @@ get:
     The returned comments are sorted by their creation date, with the most recent
     comments appearing first.
 
-    ####Permissions
+    #### Permissions
 
     Comments on public nodes are given read-only access to everyone.
 
@@ -22,7 +22,7 @@ get:
 
     Comments on private nodes are only visible to contributors and administrators on the parent node.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -189,7 +189,7 @@ post:
 
     In addition, the `content` attribute describing the relationship between the node and the comment is required.
 
-    ####Returns
+    #### Returns
 
     Returns a JSON object with a data key containing the representation of the new comment, if the request is successful.
 
