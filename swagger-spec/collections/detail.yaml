@@ -37,6 +37,7 @@ get:
           $ref: 'definition.yaml'
       examples:
         application/json:
+          type: "collections"
           data:
             attributes:
               title: "Metascience's Collection"

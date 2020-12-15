@@ -285,7 +285,7 @@ get:
 
 
 post:
-  summary: Add Metadata or Subjects to an Entitiy in a Collection
+  summary: Add Metadata or Subjects to an Entity in a Collection
   description: >-
     List of user created metadata for entities within a collection.
 
