@@ -1,6 +1,6 @@
 # /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
 get:
-  summary: Retrieve subjuct metadata for a specific piece of metadata in a collection
+  summary: Retrieve subject metadata for a specific piece of metadata in a collection
   description: >-
 
     #### Permissions
