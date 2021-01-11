@@ -1,5 +1,4 @@
 # /collections/{collection_id}/collected_metadata/
-
 get:
   summary: Retrieve a list of collected metadata for a collection
   description: >-
