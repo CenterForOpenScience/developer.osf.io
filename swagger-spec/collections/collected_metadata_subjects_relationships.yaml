@@ -72,6 +72,11 @@ post:
       required: true
       name: collection_id
       description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: cgm_id
+      description: 'A short id for that piece of metadata'
     - in: body
       name: body
       required: true
