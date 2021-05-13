@@ -31,7 +31,7 @@ get:
 
   tags:
     - Collections
-  operationId: collections_linked_registrations_list
+  operationId: collections_collected_metadata
   x-response-schema: Collection
   consumes:
     - application/json

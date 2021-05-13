@@ -27,7 +27,7 @@ get:
 
   tags:
     - Collections
-  operationId: collections_linked_registrations_list
+  operationId: collections_metadata_registrations_list
   x-response-schema: Collection
   consumes:
     - application/json
@@ -316,7 +316,7 @@ post:
 
   tags:
     - Collections
-  operationId: collections_linked_registrations_list
+  operationId: collections_add_metadata
   x-response-schema: Collection
   consumes:
     - application/json
