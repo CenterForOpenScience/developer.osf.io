@@ -28,7 +28,7 @@ get:
     Node files may be filtered by `id`, `name`, `node`, `kind`, `path`, `provider`, `size`, and `last_touched`.
 
 
-    ###Waterbutler API actions
+    ### Waterbutler API actions
 
 
     Files can be modified through the Waterbutler API routes found in `links` (`new_folder`, `move`, `upload`, `download`, and `delete`).

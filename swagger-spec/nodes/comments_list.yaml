@@ -183,7 +183,7 @@ post:
 
     To reply to a comment on this node, the target `type` would be "comments" and the target `id` would be the `id` of the comment to reply to.
 
-    ####Required
+    #### Required
 
     A relationship object with a `data` key, containing the target (`comments` or `nodes`) type and a target `id` is required.
 

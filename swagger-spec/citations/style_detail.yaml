@@ -8,6 +8,7 @@ get:
     Returns a JSON object with a `data` key containing the representation of the requested
     citation style, if the request is successful.
 
+    #### Errors
 
     If the request is unsuccessful, an `errors` key containing
     information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
