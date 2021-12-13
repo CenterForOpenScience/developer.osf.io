@@ -3,7 +3,7 @@ get:
   summary: List all addons
   description: >-
 
-    A paginated list of addons configurable with the OSF
+    A paginated list of addons configurable with the OSF, for read purposes only.
 
     #### Returns
 
@@ -17,6 +17,7 @@ get:
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
 
+    #### Errors
 
     This request should never return an error.
 

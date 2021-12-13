@@ -3228,7 +3228,7 @@ paths:
         applicable types are listed by each heading.
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -3508,7 +3508,7 @@ paths:
         applicable types are listed by each heading.
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -3811,7 +3811,7 @@ paths:
         applicable types are listed by each heading.
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -9189,7 +9189,7 @@ paths:
         <!--- Copied from FileDetail.Spiel -->
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will
@@ -9397,7 +9397,7 @@ paths:
         <!--- Copied from FileDetail.Spiel -->
 
 
-        ###Waterbutler Entities
+        ### Waterbutler Entities
 
 
         When an action is performed against a WaterButler endpoint, it will

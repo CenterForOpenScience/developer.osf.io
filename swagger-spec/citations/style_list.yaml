@@ -27,6 +27,10 @@ get:
 
     Citation styles may be filtered by their `id`, `title`, `short-title`, and `summary`.
 
+    #### Errors
+
+    This request should never return an error.
+
   tags:
     - Citations
   operationId: citations_styles_list
