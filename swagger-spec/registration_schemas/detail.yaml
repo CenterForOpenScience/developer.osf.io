@@ -1,0 +1,65 @@
+# /schema_responses/{schema_response_id}/
+get:
+  summary: Retrieve a Registration Schema
+  description: >-
+    Retrieves the details of a given Registration Schema. Registration Schemas defines the desired supplemental
+    information that should accompany that schema on a Registration. Registration Schemas are Read-only to API users.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    Registration Schemas, if the request is successful.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: registration_schema_id
+    required: true
+    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
+  tags:
+    - Registration Schemas
+  operationId: registration_schema_read
+  x-response-schema: Registration Schema
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            type: registration-schemas
+            id: 6176c9d45e01f100091d4f94
+            attributes:
+              name: Test Long-Form Registration Schema
+              schema_version: 2
+              schema:
+                title: Test Long-Form Registration Schema
+                name: Test Long-Form Registration Schema
+                version: 2
+                description: This is a test form for documentation purposes.
+                pages: []
+                blocks:
+                  - block_type: page-heading
+                    display_text: The title of the page
+                  - block_type: question-label
+                    display_text: The first question, put answer below.
+                  - block_type: long-text-input
+                    registration_response_key: Q1
+                atomicSchema: true
+              description: This is a test form for documentation purposes.
+              active: true
+            relationships:
+              schema_blocks:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/schema_blocks/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/

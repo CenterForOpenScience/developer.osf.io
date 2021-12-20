@@ -1,0 +1,61 @@
+# /schema_responses/{schema_response_id}/schema_blocks/{schema_response_block_id}/:
+
+get:
+  summary: Retrieve a Registration Schema Block
+  description: >-
+    This returns a Registration Schema Block by it's ID.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    Registration Schemas, if the request is successful.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  parameters:
+  - in: path
+    type: string
+    name: schema_response_id
+    required: true
+    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
+  - in: path
+    type: string
+    name: schema_response_block_id
+    required: true
+    description: 'The unique identifier of the Schema Response Block example `61b79f9eadbb5701424a2d5e`.'
+  tags:
+    - Registration Schema Blocks
+  operationId: schema_response_blocks_read
+  x-response-schema: Schema Response
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            type: schema-blocks
+            id: 61b79f9eadbb5701424a2d5e
+            attributes:
+              registration_response_key:
+              schema_block_group_key: ""
+              block_type: page-heading
+              display_text: Background and Study Intent
+              help_text: ""
+              required: false
+              index: 0
+            relationships:
+              schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/
+                    meta: {}
+                  data:
+                    id: 6176c9d45e01f100091d4f94
+                    type: registration-schemas
+            links:
+              self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/

@@ -1,0 +1,118 @@
+type: object
+title: Schema Responses
+required:
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the Schema Response.'
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier of the Schema Response (`schema-response`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the Schema Response.'
+    properties:
+      revision_justification:
+        type: string
+        readOnly: false
+        description: 'A string representing the reason the Schema Response was updated.'
+      date_created:
+        type: integer
+        readOnly: false
+        description: 'The date the Schema Response was created'
+      date_submitted:
+        type: integer
+        readOnly: false
+        description: 'The date the Schema Response was submitted for approval.'
+      date_modified:
+        type: integer
+        readOnly: false
+        description: 'The date the Schema Response was most recently changed.'
+      revision_responses:
+        type: object
+        items:
+          type: object
+          description: 'Revision responses use a custom key value pair where the key is the block key for that the
+          response. For example in the registration response `{"q1": "Answer 1"}` the block key is `q1`.'
+        description: 'A dictionary object representing responses to to the revision where the key is the block key for
+        that the response. For example in the registration response `{"q1": "Answer 1"}` the block key is `q1`..'
+      reviews_state:
+        type: string
+        readOnly: false
+        enum:
+          - initial
+          - in_progress
+          - approved
+          - pending_moderation
+          - rejected
+          - rejected_moderation
+        description: 'A string that represents Schema Response state. `initial` is the state of a Schema Response on a
+        newly registered Registration, to edit a Schema Response you must create a Schema Response Action that triggers
+        a new submission.'
+      is_pending_current_user_approval:
+        type: boolean
+        readOnly: false
+        description: 'A bool that represents whether the Schema Response needs the current user to approve the state
+         transition.'
+      is_original_response:
+        type: boolean
+        readOnly: false
+        description: 'A bool that represents whether the Schema Response is the original one that was made when the
+        registration was created.'
+      updated_response_keys:
+        type: array
+        readOnly: true
+        description: 'A list of strings which the response keys for Registration Response Blocks that were updated from
+        the previous schema.'
+  links:
+    type: object
+    title: Links
+    readOnly: false
+    description: 'URLs to alternative representations of the Schema Response entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: false
+        description: 'A link to the detail page for a Schema Response.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'Links to other entities or entity collections that have a relationship to the file entity.'
+    properties:
+      actions:
+        type: string
+        format: URL
+        readOnly: false
+        description: 'A link to the Registration Schema Actions endpoint for this Schema Response.'
+      registration:
+        type: string
+        format: URL
+        readOnly: false
+        description: 'A link to the Registration for this Schema Response.'
+      registration_schema:
+        type: string
+        format: URL
+        readOnly: false
+        description: 'A link to the Registration Schema for this Schema Response.'
+      initiated_by:
+        type: string
+        format: URL
+        readOnly: false
+        description: 'A link to the User who initiated the creation of the Schema Response.'
+
+example:
+  data:
+    type: 'schema-responses'
+    attributes:
+      revision_justification: 'I made a mistake.'
+      revision_responses:
+        Q1: 'updated response'
+

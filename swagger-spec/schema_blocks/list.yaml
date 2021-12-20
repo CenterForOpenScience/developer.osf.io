@@ -1,0 +1,109 @@
+# /schema_responses/{schema_response_id}/schema_blocks/:
+
+get:
+  summary: Retrieve a list of Registration Schema Blocks for a Schema Response
+  description: >-
+    This returns a list of all the Registration Schema Blocks are contained in Registration Schema.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    Registration Schemas, if the request is successful.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  parameters:
+  - in: path
+    type: string
+    name: schema_response_id
+    required: true
+    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
+  tags:
+    - Registration Schema Blocks
+  operationId: schema_response_blocks_read
+  x-response-schema: Schema Response
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            - type: schema-blocks
+              id: 61b79f9eadbb5701424a2d5e
+              attributes:
+                registration_response_key:
+                schema_block_group_key: ""
+                block_type: page-heading
+                display_text: Background and Study Intent
+                help_text: ""
+                required: false
+                index: 0
+              relationships:
+                schema:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/
+                      meta: {}
+                    data:
+                      id: 6176c9d45e01f100091d4f94
+                      type: registration-schemas
+              links:
+                self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/
+            - type: schema-blocks
+              id: 61b79f9eadbb5701424a2d53
+              attributes:
+                registration_response_key:
+                schema_block_group_key: ""
+                block_type: question-label
+                display_text: Question 1
+                help_text: "I am a question"
+                required: false
+                index: 1
+              relationships:
+                schema:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/
+                      meta: {}
+                    data:
+                      id: 6176c9d45e01f100091d4f94
+                      type: registration-schemas
+              links:
+                self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d53/
+            - type: schema-blocks
+              id: 61b79f9eadbb5701424a2d53
+              attributes:
+                registration_response_key: "Q1"
+                schema_block_group_key: ""
+                block_type: long-text-input
+                display_text: ""
+                help_text: ""
+                required: false
+                index: 2
+              relationships:
+                schema:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/
+                      meta: {}
+                    data:
+                      id: 6176c9d45e01f100091d4f94
+                      type: registration-schemas
+              links:
+                self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d53/
+          meta:
+            total: 3
+            per_page: 10
+            version: 2.20
+          links:
+            self: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/schema_blocks/
+            first:
+            last:
+            next:
+            prev:
+

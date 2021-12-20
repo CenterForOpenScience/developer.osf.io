@@ -17,6 +17,10 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+    #### Errors
+
+    This request should never return an error, other then permissions errors.
+
   parameters:
     - in: path
       type: string

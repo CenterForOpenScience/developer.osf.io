@@ -13,11 +13,12 @@ info:
     url: 'https://cdn.cos.io/media/images/cos_center_logo_small.original.png'
     backgroundColor: 'transparent'
 host: 'api.test.osf.io'
+
 schemes:
   - https
 basePath: /v2
 x-tagGroups:
-  - name: Introduction
+  - name: Welcome
     tags:
       - Introduction
       - General Usage
@@ -41,7 +42,10 @@ x-tagGroups:
       - Licenses
       - Logs
       - Institutions
-      - Metaschemas
+      - Registration Schemas
+      - Registration Schema Blocks
+      - Schema Responses
+      - Schema Response Actions
       - Nodes
       - Preprints
       - Preprint Providers
@@ -64,7 +68,7 @@ tags:
       data, manuscripts, or anything else associated with your research during
       the research process. Every project and file on the OSF has a permanent
       unique identifier, and every registration (a permanent, time-stamped
-      version of your projects and files) can be assigned a DOI/ARK. You can
+      version of your projects and files) can be assigned a DOI. You can
       use the OSF to measure your impact by monitoring the traffic to projects
       and files you make public. With the OSF you have full control of what
       parts of your research are public and what remains private.
@@ -73,12 +77,10 @@ tags:
     x-traitTag: true
     description: >-
       The OSF API generally conforms to the [JSON-API v1.0 spec](http://jsonapi.org/format/1.0/).
-      Where exceptions exist, they will be noted.
-      Each endpoint will have its own documentation, but there are some general principles.
-
+      Where exceptions exist, they will be noted. Each endpoint will have its own documentation, but
+      there are some general principles.
 
       Note: Assume undocumented routes/features/fields are unstable.
-
 
       #### Canonical URLs
 
@@ -92,7 +94,6 @@ tags:
       Endpoints are always pluralized.  `/users/`, not `/user/`, `/nodes/`,
       not `/node/`.
 
-
       The only exception are the node and preprint citation endpoints, which are `/citation/`, not
       `/citations/`.
 
@@ -100,45 +101,40 @@ tags:
 
       Every endpoint in the OSF API responds to `GET`, `HEAD`, and `OPTION` requests.
 
-
       You must have adequate permissions to interact with any endpoint.
       Unauthorized use will result in **401 Unauthorized** or **403 Forbidden** responses.
 
-
       Use `HEAD` to probe an endpoint and make sure your headers are well-formed.
-
-
       A `GET` request will return a representation of the entity or entity collection referenced by the endpoint.
 
-
-      An `OPTIONS` request will return a JSON object that describes the endpoint, including the name, a description, the acceptable request formats, the allowed response formats, and any actions available via the endpoint.
-
+      An `OPTIONS` request will return a JSON object that describes the endpoint, including the name, a description,
+      the acceptable request formats, the allowed response formats, and any actions available via the endpoint.
 
       #### Testing
+
+      The OSF provides public testing servers to be used to test integrations againest.
 
       ##### Testing Server
 
       The test-* subdomains of the osf are intended to match, at any given time, the current production environment of the Open Science Framework.
 
-
       We have staging servers that will have newer features, including newer API features, that aren't ready for production.
       However, because those servers are subject to the whims of QA and whichever group needs to do specific testing, they aren't particular stable for API developers.
+      #### Testing Server
 
-
+      The `test` subdomains of the osf are intended to match, at any given time, the current production environment of the OSF.
       The test servers linked below are primarily for developing your API application on a stable system.
 
+      - Test web server: https://test.osf.io/
 
-      https://test.osf.io/
+      - Test API server: https://api.test.osf.io/v2/
 
+      - Test Files server (known as Waterbutler): https://files.us.test.osf.io/
 
-      https://api.test.osf.io/v2/
+      #### Ephemerality Notice
 
-      ##### Ephemerality Notice
-
-      Expect the server to be down from time to time while we update software, and don't expect that anything you create on here to exist long-term.
-
-
-      While this is more stable than a staging server, we won't necessarily run data migrations if anything major happens to our database schema, so we may clear out the data on the test servers periodically.
+      Expect the server to be down from time to time while we update software, and don't expect data to persist indefinitely.
+      We periodically run data migrations on the test servers without notice.
 
   - name: Authentication
     x-traitTag: true
@@ -194,7 +190,7 @@ tags:
 
       #### URL Path Versioning
 
-      + `/v2/` or `/v3/`
+      + `/v2/` is the only documented path, but only refers to the major version
 
       + A version specified via the URL path is a **required** part of the
       URL.
@@ -709,8 +705,91 @@ tags:
 
       The `meta` key contains the total number of entities available, as well as the current number of results displayed per page.
 
-
       If there are only enough results to fill one page, the `first`, `last`, `prev`, and `next` values will be null.
+
+  - name: Addons
+    description: >-
+      Addons represent a user connection to an external service, some addons allow for additional storage,
+      some modify user authentication or add a redirect link to a project.
+
+  - name: Base
+    description: >-
+      This is the "home page" of the API you can get important autentication information for the user making
+      the request and get links to other resources.
+
+  - name: Registration Schemas
+    description: >-
+      A Registration Schemas defines the range of valid responses to a registration. Each Registration
+      Schema is composed of <a href="#tag/Registration-Schema-Blocks">"blocks"</a> that define the individual questions a user responds to. Registration Schemas are
+      created by the Center for Open Science or an affiliated institution and periodically migrated into the system.
+      Registration Schemas are updated and deactivated using an internal versioning system.
+
+  - name: Registration Schema Blocks
+    description: >-
+      Registration Schema Blocks are read-only entities, they represent question prompts and form inputs known as
+      "blocks" that make up a Registration Schemas. Each block has a designated `block_type` that determines what type
+      of information that Schema Block's corresponding block in the Schema Response.
+
+  - name: Schema Responses
+    description: >-
+      Schema Responses contain user supplied responses to a Registration Schema. A Schema Response
+      aggregates all of the the responses for a given version of a Registration's Registration Schema.
+      Schema Responses are created when a Registration is completed. Once a Registration is completed the
+      Schema Responses for a Registration can be revisied and updated by using it's associated action endpoints.
+
+
+      There are a few states for Schema Responses:
+
+        - `initial` is the state of a Schema Response on a newly registered Registration, to edit a Schema Response you
+        must create a Schema Response Action that triggers a new submission.
+
+        - `in_progess` is the state of a Schema Response where the response is editable and still private, Schema
+        Responses are editted via a PATCH request as specified below.
+
+        - `unapproved` is the state of a Schema Response where edits have been made and "locked-in", now contributors
+        have the ability to reject the changes, however if they are not rejected changes are automatically approved
+        after 48 hours. If `unapproved` Schema Responses are rejected, they are returned to the `in_progress` state. If
+        `unapproved` Schema Responses are approved they either enter an `approved` state or go into a
+        `pending_moderation` to be accepted or denied by a moderator.
+
+        - `pending_moderation` is the state of a Schema Response where moderators have an opportunity to reject or
+        approve a Schema Response that has been approved by it's contributors. This state is only reachable for Schema
+        Responses that are associated with a Registration that has Registration Provider a moderated workflow.
+
+        - `approved` is the state of a Schema Response where it is public and immutable, in order to update an approved
+        Schema Response a new one must be created.
+
+  - name: Schema Response Actions
+    description: >-
+      Schema Response Actions are objects that when created cause state transitions for Schema Responses.
+      Users use state transitions to submit, approve, and revise new Schema Responses.
+
+
+      Schema Response Actions have a  few different triggers to cause state transitions:
+
+        - `submit` is a trigger to transition a Schema Response from an `in_progress` state to an `unapproved` state,
+        this freezes edits for the Schema Response and allows all admin contributors to the Schema Response's
+        Registration to either approved or reject the Schema Response.
+
+        - 'approve` is a trigger to transition a Schema Response from an `unapproved` state to an `approved` state, this
+        makes the Schema Response changes public completing the update of the Schema Response. On Schema Responses that
+        are associated with a Registration that has Registration Provider a moderated workflow the `approve` trigger
+        will transition the Schema Response to `pending_moderation`.
+
+        - `accept` is a trigger to transition a Schema Response from an `pending_moderation` state to an `approved`
+        state. This trigger is only valid for Schema Responses that are associated with a Registration that has
+        Registration Provider a moderated workflow and only possible for a user designated as moderator of a
+        Registration Provider.
+
+        - `admin_reject` is a trigger to transition a Schema Response from an `unapproved` state to an
+        `in_progress`  state. This trigger allows users to reject purposed changes to a Schema Response.
+
+        - `moderator_reject` is a trigger to transition a Schema Response from an `pending_moderation` state to an
+        `in_progress`  state. This trigger is only valid for Schema Responses that are associated with a Registration
+        that has Registration Provider a moderated workflow and only possible for a user designated as moderator of a
+        Registration Provider.
+
+
 
 paths:
 
@@ -729,13 +808,6 @@ paths:
     get:
       summary: Root
       description: >-
-        Welcome to the Open Science Framework API. With this API you can access
-        users, projects, components, logs, and files from the [Open Science
-        Framework](https://osf.io/). The Open Science Framework (OSF) is a free,
-        open-source service maintained by the [Center for Open
-        Science](http://cos.io/).
-
-
         #### Returns
 
         A JSON object with `meta` and `links` keys.
@@ -746,7 +818,7 @@ paths:
 
 
         The `links` key contains links to the following entity collections: [addons](#tag/Addons), [collections](),
-        [institutions](#tag/Institutions), [licenses](#tag/Licenses), [metaschemas](#tag/Metaschemas),
+        [institutions](#tag/Institutions), [licenses](#tag/Licenses), [registration schemas](#tag/Registration Schemas),
         [nodes](#tag/Nodes), [registrations](#tag/Registrations), [users](#tag/Users)
 
       responses:
@@ -835,14 +907,43 @@ paths:
   # /institutions/{institution_id}/relationships/nodes/:
   #   $ref: 'institutions/nodes_relationships.yaml'
 
-  ###################
-  #   METASCHEMAS   #
-  ###################
+  ############################
+  #   REGISTRATION SCHEMAS   #
+  ############################
 
-  /metaschemas/:
-    $ref: 'metaschemas/list.yaml'
-  /metaschemas/{metaschema_id}:
-    $ref: 'metaschemas/detail.yaml'
+  /schemas/registrations/:
+    $ref: 'registration_schemas/list.yaml'
+  /schemas/registrations/{registration_schema_id}:
+    $ref: 'registration_schemas/detail.yaml'
+
+  ############################
+  #     SCHEMA RESPONSES     #
+  ############################
+
+  /schema_responses/:
+    $ref: 'schema_responses/list.yaml'
+  /schema_responses/{schema_response_id}:
+    $ref: 'schema_responses/detail.yaml'
+
+  ############################
+  #  SCHEMA RESPONSE ACTIONS #
+  ############################
+
+  /schema_responses/{schema_response_id}/actions/:
+    $ref: 'schema_response_actions/list.yaml'
+
+  /schema_responses/{schema_response_id}/actions/{schema_response_action_id}:
+    $ref: 'schema_response_actions/detail.yaml'
+
+  ############################
+  #      SCHEMA BLOCKS       #
+  ############################
+
+  /schema_responses/{schema_response_id}/schema_blocks/:
+    $ref: 'schema_blocks/list.yaml'
+
+  /schema_responses/{schema_response_id}/schema_blocks/{schema_response_block_id}:
+    $ref: 'schema_blocks/detail.yaml'
 
   #############
   #   NODES   #

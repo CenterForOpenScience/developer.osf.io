@@ -248,7 +248,6 @@ post:
   operationId: nodes_children_create
   consumes:
     - application/json
-  x-response-schema: Node
   responses:
     '201':
       description: 'Created'
