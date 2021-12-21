@@ -14,18 +14,36 @@ properties:
     title: Attributes
     readOnly: true
     description: 'The attributes of the Registration Schema Block.'
-
     properties:
       registration_response_key:
         type: string
         readOnly: true
-        description: "A string that represents the block key for the Registration Schema Block's corresponding block on
-        the Schema Response object."
+        description: "This string is the the block key for the Registration Schema Block's corresponding block on
+        the Schema Response."
+      schema_block_group_key:
+        type: string
+        readOnly: true
+        description: "This string indicates if a block is part of a block group, block groups may contain the different
+        options dropdown menu or a group of inputs and display elements that are validated together."
       block_type:
         type: string
         readOnly: true
         description: 'A string that represents the type of input that the schema will take and the UI element that
         appears to the user on the frontend.'
+        enum:
+        - page-heading
+        - section-heading
+        - subsection-heading
+        - paragraph
+        - question-label
+        - short-text-input
+        - long-text-input
+        - file-input
+        - contributors-input
+        - single-select-input
+        - multi-select-input
+        - select-input-option
+        - select-other-option
       display_text:
         type: string
         readOnly: true
@@ -46,7 +64,7 @@ properties:
     type: object
     title: Relationships
     readOnly: true
-    description: 'Links to other entities or entity collections that have a relationship to the Schema Response Action entity.'
+    description: 'Links to other entities or entity collections that have a relationship to the Schema Response Action.'
     properties:
       schema:
         type: string
@@ -57,7 +75,7 @@ properties:
     type: object
     title: Links
     readOnly: true
-    description: 'URLs to alternative representations of the  Registration Schema Block entity.'
+    description: 'URLs to alternative representations of the  Registration Schema Block.'
     properties:
       self:
         type: string

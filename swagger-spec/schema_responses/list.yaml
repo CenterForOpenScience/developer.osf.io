@@ -100,11 +100,6 @@ post:
     to understand why this request may have failed.
 
   parameters:
-  - in: path
-    type: string
-    name: schema_response_id
-    required: true
-    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
   - in: body
     name: body
     required: true
@@ -113,7 +108,7 @@ post:
 
   tags:
     - Schema Responses
-  operationId: schema_response_patch
+  operationId: schema_response_ppost
   consumes:
     - application/json
   responses:
@@ -124,141 +119,50 @@ post:
       examples:
         application/json:
           data:
-            type: registration-schemas
-            id: 61b79f9eadbb5701424a2d5e
+            id: 61c1e058e88376000a90e5dd
+            type: schema-responses
             attributes:
-              revision_justification: I made a mistake
-              date_created: 2021-12-13T19:31:42.058367Z
-              date_submitted: 2021-12-13T19:53:02.837420Z
-              date_modified: 2021-12-13T19:53:05.015924Z
+              date_created: '2021-12-21T14:10:32.665084'
+              date_submitted:
+              date_modified: '2021-12-21T14:10:32.665111'
+              revision_justification: ''
               revision_responses:
-                q1: updated respons
-                q2: Answer 2
+                uploader: []
+                summary: A summary of what is contained in this registration.
+              updated_response_keys: []
               reviews_state: in_progress
-              is_original_response: false
-              is_pending_current_user_approval: false
             relationships:
               actions:
                 links:
                   related:
-                    href: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/actions/
+                    href: https://api.osf.io/v2/schema_responses/61c1e058e88376000a90e5dd/actions/
                     meta: {}
               registration:
                 links:
                   related:
-                    href: https://api.osf.io/v2/registrations/jxtek/
+                    href: https://api.osf.io/v2/registrations/e4ygz/
                     meta: {}
-                  data:
-                    id: jxtek
-                    type: registration
-
+                data:
+                  id: e4ygz
+                  type: registrations
               registration_schema:
                 links:
                   related:
-                    href: https://api.osf.io/v2/schemas/registrations/5e795fc0d2833800195735d0/
+                    href: https://api.osf.io/v2/schemas/registrations/5e13965879bee100010a790f/
                     meta: {}
-                  data:
-                    id: 5e795fc0d2833800195735d0
-                    type: registration-schemas
-
+                data:
+                  id: 5e13965879bee100010a790f
+                  type: registration-schemas
               initiated_by:
                 links:
                   related:
-                    href: https://api.osf.io/v2/users/swrv7/
+                    href: https://api.osf.io/v2/users/zpw9n/
                     meta: {}
-                  data:
-                    id: swrv7
-                    type: users
+                data:
+                  id: zpw9n
+                  type: users
             links:
-              self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/
+              self: https://api.osf.io/v2/schema_responses/61c1e058e88376000a90e5dd/
+          meta:
+            version: '2.0'
 
-delete:
-  summary: Create a new Schema Response
-  description: >-
-    This endpoint deletes a new Schema Response. Schema Responses can only be deleted in the `in_progress` state. Once a
-    Schema Response is transitioned to an `approved` it is immutable and another Schema Response must be created to
-    update the Schema Response that registration.
-
-    #### Returns
-
-    Returns a JSON object with a `data` key containing an updated representation of the requested
-    Schema Response, if the request is successful.
-
-    #### Errors
-
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
-
-  parameters:
-  - in: path
-    type: string
-    name: schema_response_id
-    required: true
-    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
-  - in: body
-    name: body
-    required: true
-    schema:
-      $ref: 'definition.yaml'
-
-  tags:
-    - Schema Responses
-  operationId: schema_response_patch
-  consumes:
-    - application/json
-  responses:
-    201:
-      description: 'OK'
-      schema:
-        $ref: definition.yaml
-      examples:
-        application/json:
-          data:
-            type: registration-schemas
-            id: 61b79f9eadbb5701424a2d5e
-            attributes:
-              revision_justification: I made a mistake
-              date_created: 2021-12-13T19:31:42.058367Z
-              date_submitted: 2021-12-13T19:53:02.837420Z
-              date_modified: 2021-12-13T19:53:05.015924Z
-              revision_responses:
-                q1: updated respons
-                q2: Answer 2
-              reviews_state: in_progress
-              is_original_response: false
-              is_pending_current_user_approval: false
-            relationships:
-              actions:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/actions/
-                    meta: {}
-              registration:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/registrations/jxtek/
-                    meta: {}
-                  data:
-                    id: jxtek
-                    type: registration
-
-              registration_schema:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/schemas/registrations/5e795fc0d2833800195735d0/
-                    meta: {}
-                  data:
-                    id: 5e795fc0d2833800195735d0
-                    type: registration-schemas
-
-              initiated_by:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/users/swrv7/
-                    meta: {}
-                  data:
-                    id: swrv7
-                    type: users
-            links:
-              self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/

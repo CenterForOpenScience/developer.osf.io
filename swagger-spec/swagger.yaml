@@ -110,11 +110,11 @@ tags:
       An `OPTIONS` request will return a JSON object that describes the endpoint, including the name, a description,
       the acceptable request formats, the allowed response formats, and any actions available via the endpoint.
 
-      #### Testing
+      ### Testing
 
       The OSF provides public testing servers to be used to test integrations againest.
 
-      ##### Testing Server
+      #### Testing Server
 
       The test-* subdomains of the osf are intended to match, at any given time, the current production environment of the Open Science Framework.
 
@@ -771,7 +771,7 @@ tags:
         this freezes edits for the Schema Response and allows all admin contributors to the Schema Response's
         Registration to either approved or reject the Schema Response.
 
-        - 'approve` is a trigger to transition a Schema Response from an `unapproved` state to an `approved` state, this
+        - `approve` is a trigger to transition a Schema Response from an `unapproved` state to an `approved` state, this
         makes the Schema Response changes public completing the update of the Schema Response. On Schema Responses that
         are associated with a Registration that has Registration Provider a moderated workflow the `approve` trigger
         will transition the Schema Response to `pending_moderation`.

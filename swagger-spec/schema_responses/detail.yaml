@@ -170,3 +170,36 @@ patch:
                     type: users
             links:
               self: https://api.osf.io/v2/schema_responses/61b79f9eadbb5701424a2d5e/
+
+delete:
+  summary: Delete a Incomplete Schema Response
+  description: >-
+    This endpoint deletes a new Schema Response. Schema Responses can only be deleted in the `in_progress` state. Once a
+    Schema Response is transitioned to an `approved` it is immutable and another Schema Response must be created to
+    update the Schema Response for that registration.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing an updated representation of the requested
+    Schema Response, if the request is successful.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: schema_response_id
+    required: true
+    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
+  tags:
+    - Schema Responses
+  operationId: schema_response_delete
+  consumes:
+    - application/json
+  responses:
+    204:
+      description: 'No Content'

@@ -26,7 +26,7 @@ properties:
       schema_version:
         type: integer
         readOnly: true
-        description: 'The latest version of the schema'
+        description: 'The version of this Registration Schema'
       schema:
         type: object
         additionalProperties:
@@ -39,7 +39,7 @@ properties:
     type: object
     title: Links
     readOnly: true
-    description: 'URLs to alternative representations of the Registration Schema entity.'
+    description: 'URLs that link to alternative representations of the Registration Schema.'
     properties:
       self:
         type: string
@@ -50,7 +50,7 @@ properties:
     type: object
     title: Relationships
     readOnly: true
-    description: 'Links to other entities or entity collections that have a relationship to the file entity.'
+    description: 'Links to other entities or entity collections that have a relationship to the Registration Schema.'
     properties:
       schema_blocks:
         type: string

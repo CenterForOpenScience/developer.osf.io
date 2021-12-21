@@ -3,7 +3,7 @@ get:
   summary: Retrieve a Registration Schema
   description: >-
     Retrieves the details of a given Registration Schema. Registration Schemas defines the desired supplemental
-    information that should accompany that schema on a Registration. Registration Schemas are Read-only to API users.
+    information that should accompany be included in a Registration. Registration Schemas are Read-only to API users.
 
     #### Returns
 
