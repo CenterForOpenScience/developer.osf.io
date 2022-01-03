@@ -305,5 +305,5 @@ post:
   operationId: schema_response_action_read
   x-response-schema: Schema Response Actions
   responses:
-    '200':
+    '201':
       description: 'OK'

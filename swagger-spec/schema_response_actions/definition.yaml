@@ -17,12 +17,10 @@ properties:
       trigger:
         enum:
         - submit
-        - accept_submission
-        - reject_submission
-        - request_withdrawal
-        - accept_withdrawal
-        - reject_withdrawal
-        - force_withdrawal
+        - approve
+        - accept
+        - admin_reject
+        - moderator_reject
         type: string
         readOnly: false
         description: 'The name of the trigger that caused the action.'
@@ -32,8 +30,6 @@ properties:
           - in_progress
           - approved
           - pending_moderation
-          - rejected
-          - rejected_moderation
         type: string
         readOnly: false
         description: 'The name of the state of the Schema Response prior to the creation of the action.'
@@ -42,8 +38,6 @@ properties:
           - in_progress
           - approved
           - pending_moderation
-          - rejected
-          - rejected_moderation
         type: string
         readOnly: false
         description: 'The name of the state of the Schema Response after the creation of the action'

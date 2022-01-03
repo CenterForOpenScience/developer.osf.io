@@ -21,7 +21,7 @@ properties:
       revision_justification:
         type: string
         readOnly: false
-        description: 'A string representing the reason the Schema Response was updated.'
+        description: 'A user provided string representing the reason a new Schema Response was needed.'
       date_created:
         type: integer
         readOnly: false
@@ -50,8 +50,6 @@ properties:
           - in_progress
           - approved
           - pending_moderation
-          - rejected
-          - rejected_moderation
         description: 'A string that represents Schema Response state. `initial` is the state of a Schema Response on a
         newly registered Registration, to edit a Schema Response you must create a Schema Response Action that triggers
         a new submission.'
