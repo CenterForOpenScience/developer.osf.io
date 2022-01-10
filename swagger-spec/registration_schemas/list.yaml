@@ -1,0 +1,71 @@
+# /schemas/registrations/
+get:
+  summary: Retrieve a list of Registration Schemas
+  description: >-
+    Retrieve a paginated list of all active Registration Schemas. Registration Schemas describe the supplemental
+    questions that accompany a registration. Registration Schemas are read-only for API users.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of 10 Registration Schemas.
+    Each resource in the array is a separate Registration Schemas object.
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#tag/Pagination).
+
+    #### Errors
+
+    This request should never return an error.
+  tags:
+    - Registration Schemas
+  operationId: registration_schemas_list
+  x-response-schema: Registration Schemas
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            - type: registration-schemas
+              id: 6176c9d45e01f100091d4f94
+              attributes:
+                name: Test Long-Form Registration Schema
+                schema_version: 2
+                schema:
+                  title: Test Long-Form Registration Schema
+                  name: Test Long-Form Registration Schema
+                  atomicSchema: true
+                  version: 2
+                  description: This is a test form for documentation purposes.
+                  pages: []
+                  blocks:
+                    - block_type: page-heading
+                      display_text: The title of the page
+                    - block_type: question-label
+                      display_text: The first question, put answer below.
+                    - block_type: long-text-input
+                      registration_response_key: Q1
+                description: This is a test form for documentation purposes.
+                active: true
+              relationships:
+                schema_blocks:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/schema_blocks/
+                      meta: {}
+              links:
+                self: https://api.osf.io/v2/schemas/registrations/6176c9d45e01f100091d4f94/
+          meta:
+            total: 1
+            per_page: 20
+            version: 2.20
+          links:
+            self: https://api.test.osf.io/v2/schemas/registrations/
+            first:
+            last: https://api.test.osf.io/v2/schemas/registrations/?page=2
+            prev:
+            next: https://api.test.osf.io/v2/schemas/registrations/?page=2

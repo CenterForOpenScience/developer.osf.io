@@ -1,0 +1,86 @@
+type: object
+title: Schema Response Actions
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the Schema Response Action.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the Schema Response Action (`schema-response-actions`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    properties:
+      trigger:
+        enum:
+        - submit
+        - approve
+        - accept
+        - admin_reject
+        - moderator_reject
+        type: string
+        readOnly: false
+        description: 'The name of the trigger that caused the action.'
+      from_state:
+        enum:
+          - initial
+          - in_progress
+          - approved
+          - pending_moderation
+        type: string
+        readOnly: false
+        description: 'The name of the state of the Schema Response prior to the creation of the action.'
+      to_state:
+        enum:
+          - in_progress
+          - approved
+          - pending_moderation
+        type: string
+        readOnly: false
+        description: 'The name of the state of the Schema Response after the creation of the action'
+      comment:
+        type: string
+        readOnly: true
+        description: 'A comment made explaining the reasoning of the action.'
+      date_created:
+        type: string
+        readOnly: true
+        description: 'The date the action was created.'
+      auto:
+        type: boolean
+        readOnly: true
+        description: 'Bool of representing whether a user created the action.'
+      visible:
+        type: boolean
+        readOnly: true
+        description: 'Bool of representing whether the action is visible.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'Links to other entities or entity collections that have a relationship to the Schema Response Action entity.'
+    properties:
+      creator:
+        type: string
+        format: URL
+        readOnly: true
+        description: A link to the node the file is on.
+      target:
+        type: string
+        format: URL
+        readOnly: true
+        description: A link to the node the file is on.
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the Registration Schema entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for a Registration Schema.'

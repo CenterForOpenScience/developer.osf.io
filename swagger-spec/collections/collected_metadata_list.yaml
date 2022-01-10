@@ -17,6 +17,10 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
+    #### Errors
+
+    This request should never return an error.
+
   parameters:
     - in: path
       type: string
@@ -276,7 +280,7 @@ get:
 
 
 post:
-  summary: Add Metadata or Subjects to a Entitiy in a Collection
+  summary: Add Metadata or Subjects to a Entity in a Collection
   description: >-
     List of user created metadata for entities within a collection.
 

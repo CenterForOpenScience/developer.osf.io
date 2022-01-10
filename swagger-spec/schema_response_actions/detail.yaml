@@ -1,0 +1,167 @@
+# /schema_responses/{schema_response_id}/actions/{schema_response_action_id}:
+
+get:
+  summary: A Schema Response Action from a Schema Response
+  description: >-
+    Retrieves a Schema Response Action by it's ID.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    Schema Response Actions, if the request is successful.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  parameters:
+  - in: path
+    type: string
+    name: schema_response_id
+    required: true
+    description: 'The unique identifier of the Schema Response example `61b9cd62eb66180215222669`.'
+  - in: path
+    type: string
+    name: schema_response_action_id
+    required: true
+    description: 'The unique identifier of the Schema Response Action example `61b9eae1a7d8ac025c4c46d3`.'
+  tags:
+    - Schema Response Actions
+  operationId: schema_response_action_read
+  x-response-schema: Schema Response Actions
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            id: 61b9eae1a7d8ac025c4c46d3
+            type: schema-response-actions
+            attributes:
+              trigger: submit
+              comment: ''
+              from_state: in_progress
+              to_state: unapproved
+              date_created: '2021-12-15T13:17:21.845573Z'
+              date_modified: '2021-12-15T13:17:21.845622Z'
+              auto: false
+              visible: true
+            relationships:
+              creator:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/users/zfsr2/'
+                    meta: {}
+                data:
+                  id: zfsr2
+                  type: users
+              target:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/schema_responses/61b9cd62eb66180215222669/'
+                    meta: {}
+                data:
+                  id: 61b9cd62eb66180215222669
+                  type: schema_responses
+            embeds:
+              creator:
+                data:
+                  id: zfsr2
+                  type: users
+                  attributes:
+                    full_name: Lukasz Okruszek
+                    given_name: Łukasz
+                    middle_names: ''
+                    family_name: Okruszek
+                    suffix: ''
+                    date_registered: '2017-02-02T21:32:45.495000Z'
+                    active: true
+                    timezone: Europe/Budapest
+                    locale: pl
+                    social:
+                      ssrn: ''
+                      orcid: 0000-0002-7136-2864
+                      github: []
+                      scholar: CHyWD84AAAAJ&amp;hl
+                      twitter: []
+                      linkedIn: []
+                      impactStory: ''
+                      baiduScholar: ''
+                      researchGate: Lukasz-Okruszek
+                      researcherId: ''
+                      profileWebsites: []
+                      academiaProfileID: ''
+                      academiaInstitution: ''
+                    employment:
+                      - title: Head
+                        endYear: ''
+                        ongoing: true
+                        endMonth: 0
+                        startYear: '2016'
+                        department: Social Neuroscience Lab
+                        startMonth: 9
+                        institution: 'Institute of Psychology, Polish Academy of Sciences'
+                    education: []
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: 'https://api.osf.io/v2/users/zfsr2/nodes/'
+                          meta: {}
+                    groups:
+                      links:
+                        related:
+                          href: 'https://api.osf.io/v2/users/zfsr2/groups/'
+                          meta: {}
+                    quickfiles:
+                      links:
+                        related:
+                          href: 'https://api.osf.io/v2/users/zfsr2/quickfiles/'
+                          meta: {}
+                        upload:
+                          href: >-
+                            https://files.osf.io/v1/resources/ytg45jbs3r/providers/osfstorage/
+                          meta: {}
+                        download:
+                          href: >-
+                            https://files.osf.io/v1/resources/ytg45jbs3r/providers/osfstorage/?zip=
+                          meta: {}
+                    registrations:
+                      links:
+                        related:
+                          href: 'https://api.osf.io/v2/users/zfsr2/registrations/'
+                          meta: {}
+                    institutions:
+                      links:
+                        related:
+                          href: 'https://api.osf.io/v2/users/zfsr2/institutions/'
+                          meta: {}
+                        self:
+                          href: >-
+                            https://api.osf.io/v2/users/zfsr2/relationships/institutions/
+                          meta: {}
+                    preprints:
+                      links:
+                        related:
+                          href: 'https://api.osf.io/v2/users/zfsr2/preprints/'
+                          meta: {}
+                  links:
+                    html: 'https://osf.io/zfsr2/'
+                    profile_image: >-
+                      https://secure.gravatar.com/avatar/8a25f4601ac997f113b3145aa5cf907e?d=identicon
+                    self: 'https://api.osf.io/v2/users/zfsr2/'
+              links:
+                self: 'https://api.osf.io/v2/actions/61b9eae1a7d8ac025c4c46d3/'
+          meta:
+            total: 2
+            per_page: 10
+            version: '2.20'
+          links:
+            self: 'https://api.osf.io/v2/schema_responses/61b9cd62eb66180215222669/actions/'
+            first: null
+            last: null
+            prev: null
+            next: null

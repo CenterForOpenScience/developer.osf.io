@@ -1,0 +1,86 @@
+type: object
+title: Registration Schema Block
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the Registration Schema Block.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the Registration Schema Block (`schema-blocks`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The attributes of the Registration Schema Block.'
+    properties:
+      registration_response_key:
+        type: string
+        readOnly: true
+        description: "This string is the the block key for the Registration Schema Block's corresponding block on
+        the Schema Response."
+      schema_block_group_key:
+        type: string
+        readOnly: true
+        description: "This string indicates if a block is part of a block group, block groups may contain the different
+        options dropdown menu or a group of inputs and display elements that are validated together."
+      block_type:
+        type: string
+        readOnly: true
+        description: 'A string that represents the type of input that the schema will take and the UI element that
+        appears to the user on the frontend.'
+        enum:
+        - page-heading
+        - section-heading
+        - subsection-heading
+        - paragraph
+        - question-label
+        - short-text-input
+        - long-text-input
+        - file-input
+        - contributors-input
+        - single-select-input
+        - multi-select-input
+        - select-input-option
+        - select-other-option
+      display_text:
+        type: string
+        readOnly: true
+        description: 'The text that will accompany the UI element displayed on this Registration Schema Block.'
+      example_text:
+        type: string
+        readOnly: true
+        description: 'The text that will accompany the UI element displayed on this Registration Schema Block.'
+      required:
+        type: boolean
+        readOnly: true
+        description: 'Bool that represents if this field is required for creation of a Schema Response.'
+      index:
+        type: integer
+        readOnly: true
+        description: 'Integer beginning at zero that represents the order of Registration Schema Block in the Registration Schema.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'Links to other entities or entity collections that have a relationship to the Schema Response Action.'
+    properties:
+      schema:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the schema the the Registration Schema Block is on.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the  Registration Schema Block.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for a Registration Schema Block.'
+
+
