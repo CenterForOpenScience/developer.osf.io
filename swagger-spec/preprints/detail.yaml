@@ -57,6 +57,11 @@ get:
                   related:
                     href: https://api.osf.io/v2/preprint_providers/osf/
                     meta: {}
+              bibliographic_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/bibliographic_contributors
+                    meta: {}
             links:
               self: https://api.osf.io/v2/preprints/khbvy/
               html: https://osf.io/khbvy/
