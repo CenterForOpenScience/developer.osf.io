@@ -1,0 +1,149 @@
+get:
+  summary: Retreive a Contributor from a Draft Registration
+  description: >-
+    Retrieves the details of a given contributor.
+
+
+    Contributors are users who can make changes to the node or, in the case of private nodes, have read access to the node.
+
+
+    Contributors are categorized as either "bibliographic" or "non-bibliographic".
+    From a permissions standpoint, both are the same, but bibliographic contributors are included in citations and are listed on the project overview page on the OSF, while non-bibliographic contributors are not.
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the Draft Registration.'
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the Contributor.'
+  tags:
+    - Draft Registrations
+  operationId: draft_registration_contributors_create
+  x-response-schema: Contributor
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'Success'
+      examples:
+        application/json:
+          data:
+            id: 626170854968470203611e2c-gyht4
+            type: contributors
+            attributes:
+              index: 0
+              bibliographic: true
+              permission: admin
+              unregistered_contributor:
+            relationships:
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/gyht4/
+                    meta: {}
+                data:
+                  id: gyht4
+                  type: users
+              draft_registration:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626170854968470203611e2c/
+                    meta: {}
+            embeds:
+              users:
+                data:
+                  id: gyht4
+                  type: users
+                  attributes:
+                    full_name: John Tordoff
+                    given_name: John
+                    middle_names: ''
+                    family_name: Tordoff
+                    suffix: ''
+                    date_registered: '2017-04-26T15:39:29.779518Z'
+                    active: true
+                    timezone: America/New_York
+                    locale: en_US
+                    social:
+                      ssrn: ''
+                      orcid: 0000-0001-8693-9390
+                      github:
+                      - Johnetordoff
+                      scholar: ''
+                      twitter: []
+                      linkedIn: []
+                      impactStory: ''
+                      baiduScholar: ''
+                      researchGate: ''
+                      researcherId: ''
+                      profileWebsites:
+                      - https://test.com
+                      academiaProfileID: ''
+                      academiaInstitution: ''
+                    employment: []
+                    education: []
+                    can_view_reviews: []
+                    accepted_terms_of_service: true
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/nodes/
+                          meta: {}
+                    groups:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/groups/
+                          meta: {}
+                    registrations:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/registrations/
+                          meta: {}
+                    institutions:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/institutions/
+                          meta: {}
+                        self:
+                          href: https://api.osf.io/v2/users/gyht4/relationships/institutions/
+                          meta: {}
+                    preprints:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/preprints/
+                          meta: {}
+                    emails:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/settings/emails/
+                          meta: {}
+                    default_region:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/regions/us/
+                          meta: {}
+                      data:
+                        id: us
+                        type: regions
+                    settings:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/gyht4/settings/
+                          meta: {}
+                      data:
+                        id: gyht4
+                        type: user-settings
+                  links:
+                    html: https://osf.io/gyht4/
+                    profile_image: https://secure.gravatar.com/avatar/a61b3827662ddbc604c78e1c8f6a3636?d=identicon
+                    self: https://api.osf.io/v2/users/gyht4/
+            links:
+              self: https://api.osf.io/v2/draft_registrations/626170854968470203611e2c/contributors/gyht4/
+          meta:
+            version: '2.20'

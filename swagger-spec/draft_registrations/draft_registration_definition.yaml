@@ -11,22 +11,46 @@ properties:
     type: string
     readOnly: true
     description: 'The unique identifier of the draft registration entity.'
-
   type:
     type: string
     readOnly: true
     description: 'The type identifier of the draft registration entity (`draft_registrations`).'
-
   attributes:
     type: object
     title: Attributes
     readOnly: false
-    description: 'The properties of the draft registration entity.'
-    required:
-      - datetime_initiated
-      - datetime_updated
-      - registration_supplement
+    description: 'The properties of the Draft Registration entity.'
     properties:
+      title:
+        type: string
+        readOnly: false
+        description: 'The title of the Draft Registration.'
+      description:
+        type: string
+        readOnly: false
+        description: 'The description of the Draft Registration.'
+      category:
+        type: string
+        readOnly: false
+        description: 'The category of the Draft Registration.'
+      tags:
+        type: string
+        readOnly: false
+        description: 'The searchable tags of the Draft Registration.'
+      node_license:
+        type: string
+        readOnly: false
+        description: 'The license for the Draft Registration.'
+      current_user_permissions:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'The current users permission level for the Draft Registration.'
+      has_project:
+        type: boolean
+        readOnly: true
+        description: 'This indicates whether a Draft Registration was branched from a project.'
       datetime_initiated:
         type: string
         format: date-time
@@ -40,20 +64,15 @@ properties:
       registration_metadata:
         type: string
         readOnly: false
-        description: 'A dictionary of question IDs and responses from the registration schema.'
-      registration_supplement:
+        description: 'This is a legacy format for `registration_responses`.'
+      registration_responses:
         type: string
         readOnly: false
-        description: 'The ID of an active registration schema that this registration will conform to.'
-
+        description: 'A dictionary of question IDs and responses from the registration schema.'
   relationships:
     type: object
     title: Relationships
     readOnly: true
-    required:
-      - branched_from
-      - initiator
-      - registration_schema
     description: 'URLs to other entities or entity collections that have a relationship to the draft registration entity.'
     properties:
       branched_from:
@@ -68,7 +87,6 @@ properties:
         type: string
         readOnly: true
         description: 'A link to the detailed registration schema that this draft conforms to.'
-
   links:
     type: object
     title: Links
@@ -85,7 +103,9 @@ properties:
 
 example:
   data:
-    type: 'draft_registrations'
-    attributes:
-      registration_supplement: '{schema_id}'
-
+    type: draft_registrations
+    relationships:
+      registration_schema:
+        data:
+          id: 61e02b6c90de34000ae3447a
+          type: registration_schemas

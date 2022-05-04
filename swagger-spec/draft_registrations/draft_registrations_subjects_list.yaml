@@ -1,0 +1,76 @@
+get:
+  summary: Retrieve Subjects associated with a Draft Registration
+  description: >-
+    This retrieves a list of subjects associated with a Draft Registration. Subjects are formatted here in a flat
+    paginated list, but are hierarchical and nested by specificity of subject matter.
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_subjects
+  x-response-schema: Draft Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: ../subjects/subject_definition.yaml
+      examples:
+        application/json:
+          data:
+            - id: 61e02bee90de34000ae3449e
+              type: subjects
+              attributes:
+                text: Philosophy
+                taxonomy_name: ''
+              relationships:
+                parent:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/subjects/61e02bee90de34000ae344b5/
+                      meta: { }
+                  data:
+                    id: 61e02bee90de34000ae344b5
+                    type: subjects
+                children:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/subjects/61e02bee90de34000ae3449e/children/
+                      meta: { }
+              embeds:
+                parent:
+                  data:
+                    id: 61e02bee90de34000ae344b5
+                    type: subjects
+                    attributes:
+                      text: Arts and Humanities
+                      taxonomy_name: ''
+                    relationships:
+                      parent:
+                        data:
+                      children:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/subjects/61e02bee90de34000ae344b5/children/
+                            meta: { }
+                    embeds:
+                      parent:
+                        errors:
+                          - detail: Not found.
+                    links:
+                      self: https://api.osf.io/v2/subjects/61e02bee90de34000ae344b5/
+              links:
+                self: https://api.osf.io/v2/subjects/61e02bee90de34000ae3449e/
+          meta:
+            total: 1
+            per_page: 10
+            version: '2.20'
+          links:
+            self: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/subjects/
+            first:
+            last:
+            prev:
+            next:

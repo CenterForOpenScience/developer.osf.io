@@ -2,7 +2,7 @@ get:
   summary: List all licenses
   description: >-
 
-    A paginated list of the licenses allowed bya preprint provider.
+    A paginated list of the licenses allowed by a preprint provider.
 
     #### Returns
 

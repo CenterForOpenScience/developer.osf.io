@@ -49,6 +49,7 @@ x-tagGroups:
       - Nodes
       - Preprints
       - Preprint Providers
+      - Draft Registrations
       - Registrations
       - Taxonomies
       - Users
@@ -788,7 +789,12 @@ tags:
         `in_progress`  state. This trigger is only valid for Schema Responses that are associated with a Registration
         that has Registration Provider a moderated workflow and only possible for a user designated as moderator of a
         Registration Provider.
+  - name: Draft Registrations
+    description: >-
 
+      A Draft Registration is a object that allows a user to edit and revise a registration before it is registered.
+      Draft Registrations allow contributors to coordinate on a single registration, so they can upload files and change
+      Registration metadata before the Registration is archived.
 
 
 paths:
@@ -1030,11 +1036,6 @@ paths:
   /nodes/{node_id}/wikis/:
     $ref: 'nodes/wikis_list.yaml'
 
-  #/nodes/{node_id}/relationships/institutions:
-  #  $ref: 'nodes/institutions_relationships.yaml'
-
-  #/nodes/{node_id}/relationships/linked_nodes:
-  #  $ref: 'nodes/linked_nodes_relationships.yaml'
 
   #################
   #   PREPRINTS   #
@@ -1132,6 +1133,28 @@ paths:
 
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
+
+  ##########################
+  #  DRAFT REGISTRATIONS   #
+  ##########################
+
+  /draft_registrations/:
+    $ref: 'draft_registrations/draft_registrations_list.yaml'
+
+  /draft_registrations/{draft_id}/:
+    $ref: 'draft_registrations/draft_registration_detail.yaml'
+
+  /draft_registrations/{draft_id}/contributors/:
+    $ref: 'draft_registrations/draft_registrations_contributors_list.yaml'
+
+  /draft_registrations/{draft_id}/contributors/{user_id}/:
+    $ref: 'draft_registrations/draft_registrations_contributors_detail.yaml'
+
+  /draft_registrations/{draft_id}/institutions/:
+    $ref: 'draft_registrations/draft_registrations_institutions_list.yaml'
+
+  /draft_registrations/{draft_id}/subjects/:
+    $ref: 'draft_registrations/draft_registrations_subjects_list.yaml'
 
   ##################
   #   TAXONOMIES   #
