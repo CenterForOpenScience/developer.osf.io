@@ -34,7 +34,9 @@ properties:
         readOnly: false
         description: 'The category of the Draft Registration.'
       tags:
-        type: string
+        type: array
+        items:
+          type: string
         readOnly: false
         description: 'The searchable tags of the Draft Registration.'
       node_license:
