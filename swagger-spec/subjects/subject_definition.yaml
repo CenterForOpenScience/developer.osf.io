@@ -7,59 +7,59 @@ properties:
     description: 'The unique identifier of the Subject.'
   type:
     type: string
-    readOnly: false
+    readOnly: true
     description: 'The type identifier of the Subject (`subject`).'
   attributes:
     type: object
     title: Attributes
-    readOnly: false
+    readOnly: true
     description: 'The attributes of the Subject.'
     properties:
       text:
         type: string
-        readOnly: false
+        readOnly: true
         description: 'The name for the subject (`Arts and Humanities`)'
       taxonomy_name:
         type: string
-        readOnly: false
+        readOnly: true
         description: 'The name for the taxonomy used to name subjects (`bepress`)'
   relationships:
     type: object
     title: Relationships
-    readOnly: false
+    readOnly: true
     description: 'Links to other entities or entity collections that have a relationship to the file entity.'
     properties:
       parent:
         type: string
         format: URL
-        readOnly: false
+        readOnly: true
         description: 'A link to the parent for this Subject.'
       children:
         type: string
         format: URL
-        readOnly: false
+        readOnly: true
         description: 'A link to the children for this Subject.'
   embeds:
     type: object
     title: Embeds
-    readOnly: false
+    readOnly: true
     description: 'The the parent is always embedded in the Subject response.'
     properties:
       parent:
         type: object
         title: parent
-        readOnly: false
+        readOnly: true
         description: 'The the parent of the Subject.'
         properties:
           data:
             type: object
             title: data
-            readOnly: false
+            readOnly: true
             properties:
               data:
                 type: object
                 title: data
-                readOnly: false
+                readOnly: true
                 description: 'A JSON object containing the embedded information.'
               id:
                 type: string
@@ -67,46 +67,46 @@ properties:
                 description: 'The unique identifier of the Subject.'
               type:
                 type: string
-                readOnly: false
+                readOnly: true
                 description: 'The type identifier of the Subject (`subject`).'
               attributes:
                 type: object
                 title: Attributes
-                readOnly: false
+                readOnly: true
                 description: 'The attributes of the Subject.'
                 properties:
                   text:
                     type: string
-                    readOnly: false
+                    readOnly: true
                     description: 'The name for the subject (`Arts and Humanities`)'
                   taxonomy_name:
                     type: string
-                    readOnly: false
+                    readOnly: true
                     description: 'The name for the taxonmy used to name subjects (`bepress`)'
               relationships:
                 type: object
                 title: Relationships
-                readOnly: false
+                readOnly: true
                 description: 'Links to other entities or entity collections that have a relationship to the file entity.'
                 properties:
                   parent:
                     type: string
                     format: URL
-                    readOnly: false
+                    readOnly: true
                     description: 'A link to the parent for this Subject.'
                   children:
                     type: string
                     format: URL
-                    readOnly: false
+                    readOnly: true
                     description: 'A link to the children for this Subject.'
   links:
     type: object
     title: Links
-    readOnly: false
+    readOnly: true
     description: 'URLs to alternative representations of the Subject entity.'
     properties:
       self:
         type: string
         format: URL
-        readOnly: false
+        readOnly: true
         description: 'A link to the detail page for a Subject.'
