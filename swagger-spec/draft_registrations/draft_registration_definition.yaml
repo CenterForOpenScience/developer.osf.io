@@ -38,9 +38,21 @@ properties:
         readOnly: false
         description: 'The searchable tags of the Draft Registration.'
       node_license:
-        type: string
-        readOnly: false
-        description: 'The license for the Draft Registration.'
+        type: object
+        title: Node License
+        properties:
+          copyright_holders:
+            type: array
+            readOnly: true
+            description: 'A list of names of copyright holders for the license.'
+            items:
+              type: string
+              readOnly: true
+              description: 'A copyright holders for the license.'
+          year:
+            type: integer
+            readOnly: true
+            description: 'The year the copyright was made.'
       current_user_permissions:
         type: array
         items:
