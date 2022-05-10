@@ -125,7 +125,7 @@ post:
    This creates a Draft Registration that can be used to edit and register research.
 
    Draft Registrations contain Registration questions that will become part of the Registration.
-   A Registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+   A Registration is a frozen version of the project that can never be deleted, but can be withdrawn and have it's metadata edited.
 
    A Draft Registration created by this endpoint will not have a Project linked with it by default, but if the user
    includes a `branched_from` attribute in their Draft Registration creation payload with the value of the

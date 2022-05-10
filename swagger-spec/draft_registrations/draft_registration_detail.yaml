@@ -4,7 +4,7 @@ get:
     Retrieve the details of a given Draft Registration
 
     Draft Registrations contain Registration questions that will become part of the Registration.
-    A Registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+    A Registration is a frozen version of the project that can never be deleted, but can be withdrawn and have it's metadata edited.
 
 
     If you based your Draft Registration on a Project, your original Project remains editable but will now have

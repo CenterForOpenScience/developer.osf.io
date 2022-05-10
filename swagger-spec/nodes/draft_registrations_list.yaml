@@ -5,7 +5,7 @@ get:
 
 
     Draft Registrations contain Registration questions that will become part of the Registration.
-    A Registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+    A Registration is a frozen version of the project that can never be deleted, but can be withdrawn and have it's metadata edited.
 
 
     Your original project remains editable but will now have the draft registration linked to it.
@@ -127,7 +127,7 @@ post:
    Initiate a draft registration of the current node.
 
    Draft Registrations contain Registration questions that will become part of the Registration.
-   A Registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+   A Registration is a frozen version of the project that can never be deleted, but can be withdrawn and have it's metadata edited.
 
 
    Your original project remains editable but will now have the draft registration linked to it.
