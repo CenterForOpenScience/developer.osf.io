@@ -45,7 +45,7 @@ properties:
         properties:
           copyright_holders:
             type: array
-            readOnly: true
+            readOnly: false
             description: 'A list of names of copyright holders for the license.'
             items:
               type: string
@@ -53,7 +53,7 @@ properties:
               description: 'A copyright holders for the license.'
           year:
             type: integer
-            readOnly: true
+            readOnly: false
             description: 'The year the copyright was made.'
       current_user_permissions:
         type: array
@@ -76,11 +76,11 @@ properties:
         readOnly: true
         description: 'The time at which the draft registration was last updated, as an iso8601 formatted timestamp.'
       registration_metadata:
-        type: string
+        type: object
         readOnly: false
         description: 'This is a legacy format for `registration_responses`.'
       registration_responses:
-        type: string
+        type: object
         readOnly: false
         description: 'A dictionary of question IDs and responses from the registration schema.'
   relationships:
