@@ -59,7 +59,7 @@ properties:
         type: array
         items:
           type: string
-        readOnly: false
+        readOnly: true
         description: 'The current users permission level for the Draft Registration.'
       has_project:
         type: boolean
