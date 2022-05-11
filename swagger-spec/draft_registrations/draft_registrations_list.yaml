@@ -135,7 +135,7 @@ post:
 
    #### Permissions
 
-   Any user can create a Draft Registration.
+   Any user can create a Draft Registration. If the `branched_from` attribute is provided, then the user must be an ADMIN contributor on the Project being registered.
 
    #### Required
 
