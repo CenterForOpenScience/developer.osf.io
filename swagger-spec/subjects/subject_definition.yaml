@@ -43,7 +43,7 @@ properties:
     type: object
     title: Embeds
     readOnly: true
-    description: 'The the parent is always embedded in the Subject response.'
+    description: 'The parent is always embedded in the Subject response.'
     properties:
       parent:
         type: object
