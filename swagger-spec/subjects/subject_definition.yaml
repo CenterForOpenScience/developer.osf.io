@@ -49,7 +49,7 @@ properties:
         type: object
         title: parent
         readOnly: true
-        description: 'The the parent of the Subject.'
+        description: 'The parent of the Subject.'
         properties:
           data:
             type: object
