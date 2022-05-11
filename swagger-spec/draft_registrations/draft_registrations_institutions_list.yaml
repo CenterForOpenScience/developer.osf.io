@@ -1,7 +1,7 @@
 get:
   summary: Retrieve Institutions afilliated with a Draft Registration
   description: >-
-    Once a properly authenticated user has marked their registration as afilliated with an institution that institution
+    Once a properly authenticated user has marked their registration as affiliated with an institution, that institution
     and any others added will appear in this list.
 
   parameters:
