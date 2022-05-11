@@ -117,7 +117,7 @@ patch:
   description: >-
     Updates a Draft Registration by setting the values of the attributes specified in the request body.
     Any unspecified attributes will be left unchanged. Note this will not register or change the machine state of a
-    Draft Registration, it can only edit the Draft Registration's attributes prior to it's registration.
+    Draft Registration, it can only edit the Draft Registration's attributes prior to its registration.
 
     #### Permissions
 
