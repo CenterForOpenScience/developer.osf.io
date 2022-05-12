@@ -85,6 +85,10 @@ properties:
         type: string
         readOnly: false
         description: 'A relationship to the preprint provider under which the preprint was created (OSF, socarxiv, psyarxiv, etc.).'
+      bibliographic_contributors:
+        type: string
+        readOnly: false
+        description: 'A relationship to the bibliographic contributors that are listed as contributing to this preprint.'
   links:
     type: object
     title: Links
