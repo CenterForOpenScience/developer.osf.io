@@ -71,7 +71,7 @@ get:
               branched_from:
                 links:
                   related:
-                    href: https://api.osf.io/v2/draft_nodes/nmj5w/
+                    href: https://api.osf.io/v2/nodes/nmj5w/
                     meta: { }
               registration_schema:
                 links:

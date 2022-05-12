@@ -121,7 +121,8 @@ patch:
 
     #### Permissions
 
-    Only draft registration contributors may view draft registrations.
+    Only draft registration contributors may view draft registrations and only draft registration contributors with
+    WRITE or ADMIN permissions may update draft registrations.
 
     #### Returns
 
@@ -174,7 +175,7 @@ patch:
                   value: ''
                   extra: []
               registration_responses:
-                summary: Test
+                summary: Test Value
               datetime_initiated: '2022-05-02T15:43:22.981108'
               datetime_updated: '2022-05-03T18:34:29.504428'
               title: test title change
@@ -247,7 +248,7 @@ delete:
 
     #### Permissions
 
-    Only draft registration contributors may view draft registrations.
+    Only draft registration contributors with ADMIN permissions may delete draft registrations
 
     #### Returns
 
