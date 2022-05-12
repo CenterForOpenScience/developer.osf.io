@@ -1,0 +1,80 @@
+get:
+  summary: Retrieve Institutions afilliated with a Draft Registration
+  description: >-
+    Once a properly authenticated user has marked their registration as affiliated with an institution, that institution
+    and any others added will appear in this list.
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_read
+  x-response-schema: Draft Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref:  ../institutions/definition.yaml
+      examples:
+        application/json:
+          data:
+          - id: lab
+            type: institutions
+            attributes:
+              name: Lab [Test]
+              description: Lab test
+              assets:
+                logo: "/static/img/institutions/shields/lab-shield.png"
+                logo_rounded: "/static/img/institutions/shields-rounded-corners/lab-shield-rounded-corners.png"
+            relationships:
+              nodes:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/lab/nodes/
+                    meta: {}
+              registrations:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/lab/registrations/
+                    meta: {}
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/lab/users/
+                    meta: {}
+              department_metrics:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/lab/metrics/departments/
+                    meta: {}
+              user_metrics:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/lab/metrics/users/
+                    meta: {}
+              summary_metrics:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/lab/metrics/summary/
+                    meta: {}
+                data:
+                  id: a2jlab
+                  type: institution-summary-metrics
+            links:
+              self: https://api.osf.io/v2/institutions/lab/
+              html: http://localhost:5000/institutions/lab/
+          meta:
+            total: 1
+            per_page: 10
+            version: '2.20'
+          links:
+            self: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/institutions/
+            first:
+            last:
+            prev:
+            next:
+

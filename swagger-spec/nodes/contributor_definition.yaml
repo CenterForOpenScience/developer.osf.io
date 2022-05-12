@@ -74,4 +74,4 @@ example:
       user:
         data:
           type: users
-          id: '{user_id}'
+          id: 'guid0'

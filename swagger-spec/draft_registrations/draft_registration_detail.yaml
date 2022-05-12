@@ -1,0 +1,271 @@
+get:
+  summary: Retrieve a Draft Registration
+  description: >-
+    Retrieve the details of a given Draft Registration
+
+    Draft Registrations contain Registration questions that will become part of the Registration.
+    A Registration is a frozen version of the project that can never be deleted, but can be withdrawn and have it's metadata edited.
+
+
+    If you based your Draft Registration on a Project, your original Project remains editable but will now have
+    the Draft Registration linked to it.
+
+    #### Permissions
+
+    Only draft registration contributors may view draft registrations.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    draft registration, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_read
+  x-response-schema: Draft Registration
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: draft_registration_definition.yaml
+      examples:
+        application/json:
+          data:
+            id: 626ffc1ad90ebe0011fc7601
+            type: draft-registrations
+            attributes:
+              registration_metadata: { }
+              registration_responses: { }
+              datetime_initiated: '2022-05-02T15:43:22.981108Z'
+              datetime_updated: '2022-05-03T13:08:47.334711Z'
+              title: Untitled
+              description: ''
+              category: ''
+              tags: [ ]
+              node_license:
+            relationships:
+              initiator:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/fgvc6/
+                    meta: { }
+                data:
+                  id: fgvc6
+                  type: users
+              branched_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_nodes/ng4w2/
+                    meta: { }
+              registration_schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/schemas/registrations/61e02b6c90de34000ae3447a/
+                    meta: { }
+                data:
+                  id: 61e02b6c90de34000ae3447a
+                  type: registration-schemas
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/providers/registrations/osf/
+                    meta: { }
+                data:
+                  id: osf
+                  type: registration-providers
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/institutions/
+                    meta: { }
+                  self:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/relationships/institutions/
+                    meta: { }
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/contributors/
+                    meta: { }
+              license:
+                data:
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/subjects/
+                    meta: { }
+                  self:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/relationships/subjects/
+                    meta: { }
+            links:
+              self: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/
+          meta:
+            version: '2.20'
+
+
+patch:
+  summary: Update a Draft Registration
+  description: >-
+    Updates a Draft Registration by setting the values of the attributes specified in the request body.
+    Any unspecified attributes will be left unchanged. Note this will not register or change the machine state of a
+    Draft Registration, it can only edit the Draft Registration's attributes prior to its registration.
+
+    #### Permissions
+
+    Only draft registration contributors may view draft registrations and only draft registration contributors with
+    WRITE or ADMIN permissions may update draft registrations.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated draft registration, if the request is successful.
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            id: 626ffc1ad90ebe0011fc7601
+            type: draft_registrations
+            attributes:
+              title: test title change
+              registration_responses:
+                summary: Test Value
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_partial_update
+  x-response-schema: Draft Registration
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: OK
+      examples:
+        application/json:
+          data:
+            id: 626ffc1ad90ebe0011fc7601
+            type: draft_registrations
+            attributes:
+              registration_metadata:
+                summary:
+                  comments: []
+                  value: Test
+                  extra: []
+                uploader:
+                  comments: []
+                  value: ''
+                  extra: []
+              registration_responses:
+                summary: Test Value
+              datetime_initiated: '2022-05-02T15:43:22.981108'
+              datetime_updated: '2022-05-03T18:34:29.504428'
+              title: test title change
+              description: ''
+              category: ''
+              tags: []
+              node_license: None
+            relationships:
+              initiator:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/fgvc6/
+                    meta: {}
+                data:
+                  id: fgvc6
+                  type: users
+              branched_from:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_nodes/ng4w2/
+                    meta: {}
+              registration_schema:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/schemas/registrations/61e02b6c90de34000ae3447a/
+                    meta: {}
+                data:
+                  id: 61e02b6c90de34000ae3447a
+                  type: registration-schemas
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/providers/registrations/osf/
+                    meta: {}
+                data:
+                  id: osf
+                  type: registration-providers
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/institutions/
+                    meta: {}
+                  self:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/relationships/institutions/
+                    meta: {}
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/contributors/
+                    meta: {}
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/subjects/
+                    meta: {}
+                  self:
+                    href: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/relationships/subjects/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/draft_registrations/626ffc1ad90ebe0011fc7601/
+          meta:
+            version: '2.0'
+
+
+delete:
+  summary: Delete a draft registration
+  description: >-
+    Permanently deletes a draft registration.
+    A draft that has already been registered cannot be deleted.
+
+    #### Permissions
+
+    Only draft registration contributors with ADMIN permissions may delete draft registrations
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes]() to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: draft_id
+      required: true
+      description: 'The unique identifier of the draft registration.'
+  tags:
+    - Draft Registrations
+  operationId: nodes_draft_registrations_delete
+  responses:
+    '204':
+      description: 'No Content'

@@ -1,10 +1,10 @@
 get:
-  summary: Retrieve a draft registration
+  summary: Retrieve a Draft Registration
   description: >-
     Retrieve the details of a given draft registration.
 
-    Draft registrations contain the supplemental registration questions that accompany a registration.
-    A registration is a frozen version of the project that can never be edited or deleted, but can be withdrawn.
+    Draft Registrations contain Registration questions that will become part of the Registration.
+    A Registration is a frozen version of the project that can never be deleted, but can be withdrawn and have it's metadata edited.
 
 
     Your original project remains editable but will now have the draft registration linked to it.
@@ -34,14 +34,14 @@ get:
       required: true
       description: 'The unique identifier of the draft registration.'
   tags:
-    - Nodes
+    - Draft Registrations
   operationId: nodes_draft_registrations_read
   x-response-schema: Draft Registration
   responses:
     '200':
       description: 'OK'
       schema:
-        $ref: draft_registration_definition.yaml
+        $ref:  ../draft_registrations/draft_registration_definition.yaml
       examples:
         application/json:
           data:
@@ -86,7 +86,7 @@ patch:
     Any unspecified attributes will be left unchanged.
 
 
-    Draft registrations contain the supplemental registration questions that accompany a registration.
+    Draft Registrations contain Registration questions that will become part of the Registration.
     Answer the questions in the draft registration supplement by sending update requests until you are ready to submit the draft.
 
 
@@ -127,7 +127,7 @@ patch:
       name: body
       required: true
       schema:
-        $ref: draft_registration_definition.yaml
+        $ref:  ../draft_registrations/draft_registration_definition.yaml
   tags:
     - Nodes
   operationId: nodes_draft_registrations_partial_update
