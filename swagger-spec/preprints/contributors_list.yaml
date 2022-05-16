@@ -4,7 +4,8 @@ get:
     A paginated list of the Preprint's Contributors, sorted by their index.
 
 
-    Contributors are users who can make changes to the Preprint.
+    Contributors are users who can make changes to the Preprint. Contributors with WRITE permissions may edit preprint
+    details, and ADMIN Contributors may add or remove other Contributors.
 
 
     Contributors are categorized as either "bibliographic" or "non-bibliographic".
@@ -12,8 +13,8 @@ get:
     listed on the project overview page on the OSF, while non-bibliographic contributors are not.
 
 
-    Note that if an anonymous view_only key is being used to view the list of contributors, the user relationship will
-    not be exposed and the contributor ID will be an empty string.
+    Note that if an anonymous view_only key is being used to view the list of Contributors, the user relationship will
+    not be exposed and the Contributor ID will be an empty string.
 
 
     #### Returns
@@ -252,7 +253,8 @@ post:
     Adds a contributor to a Preprint, effectively creating a relationship between the Preprint and a user.
 
 
-    Contributors are users who can make changes to the Preprint.
+    Contributors are users who can make changes to the Preprint. Contributors with WRITE permissions may edit preprint
+    details, and ADMIN Contributors may add or remove other Contributors.
 
 
     Contributors are categorized as either "bibliographic" or "non-bibliographic" contributors.

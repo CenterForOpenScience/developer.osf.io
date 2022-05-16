@@ -54,7 +54,7 @@ properties:
       user:
         type: string
         readOnly: false
-        description: 'A relationship to the file that is designated as the preprint''s primary file, or the manuscript of the preprint.'
+        description: "A relationship to the file that is designated as the preprint's primary file, or the manuscript of the preprint."
   links:
     type: object
     title: Links
