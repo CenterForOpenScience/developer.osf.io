@@ -1,0 +1,246 @@
+get:
+  summary: List all Bibliographic Contributors
+  description: >-
+    A paginated list of the Preprint's Bibliographic Contributors, sorted by their index.
+
+    Contributors are users who can make changes to the Preprint.
+
+
+    Contributors are categorized as either "bibliographic" or "non-bibliographic".
+    From a permissions standpoint, both are the same, but bibliographic contributors are included in citations and are
+    listed on the project overview page on the OSF, while non-bibliographic contributors are not.
+
+
+    Note that if an anonymous view_only key is being used to view the list of contributors, the user relationship will
+    not be exposed and the contributor ID will be an empty string.
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 contributors.
+    Each resource in the array contains the full representation of the contributor, meaning additional requests to a contributor's detail view are not necessary.
+    Additionally, the full representation of the user this contributor represents is automatically embedded within the `data` key of the response.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+    #### Filtering
+
+    You can optionally request that the response only include contributors that match your filters by utilizing the
+    `filter` query parameter, e.g.
+    https://api.osf.io/v2/preprints/y9jdt/contributors/?filter[bibliographic]=true.
+
+
+    Contributors may be filtered by their `bibliographic` and `permission` attributes.
+
+  parameters:
+    - in: path
+      type: string
+      name: preprint_id
+      required: true
+      description: 'The unique identifier of the preprint.'
+  tags:
+    - Preprints
+  operationId: preprints_bibliographic_contributors_list
+  x-response-schema: Contributor
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        type: array
+        items:
+          $ref: contributor_definition.yaml
+      examples:
+        application/json:
+          data:
+            - id: bg8v7-fgvc6
+              type: contributors
+              attributes:
+                index: 0
+                bibliographic: true
+                permission: admin
+                unregistered_contributor:
+              relationships:
+                users:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/users/fgvc6/
+                      meta: { }
+                  data:
+                    id: fgvc6
+                    type: users
+                preprint:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/preprints/bg8v7/
+                      meta: { }
+                  data:
+                    id: bg8v7
+                    type: preprints
+              embeds:
+                users:
+                  data:
+                    id: fgvc6
+                    type: users
+                    attributes:
+                      full_name: Freddie Mercury0
+                      given_name: Freddie
+                      middle_names: ''
+                      family_name: Mercury0
+                      suffix: ''
+                      date_registered: '2022-01-13T13:47:07.685511'
+                      active: true
+                      timezone: Etc/UTC
+                      locale: en_US
+                      social: { }
+                      employment: [ ]
+                      education: [ ]
+                      can_view_reviews: [ ]
+                      accepted_terms_of_service: true
+                    relationships:
+                      nodes:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/nodes/
+                            meta: { }
+                      groups:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/groups/
+                            meta: { }
+                      registrations:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/registrations/
+                            meta: { }
+                      institutions:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/institutions/
+                            meta: { }
+                          self:
+                            href: https://api.osf.io/v2/users/fgvc6/relationships/institutions/
+                            meta: { }
+                      preprints:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/preprints/
+                            meta: { }
+                      emails:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/settings/emails/
+                            meta: { }
+                      default_region:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/regions/us/
+                            meta: { }
+                        data:
+                          id: us
+                          type: regions
+                      settings:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/fgvc6/settings/
+                            meta: { }
+                        data:
+                          id: fgvc6
+                          type: user-settings
+                    links:
+                      html: https://osf.io/fgvc6/
+                      profile_image: https://secure.gravatar.com/avatar/a61b3827662ddbc604c78e1c8f6a3636?d=identicon
+                      self: https://api.osf.io/v2/users/fgvc6/
+              links:
+                self: https://api.osf.io/v2/preprints/bg8v7/contributors/fgvc6/
+            - id: bg8v7-faqpw
+              type: contributors
+              attributes:
+                index: 1
+                bibliographic: true
+                permission: write
+                unregistered_contributor:
+              relationships:
+                users:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/users/faqpw/
+                      meta: { }
+                  data:
+                    id: faqpw
+                    type: users
+                preprint:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/preprints/bg8v7/
+                      meta: { }
+                  data:
+                    id: bg8v7
+                    type: preprints
+              embeds:
+                users:
+                  data:
+                    id: faqpw
+                    type: users
+                    attributes:
+                      full_name: Freddie Mercury1
+                      given_name: Freddie
+                      middle_names: ''
+                      family_name: Mercury1
+                      suffix: ''
+                      date_registered: '2022-05-04T19:39:33.138339'
+                      active: true
+                      timezone: Etc/UTC
+                      locale: en_US
+                      social: { }
+                      employment: [ ]
+                      education: [ ]
+                    relationships:
+                      nodes:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/faqpw/nodes/
+                            meta: { }
+                      groups:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/faqpw/groups/
+                            meta: { }
+                      registrations:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/faqpw/registrations/
+                            meta: { }
+                      institutions:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/faqpw/institutions/
+                            meta: { }
+                          self:
+                            href: https://api.osf.io/v2/users/faqpw/relationships/institutions/
+                            meta: { }
+                      preprints:
+                        links:
+                          related:
+                            href: https://api.osf.io/v2/users/faqpw/preprints/
+                            meta: { }
+                    links:
+                      html: https://osf.io/faqpw/
+                      profile_image: https://secure.gravatar.com/avatar/c9ac5d6cc7964ba7eb2bb96f877bc983?d=identicon
+                      self: https://api.osf.io/v2/users/faqpw/
+              links:
+                self: https://api.osf.io/v2/preprints/bg8v7/contributors/faqpw/
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 2
+              per_page: 10
+              total_bibliographic: 2
+          meta:
+            version: '2.0'

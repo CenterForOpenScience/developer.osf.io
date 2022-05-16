@@ -1,0 +1,68 @@
+type: object
+title: Contributor
+required:
+  - type
+  - relationships
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the contributor entity. Contributor identifiers have the form {preprint_id}-{user_id}.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the contributor entity (`contributors`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the contributor entity.'
+    properties:
+      bibliographic:
+        type: boolean
+        readOnly: false
+        description: 'Whether or not the contributor will be included in citations for the node. The default value is true.'
+      index:
+        type: integer
+        readOnly: false
+        description: "The position of this contributor in the list of project contributors and in a Preprint's citations."
+      permission:
+        type: string
+        enum:
+          - read
+          - write
+          - admin
+        readOnly: false
+        description: 'The permission level of the contributor. The default value is ''write''.'
+      unregistered_contributor:
+        type: string
+        readOnly: true
+        description: 'The assigned name of the contributor if the contributor has not yet claimed their account.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'URLs to other entities or entity collections that have a relationship to the contributor entity.'
+    required:
+      - node
+      - user
+    properties:
+      node:
+        type: string
+        readOnly: true
+        description: 'A relationship to the node that was created for the preprint, or from which the preprint was created.'
+      user:
+        type: string
+        readOnly: false
+        description: 'A relationship to the file that is designated as the preprint''s primary file, or the manuscript of the preprint.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the contributor entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the the canonical API endpoint for the contributor.'

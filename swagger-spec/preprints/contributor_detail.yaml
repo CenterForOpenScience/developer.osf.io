@@ -1,0 +1,115 @@
+#/preprints/{preprint_id}/contributors/{user_id}/
+get:
+  summary: Retrieve a contributor
+  description: >-
+    Retrieves the details of a contributor on this Preprint.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the requested
+    contributor, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+  - in: path
+    type: string
+    name: preprint_id
+    required: true
+    description: 'The unique identifier of the Preprint.'
+  - in: path
+    type: string
+    name: user_id
+    required: true
+    description: 'The unique identifier of the user.'
+  tags:
+    - Preprints
+  operationId: preprints_contributor_read
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            id: bg8v7-faqpw
+            type: contributors
+            attributes:
+              index: 1
+              bibliographic: true
+              permission: write
+              unregistered_contributor:
+            relationships:
+              users:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/users/faqpw/
+                    meta: {}
+                data:
+                  id: faqpw
+                  type: users
+              preprint:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bg8v7/
+                    meta: {}
+                data:
+                  id: bg8v7
+                  type: preprints
+            embeds:
+              users:
+                data:
+                  id: faqpw
+                  type: users
+                  attributes:
+                    full_name: Freddie Mercury1
+                    given_name: Freddie
+                    middle_names: ''
+                    family_name: Mercury1
+                    suffix: ''
+                    date_registered: '2022-05-04T19:39:33.138339'
+                    active: true
+                    timezone: Etc/UTC
+                    locale: en_US
+                    social: {}
+                    employment: []
+                    education: []
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/faqpw/nodes/
+                          meta: {}
+                    groups:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/faqpw/groups/
+                          meta: {}
+                    registrations:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/faqpw/registrations/
+                          meta: {}
+                    institutions:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/faqpw/institutions/
+                          meta: {}
+                        self:
+                          href: https://api.osf.io/v2/users/faqpw/relationships/institutions/
+                          meta: {}
+                    preprints:
+                      links:
+                        related:
+                          href: https://api.osf.io/v2/users/faqpw/preprints/
+                          meta: {}
+                  links:
+                    html: https://osf.io/faqpw/
+                    profile_image: https://secure.gravatar.com/avatar/c9ac5d6cc7964ba7eb2bb96f877bc983?d=identicon
+                    self: https://api.osf.io/v2/users/faqpw/
+            links:
+              self: https://api.osf.io/v2/preprints/bg8v7/contributors/faqpw/
+          meta:
+            version: '2.0'
