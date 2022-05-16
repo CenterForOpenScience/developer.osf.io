@@ -21,11 +21,11 @@ properties:
       bibliographic:
         type: boolean
         readOnly: false
-        description: 'Whether or not the contributor will be included in citations for the node. The default value is true.'
+        description: 'Whether or not the contributor will be included in citations for the Preprint. The default value is true.'
       index:
         type: integer
         readOnly: false
-        description: "The position of this contributor in the list of project contributors and in a Preprint's citations."
+        description: "The position of this contributor in the list of Preprint's contributors and in a Preprint's citations."
       permission:
         type: string
         enum:
