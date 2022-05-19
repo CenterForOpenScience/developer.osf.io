@@ -7,7 +7,7 @@ properties:
   id:
     type: string
     readOnly: true
-    description: 'The identifier of the contributor entity. Contributor identifiers have the form {node_id}-{user_id}.'
+    description: 'The identifier of the contributor entity. Contributor identifiers have the form {preprint_id}-{user_id}.'
   type:
     type: string
     readOnly: true
@@ -21,11 +21,11 @@ properties:
       bibliographic:
         type: boolean
         readOnly: false
-        description: 'Whether or not the contributor will be included in citations for the node. The default value is true.'
+        description: 'Whether or not the contributor will be included in citations for the Preprint. The default value is true.'
       index:
         type: integer
         readOnly: false
-        description: 'The position of this contributor in the list of project contributors and in project citations.'
+        description: "The position of this contributor in the list of Preprint's contributors and in a Preprint's citations."
       permission:
         type: string
         enum:
@@ -41,7 +41,7 @@ properties:
   relationships:
     type: object
     title: Relationships
-    readOnly: false
+    readOnly: true
     description: 'URLs to other entities or entity collections that have a relationship to the contributor entity.'
     required:
       - node
@@ -66,12 +66,3 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the the canonical API endpoint for the contributor.'
-example:
-  data:
-    type: contributors
-    attributes: {}
-    relationships:
-      user:
-        data:
-          type: users
-          id: 'guid0'

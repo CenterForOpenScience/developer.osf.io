@@ -1053,6 +1053,15 @@ paths:
   /preprints/{preprint_id}/citation/{style_id}/:
     $ref: 'preprints/citation_style_detail.yaml'
 
+  /preprints/{preprint_id}/contributors/:
+    $ref: 'preprints/contributors_list.yaml'
+
+  /preprints/{preprint_id}/contributors/{user_id}/:
+    $ref: 'preprints/contributor_detail.yaml'
+
+  /preprints/{preprint_id}/bibliographic_contributors/:
+    $ref: 'preprints/bibliographic_contributors_list.yaml'
+
 
   ##########################
   #   PREPRINT PROVIDERS   #

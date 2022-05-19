@@ -80,7 +80,7 @@ properties:
       primary_file:
         type: string
         readOnly: false
-        description: 'A relationship to the file that is designated as the preprint''s primary file, or the manuscript of the preprint.'
+        description: "A relationship to the file that is designated as the preprint's primary file, or the manuscript of the preprint."
       provider:
         type: string
         readOnly: false
