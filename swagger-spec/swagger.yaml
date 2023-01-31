@@ -113,17 +113,17 @@ tags:
 
       ### Testing
 
-      The OSF provides public testing servers to be used to test integrations againest.
+      The OSF provides public testing servers to test integrations against.
 
       #### Testing Server
 
-      The test-* subdomains of the osf are intended to match, at any given time, the current production environment of the Open Science Framework.
+      The test-* subdomains of the OSF are intended to match, at any given time, the current production environment of the Open Science Framework.
 
       We have staging servers that will have newer features, including newer API features, that aren't ready for production.
       However, because those servers are subject to the whims of QA and whichever group needs to do specific testing, they aren't particular stable for API developers.
       #### Testing Server
 
-      The `test` subdomains of the osf are intended to match, at any given time, the current production environment of the OSF.
+      The `test` subdomains of the OSF are intended to match, at any given time, the current production environment of the OSF.
       The test servers linked below are primarily for developing your API application on a stable system.
 
       - Test web server: https://test.osf.io/
