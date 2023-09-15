@@ -1,0 +1,327 @@
+# /collections/{collection_id}/collection_submission/
+get:
+  summary: Retrieve a list of collection submission for a collection
+  description: >-
+    List of user created metadata for entities within a collection.
+
+    #### Permissions
+
+    In order to view this metadata it must be public or a user must have read permissions for collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+    #### Errors
+
+    This request should never return an error.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_metadata_registrations_list
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+              - id: 2vewn
+                type: collected-metadata
+                attributes:
+                  collected_type: Document Analysis
+                  status: ''
+                  volume: ''
+                  issue: ''
+                  program_area: N/A
+                  subjects: [ ]
+                relationships:
+                  creator:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/users/794j8/?format=json
+                        meta: { }
+                    data:
+                      id: 794j8
+                      type: users
+                  collection:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/collections/ux3nq/?format=json
+                        meta: { }
+                    data:
+                      id: ux3nq
+                      type: collections
+                  guid:
+                    links:
+                      related:
+                        href: https://api.osf.io/v2/guids/2vewn/?format=json
+                        meta: { }
+                embeds:
+                  guid:
+                    data:
+                      id: 2vewn
+                      type: nodes
+                      attributes:
+                        title: A Good Node Title
+                        description: A Good Node Description
+                        category: project
+                        custom_citation:
+                        date_created: '2020-05-11T17:57:58.725950'
+                        date_modified: '2020-11-20T14:31:59.946554'
+                        registration: false
+                        preprint: false
+                        fork: false
+                        collection: false
+                        tags: [ ]
+                        access_requests_enabled: true
+                        node_license:
+                          copyright_holders:
+                            - Test User
+                          year: '2020'
+                        analytics_key: c438e67a7680113ee310cad8121e520bab632f3df95d443a4fadb0cbf3af890acc0d91ab6499297ec622bb827979c6005f13a80b3eddcf87a081667e6b2ac3da6eff414dc659b19e3a473f8bf7ef295bff3c036c955c8313fa6ce1da1253e74592e0b399940ca9f099b36923df8c11622d0a1768ae53f79a6061da76007061207f299a0e507f1ff47baeb902f2c403f0
+                        current_user_can_comment: false
+                        current_user_permissions:
+                          - read
+                        current_user_is_contributor: false
+                        current_user_is_contributor_or_group_member: false
+                        wiki_enabled: true
+                        public: true
+                        subjects: [ ]
+                      relationships:
+                        license:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e965/?format=json
+                              meta: { }
+                          data:
+                            id: 563c1cf88c5e4a3877f9e965
+                            type: licenses
+                        children:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/children/?format=json
+                              meta: { }
+                        comments:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/comments/?format=json&filter%5Btarget%5D=2vewn
+                              meta: { }
+                        contributors:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/contributors/?format=json
+                              meta: { }
+                        bibliographic_contributors:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/bibliographic_contributors/?format=json
+                              meta: { }
+                        implicit_contributors:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/implicit_contributors/?format=json
+                              meta: { }
+                        files:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/files/?format=json
+                              meta: { }
+                        settings:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/settings/?format=json
+                              meta: { }
+                          data:
+                            id: 2vewn
+                            type: nodes
+                        wikis:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/wikis/?format=json
+                              meta: { }
+                        forks:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/forks/?format=json
+                              meta: { }
+                        groups:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/groups/?format=json
+                              meta: { }
+                        node_links:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/node_links/?format=json
+                              meta: { }
+                        linked_by_nodes:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/linked_by_nodes/?format=json
+                              meta: { }
+                        linked_by_registrations:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/linked_by_registrations/?format=json
+                              meta: { }
+                        identifiers:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/identifiers/?format=json
+                              meta: { }
+                        affiliated_institutions:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/institutions/?format=json
+                              meta: { }
+                            self:
+                              href: https://api.osf.io/v2/nodes/2vewn/relationships/institutions/?format=json
+                              meta: { }
+                        draft_registrations:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/draft_registrations/?format=json
+                              meta: { }
+                        registrations:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/registrations/?format=json
+                              meta: { }
+                        region:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/regions/us/?format=json
+                              meta: { }
+                          data:
+                            id: us
+                            type: regions
+                        root:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/?format=json
+                              meta: { }
+                          data:
+                            id: 2vewn
+                            type: nodes
+                        logs:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/logs/?format=json
+                              meta: { }
+                        linked_nodes:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/linked_nodes/?format=json
+                              meta: { }
+                            self:
+                              href: https://api.osf.io/v2/nodes/2vewn/relationships/linked_nodes/?format=json
+                              meta: { }
+                        linked_registrations:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/linked_registrations/?format=json
+                              meta: { }
+                            self:
+                              href: https://api.osf.io/v2/nodes/2vewn/relationships/linked_registrations/?format=json
+                              meta: { }
+                        view_only_links:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/view_only_links/?format=json
+                              meta: { }
+                        citation:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/citation/?format=json
+                              meta: { }
+                          data:
+                            id: 2vewn
+                            type: nodes
+                        preprints:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/preprints/?format=json
+                              meta: { }
+                        storage:
+                          links:
+                            related:
+                              href: https://api.osf.io/v2/nodes/2vewn/storage/?format=json
+                              meta: { }
+                          data:
+                            id: 2vewn
+                            type: nodes
+                      links:
+                        html: https://osf.io/2vewn/
+                        self: https://api.osf.io/v2/nodes/2vewn/
+                links: { }
+          links:
+            first:
+            last:
+            prev:
+            next:
+            meta:
+              total: 1
+              per_page: 10
+
+
+post:
+  summary: Add Metadata or Subjects to a Entity in a Collection
+  description: >-
+    List of user created metadata for entities within a collection.
+
+    #### Permissions
+
+    To edit this collection a user must have collections write permissions
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: collection-submission
+            attributes:
+              volume: test
+              guid: test0
+              subjects: 5fd228b7e64e1300aa99ee15
+
+  tags:
+    - Collections
+  operationId: collections_add_metadata
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'OK'

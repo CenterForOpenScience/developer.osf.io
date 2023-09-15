@@ -1,0 +1,122 @@
+type: object
+title: Collection
+required:
+  - type
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the collection.'
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier of the entity (`collections`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the collection.'
+    properties:
+      title:
+        type: string
+        readOnly: false
+        description: 'The title of the collection.'
+      date_created:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the collection was created, as an iso8601 formatted timestamp.'
+      date_modified:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the collection was last modified, as an iso8601 formatted timestamp.'
+      bookmarks:
+        type: boolean
+        readOnly: true
+        description: 'This attribute indicates if a collection is being used as part of the bookmarking feature that allows each user to create a personal collection.'
+      is_promoted:
+        type: boolean
+        readOnly: false
+        description: 'Depreciated attribute'
+      is_public:
+        type: boolean
+        readOnly: false
+        description: 'This attribute indicates if a collection is viewable to a user with no special permissions.'
+      status_choices:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'A list of the acceptable entity `status` metadata options acceptable for entities in the a collection. This indicates the status of a entity within a collection.'
+      collected_type_choices:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'A list of the acceptable entity `collected_type` metadata options acceptable for entities in the a collection. This indicates the collected types of entities within a collection.'
+      volume_choices:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'A list of the acceptable entity `volume` metadata options acceptable for entities in the a collection.  This indicates what volumes exist of a multi-volume collection.'
+      issue_choices:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'A list of the acceptable entity `issue` metadata options acceptable for entities in the a collection.  This indicates what issues exist of a multi-issue collection.'
+      program_area_choices:
+        type: array
+        items:
+          type: string
+        readOnly: false
+        description: 'A list of the acceptable entity `program_area` metadata options acceptable for entities in the a collection.  This indicates what program areas a collection is composed of .'
+
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: false
+    description: 'URLs to other entities or entity collections that have a relationship to the node entity.'
+    properties:
+      provider:
+        type: string
+        readOnly: true
+        description: 'A link to the list of preprints that this node relates to.'
+      node_links:
+        type: string
+        readOnly: true
+        description: 'A link to the list of nodes that are linked to the current collection.'
+      linked_nodes:
+        type: string
+        readOnly: true
+        description: 'A link to the list of nodes that are linked to the current collection.'
+      linked_registrations:
+        type: string
+        readOnly: true
+        description: 'A link to the list of registrations that are linked to the current collection.'
+      linked_preprints:
+        type: string
+        readOnly: true
+        description: 'A link to the list of preprints that are linked to the current collection.'
+      collection_submissions:
+        type: string
+        readOnly: true
+        description: 'A link to the list of collection submissions for this collection.'
+      collected_metadata:
+        type: string
+        readOnly: true
+        description: 'A legacy version of the collection submissions relationship.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the canonical API endpoint of this collection.'
+

@@ -1,1 +1,136 @@
 # /collections/{collection_id}/
+get:
+  summary: Retrieve a Collection
+  description: >-
+    Retrieves a collection, if the user has appropriate permissions.
+
+
+    #### Permissions
+
+    Anonymous users are able to see all public collections at this endpoint.
+    Logged in users will only be able to see their own content.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_detail
+  x-response-schema: Collection
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          type: "collections"
+          data:
+            attributes:
+              title: "Metascience's Collection"
+              date_created: "2019-09-18T19:24:28.751486Z"
+              date_modified: "2019-09-18T19:24:28.886438Z"
+              bookmarks": false
+              is_promoted": true
+              is_public: true
+              status_choices: [
+                "Proposed",
+                "Active",
+                "Completed",
+                "Archived"
+              ]
+              collected_type_choices: [
+                "Research",
+                "Teaching",
+                "Community Activity",
+                "Meeting",
+                "Other"
+              ]
+              volume_choices: []
+              issue_choices": []
+              program_area_choices: []
+            relationships:
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/providers/collections/metascience/
+                    meta: { }
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/node_links/
+                    meta: { }
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/collections/ezcuj/relationships/linked_nodes/
+                    meta: { }
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/linked_nodes/
+                    meta: { }
+              linked_registrations:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/collections/ezcuj/relationships/linked_registrations/
+                    meta: { }
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/linked_registrations/
+                    meta: { }
+              linked_preprints:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/collections/ezcuj/relationships/linked_preprints/
+                    meta: { }
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/linked_preprints/
+                    meta: { }
+              collection_submission:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/collection_submission/
+                    meta: { }
+            links:
+              self: https://api.osf.io/v2/collections/
+          meta:
+            version: 2.20
+
+delete:
+  summary: Delete a Collection
+  description: >-
+    Deletes a collection, if the user has appropriate permissions.
+
+    #### Permissions
+
+    Users must have write permissions on a collection in order to delete it
+
+    #### Returns
+
+    Nothing is returned in the body
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_delete
+  x-response-schema: Collection
+  responses:
+    '204':
+      description: 'No Content'

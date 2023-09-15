@@ -1,1 +1,151 @@
 # /collections/
+get:
+  summary: List all Collections
+  description: >-
+    Retrieves a list collections, either public or related to the user
+
+    #### Permissions
+
+    Anonymous users are able to see all public collections at this endpoint.
+    Logged in users will only be able to see their own content.
+
+
+    Comments on private nodes are only visible to contributors and administrators on the parent node.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  tags:
+    - Collections
+  operationId: collections_list
+  x-response-schema: Collection
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+          - attributes:
+              title: "Metascience's Collection"
+              date_created: "2019-09-18T19:24:28.751486Z"
+              date_modified: "2019-09-18T19:24:28.886438Z"
+              bookmarks": false
+              is_promoted": true
+              is_public: true
+              status_choices: [
+                "Proposed",
+                "Active",
+                "Completed",
+                "Archived"
+              ]
+              collected_type_choices: [
+                "Research",
+                "Teaching",
+                "Community Activity",
+                "Meeting",
+                "Other"
+              ]
+              volume_choices: []
+              issue_choices": []
+              program_area_choices: []
+            relationships:
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/providers/collections/metascience/
+                    meta: { }
+              node_links:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/node_links/
+                    meta: { }
+              linked_nodes:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/collections/ezcuj/relationships/linked_nodes/
+                    meta: { }
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/linked_nodes/
+                    meta: { }
+              linked_registrations:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/collections/ezcuj/relationships/linked_registrations/
+                    meta: { }
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/linked_registrations/
+                    meta: { }
+              linked_preprints:
+                links:
+                  self:
+                    href: https://api.osf.io/v2/collections/ezcuj/relationships/linked_preprints/
+                    meta: { }
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/linked_preprints/
+                    meta: { }
+              collection_submission:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/collections/ezcuj/collection_submission/
+                    meta: { }
+            links:
+              self: https://api.osf.io/v2/collections/
+          links:
+            self: https://api.osf.io/v2/collections/
+            first: null
+            last: https://api.osf.io/v2/collections/?page=2
+            next: https://api.osf.io/v2/collections/?page=2
+            prev: null
+          meta:
+            total: 11
+            per_page: 10
+            version: 2.20
+
+
+post:
+  summary: Create a Collection
+  description: >-
+    Retrieves a list collections, either public or related to the user
+
+    #### Permissions
+
+    Anonymous users are able to see all public collections at this endpoint.
+    Logged in users will only be able to see their own content.
+
+
+    Comments on private nodes are only visible to contributors and administrators on the parent node.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of comment objects.
+    Each resource in the array is a separate comment object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+  parameters:
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: 'definition.yaml'
+  tags:
+    - Collections
+  operationId: collections_create
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'Created'
+      examples:
+        application/json:

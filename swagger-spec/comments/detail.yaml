@@ -116,7 +116,10 @@ put:
   responses:
     '200':
       description: 'OK'
-
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
 delete:
   summary: Delete a comment
   description: >-

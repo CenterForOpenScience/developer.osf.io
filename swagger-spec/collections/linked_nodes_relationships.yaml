@@ -1,1 +1,137 @@
 # /collections/{collection_id}/relationships/linked_nodes/
+post:
+  summary: Link Nodes to Collection
+  description: >-
+    This endpoint allow users to a add a node to a collection by issuing a POST request.
+
+    #### Permissions
+
+    This returns all public nodes associated with this collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of comment objects.
+    Each resource in the array is a separate comment object.
+
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: body
+      name: body
+      required: true
+      schema:
+        $ref: 'definition.yaml'
+  tags:
+    - Collections
+  operationId: collections_create
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    201:
+      description: 'OK'
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+
+
+get:
+  summary: Give a Sparse List of Node Ids
+  description: >-
+    List of all the node ids linked to the given collection.
+
+    #### Permissions
+
+    This returns all public nodes associated with this collection.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+
+  tags:
+    - Collections
+  operationId: collections_linked_nodes_relationships_create
+  x-response-schema: Collection
+  consumes:
+    - application/json
+
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            - type: nodes
+              id: guid0
+            - type: nodes
+              id: newid
+            - type: nodes
+              id: test2
+            - type: nodes
+              id: guid4
+          links:
+            self: https://api.osf.io/v2/collections/dse23/relationships/linked_nodes/
+            html: https://api.osf.io/v2/collections/dse23/linked_nodes/
+          meta:
+            version: '2.20'
+
+delete:
+  summary:  Remove Nodes From Collection
+  description: >-
+
+    This removes associated nodes from a collection
+
+    #### Permissions
+
+    Any user with write permissions on this collection should be to remove nodes from this collection.
+
+    #### Returns
+
+    Nothing in the response body.
+  parameters:
+  - in: path
+    type: string
+    name: collection_id
+    required: true
+    description: 'The unique identifier of the Registration Schema example `6176c9d45e01f100091d4f94`.'
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      example:
+        data:
+          type: collected-metadata
+          attributes:
+            volume: test
+            guid: test0
+            subjects: 5fd228b7e64e1300aa99ee15
+  tags:
+    - Collections
+  operationId: collections_linked_nodes_relationships_delete
+  consumes:
+    - application/json
+  responses:
+    204:
+      description: 'No Content'

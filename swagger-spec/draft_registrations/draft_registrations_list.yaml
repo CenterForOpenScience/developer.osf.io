@@ -28,12 +28,6 @@ get:
     The `links` key contains a dictionary of links that can be used
     for [pagination](#tag/Pagination).
 
-  parameters:
-    - in: path
-      type: string
-      name: node_id
-      required: true
-      description: 'The unique identifier of the node.'
   tags:
     - Nodes
   operationId: nodes_draft_registrations_list
@@ -115,11 +109,6 @@ post:
     to understand why this request may have failed.
 
   parameters:
-    - in: path
-      type: string
-      name: node_id
-      required: true
-      description: 'The unique identifier of the node.'
     - in: body
       name: body
       required: true

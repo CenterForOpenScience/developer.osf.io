@@ -38,6 +38,7 @@ x-tagGroups:
       - Base
       - Citations
       - Comments
+      - Collections
       - Files
       - Licenses
       - Logs
@@ -1033,6 +1034,16 @@ paths:
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
 
+  ##########################
+  #  DRAFT REGISTRATIONS   #
+  ##########################
+
+  /draft_registrations/:
+    $ref: 'draft_registrations/draft_registrations_list.yaml'
+
+  /draft_registrations/{draft_id}/:
+    $ref: 'draft_registrations/draft_registration_detail.yaml'
+
   ##################
   #   TAXONOMIES   #
   ##################
@@ -1095,3 +1106,28 @@ paths:
 
   /wikis/{wiki_id}/content/:
     $ref: 'wikis/content.yaml'
+
+  ###################
+  #   COLLECTIONS   #
+  ###################
+
+  /collections/:
+    $ref: 'collections/list.yaml'
+
+  /collections/{collection_id}/:
+    $ref: 'collections/detail.yaml'
+
+  /collections/{collection_id}/linked_nodes/relationships/:
+    $ref: 'collections/linked_nodes_relationships.yaml'
+
+  /collections/{collection_id}/collection_submission/:
+    $ref: 'collections/collection_submission_list.yaml'
+
+  /collections/{collection_id}/collection_submission/{collection_submission_id}:
+    $ref: 'collections/collection_submission_detail.yaml'
+
+  /collections/{collection_id}/collected_metatdata/{collection_submission_id}/subjects/:
+    $ref: 'collections/collection_submission_subjects.yaml'
+
+  /collections/{collection_id}/collected_metatdata/{collection_submission_id}/relationships/subjects/:
+    $ref: 'collections/collection_submission_subjects_relationships.yaml'

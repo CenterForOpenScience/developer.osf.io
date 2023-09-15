@@ -1,0 +1,91 @@
+type: object
+title: Draft Registration
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the draft registration entity.'
+
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the draft registration entity (`draft_registrations`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the draft registration entity.'
+    required:
+      - datetime_initiated
+      - datetime_updated
+      - registration_supplement
+    properties:
+      datetime_initiated:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the draft registration was first initiated, as an iso8601 formatted timestamp.'
+      datetime_updated:
+        type: string
+        format: date-time
+        readOnly: true
+        description: 'The time at which the draft registration was last updated, as an iso8601 formatted timestamp.'
+      registration_metadata:
+        type: string
+        readOnly: false
+        description: 'A dictionary of question IDs and responses from the registration schema.'
+      registration_supplement:
+        type: string
+        readOnly: false
+        description: 'The ID of an active registration schema that this registration will conform to.'
+
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    required:
+      - branched_from
+      - initiator
+      - registration_schema
+    description: 'URLs to other entities or entity collections that have a relationship to the draft registration entity.'
+    properties:
+      branched_from:
+        type: string
+        readOnly: true
+        description: 'A link to the node that this draft registration was created from.'
+      initiator:
+        type: string
+        readOnly: true
+        description: 'A link to the user who initiated the draft registration.'
+      registration_schema:
+        type: string
+        readOnly: true
+        description: 'A link to the detailed registration schema that this draft conforms to.'
+
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    required:
+      - html
+    description: 'URLs to alternative representations of the draft registration entity.'
+    properties:
+      html:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the draft registration''s page on the OSF.'
+
+example:
+  data:
+    type: 'draft_registrations'
+    attributes:
+      registration_supplement: '{schema_id}'
+

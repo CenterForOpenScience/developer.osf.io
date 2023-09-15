@@ -1,0 +1,76 @@
+# /collections/{collection_id}/collection_submission/{cmg_id}/subjects/
+get:
+  summary: Retrieve subject data for a specific piece of metadata info for a collection
+  description: >-
+
+    #### Permissions
+
+    In order to view these subject it must be a public collection or a user must have read permissions for collection.
+
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+    #### Errors
+
+    This request should never return an error, other then permissions errors.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+    - in: path
+      type: string
+      required: true
+      name: collection_submission_id
+      description: 'A short id for that piece of metadata'
+
+  tags:
+    - Collections
+  operationId: collections_collection_submission
+  x-response-schema: Collection
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            - id: 5fd228b7e64e1300aa99ee15
+              type: subjects
+              attributes:
+                text: 'Example Subject #0'
+                taxonomy_name: ''
+              relationships:
+                parent:
+                  data:
+                children:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/subjects/5fd228b7e64e1300aa99ee15/children/
+                      meta: { }
+              embeds:
+                parent:
+                  errors:
+                    - detail: Not found.
+              links:
+                self: https://api.osf.io/v2/subjects/5fd228b7e64e1300aa99ee15/
+          meta:
+            total: 1
+            per_page: 10
+            version: '2.20'
+          links:
+            self: https://api.osf.io/v2/collections/nywr6/collection_submission/zjxhs/subjects/
+            first:
+            last:
+            prev:
+            next:

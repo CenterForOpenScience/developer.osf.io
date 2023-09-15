@@ -26,16 +26,11 @@ get:
   parameters:
     - in: path
       type: string
-      name: node_id
-      required: true
-      description: 'The unique identifier of the node.'
-    - in: path
-      type: string
       name: draft_id
       required: true
       description: 'The unique identifier of the draft registration.'
   tags:
-    - Nodes
+    - Draft Registrations
   operationId: nodes_draft_registrations_read
   x-response-schema: Draft Registration
   responses:
@@ -116,11 +111,6 @@ patch:
   parameters:
     - in: path
       type: string
-      name: node_id
-      required: true
-      description: 'The unique identifier of the node.'
-    - in: path
-      type: string
       name: draft_id
       required: true
       description: 'The unique identifier of the draft registration.'
@@ -158,11 +148,6 @@ delete:
     Refer to the [list of error codes]() to understand why this request may have failed.
 
   parameters:
-    - in: path
-      type: string
-      name: node_id
-      required: true
-      description: 'The unique identifier of the node.'
     - in: path
       type: string
       name: draft_id
