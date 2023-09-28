@@ -1,0 +1,196 @@
+# /provider/collections/{collection_id}/moderators/:
+get:
+  summary: Collections Providers Moderators List
+  description: >-
+
+    This returns a list of moderators for a Collections Provider.
+
+    #### Permissions
+
+    This information is only available to Collection Provider moderators or admins.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of nodes ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+  tags:
+    - Collection Providers
+  operationId: collection_provider_detail
+  x-response-schema: Collection Provider
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+          - id: nmwt5
+            type: moderators
+            attributes:
+              full_name: Blaine Butler
+              permission_group: admin
+            relationships:
+              user:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/users/nmwt5/
+                    meta: {}
+                data:
+                  id: nmwt5
+                  type: users
+              provider:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/
+                    meta: {}
+                data:
+                  id: colmod
+                  type: collection-providers
+            embeds:
+              user:
+                data:
+                  id: nmwt5
+                  type: users
+                  attributes:
+                    full_name: Blaine Butler
+                    given_name: Blaine
+                    middle_names: ''
+                    family_name: Butler
+                    suffix: ''
+                    date_registered: '2022-11-03T19:23:28.110924Z'
+                    active: false
+                    timezone: Etc/UTC
+                    locale: en_US
+                    social: {}
+                    employment: []
+                    education: []
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/nmwt5/nodes/
+                          meta: {}
+                    groups:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/nmwt5/groups/
+                          meta: {}
+                    registrations:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/nmwt5/registrations/
+                          meta: {}
+                    institutions:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/nmwt5/institutions/
+                          meta: {}
+                        self:
+                          href: https://api.staging.osf.io/v2/users/nmwt5/relationships/institutions/
+                          meta: {}
+                    preprints:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/nmwt5/preprints/
+                          meta: {}
+                  links:
+                    html: https://staging.osf.io/nmwt5/
+                    profile_image: https://secure.gravatar.com/avatar/4a1f62c6580a151e5c1c0aec72b7fc2a?d=identicon
+                    self: https://api.staging.osf.io/v2/users/nmwt5/
+            links:
+              self: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/nmwt5/
+          - id: m8ku3
+            type: moderators
+            attributes:
+              full_name: DC Test - AMC
+              permission_group: admin
+            relationships:
+              user:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/users/m8ku3/
+                    meta: {}
+                data:
+                  id: m8ku3
+                  type: users
+              provider:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/
+                    meta: {}
+                data:
+                  id: colmod
+                  type: collection-providers
+            embeds:
+              user:
+                data:
+                  id: m8ku3
+                  type: users
+                  attributes:
+                    full_name: DC Test - AMC
+                    given_name: DC
+                    middle_names: Test -
+                    family_name: AMC
+                    suffix: ''
+                    date_registered: '2022-09-14T11:28:08.681787Z'
+                    active: true
+                    timezone: Etc/UTC
+                    locale: en_US
+                    social: {}
+                    employment: []
+                    education: []
+                  relationships:
+                    nodes:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/m8ku3/nodes/
+                          meta: {}
+                    groups:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/m8ku3/groups/
+                          meta: {}
+                    registrations:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/m8ku3/registrations/
+                          meta: {}
+                    institutions:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/m8ku3/institutions/
+                          meta: {}
+                        self:
+                          href: https://api.staging.osf.io/v2/users/m8ku3/relationships/institutions/
+                          meta: {}
+                    preprints:
+                      links:
+                        related:
+                          href: https://api.staging.osf.io/v2/users/m8ku3/preprints/
+                          meta: {}
+                  links:
+                    html: https://staging.osf.io/m8ku3/
+                    profile_image: https://secure.gravatar.com/avatar/ce38ca4e4a1361446468960716f57b5e?d=identicon
+                    self: https://api.staging.osf.io/v2/users/m8ku3/
+            links:
+              self: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/m8ku3/
+          meta:
+            total: 8
+            per_page: 2
+            version: '2.20'
+          links:
+            self: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/?page%5Bsize%5D=2
+            first:
+            last: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/?page=4&page%5Bsize%5D=2
+            prev:
+            next: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/?page=2&page%5Bsize%5D=2
