@@ -1,0 +1,110 @@
+type: object
+title: Collection Provider
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The identifier of the preprint provider entity.'
+  type:
+    type: string
+    readOnly: true
+    description: 'The type identifier of the preprint provider entity (`collection_providers`).'
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: true
+    description: 'The properties of the collection provider entity.'
+    properties:
+      social_instagram:
+        type: string
+        readOnly: true
+        description: 'The collection provider''s Instagram account ID. This field is deprecated as of verson 2.4.'
+      advisory_board:
+        type: string
+        readOnly: true
+        description: 'The HTML representation of the collection provider''s advisory board.'
+      email_support:
+        type: string
+        readOnly: true
+        description: 'The collection providers''s support email address.'
+      banner_path:
+        type: string
+        readOnly: true
+        description: 'A static path to the collection provider''s banner image. This field is deprecated as of verson 2.4.'
+      logo_path:
+        type: string
+        readOnly: true
+        description: 'A static path to the collection provider''s logo image. This field is deprecated as of verson 2.4.'
+      subjects_acceptable:
+        type: string
+        readOnly: true
+        description: 'A nested array structure defining allowed subjects for this collection provider, in the BePress taxonomy.'
+      description:
+        type: string
+        readOnly: true
+        description: 'The description of the collection provider.'
+      social_facebook:
+        type: string
+        readOnly: true
+        description: 'The collection provider''s Facebook account ID. This field is deprecated as of verson 2.4.'
+      email_contact:
+        type: string
+        readOnly: true
+        description: 'The collection provider''s contact email address. This field is deprecated as of verson 2.4.'
+      example:
+        type: string
+        readOnly: true
+        description: 'The GUID for an example collection from this collection provider.'
+      name:
+        type: string
+        readOnly: true
+        description: 'The name of the collection provider.'
+      domain:
+        type: string
+        readOnly: true
+        description: 'The collection provider''s domain, if the provider is using a domain to for their collection service.'
+      domain_redirect_enabled:
+        type: boolean
+        readOnly: true
+        description: 'Whether or not redirects are enabled for the provider''s domain.'
+  relationships:
+    type: object
+    title: Relationships
+    readOnly: true
+    description: 'Links to other entities or entity collections that have a relationship to the collection provider.'
+    properties:
+      licenses_acceptable:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to licenses the collection provider allows.'
+      taxonomies:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the taxonomies the collection provider allows.'
+      collection:
+        type: string
+        readOnly: true
+        description: 'A link to the collection list page for the collection provider.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'Links to alternative representations of the collection entity.'
+    properties:
+      external_url:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the external website for the collection provider.'
+      collections:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the collection list page for the collection provider.'
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the detail page for the collection provider.'

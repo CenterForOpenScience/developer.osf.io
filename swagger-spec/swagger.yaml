@@ -38,6 +38,9 @@ x-tagGroups:
       - Citations
       - Comments
       - Collections
+      - Collection Submissions
+      - Collection Submission Actions
+      - Collection Providers
       - Files
       - Licenses
       - Logs
@@ -766,7 +769,7 @@ tags:
       Users use state transitions to submit, approve, and revise new Schema Responses.
 
 
-      Schema Response Actions have a  few different triggers to cause state transitions:
+      Schema Response Actions have a few different triggers to cause state transitions:
 
         - `submit` is a trigger to transition a Schema Response from an `in_progress` state to an `unapproved` state,
         this freezes edits for the Schema Response and allows all admin contributors to the Schema Response's
@@ -795,7 +798,50 @@ tags:
       A Draft Registration is a object that allows a user to edit and revise a registration before it is registered.
       Draft Registrations allow contributors to coordinate on a single registration, so they can upload files and change
       Registration metadata before the Registration is archived.
+  - name: Collection Submissions
 
+    description: >-
+
+      A Collection Submission is a object that allows a user to add a resource, either a project, preprint or
+      registration to a a collection. Once created a Collection Submission may be automatically accepted or wait for
+      moderation once a Collection Submission is in a moderation state an assigned moderator may accept or reject the
+      submission.
+
+      There are a few states for Collection Submissions:
+
+        - `in_progress` is the initial state of a Collection Submission where the resource is editable and still private.
+
+        - `pending` is the state where the Collection Submission is awaiting moderation.
+
+        - `accepted` means the Collection Submission has been approved and added to the collection.
+
+        - `rejected` means the Collection Submission has been declined by the moderator.
+
+        - `removed`: means the Collection Submission has been removed from the collection, after initial acceptance.
+
+  - name: Collection Submissions Action
+
+    description: >-
+      A Collection Submission Action is an object that triggers a change in the moderation state of a Collection
+      Submission and works as a record to log all previous transitions for a Collection Submission.
+
+      Collection Submission Actions have a few different triggers to cause state transitions:
+
+        - `submit`: is used to move a Collection Submission from the in_progress to the pending state, indicating the
+          submission is in a `pending` state, ready for for moderation.
+
+        - `accept`: is used by moderators to approve a Collection Submission, changing its state to `accepted`.
+
+        - `reject`: is used by moderators to reject a Collection Submission, changing its state to `rejected`.
+
+        - `remove`: is used to permanently remove a Collection Submission from the moderation queue,
+          changing its state to `removed`.
+
+        - `resubmit`: is used to resubmit a previously rejected or removed Collection Submission, moving it back to the
+          `pending` state from the `rejected` or `removed` state.
+
+        - `cancel`: is used to cancel a Collection Submission in a `pending` state, reverting it back to the
+          `in_progress`.
 
 paths:
 
@@ -1264,3 +1310,48 @@ paths:
 
   /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
     $ref: 'collections/collected_metadata_subjects_relationships.yaml'
+
+  ###############################
+  #   COLLECTIONS SUBMISSIONS   #
+  ###############################
+
+  /collection_submissions/{collection_submission_id}/actions/:
+    $ref: 'collection_submissions/list.yaml'
+
+  #######################################
+  #   COLLECTIONS SUBMISSIONS ACTIONS   #
+  #######################################
+
+  /collection_submission_actions/{collection_submission_id}/:
+    $ref: 'collection_submission_actions/detail.yaml'
+
+  /collection_submission_actions/:
+    $ref: 'collection_submission_actions/list.yaml'
+
+  ############################
+  #   COLLECTIONS PROVIDER   #
+  ############################
+
+  /provider/collections/:
+    $ref: 'collection_provider/list.yaml'
+
+  /provider/collections/{collection_id}/:
+    $ref: 'collection_provider/detail.yaml'
+
+  /provider/collections/{collection_id}/licenses/:
+    $ref: 'collection_provider/licenses.yaml'
+
+  /provider/collections/{collection_id}/submissions/:
+    $ref: 'collection_provider/submissions.yaml'
+
+  /provider/collections/{collection_id}/subjects/:
+    $ref: 'collection_provider/subjects.yaml'
+
+  /provider/collections/{collection_id}/subjects/highlighted/:
+    $ref: 'collection_provider/subjects_highlighted.yaml'
+
+  /provider/collections/{collection_id}/moderators/:
+    $ref: 'collection_provider/moderators_list.yaml'
+
+  /provider/collections/{collection_id}/moderators/{moderator_id}/:
+    $ref: 'collection_provider/moderators_detail.yaml'
