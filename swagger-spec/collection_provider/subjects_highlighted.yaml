@@ -13,7 +13,7 @@ get:
 
     Returns a JSON object containing `data` and `links` keys.
 
-    The `data` key contains an array of nodes ids.
+    The `data` key contains an array of subject ids.
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
   parameters:
