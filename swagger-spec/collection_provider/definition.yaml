@@ -8,7 +8,7 @@ properties:
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the preprint provider entity (`collection_providers`).'
+    description: 'The type identifier of the collection provider entity (`collection_providers`).'
   attributes:
     type: object
     title: Attributes
