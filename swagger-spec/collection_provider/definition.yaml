@@ -4,7 +4,7 @@ properties:
   id:
     type: string
     readOnly: true
-    description: 'The identifier of the preprint provider entity.'
+    description: 'The identifier of the collection provider entity.'
   type:
     type: string
     readOnly: true
