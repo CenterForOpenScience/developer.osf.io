@@ -8,7 +8,7 @@ post:
 
     #### Permissions
 
-    This information is only available to an admin on the Collection in question.
+    This action is only available to an admin on the Collection Submission, or a moderator for the Collection Provider in question.
 
     #### Returns
 
