@@ -3,7 +3,7 @@ post:
   summary: Creates a Collection Submission Action
   description: >-
 
-    This adds a Collection Submission Action to the Collection, causing the Collection state machine to preform a
+    This adds a Collection Submission Action to the Collection, causing the Collection state machine to perform a
     transition.
 
     #### Permissions
