@@ -7,7 +7,8 @@ get:
 
     #### Permissions
 
-    This information is only available to an admin on the Collection in question.
+    This information is only available to an admin or moderator of a Collection when it is private, however if the
+    Collection is public the data is available to all.
 
     #### Returns
 
