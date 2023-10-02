@@ -14,8 +14,6 @@ get:
     Returns a JSON object containing `data` and `links` keys.
 
    Returns a JSON object with a `data` key containing the representation of the requested collection provider object, if the request is successful.
-
-    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
   parameters:
     - in: path
       type: string

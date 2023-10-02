@@ -37,7 +37,7 @@ get:
             - id: 5c3e311a0989e101eede6afa
               type: subjects
               attributes:
-                text: Terrorism Studies
+                text: Puppy Studies
                 taxonomy_name: bepress
               relationships:
                 parent:
