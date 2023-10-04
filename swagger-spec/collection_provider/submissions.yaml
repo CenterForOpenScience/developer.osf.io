@@ -1,0 +1,556 @@
+# /provider/collections/{collection_id}/submissions/
+get:
+  summary: Collections Providers Submissions List
+  description: >-
+
+    This returns a list of all submissions to a Collections Provider entity.
+
+    #### Permissions
+
+    This information is public.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of node and preprint ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_id
+      description: 'A short id for that collection'
+  tags:
+    - Collection Providers
+  operationId: collection_provider_detail
+  x-response-schema: Collection Provider
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            - id: uwnqs
+              type: collected-metadata
+              attributes:
+                reviews_state: accepted
+                date_created: '2022-01-03T20:12:25.315870Z'
+                date_modified: '2022-01-03T20:12:25.329533Z'
+                collected_type: automation
+                status: ''
+                volume: ''
+                issue: ''
+                program_area: ''
+                school_type: ''
+                study_design: ''
+              relationships:
+                creator:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/users/rmq6z/
+                      meta: { }
+                  data:
+                    id: rmq6z
+                    type: users
+                collection:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/collections/rju4d/
+                      meta: { }
+                  data:
+                    id: rju4d
+                    type: collections
+                guid:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/guids/uwnqs/
+                      meta: { }
+                collection_submission_actions:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/collection_submissions/uwnqs-rju4d/actions/
+                      meta: { }
+                subjects:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/collections/rju4d/collected_metadata/uwnqs/subjects/
+                      meta: { }
+                    self:
+                      href: https://api.staging.osf.io/v2/collections/rju4d/collected_metadata/uwnqs/relationships/subjects/
+                      meta: { }
+              embeds:
+                guid:
+                  data:
+                    id: uwnqs
+                    type: nodes
+                    attributes:
+                      title: OSF Test Project
+                      description: QA Selenium Testing
+                      category: project
+                      custom_citation:
+                      date_created: '2022-01-03T20:12:02.942101Z'
+                      date_modified: '2022-01-03T20:12:29.977480Z'
+                      registration: false
+                      preprint: false
+                      fork: false
+                      collection: false
+                      tags:
+                        - qatest
+                        - selenium
+                        - tests/test_collections.py::TestCollectionSubmission::()::test_add_to_collection
+                          (setup)
+                      node_license:
+                        copyright_holders: [ ]
+                        year:
+                      analytics_key: ''
+                      current_user_can_comment: false
+                      current_user_permissions: [ ]
+                      current_user_is_contributor: false
+                      current_user_is_contributor_or_group_member: false
+                      wiki_enabled: true
+                      public: false
+                    relationships:
+                      license:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/licenses/5c252c8e0989e100220edb75/
+                            meta: { }
+                        data:
+                          id: 5c252c8e0989e100220edb75
+                          type: licenses
+                      children:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/children/
+                            meta: { }
+                      comments:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/comments/?filter%5Btarget%5D=uwnqs
+                            meta: { }
+                      contributors:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/contributors/
+                            meta: { }
+                      bibliographic_contributors:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/bibliographic_contributors/
+                            meta: { }
+                      implicit_contributors:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/implicit_contributors/
+                            meta: { }
+                      files:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/files/
+                            meta: { }
+                      settings:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/settings/
+                            meta: { }
+                        data:
+                          id: uwnqs
+                          type: node-setting
+                      wikis:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/wikis/
+                            meta: { }
+                      forked_from:
+                        data:
+                      template_node:
+                        data:
+                      forks:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/forks/
+                            meta: { }
+                      groups:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/groups/
+                            meta: { }
+                      linked_by_nodes:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/linked_by_nodes/
+                            meta: { }
+                      linked_by_registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/linked_by_registrations/
+                            meta: { }
+                      parent:
+                        data:
+                      identifiers:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/identifiers/
+                            meta: { }
+                      affiliated_institutions:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/institutions/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/relationships/institutions/
+                            meta: { }
+                      draft_registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/draft_registrations/
+                            meta: { }
+                      registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/registrations/
+                            meta: { }
+                      region:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/regions/us/
+                            meta: { }
+                        data:
+                          id: us
+                          type: regions
+                      root:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/
+                            meta: { }
+                        data:
+                          id: uwnqs
+                          type: nodes
+                      logs:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/logs/
+                            meta: { }
+                      linked_nodes:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/linked_nodes/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/relationships/linked_nodes/
+                            meta: { }
+                      linked_registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/linked_registrations/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/relationships/linked_registrations/
+                            meta: { }
+                      view_only_links:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/view_only_links/
+                            meta: { }
+                      citation:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/citation/
+                            meta: { }
+                        data:
+                          id: uwnqs
+                          type: citation
+                      preprints:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/preprints/
+                            meta: { }
+                      storage:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/storage/
+                            meta: { }
+                        data:
+                          id: uwnqs
+                          type: node-storage
+                      subjects:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/subjects/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/uwnqs/relationships/subjects/
+                            meta: { }
+                    links:
+                      html: https://staging.osf.io/uwnqs/
+                      self: https://api.staging.osf.io/v2/nodes/uwnqs/
+              links: { }
+            - id: a3prf
+              type: collected-metadata
+              attributes:
+                reviews_state: accepted
+                date_created: '2022-01-03T20:20:13.539361Z'
+                date_modified: '2022-01-03T20:20:13.547825Z'
+                collected_type: automation
+                status: ''
+                volume: ''
+                issue: ''
+                program_area: ''
+                school_type: ''
+                study_design: ''
+              relationships:
+                creator:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/users/rmq6z/
+                      meta: { }
+                  data:
+                    id: rmq6z
+                    type: users
+                collection:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/collections/rju4d/
+                      meta: { }
+                  data:
+                    id: rju4d
+                    type: collections
+                guid:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/guids/a3prf/
+                      meta: { }
+                collection_submission_actions:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/collection_submissions/a3prf-rju4d/actions/
+                      meta: { }
+                subjects:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/collections/rju4d/collected_metadata/a3prf/subjects/
+                      meta: { }
+                    self:
+                      href: https://api.staging.osf.io/v2/collections/rju4d/collected_metadata/a3prf/relationships/subjects/
+                      meta: { }
+              embeds:
+                guid:
+                  data:
+                    id: a3prf
+                    type: nodes
+                    attributes:
+                      title: OSF Test Project
+                      description: QA Selenium Testing
+                      category: project
+                      custom_citation:
+                      date_created: '2022-01-03T20:18:24.925774Z'
+                      date_modified: '2022-01-03T20:20:26.832995Z'
+                      registration: false
+                      preprint: false
+                      fork: false
+                      collection: false
+                      tags:
+                        - qatest
+                        - selenium
+                        - tests/test_collections.py::TestCollectionSubmission::()::test_add_to_collection
+                          (setup)
+                      node_license:
+                        copyright_holders: [ ]
+                        year:
+                      analytics_key: ''
+                      current_user_can_comment: false
+                      current_user_permissions: [ ]
+                      current_user_is_contributor: false
+                      current_user_is_contributor_or_group_member: false
+                      wiki_enabled: true
+                      public: false
+                    relationships:
+                      license:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/licenses/5c252c8e0989e100220edb75/
+                            meta: { }
+                        data:
+                          id: 5c252c8e0989e100220edb75
+                          type: licenses
+                      children:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/children/
+                            meta: { }
+                      comments:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/comments/?filter%5Btarget%5D=a3prf
+                            meta: { }
+                      contributors:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/contributors/
+                            meta: { }
+                      bibliographic_contributors:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/bibliographic_contributors/
+                            meta: { }
+                      implicit_contributors:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/implicit_contributors/
+                            meta: { }
+                      files:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/files/
+                            meta: { }
+                      settings:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/settings/
+                            meta: { }
+                        data:
+                          id: a3prf
+                          type: node-setting
+                      wikis:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/wikis/
+                            meta: { }
+                      forked_from:
+                        data:
+                      template_node:
+                        data:
+                      forks:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/forks/
+                            meta: { }
+                      groups:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/groups/
+                            meta: { }
+                      linked_by_nodes:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/linked_by_nodes/
+                            meta: { }
+                      linked_by_registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/linked_by_registrations/
+                            meta: { }
+                      parent:
+                        data:
+                      identifiers:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/identifiers/
+                            meta: { }
+                      affiliated_institutions:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/institutions/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/relationships/institutions/
+                            meta: { }
+                      draft_registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/draft_registrations/
+                            meta: { }
+                      registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/registrations/
+                            meta: { }
+                      region:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/regions/us/
+                            meta: { }
+                        data:
+                          id: us
+                          type: regions
+                      root:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/
+                            meta: { }
+                        data:
+                          id: a3prf
+                          type: nodes
+                      logs:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/logs/
+                            meta: { }
+                      linked_nodes:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/linked_nodes/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/relationships/linked_nodes/
+                            meta: { }
+                      linked_registrations:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/linked_registrations/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/relationships/linked_registrations/
+                            meta: { }
+                      view_only_links:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/view_only_links/
+                            meta: { }
+                      citation:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/citation/
+                            meta: { }
+                        data:
+                          id: a3prf
+                          type: citation
+                      preprints:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/preprints/
+                            meta: { }
+                      storage:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/storage/
+                            meta: { }
+                        data:
+                          id: a3prf
+                          type: node-storage
+                      subjects:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/subjects/
+                            meta: { }
+                          self:
+                            href: https://api.staging.osf.io/v2/nodes/a3prf/relationships/subjects/
+                            meta: { }
+                    links:
+                      html: https://staging.osf.io/a3prf/
+                      self: https://api.staging.osf.io/v2/nodes/a3prf/
+              links: { }
+          meta:
+            total: 53
+            per_page: 2
+            version: '2.20'
+          links:
+            self: https://api.staging.osf.io/v2/providers/collections/temp/submissions/?page%5Bsize%5D=2
+            first:
+            last: https://api.staging.osf.io/v2/providers/collections/temp/submissions/?page=27&page%5Bsize%5D=2
+            prev:
+            next: https://api.staging.osf.io/v2/providers/collections/temp/submissions/?page=2&page%5Bsize%5D=2

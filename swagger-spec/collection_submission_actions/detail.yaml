@@ -1,0 +1,70 @@
+# /collection_submission_actions/{collection_submission_id}/
+get:
+  summary: Retrieve a Collection Submission Action
+  description: >-
+
+    #### Permissions
+
+    This information is only available to an admin on the Collection Submission in question.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    Returns a JSON object with a `data` key containing the representation of the requested collection submission action object, if the request is successful. 
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: collection_submission_id
+      description: 'A short id for that collection submission'
+  tags:
+    - Collection Submission Actions
+  operationId: collection_submission_actions
+  x-response-schema: Collection Submission Action
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            id: 63bc18c66f4506000abae96f
+            type: collection-submission-actions
+            attributes:
+              trigger: remove
+              from_state: accepted
+              to_state: removed
+              comment: test remove!
+              date_created: '2023-01-09T13:38:14.598839Z'
+              date_modified: '2023-01-09T13:38:14.598867Z'
+            relationships:
+              collection:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/collections/3vpkf/
+                    meta: {}
+                data:
+                  id: 3vpkf
+                  type: collections
+              creator:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/users/zpw9n/
+                    meta: {}
+                data:
+                  id: zpw9n
+                  type: users
+              target:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/collections/3vpkf/collection_submissions/xhwz7/
+                    meta: {}
+                data:
+                  id: xhwz7-3vpkf
+                  type: collection-submission
+            links:
+              self: https://api.staging.osf.io/v2/actions/63bc18c66f4506000abae96f/
+

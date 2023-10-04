@@ -1,0 +1,85 @@
+type: object
+title: Collection Submission Action
+required:
+  - type
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: 'The unique identifier of the collection action.'
+
+  type:
+    type: string
+    readOnly: false
+    description: 'The type identifier of the entity (`collection-submission-action`).'
+
+  attributes:
+    type: object
+    title: Attributes
+    readOnly: false
+    description: 'The properties of the collection.'
+    properties:
+      trigger:
+        type: string
+        readOnly: false
+        description: 'The trigger that started the collection state transition.'
+      from_state:
+        type: string
+        readOnly: false
+        description: 'The state of the collection before the transition action.'
+      to_state:
+        type: string
+        readOnly: false
+        description: 'The state of the collection after the transition action.'
+      comment:
+        type: string
+        readOnly: false
+        description: 'A user or machine generated comment describing the transition action.'
+      date_created:
+        type: string
+        readOnly: false
+        description: 'The date the action was created.'
+      date_modified:
+        type: string
+        readOnly: false
+        description: 'The date the action was modified.'
+  relationships:
+    type: object
+    title: Attributes
+    readOnly: true
+    properties:
+      collection:
+        type: string
+        readOnly: true
+        description: 'The collection the action belongs to.'
+      creator:
+        type: string
+        readOnly: true
+        description: 'The user who created the collection.'
+      target:
+        type: string
+        readOnly: true
+        description: 'The target resource for the action in the collection.'
+  links:
+    type: object
+    title: Links
+    readOnly: true
+    description: 'URLs to alternative representations of the collection entity.'
+    properties:
+      self:
+        type: string
+        format: URL
+        readOnly: true
+        description: 'A link to the canonical API endpoint of this collection.'
+
+example:
+  data:
+    type: collection-submission-actions
+    attributes:
+      comment: some comment
+      trigger: accept
+    relationships:
+      target:
+        data:
+          id: "{node_id}-{collection_id}"
+          type: collection-submission

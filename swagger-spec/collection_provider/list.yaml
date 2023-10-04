@@ -1,0 +1,160 @@
+# /provider/collections/
+get:
+  summary: List Collections Providers
+  description: >-
+
+    This returns a list of the Collections Providers.
+
+    #### Permissions
+
+    This information is public.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of collection provider ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+  tags:
+    - Collection Providers
+  operationId: collection_provider_list
+  x-response-schema: Collection Provider
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+          - id: testlab
+            type: collection-providers
+            attributes:
+              name: Test Lab (Stage1)
+              description: |-
+                <p><span>&lt;p style="background-color:;color:</span><span>070539</span><span>;"&gt;</span><span><span>Character Lab was founded in 2013 by a scientist and two educators: Angela Duckworth, author of </span></span><em>Grit: The Power of Passion and Perseverance</em><span><span> and Rosa Lee and Egbert Chang Professor at the University of Pennsylvania; Dave Levin, co-founder of KIPP public charter schools; and Dominic Randolph, Head of School at Riverdale Country School. </span><span>&lt;/p&gt;</span></span></p>
+                <span> </span>
+                <p>Dave and Dominic met Angela on a field trip. The two educators were visiting leading researchers around the world, eager to find scientific insights that might help young people lead lives that were good for others as well as themselves. These conversations revealed a problem: because research involving kids and educators was so much more time-consuming and expensive than research with adults, the pace of scientific discovery was frustratingly slow. What’s more, insights that had been uncovered by scientists remained hidden from educators and parents, buried in academic articles filled with technical jargon. </p>
+              advisory_board: ''
+              example:
+              domain: ''
+              domain_redirect_enabled: false
+              footer_links: ''
+              email_support:
+              facebook_app_id:
+              allow_submissions: true
+              allow_commenting: false
+              assets:
+                square_color_no_transparent: https://test.storage.googleapis.com/cos-osf-stage-cdn-us/assets/characterlabmain_l39QL66.png
+                style: https://test.storage.googleapis.com/cos-osf-stage-cdn-us/assets/characterlab_YwvMKWW.css
+              share_source: ''
+              share_publish_type: Thesis
+              permissions: []
+              reviews_workflow: pre-moderation
+            relationships:
+              subjects:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/subjects/
+                    meta: {}
+              highlighted_subjects:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/subjects/highlighted/
+                    meta:
+                      has_highlighted_subjects: false
+              licenses_acceptable:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/licenses/
+                    meta: {}
+              schemas:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/registrations/characterlab/schemas/
+                    meta: {}
+              primary_collection:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/collections/9g8hx/
+                    meta: {}
+                data:
+                  id: 9g8hx
+                  type: collections
+              moderators:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/moderators/
+                    meta: {}
+              subscriptions:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/subscriptions/
+                    meta: {}
+            links:
+              self: https://api.staging.osf.io/v2/providers/collections/characterlab/
+          - id: colmod
+            type: collection-providers
+            attributes:
+              name: Collections Moderation Project
+              description: A Collection created specifically for use by the Collections Moderation
+                Project. For testing or experimentation or whatever.
+              advisory_board: ''
+              example:
+              domain: ''
+              domain_redirect_enabled: false
+              footer_links: ''
+              email_support:
+              facebook_app_id:
+              allow_submissions: true
+              allow_commenting: false
+              assets:
+                square_color_no_transparent: https://storage.googleapis.com/cos-osf-stage-cdn-us/assets/moderation_icon_owfYLnO.png
+                favicon: https://storage.googleapis.com/cos-osf-stage-cdn-us/assets/moderation_icon_lPhz315.png
+              share_source: ''
+              share_publish_type: Thesis
+              permissions: []
+              reviews_workflow: pre-moderation
+            relationships:
+              subjects:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/subjects/
+                    meta: {}
+              highlighted_subjects:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/subjects/highlighted/
+                    meta:
+                      has_highlighted_subjects: false
+              licenses_acceptable:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/licenses/
+                    meta: {}
+              schemas:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/registrations/colmod/schemas/
+                    meta: {}
+              primary_collection:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/collections/3vpkf/
+                    meta: {}
+                data:
+                  id: 3vpkf
+                  type: collections
+              moderators:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/
+                    meta: {}
+              subscriptions:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/colmod/subscriptions/
+                    meta: {}
+            links:
+              self: https://api.staging.osf.io/v2/providers/collections/colmod/
