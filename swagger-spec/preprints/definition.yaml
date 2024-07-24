@@ -37,6 +37,14 @@ properties:
         type: string
         readOnly: false
         description: 'The DOI of the associated journal article, as entered by the user, if the preprint is published.'
+      title:
+        type: string
+        readOnly: false
+        description: 'The title of the preprint.'
+      description:
+        type: string
+        readOnly: false
+        description: 'The description of a the preprint.'
       is_preprint_orphan:
         type: boolean
         readOnly: true
@@ -45,12 +53,70 @@ properties:
         type: string
         readOnly: false
         description: 'The metadata (copyright year and holder) associated with a license, required for certain licenses.'
-      subjects:
-        type: array
-        items:
-          type: string
+      tags:
+        type: string
         readOnly: false
-        description: 'A nested array structure that describe subjects related to the preprint, in the BePress taxonomy. Each dictionary contains the text and ID of a subject.'
+        description: 'The tags given to a preprint.'
+      preprint_doi_created:
+        type: string
+        readOnly: false
+        description: 'When the preprint DOI was created.'
+      date_withdrawn:
+        type: boolean
+        readOnly: false
+        description: 'The date the preprint was withdrawn, null if it was never withdrawn.'
+      current_user_permissions:
+        type: string
+        readOnly: false
+        description: 'The list of permissions the current user has.'
+      public:
+        type: boolean
+        readOnly: false
+        description: 'The wheter the preprint is public.'
+      reviews_state:
+        type: string
+        readOnly: false
+        description: 'The a label to indicate the state of review a preprint is in.'
+      date_last_transitioned:
+        type: string
+        readOnly: false
+        description: 'The date the reviews state of the preprint changed.'
+      has_coi:
+        type: boolean
+        readOnly: false
+        description: 'A value indicating whether the preprint has a conflict of interest statement.'
+      conflict_of_interest_statement:
+        type: string
+        readOnly: false
+        description: 'The text of the conflict of interest statement for the preprint.'
+      has_data_links:
+        type: boolean
+        readOnly: false
+        description: 'A value indicating whether the preprint has a links to data.'
+      why_no_data:
+        type: boolean
+        readOnly: false
+        description: 'A value indicating whether the preprint has a supplemental data.'
+      data_links:
+        type: string
+        readOnly: false
+        description: 'Any links to a preprints supplemental data go here.'
+      has_prereg_links:
+        type: boolean
+        readOnly: false
+        description: 'A value indicating whether the preprint has any preregistration links.'
+      why_no_prereg:
+        type: boolean
+        readOnly: false
+        description: 'A value indicating whether preprint has a preregistration.'
+      prereg_links:
+        type: string
+        readOnly: false
+        description: 'Any links to a preprints preregistrations go here.'
+      prereg_link_info:
+        type: string
+        readOnly: false
+        description: 'The text of the any explaination of preprint preregistration link infomation.'
   relationships:
     type: object
     title: Relationships
@@ -61,6 +127,14 @@ properties:
       - primary_file
       - provider
     properties:
+      contributors:
+        type: string
+        readOnly: false
+        description: 'A relationship to the all contributors that are listed as contributing to this preprint.'
+      bibliographic_contributors:
+        type: string
+        readOnly: false
+        description: 'A relationship to the bibliographic contributors that are listed as contributing to this preprint.'
       citation:
         type: string
         readOnly: true
@@ -69,37 +143,49 @@ properties:
         type: string
         readOnly: true
         description: 'A relationship to the identifiers associated with the preprint.'
-      license:
-        type: string
-        readOnly: false
-        description: 'A relationship to the license that has been applied to the preprint.'
       node:
         type: string
         readOnly: false
         description: 'A relationship to the node that was created for the preprint, or from which the preprint was created.'
-      primary_file:
+      license:
         type: string
         readOnly: false
-        description: "A relationship to the file that is designated as the preprint's primary file, or the manuscript of the preprint."
+        description: 'A relationship to the license that has been applied to the preprint.'
       provider:
         type: string
         readOnly: false
         description: 'A relationship to the preprint provider under which the preprint was created (OSF, socarxiv, psyarxiv, etc.).'
-      bibliographic_contributors:
+      files:
         type: string
         readOnly: false
-        description: 'A relationship to the bibliographic contributors that are listed as contributing to this preprint.'
+        description: "A relationship to files of the preprint."
+      review_actions:
+        type: string
+        readOnly: false
+        description: "A relationship to the review actions made of that preprint."
+      requests:
+        type: string
+        readOnly: false
+        description: "A relationship to the requests for sanction changes that was made to the preprint."
+      affiliated_institutions:
+        type: string
+        readOnly: false
+        description: "A relationship to the file that is designated as the preprint's primary file, or the manuscript of the preprint."
+      subjects:
+        type: string
+        readOnly: false
+        description: "A relationship to the academic subjects for the preprint."
   links:
     type: object
     title: Links
     readOnly: true
     description: 'URLs to alternative representations of the preprint entity.'
     properties:
-      doi:
+      iri:
         type: string
         format: URL
         readOnly: true
-        description: 'The URL representation of the DOI entered by the user for the preprint manuscript.'
+        description: 'The URL representation preprint of the OSF.'
       html:
         type: string
         format: URL
@@ -115,6 +201,7 @@ properties:
         format: URL
         readOnly: true
         description: 'A link to the detail page for the preprint.'
+
 example:
   data:
     attributes: {}

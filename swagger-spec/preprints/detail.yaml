@@ -32,10 +32,15 @@ get:
         application/json:
           data:
             relationships:
-              node:
+              contributors:
                 links:
                   related:
-                    href: https://api.osf.io/v2/nodes/bnzx5/
+                    href: https://api.osf.io/v2/contributors/bnzx5/
+                    meta: {}
+              bibliographic_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/bibliographic_contributors
                     meta: {}
               citation:
                 links:
@@ -47,55 +52,87 @@ get:
                   related:
                     href: https://api.osf.io/v2/preprints/khbvy/identifiers/
                     meta: {}
-              primary_file:
+              node:
                 links:
                   related:
-                    href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
+                    href: https://api.osf.io/v2/nodes/bnzx5/
                     meta: {}
+                data:
+                  id: slug1
+                  type: preprint-provider
+              license:
+                data: null
               provider:
                 links:
                   related:
                     href: https://api.osf.io/v2/preprint_providers/osf/
                     meta: {}
-              bibliographic_contributors:
+              files:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprints/khbvy/bibliographic_contributors
+                    href: https://api.osf.io/v2/preprints/bnzx5/files/
                     meta: {}
+              primary_file:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
+                    meta: {}
+              review_actions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/review_actions/
+                    meta: {}
+              requests:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/requests/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/institutions/
+                    meta: {}
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/subjects/
+                    meta: {}
+                self:
+                  href: https://api.osf.io/v2/preprints/bnzx5/relationships/institutions/
+                  meta: {}
             links:
-              self: https://api.osf.io/v2/preprints/khbvy/
-              html: https://osf.io/khbvy/
+              self: https://api.osf.io/v2/preprints/bnzx5/
+              html: https://osf.io/bnzx5/
               doi: https://dx.doi.org/10.1371/journal.pbio.1002456
               preprint_doi: https://dx.doi.org/10.5072/FK2OSF.IO/KHBVY
             attributes:
-              doi: 10.1371/journal.pbio.1002456
-              license_record:
-              date_modified: '2016-08-29T14:53:51.185000'
-              is_preprint_orphan: false
-              date_published: '2016-08-29T14:53:51.185000'
-              subjects:
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Public Affairs, Public Policy and Public Administration
-                  id: 584240da54be81056cecaab8
-                - text: Science and Technology Policy
-                  id: 584240d954be81056cecaa10
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Library and Information Science
-                  id: 584240da54be81056cecab33
-                - text: Scholarly Publishing
-                  id: 584240db54be81056cecacd2
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Psychology
-                  id: 584240da54be81056cecac68
-              - - text: Social and Behavioral Sciences
-                  id: 584240da54be81056cecac48
-                - text: Psychology
-                  id: 584240da54be81056cecac68
               date_created: '2016-08-29T14:53:51.185000'
+              date_modified: '2016-08-29T14:53:51.185000'
+              date_published: '2016-08-29T14:53:51.185000'
+              original_publication_date: '2016-08-29T14:53:51.185000'
+              custom_publication_citation: 'Custom citation'
+              doi: 10.1371/journal.pbio.1002456
+              title: "Test Title"
+              description: "Test Description"
               is_published: true
+              is_preprint_orphan: true
+              license_record: null
+              tags: []
+              preprint_doi_created: "2024-07-24T13:19:10.777018Z"
+              date_withdrawn: null
+              current_user_permissions: []
+              public: true
+              reviews_state: 'accepted'
+              date_last_transitioned: '2024-07-24T13:19:10.768264Z'
+              has_coi: null
+              conflict_of_interest_statement: null
+              has_data_links: null
+              why_no_data: null
+              data_links: null
+              has_prereg_links: null
+              why_no_prereg: null
+              prereg_links: null
+              prereg_link_info: null
             type: preprints
             id: khbvy
 
