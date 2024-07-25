@@ -150,21 +150,17 @@ tags:
           curl -X "GET" "https://api.osf.io/v2/users/me/" \
           -H "Authorization: Bearer <token>"
 
-      To make a Personal Access Token, visit your OSF settings page (either on the [OSF](https://osf.io/settings/tokens/) or our [testing server](https://test.osf.io/settings/tokens/)) to create one.
+      To make a Personal Access Token, visit your OSF settings page (either on the [OSF](https://osf.io/settings/tokens) or our [testing server](https://test.osf.io/settings/tokens)) to create one.
       You can limit the scope of the token, but remember that it has access to all of the information that you do within the limits of the scope, so be careful with your tokens.
 
       #### OAuth
 
       The OSF allows third-party web applications to connect to the OSF on behalf of other users via the OAuth 2.0 web application flow.
 
-      You can add a developer application from the OSF settings page (either on the [OSF](https://osf.io/settings/applications/) or our [testing server](https://test.osf.io/settings/applications/)).
+      You can add a developer application from the OSF settings page (either on the [OSF](https://osf.io/settings/applications) or our [testing server](https://test.osf.io/settings/applications)).
 
 
-      We will be adding narrative documentation for handling OAuth flows, but for now, if you're familiar with OAuth, you can check out the [CAS overlay documentation](https://github.com/CenterForOpenScience/cas-overlay#web-server-authorization) for options.
-
-      We've also created a [test application](https://github.com/abought/osf_oauth2_demo) for verifying that our OAuth workflow works correctly.
-      If you set up an OAuth application on https://test.osf.io/, you should be able to add the client secret and client id to the settings file and it should work properly.
-      If it does not, please let us know.
+      We will be adding narrative documentation for handling OAuth flows, but for now, if you're familiar with OAuth, you can check out the [OAuth SSO Guide](https://github.com/CenterForOpenScience/osf-cas/blob/develop/README_OAUTH_SSO_GUIDE.md) for options.
 
   - name: Pagination
     x-traitTag: true
