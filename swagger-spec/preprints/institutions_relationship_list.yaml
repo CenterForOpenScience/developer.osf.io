@@ -55,7 +55,7 @@ put:
   summary: Update a Preprints Institutional Affilation
   description: >
     Updates an institution affilation to a Preprint, effectively creating or removing a relationship between the
-    Preprint and that user's affilations to the Preprint.
+    Preprint and that user's affilation to the Preprint.
 
     #### Required
 
@@ -97,6 +97,21 @@ put:
   responses:
     '201':
       description: 'Success'
+      schema:
+        type: object
+        title: Institution
+        required:
+          - type
+          - id
+        properties:
+          id:
+            type: string
+            readOnly: true
+            description: 'The unique identifier of the Institution.'
+          type:
+            type: string
+            readOnly: false
+            description: 'The type identifier of the Institution (`institution`).'
       examples:
         application/json:
           data:
