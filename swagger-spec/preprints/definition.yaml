@@ -44,7 +44,7 @@ properties:
       description:
         type: string
         readOnly: false
-        description: 'The description of a the preprint.'
+        description: 'The description of the preprint.'
       is_preprint_orphan:
         type: boolean
         readOnly: true
@@ -96,11 +96,15 @@ properties:
       why_no_data:
         type: boolean
         readOnly: false
-        description: 'A value indicating whether the preprint has a supplemental data.'
+        description: 'A value whether or where the preprint has a supplemental data link.'
       data_links:
         type: string
         readOnly: false
         description: 'Any links to a preprints supplemental data go here.'
+        enum:
+          - available
+          - no
+          - not_applicable
       has_prereg_links:
         type: boolean
         readOnly: false
@@ -108,7 +112,7 @@ properties:
       why_no_prereg:
         type: boolean
         readOnly: false
-        description: 'A value indicating whether preprint has a preregistration.'
+        description: "A value for a field explaining why preregistration links weren't included."
       prereg_links:
         type: string
         readOnly: false
@@ -116,7 +120,7 @@ properties:
       prereg_link_info:
         type: string
         readOnly: false
-        description: 'The text of the any explaination of preprint preregistration link infomation.'
+        description: 'The text of the any explanation of preprint preregistration link infomation.'
   relationships:
     type: object
     title: Relationships

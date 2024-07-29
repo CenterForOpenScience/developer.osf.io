@@ -35,7 +35,7 @@ get:
               contributors:
                 links:
                   related:
-                    href: https://api.osf.io/v2/contributors/bnzx5/
+                    href: https://api.osf.io/v2/preprints/bnzx5/contributors/
                     meta: {}
               bibliographic_contributors:
                 links:
