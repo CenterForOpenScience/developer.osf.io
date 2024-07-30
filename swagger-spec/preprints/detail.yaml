@@ -58,8 +58,8 @@ get:
                     href: https://api.osf.io/v2/nodes/bnzx5/
                     meta: {}
                 data:
-                  id: slug1
-                  type: preprint-provider
+                  id: "<node_id>"
+                  type: "nodes"
               license:
                 data: null
               provider:

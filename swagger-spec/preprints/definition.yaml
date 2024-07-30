@@ -85,6 +85,10 @@ properties:
         type: boolean
         readOnly: false
         description: 'A value indicating whether the preprint has a conflict of interest statement.'
+        enum:
+          - true
+          - false
+          - null
       conflict_of_interest_statement:
         type: string
         readOnly: false
@@ -93,10 +97,15 @@ properties:
         type: boolean
         readOnly: false
         description: 'A value indicating whether the preprint has a links to data.'
+        enum:
+          - no
+          - available
+          - not_applicable
+          - null
       why_no_data:
-        type: boolean
+        type: string
         readOnly: false
-        description: 'A value whether or where the preprint has a supplemental data link.'
+        description: 'A value for a field explaining why preregistration data was not included.'
       data_links:
         type: string
         readOnly: false
@@ -109,6 +118,10 @@ properties:
         type: boolean
         readOnly: false
         description: 'A value indicating whether the preprint has any preregistration links.'
+        enum:
+          - available
+          - no
+          - not_applicable
       why_no_prereg:
         type: boolean
         readOnly: false
