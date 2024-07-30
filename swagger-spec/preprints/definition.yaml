@@ -94,7 +94,7 @@ properties:
         readOnly: false
         description: 'The text of the conflict of interest statement for the preprint.'
       has_data_links:
-        type: boolean
+        type: string
         readOnly: false
         description: 'A value indicating whether the preprint has a links to data.'
         enum:
@@ -115,7 +115,7 @@ properties:
           - no
           - not_applicable
       has_prereg_links:
-        type: boolean
+        type: string
         readOnly: false
         description: 'A value indicating whether the preprint has any preregistration links.'
         enum:
