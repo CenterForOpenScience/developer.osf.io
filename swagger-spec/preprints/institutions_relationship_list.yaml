@@ -1,0 +1,128 @@
+get:
+  summary: List all Institutions for a Preprint
+  description: >
+    A paginated list of the Preprint's Institutions, sorted by their index.
+
+    Institutions are organizations affiliated with the Preprint. Contributors may be associated with one or more institutions.
+
+    Note that if an anonymous view_only key is being used to view the list of Institutions, the institution relationship will not be exposed and the Institution ID will be an empty string.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of institutions.
+    Each resource in the array contains the full representation of the institution, meaning additional requests to an institution's detail view are not necessary.
+    Additionally, the full representation of the institution is automatically embedded within the `data` key of the response.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+
+    #### Filtering
+
+    You can optionally request that the response only include institutions that match your filters by utilizing the
+    `filter` query parameter, e.g. https://api.osf.io/v2/preprints/y9jdt/institutions/?filter[name]=example.
+
+  parameters:
+    - in: path
+      type: string
+      name: preprint_id
+      required: true
+      description: 'The unique identifier of the preprint.'
+  tags:
+    - Preprints
+  operationId: preprints_institutions_relation_get
+  x-response-schema: Institution
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'Success'
+      examples:
+        application/json:
+          data:
+            - type: institutions
+              id: 668d6b40ef52ae0008dabe64
+            - type: institutions
+              id: 668d6b41ef52ae0008dabe65
+            - type: institutions
+              id: 668d6b41ef52ae0008dabe66
+          links:
+            self: https://api.osf.io/v2/preprints/985s7/
+            html: https://api.osf.io/v2/preprints/985s7/institutions/
+          meta:
+            version: '2.0'
+put:
+  summary: Update a Preprints Institutional Affilation
+  description: >
+    Updates an institution affilation to a Preprint, effectively creating or removing a relationship between the
+    Preprint and that user's affilation to the Preprint.
+
+    #### Required
+
+    A relationship object with a `data` key, containing the `institutions` type and valid institution ID is required.
+
+    All attributes describing the relationship between the Preprint and the institution are optional.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the new institution, if the request is successful.
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      name: preprint_id
+      required: true
+      description: 'The unique identifier of the Preprint.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            - type: institution
+              id: 668d6b40ef52ae0008dabe64
+            - type: institution
+              id: 668d6b40ef52ae0008dabe65
+
+  tags:
+    - Preprints
+  operationId: preprints_institutions_create
+  x-response-schema: Institution
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'Success'
+      schema:
+        type: object
+        title: Institution
+        required:
+          - type
+          - id
+        properties:
+          id:
+            type: string
+            readOnly: true
+            description: 'The unique identifier of the Institution.'
+          type:
+            type: string
+            readOnly: false
+            description: 'The type identifier of the Institution (`institution`).'
+      examples:
+        application/json:
+          data:
+            - type: institutions
+              id: 668d6b40ef52ae0008dabe64
+            - type: institutions
+              id: 668d6b41ef52ae0008dabe65
+            - type: institutions
+              id: 668d6b41ef52ae0008dabe66
+          links:
+            self: https://api.osf.io/v2/preprints/985s7/
+            html: https://api.osf.io/v2/preprints/985s7/institutions/
+          meta:
+            version: '2.0'

@@ -50,12 +50,39 @@ get:
                   related:
                     href: https://api.osf.io/v2/institutions/cos/registrations/
                     meta: {}
+              department_metrics:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/cos/metrics/departments/
+                    meta: {}
+              users_metrics:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/cos/metrics/users/
+                    meta: {}
+              summary_metrics:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/institutions/cos/metrics/sumary/
+                    meta: {}
+                  data:
+                    id: cos
+                    type: institution-summary-metrics
             links:
               self: https://api.osf.io/v2/institutions/cos/
             attributes:
-              auth_url: null
-              logo_path: /static/img/institutions/shields/cos-shield.png
               name: Center For Open Science
               description: COS is a non-profit technology company providing free and open services to increase inclusivity and transparency of research. Find out more at <a href="https://cos.io">cos.io</a>.
+              iri: http://www.test.edu
+              ror_iri: https://ror.org/000000000
+              iris: [
+                "https://ror.org/000000000",
+                "http://www.test.edu/",
+                "https://osf.io/institutions/test/"
+              ]
+              assets:
+                logo: "https://storage.test.com/test-shield.png"
+                logo_rounded: "https://storage.test.com/test-shield-rounded-corners.png"
+                banner: "https://storage.test.com/test-banner.png"
             type: institutions
             id: cos
