@@ -55,6 +55,14 @@ get:
                     related:
                       href: 'https://api.osf.io/v2/preprints/hqb2p/citation/'
                       meta: {}
+                affiliated_institutions:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/khbvy/institutions/'
+                      meta: {}
+                  self:
+                    href: 'https://api.osf.io/v2/preprints/refm5/institutions/'
+                    meta: {}
                 identifiers:
                   links:
                     related:
@@ -80,20 +88,33 @@ get:
                 html: 'https://osf.io/preprints/socarxiv/hqb2p/'
                 preprint_doi: 'https://dx.doi.org/10.5072/FK2OSF.IO/HQB2P'
               attributes:
-                doi: null
-                license_record:
-                  copyright_holders: []
-                  year: '2017'
-                date_modified: '2017-02-03T06:19:00.158000'
-                is_preprint_orphan: false
-                date_published: '2017-02-03T06:18:59.788000'
-                subjects:
-                  - - text: Social and Behavioral Sciences
-                      id: 584240da54be81056cecac48
-                    - text: Political Science
-                      id: 584240da54be81056cecac1a
-                date_created: '2017-02-03T06:16:57.129000'
+                date_created: '2016-08-29T14:53:51.185000'
+                date_modified: '2016-08-29T14:53:51.185000'
+                date_published: '2016-08-29T14:53:51.185000'
+                original_publication_date: '2016-08-29T14:53:51.185000'
+                custom_publication_citation: 'Custom citation'
+                doi: 10.1371/journal.pbio.1002456
+                title: "Test Title"
+                description: "Test Description"
                 is_published: true
+                is_preprint_orphan: true
+                license_record: null
+                tags: []
+                preprint_doi_created: "2024-07-24T13:19:10.777018Z"
+                date_withdrawn: null
+                current_user_permissions: []
+                public: true
+                reviews_state: 'accepted'
+                date_last_transitioned: '2024-07-24T13:19:10.768264Z'
+                has_coi: null
+                conflict_of_interest_statement: null
+                has_data_links: null
+                why_no_data: null
+                data_links: null
+                has_prereg_links: null
+                why_no_prereg: null
+                prereg_links: null
+                prereg_link_info: null
               type: preprints
               id: hqb2p
           links:

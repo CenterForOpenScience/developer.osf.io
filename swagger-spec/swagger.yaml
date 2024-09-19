@@ -1122,6 +1122,13 @@ paths:
   /preprints/{preprint_id}/bibliographic_contributors/:
     $ref: 'preprints/bibliographic_contributors_list.yaml'
 
+  /preprints/{preprint_id}/institutions/:
+    $ref: 'preprints/institutions_list.yaml'
+
+  /preprints/{preprint_id}/relationships/institutions/:
+    $ref: 'preprints/institutions_relationship_list.yaml'
+
+
 
   ##########################
   #   PREPRINT PROVIDERS   #

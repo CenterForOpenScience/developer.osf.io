@@ -1,34 +1,35 @@
+#/preprints/{preprint_id}/institutions/
 get:
-  summary: List all institutions
+  summary: List all Institutional Affilations for a Preprint
   description: >-
+    A paginated list of the Preprint's Institutions, sorted by their index.
 
-    A paginated list of all verified institutions.
+    Institutions are organizations affiliated with the Preprint. Contributors may be associated with one or more institutions.
 
     #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
+    The `data` key contains an array of institutions.
+    Each resource in the array contains the full representation of the institution, meaning additional requests to an institution's detail view are not necessary.
+    Additionally, the full representation of the institution is automatically embedded within the `data` key of the response.
 
-    The `data` key contains an array of 10 institutions.
-    Each resource in the array is a separate institution object.
-
-
-    The `links` key contains a dictionary of links that can be used
-    for [pagination](#tag/Pagination).
-
-
-    This request should never return an error.
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
     #### Filtering
 
-    You can optionally request that the response only include institutions that match your filters by utilizing the `filter` query parameter, e.g.
-    https://api.osf.io/v2/institutions/?filter[id]=cos.
+    You can optionally request that the response only include institutions that match your filters by utilizing the
+    `filter` query parameter, e.g. https://api.osf.io/v2/preprints/y9jdt/institutions/?filter[name]=example.
 
-
-    Institutions may be filtered by their `id`, `name`, and `auth_url`
+  parameters:
+  - in: path
+    type: string
+    name: preprint_id
+    required: true
+    description: 'The unique identifier of the preprint.'
   tags:
-    - Institutions
-  operationId: institutions_list
+  - Preprints
+  operationId: preprints_institutions_list
   x-response-schema: Institution
   responses:
     '200':
