@@ -15,14 +15,6 @@ properties:
     readOnly: false
     description: The properties of the institution entity.
     properties:
-      auth_url:
-        type: string
-        readOnly: true
-        description: Url used to authenticate institution specific login.
-      logo_path:
-        type: string
-        readOnly: true
-        description: Static path to the institution specific logo.
       name:
         type: string
         readOnly: true
@@ -31,6 +23,39 @@ properties:
         type: string
         readOnly: true
         description: Description of the institution.
+      iri:
+        type: string
+        readOnly: true
+        description: Internationalized Resource Identifier (IRI) of the institution.
+      ror_iri:
+        type: string
+        readOnly: true
+        description: Research Organization Registry (ROR) IRI of the institution.
+      iris:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        description: List of IRIs associated with the institution.
+      assets:
+        type: object
+        properties:
+          logo:
+            type: string
+            readOnly: true
+            description: URL to the institution's logo.
+          logo_rounded:
+            type: string
+            readOnly: true
+            description: URL to the institution's logo with rounded corners.
+          banner:
+            type: string
+            readOnly: true
+            description: URL to the institution's banner.
+          logo_path:
+            type: string
+            readOnly: true
+            description: Static path to the institution specific logo.
   relationships:
     type: object
     title: Relationships
