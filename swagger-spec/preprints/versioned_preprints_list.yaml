@@ -1,0 +1,263 @@
+get:
+  summary: List preprint versions
+  description: >-
+
+    A paginated list of all preprint versions for requested preprint.
+    The returned preprints are sorted by their creation date, with the most recent
+    preprints appearing first.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of preprint versions.
+    Each resource in the array is a separate preprint object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#tag/Pagination).
+
+
+    This request should never return an error.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: preprint_id
+      description: 'The unique identifier of the preprint.'
+  tags:
+    - Preprints
+  operationId: versioned_preprints_list
+  x-response-schema: 'Preprint'
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: array
+        items:
+          $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - relationships:
+                node:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/nodes/5xuck/'
+                      meta: {}
+                citation:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/citation/'
+                      meta: {}
+                affiliated_institutions:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/khbvy/institutions/'
+                      meta: {}
+                  self:
+                    href: 'https://api.osf.io/v2/preprints/refm5/institutions/'
+                    meta: {}
+                identifiers:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprints/hqb2p/identifiers/'
+                      meta: {}
+                primary_file:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/files/5894204f594d900200ed23f2/'
+                      meta: {}
+                license:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/'
+                      meta: {}
+                provider:
+                  links:
+                    related:
+                      href: 'https://api.osf.io/v2/preprint_providers/socarxiv/'
+                      meta: {}
+              links:
+                self: 'https://api.osf.io/v2/preprints/hqb2p/'
+                html: 'https://osf.io/preprints/socarxiv/hqb2p/'
+                preprint_doi: 'https://dx.doi.org/10.5072/FK2OSF.IO/HQB2P'
+              attributes:
+                date_created: '2016-08-29T14:53:51.185000'
+                date_modified: '2016-08-29T14:53:51.185000'
+                date_published: '2016-08-29T14:53:51.185000'
+                original_publication_date: '2016-08-29T14:53:51.185000'
+                custom_publication_citation: 'Custom citation'
+                doi: 10.1371/journal.pbio.1002456
+                title: "Test Title"
+                description: "Test Description"
+                is_published: true
+                is_preprint_orphan: true
+                license_record: null
+                tags: []
+                preprint_doi_created: "2024-07-24T13:19:10.777018Z"
+                date_withdrawn: null
+                current_user_permissions: []
+                public: true
+                reviews_state: 'accepted'
+                date_last_transitioned: '2024-07-24T13:19:10.768264Z'
+                version: "int"
+                has_coi: null
+                conflict_of_interest_statement: null
+                has_data_links: null
+                why_no_data: null
+                data_links: null
+                has_prereg_links: null
+                why_no_prereg: null
+                prereg_links: null
+                prereg_link_info: null
+              type: preprints
+              id: khbvy_v{int}
+          links:
+            first:
+            last: https://api.osf.io/v2/preprints/?page=172
+            prev:
+            next: https://api.osf.io/v2/preprints/?page=2
+            meta:
+              total: 1720
+              per_page: 10
+
+post:
+  summary: Create a preprint version
+  description: >-
+    Creates a new preprint version from requested preprint.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the created
+    preprint, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes]()
+    to understand why this request may have failed.
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: preprint_id
+      description: 'The unique identifier of the preprint.'
+  tags:
+  - Preprints
+  operationId: preprints_create
+  consumes:
+  - application/json
+  x-response-schema: 'Preprint'
+  responses:
+    '201':
+      description: 'Success'
+      examples:
+        application/json:
+          data:
+            relationships:
+              contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/contributors/
+                    meta: {}
+              bibliographic_contributors:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/bibliographic_contributors
+                    meta: {}
+              citation:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/citation/
+                    meta: {}
+              identifiers:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/khbvy/identifiers/
+                    meta: {}
+              node:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/bnzx5/
+                    meta: {}
+                data:
+                  id: "<node_id>"
+                  type: "nodes"
+              license:
+                data: null
+              provider:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprint_providers/osf/
+                    meta: {}
+              files:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/files/
+                    meta: {}
+              primary_file:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
+                    meta: {}
+              review_actions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/review_actions/
+                    meta: {}
+              requests:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/requests/
+                    meta: {}
+              affiliated_institutions:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/institutions/
+                    meta: {}
+              subjects:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/preprints/bnzx5/subjects/
+                    meta: {}
+                self:
+                  href: https://api.osf.io/v2/preprints/bnzx5/relationships/institutions/
+                  meta: {}
+            links:
+              self: https://api.osf.io/v2/preprints/bnzx5/
+              html: https://osf.io/bnzx5/
+              doi: https://dx.doi.org/10.1371/journal.pbio.1002456
+              preprint_doi: https://dx.doi.org/10.5072/FK2OSF.IO/KHBVY
+            attributes:
+              date_created: '2016-08-29T14:53:51.185000'
+              date_modified: '2016-08-29T14:53:51.185000'
+              date_published: '2016-08-29T14:53:51.185000'
+              original_publication_date: '2016-08-29T14:53:51.185000'
+              custom_publication_citation: 'Custom citation'
+              doi: 10.1371/journal.pbio.1002456
+              title: "Test Title"
+              description: "Test Description"
+              is_published: true
+              is_preprint_orphan: true
+              license_record: null
+              tags: []
+              preprint_doi_created: "2024-07-24T13:19:10.777018Z"
+              date_withdrawn: null
+              current_user_permissions: []
+              public: true
+              reviews_state: 'accepted'
+              date_last_transitioned: '2024-07-24T13:19:10.768264Z'
+              version: "int"
+              has_coi: null
+              conflict_of_interest_statement: null
+              has_data_links: null
+              why_no_data: null
+              data_links: null
+              has_prereg_links: null
+              why_no_prereg: null
+              prereg_links: null
+              prereg_link_info: null
+            type: preprints
+            id: khbvy_v{int}
