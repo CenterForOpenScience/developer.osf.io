@@ -1104,6 +1104,9 @@ paths:
   /preprints/:
     $ref: 'preprints/list.yaml'
 
+  /preprints/{preprint_id}/versions/:
+    $ref: 'preprints/versioned_preprints_list.yaml'
+
   /preprints/{preprint_id}/:
     $ref: 'preprints/detail.yaml'
 

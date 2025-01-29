@@ -30,111 +30,201 @@ get:
         $ref: 'definition.yaml'
       examples:
         application/json:
-          data:
-            relationships:
-              contributors:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/bnzx5/contributors/
-                    meta: {}
-              bibliographic_contributors:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/khbvy/bibliographic_contributors
-                    meta: {}
-              citation:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/khbvy/citation/
-                    meta: {}
-              identifiers:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/khbvy/identifiers/
-                    meta: {}
-              node:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/nodes/bnzx5/
-                    meta: {}
-                data:
-                  id: "<node_id>"
-                  type: "nodes"
-              license:
-                data: null
-              provider:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/
-                    meta: {}
-              files:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/bnzx5/files/
-                    meta: {}
-              primary_file:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/files/57c44b1e594d90004a421ab1/
-                    meta: {}
-              review_actions:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/bnzx5/review_actions/
-                    meta: {}
-              requests:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/bnzx5/requests/
-                    meta: {}
-              affiliated_institutions:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/bnzx5/institutions/
-                    meta: {}
-              subjects:
-                links:
-                  related:
-                    href: https://api.osf.io/v2/preprints/bnzx5/subjects/
-                    meta: {}
-                self:
-                  href: https://api.osf.io/v2/preprints/bnzx5/relationships/institutions/
-                  meta: {}
-            links:
-              self: https://api.osf.io/v2/preprints/bnzx5/
-              html: https://osf.io/bnzx5/
-              doi: https://dx.doi.org/10.1371/journal.pbio.1002456
-              preprint_doi: https://dx.doi.org/10.5072/FK2OSF.IO/KHBVY
-            attributes:
-              date_created: '2016-08-29T14:53:51.185000'
-              date_modified: '2016-08-29T14:53:51.185000'
-              date_published: '2016-08-29T14:53:51.185000'
-              original_publication_date: '2016-08-29T14:53:51.185000'
-              custom_publication_citation: 'Custom citation'
-              doi: 10.1371/journal.pbio.1002456
-              title: "Test Title"
-              description: "Test Description"
-              is_published: true
-              is_preprint_orphan: true
-              license_record: null
-              tags: []
-              preprint_doi_created: "2024-07-24T13:19:10.777018Z"
-              date_withdrawn: null
-              current_user_permissions: []
-              public: true
-              reviews_state: 'accepted'
-              date_last_transitioned: '2024-07-24T13:19:10.768264Z'
-              has_coi: null
-              conflict_of_interest_statement: null
-              has_data_links: null
-              why_no_data: null
-              data_links: null
-              has_prereg_links: null
-              why_no_prereg: null
-              prereg_links: null
-              prereg_link_info: null
-            type: preprints
-            id: khbvy
+          {
+          "data": {
+              "id": "hqb2p_v1",
+              "type": "preprints",
+              "attributes": {
+                  "date_created": "2017-02-03T06:16:57.129000Z",
+                  "date_modified": "2018-07-02T10:51:03.451486Z",
+                  "date_published": "2017-02-03T06:18:59.788000Z",
+                  "original_publication_date": null,
+                  "custom_publication_citation": null,
+                  "doi": null,
+                  "title": "Sow the wind, reap the whirlwind? Mobilization cascades in direct democratic initiatives",
+                  "description": "Caveat emptor: I have retired this manuscript. I will not improve on it any more, and it will not be published in a peer-reviewed journal.\n\nThis paper explores the possibility of mobilization cascades in direct democratic popular initiatives. A mobilization cascade is a salience-based mobilizing effect whereby one popular initiative has a positive mobilizing effect on a subsequent popular initiative that deals with with a similar policy issue. The existence of a mobilization cascade would imply that voters develop salience for and positive attitudes towards policy issues merely through direct-democratic exposure to those policy issues in the recent past. In order to explore the mobilization cascade, I analyze three popular initiative pairs from Switzerland from the years 2012, 2013 and 2014. In each year, two initiatives dealt with similar policy issues, and the second initiative in each pair was making more far-reaching demands. The results suggest that a mobilization cascade might exist, but that it is probably a weak effect.",
+                  "is_published": true,
+                  "is_preprint_orphan": false,
+                  "license_record": {
+                      "copyright_holders": [],
+                      "year": "2017"
+                  },
+                  "tags": [
+                      "ballot measures",
+                      "direct democracy",
+                      "mobilization",
+                      "public opinion",
+                      "switzerland"
+                  ],
+                  "preprint_doi_created": "2018-07-02T10:51:03.442224Z",
+                  "date_withdrawn": null,
+                  "current_user_permissions": [],
+                  "public": true,
+                  "reviews_state": "accepted",
+                  "date_last_transitioned": "2017-02-03T06:18:59.788000Z",
+                  "version": 1,
+                  "is_latest_version": true,
+                  "has_coi": null,
+                  "conflict_of_interest_statement": null,
+                  "has_data_links": null,
+                  "why_no_data": null,
+                  "data_links": null,
+                  "has_prereg_links": null,
+                  "why_no_prereg": null,
+                  "prereg_links": null,
+                  "prereg_link_info": null
+              },
+              "relationships": {
+                  "contributors": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/contributors/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "bibliographic_contributors": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/bibliographic_contributors/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "citation": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/citation/",
+                              "meta": {}
+                          }
+                      },
+                      "data": {
+                          "id": "hqb2p_v1",
+                          "type": "citation"
+                      }
+                  },
+                  "identifiers": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/identifiers/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "node": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/nodes/5xuck/",
+                              "meta": {}
+                          },
+                          "self": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/relationships/node/",
+                              "meta": {}
+                          }
+                      },
+                      "data": {
+                          "id": "5xuck",
+                          "type": "nodes"
+                      }
+                  },
+                  "license": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96a/",
+                              "meta": {}
+                          }
+                      },
+                      "data": {
+                          "id": "563c1cf88c5e4a3877f9e96a",
+                          "type": "licenses"
+                      }
+                  },
+                  "provider": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/providers/preprints/socarxiv/",
+                              "meta": {}
+                          }
+                      },
+                      "data": {
+                          "id": "socarxiv",
+                          "type": "preprint-providers"
+                      }
+                  },
+                  "files": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/files/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "primary_file": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/files/5894204f594d900200ed23f2/",
+                              "meta": {}
+                          }
+                      },
+                      "data": {
+                          "id": "5894204f594d900200ed23f2",
+                          "type": "files"
+                      }
+                  },
+                  "review_actions": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/review_actions/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "requests": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/requests/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "affiliated_institutions": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/institutions/",
+                              "meta": {}
+                          },
+                          "self": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/relationships/institutions/",
+                              "meta": {}
+                          }
+                      }
+                  },
+                  "subjects": {
+                      "links": {
+                          "related": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/subjects/",
+                              "meta": {}
+                          },
+                          "self": {
+                              "href": "https://api.osf.io/v2/preprints/hqb2p_v1/relationships/subjects/",
+                              "meta": {}
+                          }
+                      }
+                  }
+              },
+              "links": {
+                  "self": "https://api.osf.io/v2/preprints/hqb2p_v1/",
+                  "html": "https://osf.io/preprints/socarxiv/hqb2p_v1/",
+                  "preprint_versions": "https://api.osf.io/v2/preprints/hqb2p_v1/versions/",
+                  "preprint_doi": "https://doi.org/10.31235/osf.io/hqb2p",
+                  "iri": "https://osf.io/hqb2p"
+              }
+          },
+          "meta": {
+              "version": "2.20"
+          }
+      }
+
 
 patch:
   summary: Update a preprint
