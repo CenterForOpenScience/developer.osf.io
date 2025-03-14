@@ -1,0 +1,43 @@
+get:
+  summary: List OAuth Scopes
+  description: >-
+    Retrieve a list of publicly available OAuth scopes.
+
+    Scopes define permissions granted to OAuth applications and personal access tokens.
+
+    #### Filtering & Pagination
+
+    Supports standard filtering and pagination via query parameters.
+
+    #### Returns
+
+    A JSON object containing an array of OAuth scopes under the `data` key.
+
+  tags:
+    - OAuth Scopes
+  operationId: scope_list
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: Successfully retrieved list of OAuth scopes.
+      examples:
+        application/json:
+          data:
+            - id: "osf.nodes.read"
+              type: "scopes"
+              attributes:
+                description: "Read access to OSF nodes."
+              links:
+                self: "https://api.osf.io/v2/scopes/osf.nodes.read/"
+            - id: "osf.nodes.write"
+              type: "scopes"
+              attributes:
+                description: "Write access to OSF nodes."
+              links:
+                self: "https://api.osf.io/v2/scopes/osf.nodes.write/"
+          links:
+            self: "https://api.osf.io/v2/scopes/"
+          meta:
+            total: 2
+            per_page: 10

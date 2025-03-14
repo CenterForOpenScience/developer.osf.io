@@ -56,6 +56,7 @@ x-tagGroups:
       - Draft Registrations
       - Registrations
       - Regions
+      - OAuth Scopes
       - Taxonomies
       - Tokens
       - Users
@@ -887,6 +888,13 @@ tags:
         - Viewing and updating application details
         - Deactivating or deleting applications
         - Resetting client secrets (deprecated after v2.14)
+  - name: OAuth Scopes
+    description: >-
+      OAuth scopes define specific permissions for OAuth applications and personal access tokens.
+  
+      Each scope indicates the permission level granted to perform actions via the OSF API, such as reading node data (`osf.nodes.read`) or modifying node data (`osf.nodes.write`).
+  
+      Scopes can be queried and managed through these endpoints to understand and control access levels associated with applications and tokens.
 
 paths:
 
@@ -1443,3 +1451,13 @@ paths:
 
   /applications/{client_id}/reset/:
     $ref: 'applications/application_reset.yaml'
+
+#######################################
+#              OAUTH SCOPES           #
+#######################################
+
+  /scopes/:
+    $ref: 'scopes/scope_list.yaml'
+
+  /scopes/{scope_id}/:
+    $ref: 'scopes/scope_detail.yaml'

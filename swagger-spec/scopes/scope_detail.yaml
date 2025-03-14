@@ -1,0 +1,32 @@
+get:
+  summary: Retrieve OAuth Scope Detail
+  description: >-
+    Retrieve detailed information about a specific OAuth scope.
+
+    Only publicly available scopes are accessible without special permissions.
+
+  tags:
+    - OAuth Scopes
+  operationId: scope_detail
+  produces:
+    - application/json
+  parameters:
+    - name: scope_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the OAuth scope.
+  responses:
+    '200':
+      description: Successfully retrieved OAuth scope details.
+      examples:
+        application/json:
+          data:
+            id: "osf.nodes.read"
+            type: "scopes"
+            attributes:
+              description: "Read access to OSF nodes."
+            links:
+              self: "https://api.osf.io/v2/scopes/osf.nodes.read/"
+    '404':
+      description: OAuth scope not found or inaccessible.
