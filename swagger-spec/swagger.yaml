@@ -54,6 +54,7 @@ x-tagGroups:
       - Preprint Providers
       - Draft Registrations
       - Registrations
+      - Regions
       - Taxonomies
       - Users
       - View Only Links
@@ -854,6 +855,20 @@ tags:
       adheres to the standards set for collection submissions. It aids in providing transparency and order to the
       process of managing collections and ensures that moderators and admins have the tools and information they
       need to effectively manage collection submissions.
+  - name: Regions
+    description: >-
+      Storage Regions are predefined geographical or cloud-storage areas where files are stored within OSF Storage.
+  
+      Each region provides isolation of data in compliance with geographic or regulatory requirements. Users can specify their preferred region for storing project files when using OSF Storage.
+  
+      **Attributes include:**
+  
+        - `id`: Unique identifier of the region (e.g., `us-east-1`).
+        - `name`: Human-readable name for the region (e.g., `US East`).
+  
+      **Endpoints include:**
+        - **List Regions:** Retrieve all available storage regions.
+        - **Region Detail:** Retrieve details about a specific storage region.
 
 
 
@@ -1376,3 +1391,14 @@ paths:
 
   /provider/collections/{collection_id}/moderators/{moderator_id}/:
     $ref: 'collection_provider/moderators_detail.yaml'
+
+  #######################################
+  #               REGIONS              #
+  #######################################
+
+  /regions/:
+    $ref: 'region/region_list.yaml'
+
+  /regions/{region_id}/:
+    $ref: 'region/region_detail.yaml'
+
