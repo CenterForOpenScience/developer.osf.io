@@ -34,6 +34,7 @@ x-tagGroups:
   - name: API Reference
     tags:
       - Addons
+      - Applications
       - Base
       - Citations
       - Comments
@@ -875,6 +876,17 @@ tags:
       **Personal Access Tokens** allow users to authenticate API requests without credentials.
   
       Tokens support fine-grained permissions (scopes) to control API access levels.  
+  - name: Applications
+    description: >-
+      **OAuth2 Applications** allow external services to securely authenticate and interact with OSF resources via OAuth2.
+  
+      Registered applications manage OAuth2 flows, client credentials, and access tokens.
+  
+      Operations include:
+        - Creating new OAuth2 applications
+        - Viewing and updating application details
+        - Deactivating or deleting applications
+        - Resetting client secrets (deprecated after v2.14)
 
 paths:
 
@@ -1418,3 +1430,16 @@ paths:
 
   /tokens/{_id}/scopes/:
     $ref: 'tokens/token_scopes_list.yaml'
+
+  #######################################
+  #            APPLICATIONS             #
+  #######################################
+
+  /applications/:
+    $ref: 'applications/application_list.yaml'
+
+  /applications/{client_id}/:
+    $ref: 'applications/application_detail.yaml'
+
+  /applications/{client_id}/reset/:
+    $ref: 'applications/application_reset.yaml'
