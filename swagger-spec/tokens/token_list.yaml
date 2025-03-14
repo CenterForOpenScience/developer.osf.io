@@ -1,0 +1,170 @@
+# /tokens/:
+
+get:
+  summary: List Personal Access Tokens
+  description: >-
+    Retrieve a list of active personal access tokens created by the authenticated user.
+
+    Personal access tokens are used to authenticate requests to the OSF API without user credentials.
+
+    #### Returns
+    A JSON:API-compliant response with an array of personal access token objects under the `data` key.
+
+    #### Errors
+    Returns an `errors` object on failure. See [Errors and Error Codes](#tag/Errors-and-Error-Codes).
+
+  tags:
+    - Tokens
+  operationId: token_list
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: Successful retrieval of personal access tokens.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: token123
+                type:
+                  type: string
+                  example: tokens
+                attributes:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: "My API Token"
+                    date_created:
+                      type: string
+                      format: date-time
+                      example: "2024-03-14T15:00:00Z"
+                relationships:
+                  type: object
+                  properties:
+                    scopes:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              example: "https://api.osf.io/v2/tokens/token123/scopes/"
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 1
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/tokens/"
+
+post:
+  summary: Create Personal Access Token
+  description: >-
+    Create a new personal access token for authenticating API requests.
+
+    #### Request Body
+    A JSON:API-compliant request with token attributes (`name`) and `scopes` as relationships.
+
+    #### Returns
+    A `201 Created` response with the newly created token details, including the token itself (`token_id`).
+
+    **Note:** The token (`token_id`) is returned **only once** during creation.
+
+    #### Errors
+    - `400 Bad Request`: Missing required fields or invalid scope.
+    - `403 Forbidden`: User lacks permission to create tokens.
+
+  tags:
+    - Tokens
+  operationId: token_create
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required: [type, attributes, relationships]
+            properties:
+              type:
+                type: string
+                example: tokens
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "My API Token"
+              relationships:
+                type: object
+                properties:
+                  scopes:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: scopes
+                            id:
+                              type: string
+                              example: "osf.full_write"
+
+  responses:
+    '201':
+      description: Token successfully created.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: token123
+              type:
+                type: string
+                example: tokens
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "My API Token"
+                  token_id:
+                    type: string
+                    example: "abc123def456"
+              relationships:
+                type: object
+                properties:
+                  scopes:
+                    type: object
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: "https://api.osf.io/v2/tokens/token123/scopes/"

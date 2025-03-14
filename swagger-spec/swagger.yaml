@@ -56,6 +56,7 @@ x-tagGroups:
       - Registrations
       - Regions
       - Taxonomies
+      - Tokens
       - Users
       - View Only Links
 tags:
@@ -869,8 +870,11 @@ tags:
       **Endpoints include:**
         - **List Regions:** Retrieve all available storage regions.
         - **Region Detail:** Retrieve details about a specific storage region.
-
-
+  - name: Tokens
+    description: >-
+      **Personal Access Tokens** allow users to authenticate API requests without credentials.
+  
+      Tokens support fine-grained permissions (scopes) to control API access levels.  
 
 paths:
 
@@ -1402,3 +1406,15 @@ paths:
   /regions/{region_id}/:
     $ref: 'region/region_detail.yaml'
 
+  ############################
+  #         TOKENS           #
+  ############################
+
+  /tokens/:
+    $ref: 'tokens/token_list.yaml'
+
+  /tokens/{_id}/:
+    $ref: 'tokens/token_detail.yaml'
+
+  /tokens/{_id}/scopes/:
+    $ref: 'tokens/token_scopes_list.yaml'
