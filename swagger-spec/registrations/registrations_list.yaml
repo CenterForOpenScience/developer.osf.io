@@ -1,0 +1,147 @@
+get:
+  summary: List Child Registrations of a Registration
+  description: >-
+    Retrieve a list of child registrations for a specific registration.
+
+    Registrations can have hierarchical relationships, where one registration can have multiple child registrations.  
+    This endpoint returns all registrations that are children of the given parent registration.
+
+    #### Permissions
+    - Public registrations will display their children publicly.
+    - Private registrations require appropriate permissions to view child registrations.
+
+    #### Returns
+    - A JSON object with a `data` key containing a list of child registration resources.
+
+  tags:
+    - Registration
+
+  operationId: registrations_children_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the parent registration.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to view (pagination).
+
+    - in: query
+      name: filter
+      type: string
+      description: Filter results by specific fields, e.g., `filter[title]=keyword`.
+
+    - in: query
+      name: embed
+      type: string
+      description: Comma-separated list of related resources to embed.
+
+  responses:
+    '200':
+      description: Successful retrieval of child registrations.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "abcde"
+                  description: The unique identifier of the child registration.
+                type:
+                  type: string
+                  example: "registrations"
+                attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: "My Child Registration"
+                      description: The title of the registration.
+                    description:
+                      type: string
+                      example: "A detailed description of the child registration."
+                    date_created:
+                      type: string
+                      format: date-time
+                      example: "2023-01-01T12:00:00Z"
+                    date_modified:
+                      type: string
+                      format: date-time
+                      example: "2023-01-02T12:00:00Z"
+                relationships:
+                  type: object
+                  description: Relationships to other resources.
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      example: "https://api.osf.io/v2/registrations/abcde/"
+                      description: The canonical API endpoint for this child registration.
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/registrations/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/registrations/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/registrations/?page=1"
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 1
+                description: Total number of child registrations available.
+              per_page:
+                type: integer
+                example: 10
+                description: Number of items returned per page.
+
+      examples:
+        application/json:
+          data:
+            - id: "abcde"
+              type: "registrations"
+              attributes:
+                title: "Child Registration 1"
+                description: "Description for child registration 1."
+                date_created: "2023-01-01T12:00:00Z"
+                date_modified: "2023-01-02T12:00:00Z"
+              relationships: {}
+              links:
+                self: "https://api.osf.io/v2/registrations/abcde/"
+          links:
+            self: "https://api.osf.io/v2/registrations/fghij/registrations/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/fghij/registrations/?page=1"
+            last: "https://api.osf.io/v2/registrations/fghij/registrations/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required to access this resource.
+    '403':
+      description: Forbidden. You do not have permission to access these registrations.
+    '404':
+      description: Not Found. No registration matches the given ID.

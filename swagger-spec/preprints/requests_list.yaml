@@ -1,0 +1,139 @@
+post:
+  summary: Create a Preprint Request
+  description: >-
+    Create a new request on the specified preprint.  
+    Typically used for withdrawal requests.
+
+    #### Permissions
+    - Must be an admin contributor on the preprint to create a request.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_requests_create
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint to create a request for.
+
+    - in: body
+      name: body
+      required: true
+      description: The request object to be created.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+            properties:
+              type:
+                type: string
+                example: preprint-requests
+              attributes:
+                type: object
+                required:
+                  - request_type
+                  - comment
+                properties:
+                  request_type:
+                    type: string
+                    example: withdrawal
+                    description: The type of request. Currently only `withdrawal` is supported.
+                  comment:
+                    type: string
+                    description: Comment explaining the reason for the request.
+
+  responses:
+    '201':
+      description: Successfully created the preprint request.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+              - relationships
+            properties:
+              id:
+                type: string
+                description: The unique identifier for this request.
+              type:
+                type: string
+                example: preprint-requests
+              attributes:
+                type: object
+                required:
+                  - request_type
+                  - machine_state
+                  - comment
+                  - created
+                  - updated
+                properties:
+                  request_type:
+                    type: string
+                  machine_state:
+                    type: string
+                  comment:
+                    type: string
+                  created:
+                    type: string
+                    format: date-time
+                  updated:
+                    type: string
+                    format: date-time
+              relationships:
+                type: object
+                properties:
+                  creator:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - id
+                          - type
+                        properties:
+                          id:
+                            type: string
+                          type:
+                            type: string
+                    description: The user who created the request.
+                  target:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - id
+                          - type
+                        properties:
+                          id:
+                            type: string
+                          type:
+                            type: string
+                    description: The preprint targeted by this request.
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+
+    '400':
+      description: Bad request. Invalid input or missing fields.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to create a request.
+    '404':
+      description: Not Found. No preprint matches the given ID.

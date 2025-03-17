@@ -1,0 +1,171 @@
+get:
+  summary: Retrieve the relationship to the supplemental node of the preprint
+  description: >-
+    Retrieve a relationship object that points to the supplemental node associated with this preprint.
+
+    #### Permissions
+    - Public preprints will return their supplemental node if it exists.
+    - Private preprints require the user to have read access.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_node_relationship_read
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint.
+
+  responses:
+    '200':
+      description: Successful retrieval of the node relationship.
+      schema:
+        type: object
+        properties:
+          data:
+            description: >-
+              Relationship to the supplemental node. Will be `null` if no node is linked.
+            type: object
+            required:
+              - id
+              - type
+            properties:
+              id:
+                type: string
+                description: The ID of the related node.
+              type:
+                type: string
+                example: nodes
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to this relationship.
+              related:
+                type: string
+                description: Link to the related node resource.
+      examples:
+        application/json:
+          data:
+            id: "abc12"
+            type: nodes
+          links:
+            self: "https://api.osf.io/v2/preprints/abc12/relationships/node/"
+            related: "https://api.osf.io/v2/preprints/abc12/node/"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view the supplemental node.
+    '404':
+      description: Not Found. No preprint matches the given ID.
+
+patch:
+  summary: Update the relationship to the supplemental node of the preprint
+  description: >-
+    Update the supplemental node relationship for the specified preprint.
+
+    #### Permissions
+    - Must have `write` permissions on both the preprint and the target node.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_node_relationship_update
+
+  consumes:
+    - application/json
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint.
+    - in: body
+      name: body
+      required: true
+      description: The relationship data for the supplemental node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+            properties:
+              type:
+                type: string
+                example: nodes
+              id:
+                type: string
+                example: abc12
+
+  responses:
+    '200':
+      description: Successfully updated the supplemental node relationship.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+                example: nodes
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+              related:
+                type: string
+
+    '400':
+      description: Bad request. The node ID may be invalid or missing.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to update this relationship.
+    '404':
+      description: Not Found. No preprint or node matches the given ID.
+
+delete:
+  summary: Remove the supplemental node relationship from the preprint
+  description: >-
+    Remove the link between the preprint and its supplemental node.
+
+    #### Permissions
+    - Must have `write` permissions on the preprint.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_node_relationship_delete
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint.
+
+  responses:
+    '204':
+      description: Successfully removed the supplemental node relationship.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify this relationship.
+    '404':
+      description: Not Found. No preprint matches the given ID.

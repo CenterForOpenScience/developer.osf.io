@@ -1,0 +1,160 @@
+get:
+  summary: List Requests for a Node
+  description: >-
+    Retrieve a list of requests associated with a specific node.  
+    Requests include actions such as registration approval, withdrawal, or other moderation-related requests initiated on the node.
+
+    #### Permissions
+    - The authenticated user must have read access to the node to view its requests.
+    - Moderators or admins of the provider may have additional access to request details depending on their role.
+
+    #### Returns
+    - A JSON object with a `data` key containing a list of request resources.
+    - Each request provides metadata about its current state, type, creator, and review process.
+
+  tags:
+    - Nodes
+
+  operationId: node_requests_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: query
+      name: filter[type]
+      type: string
+      description: Filter requests by type (e.g., `withdrawal`, `registration`).
+
+    - in: query
+      name: filter[state]
+      type: string
+      description: Filter requests by current state (e.g., `pending`, `accepted`, `rejected`).
+
+  responses:
+    '200':
+      description: Successfully retrieved the list of requests for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier for the request.
+                type:
+                  type: string
+                  example: "requests"
+                attributes:
+                  type: object
+                  properties:
+                    request_type:
+                      type: string
+                      description: The type of the request, such as `withdrawal` or `registration`.
+                      example: "withdrawal"
+                    state:
+                      type: string
+                      description: The current state of the request.
+                      example: "pending"
+                    created:
+                      type: string
+                      format: date-time
+                      description: The timestamp when the request was created.
+                      example: "2024-03-10T15:30:00Z"
+                    modified:
+                      type: string
+                      format: date-time
+                      description: The timestamp when the request was last modified.
+                      example: "2024-03-12T10:00:00Z"
+                relationships:
+                  type: object
+                  properties:
+                    creator:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              example: "https://api.osf.io/v2/users/{user_id}/"
+                        data:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "users"
+                            id:
+                              type: string
+                              example: "user_id"
+                    target:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              example: "https://api.osf.io/v2/nodes/{node_id}/"
+                        data:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "nodes"
+                            id:
+                              type: string
+                              example: "node_id"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      example: "https://api.osf.io/v2/requests/{request_id}/"
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 1
+
+      examples:
+        application/json:
+          data:
+            - id: "abc123"
+              type: "requests"
+              attributes:
+                request_type: "withdrawal"
+                state: "pending"
+                created: "2024-03-10T15:30:00Z"
+                modified: "2024-03-12T10:00:00Z"
+              relationships:
+                creator:
+                  links:
+                    related: "https://api.osf.io/v2/users/user1/"
+                  data:
+                    type: "users"
+                    id: "user1"
+                target:
+                  links:
+                    related: "https://api.osf.io/v2/nodes/{node_id}/"
+                  data:
+                    type: "nodes"
+                    id: "{node_id}"
+              links:
+                self: "https://api.osf.io/v2/requests/abc123/"
+          meta:
+            total: 1
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access requests for this node.
+    '404':
+      description: Not Found. No node matches the given ID.

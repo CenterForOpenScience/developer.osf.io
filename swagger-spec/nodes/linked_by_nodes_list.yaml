@@ -1,0 +1,64 @@
+ get:
+    summary: List Nodes Linking to a Node
+    description: >-
+      Retrieve a list of nodes that link to the specified node.
+
+      #### Permissions
+      - Public nodes are visible to everyone.
+      - Private nodes require appropriate permissions to access.
+      - The authenticated user must have read access to see restricted nodes linking to this node.
+
+      #### Returns
+      - A paginated list of nodes that link to the specified node.
+
+    tags:
+      - Nodes
+
+    operationId: node_linked_by_nodes_list
+
+    parameters:
+      - in: path
+        name: node_id
+        type: string
+        required: true
+        description: The unique identifier of the node to look up linked nodes for.
+    responses:
+      '200':
+        description: A paginated list of nodes linking to the specified node.
+        schema:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: 'definition.yaml'
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  description: Link to the current page of results.
+                next:
+                  type: string
+                  description: Link to the next page of results.
+                prev:
+                  type: string
+                  description: Link to the previous page of results.
+            meta:
+              type: object
+              properties:
+                total:
+                  type: integer
+                  description: Total number of nodes linking to this node.
+                per_page:
+                  type: integer
+                  description: Number of results per page.
+
+      '401':
+        description: Unauthorized. Authentication is required.
+
+      '403':
+        description: Forbidden. You do not have permission to view nodes linking to this node.
+
+      '404':
+        description: Not Found. No node matches the given ID.

@@ -1,0 +1,319 @@
+get:
+  summary: Retrieve relationships between a Node and its linked Nodes
+  description: >-
+    Retrieve a list of resource identifier objects that represent the nodes linked to the given node.
+
+    #### Permissions
+    - Public nodes will display their public linked nodes.
+    - Private nodes require read permissions.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each linked node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_linked_nodes_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+  responses:
+    '200':
+      description: Successfully retrieved linked nodes for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "nodes"
+                id:
+                  type: string
+                  example: "abc123"
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/relationships/linked_nodes/"
+              related:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/linked_nodes/"
+      examples:
+        application/json:
+          data:
+            - type: "nodes"
+              id: "abc123"
+            - type: "nodes"
+              id: "def456"
+          links:
+            self: "https://api.osf.io/v2/nodes/{node_id}/relationships/linked_nodes/"
+            related: "https://api.osf.io/v2/nodes/{node_id}/linked_nodes/"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view linked nodes for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+patch:
+  summary: Replace relationships between a Node and its linked Nodes
+  description: >-
+    Replace all existing linked nodes for a node with a new set of linked nodes.
+
+    #### Permissions
+    - The authenticated user must have write permissions on the node.
+
+    #### Request Body
+    - A `data` array containing the new list of node resource identifier objects (`type` and `id`).
+
+    #### Returns
+    - The updated list of linked nodes for the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_linked_nodes_update
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - nodes
+                  description: Must be `nodes`.
+                id:
+                  type: string
+                  description: The unique identifier for the node.
+        example:
+          data:
+            - type: "nodes"
+              id: "abc123"
+            - type: "nodes"
+              id: "def456"
+
+  responses:
+    '200':
+      description: Successfully replaced linked nodes for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "nodes"
+                id:
+                  type: string
+                  example: "node_id"
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/relationships/linked_nodes/"
+              related:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/linked_nodes/"
+      examples:
+        application/json:
+          data:
+            - type: "nodes"
+              id: "abc123"
+            - type: "nodes"
+              id: "def456"
+          links:
+            self: "https://api.osf.io/v2/nodes/{node_id}/relationships/linked_nodes/"
+            related: "https://api.osf.io/v2/nodes/{node_id}/linked_nodes/"
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify linked nodes for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+post:
+  summary: Add relationships between a Node and linked Nodes
+  description: >-
+    Add new linked nodes to the node, while keeping the existing ones intact.
+
+    #### Permissions
+    - The authenticated user must have write permissions on the node.
+
+    #### Request Body
+    - A `data` array containing additional node resource identifier objects to be added.
+
+    #### Returns
+    - The updated list of linked nodes for the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_linked_nodes_add
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - nodes
+                  description: Must be `nodes`.
+                id:
+                  type: string
+                  description: The unique identifier for the node.
+        example:
+          data:
+            - type: "nodes"
+              id: "ghi789"
+
+  responses:
+    '200':
+      description: Successfully added linked nodes to the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "nodes"
+                id:
+                  type: string
+                  example: "node_id"
+      examples:
+        application/json:
+          data:
+            - type: "nodes"
+              id: "abc123"
+            - type: "nodes"
+              id: "def456"
+            - type: "nodes"
+              id: "ghi789"
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify linked nodes for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+delete:
+  summary: Remove relationships between a Node and linked Nodes
+  description: >-
+    Remove specified linked nodes from the node.
+
+    #### Permissions
+    - The authenticated user must have write permissions on the node.
+
+    #### Request Body
+    - A `data` array containing the node resource identifier objects to be removed.
+
+    #### Returns
+    - An empty response indicating successful deletion.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_linked_nodes_delete
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - nodes
+                  description: Must be `nodes`.
+                id:
+                  type: string
+                  description: The unique identifier for the node.
+        example:
+          data:
+            - type: "nodes"
+              id: "abc123"
+
+  responses:
+    '204':
+      description: Successfully removed linked nodes from the node. No content returned.
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify linked nodes for this node.
+    '404':
+      description: Not Found. No node matches the given ID.

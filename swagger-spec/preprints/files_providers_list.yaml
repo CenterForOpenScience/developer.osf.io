@@ -1,0 +1,82 @@
+get:
+  summary: List storage providers for a preprint
+  description: >-
+    Retrieve a list of storage providers for the specified preprint.
+    Only "osfstorage" is supported for preprints.
+
+    #### Permissions
+    - Public storage providers are accessible to unauthenticated users.
+    - Viewing non-public preprints requires appropriate permissions.
+
+  tags:
+    - Preprints
+    - Files
+
+  operationId: preprint_storage_providers_list
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint.
+
+  responses:
+    '200':
+      description: Successful retrieval of storage providers.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+                - links
+              properties:
+                id:
+                  type: string
+                  description: The name of the storage provider.
+                  example: osfstorage
+                type:
+                  type: string
+                  example: storage-providers
+                attributes:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the storage provider.
+                      example: osfstorage
+                    default:
+                      type: boolean
+                      description: Whether this provider is the default.
+                      example: true
+                links:
+                  type: object
+                  properties:
+                    upload:
+                      type: string
+                      description: Upload URL for this storage provider.
+                    files:
+                      type: string
+                      description: Link to files within this storage provider.
+        example:
+          data:
+            - id: osfstorage
+              type: storage-providers
+              attributes:
+                name: osfstorage
+                default: true
+              links:
+                upload: https://files.osf.io/v1/resources/abc12/providers/osfstorage/
+                files: https://api.osf.io/v2/preprints/abc12/files/osfstorage/
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view storage providers for this preprint.
+    '404':
+      description: Not Found. No preprint matches the given ID.

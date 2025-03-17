@@ -1135,6 +1135,37 @@ paths:
   /nodes/{node_id}/wikis/:
     $ref: 'nodes/wikis_list.yaml'
 
+  /nodes/{node_id}/linked_by_nodes/:
+    $ref: 'nodes/linked_by_nodes_list.yaml'
+
+  /nodes/{node_id}/linked_by_registrations/:
+    $ref: 'nodes/linked_by_registrations_list.yaml'
+
+  /nodes/{node_id}/relationships/institutions/:
+    $ref: 'nodes/relationships_institutions_list.yaml'
+
+  /nodes/{node_id}/relationships/linked_nodes/:
+    $ref: 'nodes/relationships_linked_nodes_list.yaml'
+
+  /nodes/{node_id}/relationships/linked_registrations/:
+    $ref: 'nodes/relationships_linked_registrations_list.yaml'
+
+  /nodes/{node_id}/relationships/subjects/:
+    $ref: 'nodes/relationships_subjects_list.yaml'
+
+  /nodes/{node_id}/requests/:
+    $ref: 'nodes/requests_list.yaml'
+
+  /nodes/{node_id}/settings/:
+    $ref: 'nodes/node_settings_list.yaml'
+
+  /nodes/{node_id}/storage/:
+    $ref: 'nodes/node_storage_list.yaml'
+
+  /nodes/{node_id}/subjects/:
+    $ref: 'nodes/subjects_list.yaml'
+
+
 
   #################
   #   PREPRINTS   #
@@ -1167,6 +1198,29 @@ paths:
   /preprints/{preprint_id}/relationships/institutions/:
     $ref: 'preprints/institutions_relationship_list.yaml'
 
+  /preprints/{preprint_id}/files/:
+    $ref: 'preprints/files_providers_list.yaml'
+
+  /preprints/{preprint_id}/files/osfstorage/:
+    $ref: 'preprints/files_osfstorage_list.yaml'
+
+  /preprints/{preprint_id}/identifiers/:
+    $ref: 'preprints/identifiers_list.yaml'
+
+  /preprints/{preprint_id}/relationships/node/:
+    $ref: 'preprints/relationships_node.yaml'
+
+  /preprints/{preprint_id}/requests/:
+    $ref: 'preprints/requests_list.yaml'
+
+  /preprints/{preprint_id}/review_actions/:
+    $ref: 'preprints/review_actions_list.yaml'
+
+  /preprints/{preprint_id}/subjects/:
+    $ref: 'preprints/subjects_list.yaml'
+
+  /preprints/{preprint_id}/versions/:
+    $ref: 'preprints/versions_list.yaml'
 
 
   ##########################
@@ -1199,10 +1253,10 @@ paths:
     $ref: 'registrations/detail.yaml'
 
   /registrations/{registration_id}/citations/:
-    $ref: 'registrations/style_list.yaml'
+    $ref: 'registrations/citation_style_list.yaml'
 
   /registrations/{registration_id}/citations/{citation_id}/:
-    $ref: 'registrations/style_detail.yaml'
+    $ref: 'registrations/citation_style_detail.yaml'
 
   /registrations/{registration_id}/children/:
     $ref: 'registrations/children_list.yaml'
@@ -1239,6 +1293,60 @@ paths:
 
   /registrations/{registration_id}/logs/:
     $ref: 'registrations/logs_list.yaml'
+
+  /registrations/{registration_id}/actions/:
+    $ref: 'registrations/actions_list.yaml'
+
+  /registrations/{registration_id}/bibliographic_contributors/:
+    $ref: 'registrations/bibliographic_contributors_list.yaml'
+
+  /registrations/{registration_id}/cedar_metadata_records/:
+    $ref: 'registrations/cedar_metadata_records_list.yaml'
+
+  /registrations/{registration_id}/citation/:
+    $ref: 'registrations/citation_style_list.yaml'
+
+  /registrations/{registration_id}/citation/{citation_id}/:
+    $ref: 'registrations/citation_style_detail.yaml'
+
+  /registrations/{registration_id}/implicit_contributors/:
+    $ref: 'registrations/implicit_contributors_list.yaml'
+
+  /registrations/{registration_id}/linked_by_nodes/:
+    $ref: 'registrations/linked_by_nodes_list.yaml'
+
+  /registrations/{registration_id}/linked_by_registrations/:
+    $ref: 'registrations/linked_by_registrations_list.yaml'
+
+  /registrations/{registration_id}/node_links/:
+    $ref: 'registrations/node_links_list.yaml'
+
+  /registrations/{registration_id}/registrations/:
+    $ref: 'registrations/registrations_list.yaml'
+
+  /registrations/{registration_id}/relationships/institutions/:
+    $ref: 'registrations/relationships_institutions_list.yaml'
+
+  /registrations/{registration_id}/relationships/linked_nodes/:
+    $ref: 'registrations/relationships_linked_nodes_list.yaml'
+
+  /registrations/{registration_id}/relationships/linked_registrations/:
+    $ref: 'registrations/relationships_linked_registrations_list.yaml'
+
+  /registrations/{registration_id}/relationships/subjects/:
+    $ref: 'registrations/relationships_subjects_list.yaml'
+
+  /registrations/{registration_id}/requests/:
+    $ref: 'registrations/requests_list.yaml'
+
+  /registrations/{registration_id}/resources/:
+    $ref: 'registrations/resources_list.yaml'
+
+  /registrations/{registration_id}/schema_responses/:
+    $ref: 'registrations/schema_responses_list.yaml'
+
+  /registrations/{registration_id}/subjects/:
+    $ref: 'registrations/subjects_list.yaml'
 
   /registrations/{registration_id}/view_only_links/:
     $ref: 'registrations/view_only_links_list.yaml'

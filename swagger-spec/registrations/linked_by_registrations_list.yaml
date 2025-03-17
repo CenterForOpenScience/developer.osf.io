@@ -1,0 +1,134 @@
+get:
+  summary: List Linked By Registrations
+  description: >-
+    Retrieve a list of registrations that have added the specified registration as a node link.
+
+    This allows you to discover which registrations are referencing the given registration through their node links.
+
+    #### Permissions
+    - Public registrations expose their linked by registrations publicly.
+    - Private registrations require read access to view this relationship.
+
+    #### Returns
+    - A JSON object containing a `data` array of registration resources that link to this registration.
+
+  tags:
+    - Registration
+
+  operationId: registration_linked_by_registrations_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successful retrieval of registrations linking to the specified registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of registrations that link to the specified registration.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of the registration.
+                  example: "abcde"
+                type:
+                  type: string
+                  example: "registrations"
+                attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: The title of the registration.
+                      example: "My Registration"
+                    description:
+                      type: string
+                      description: Short description of the registration.
+                      example: "This is a test registration."
+                    date_created:
+                      type: string
+                      format: date-time
+                      description: Date the registration was created.
+                      example: "2024-01-01T00:00:00Z"
+                    public:
+                      type: boolean
+                      description: Whether the registration is publicly visible.
+                      example: true
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: The canonical API endpoint for this registration.
+                      example: "https://api.osf.io/v2/registrations/abcde/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_by_registrations/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_by_registrations/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_by_registrations/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of registrations linking to the specified registration.
+                example: 1
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "abcde"
+              type: "registrations"
+              attributes:
+                title: "Linked Registration A"
+                description: "This registration links to the specified registration."
+                date_created: "2024-01-01T00:00:00Z"
+                public: true
+              links:
+                self: "https://api.osf.io/v2/registrations/abcde/"
+          links:
+            self: "https://api.osf.io/v2/registrations/fghij/linked_by_registrations/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/fghij/linked_by_registrations/?page=1"
+            last: "https://api.osf.io/v2/registrations/fghij/linked_by_registrations/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view linked by registrations.
+    '404':
+      description: Not Found. No registration matches the given ID.

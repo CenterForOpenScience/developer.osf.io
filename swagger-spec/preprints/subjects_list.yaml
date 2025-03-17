@@ -1,0 +1,115 @@
+get:
+  summary: List Preprint Subjects
+  description: >-
+    Retrieve the list of subjects (taxonomy terms) associated with a specific preprint.
+
+    #### Permissions
+    - Preprint subjects are publicly accessible for published preprints.
+    - For unpublished preprints, you must have permission to view the preprint.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_subjects_list
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint whose subjects are being requested.
+
+  responses:
+    '200':
+      description: Successful retrieval of preprint subjects.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of the subject.
+                type:
+                  type: string
+                  example: subjects
+                attributes:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: The name of the subject.
+                    parent:
+                      type: string
+                      description: The parent subject ID, if applicable.
+                relationships:
+                  type: object
+                  properties:
+                    children:
+                      type: object
+                      description: Relationship to any child subjects.
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                              - id
+                              - type
+                            properties:
+                              id:
+                                type: string
+                                description: The unique identifier of the child subject.
+                              type:
+                                type: string
+                                example: subjects
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: Link to the subject resource.
+
+          meta:
+            type: object
+            description: Pagination or additional metadata.
+
+      examples:
+        application/json:
+          data:
+            - id: "123"
+              type: subjects
+              attributes:
+                text: "Cognitive Psychology"
+                parent: "45"
+              relationships:
+                children:
+                  data:
+                    - id: "124"
+                      type: subjects
+              links:
+                self: "https://api.osf.io/v2/preprints/abc12/subjects/123/"
+            - id: "124"
+              type: subjects
+              attributes:
+                text: "Developmental Psychology"
+                parent: "123"
+              relationships:
+                children:
+                  data: []
+              links:
+                self: "https://api.osf.io/v2/preprints/abc12/subjects/124/"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view these subjects.
+    '404':
+      description: Not Found. No preprint matches the given ID.

@@ -1,0 +1,83 @@
+get:
+  summary: List Registrations Linking to a Node
+  description: >-
+    Retrieve a list of registrations that have created links to the specified node.
+
+    #### Permissions
+    - Public registrations are visible to everyone.
+    - Registrations with restricted visibility require appropriate permissions to access.
+    - The authenticated user must have read access to see restricted registrations linking to this node.
+
+    #### Returns
+    - A paginated list of registrations that link to the specified node.
+
+  tags:
+    - Nodes
+
+  operationId: node_linked_by_registrations_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node to look up linked registrations for.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of the results to return (pagination).
+
+    - in: query
+      name: filter
+      type: string
+      description: Filter results by registration attributes (e.g., `filter[title]=example`).
+
+    - in: query
+      name: sort
+      type: string
+      description: |
+        Sort the returned registrations.
+        - `date_created`: Sort by creation date.
+        - `title`: Sort alphabetically by title.
+
+  responses:
+    '200':
+      description: A paginated list of registrations linking to the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../registrations/definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results.
+              prev:
+                type: string
+                description: Link to the previous page of results.
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                description: Total number of registrations linking to this node.
+              per_page:
+                type: integer
+                description: Number of results per page.
+
+    '401':
+      description: Unauthorized. Authentication is required.
+
+    '403':
+      description: Forbidden. You do not have permission to view registrations linking to this node.
+
+    '404':
+      description: Not Found. No node matches the given ID.

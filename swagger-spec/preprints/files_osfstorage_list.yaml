@@ -1,0 +1,98 @@
+get:
+   summary: List files for a preprint in osfstorage
+   description: >-
+     Retrieve a list of files stored in the `osfstorage` provider for the specified preprint.
+     Only "osfstorage" is available for preprints.
+
+     #### Permissions
+     - Public files are accessible to unauthenticated users.
+     - Viewing non-public files requires appropriate permissions.
+
+   tags:
+     - Preprints
+     - Files
+
+   operationId: preprint_files_list
+
+   parameters:
+     - name: preprint_id
+       in: path
+       required: true
+       type: string
+       description: The unique identifier of the preprint.
+
+   responses:
+     '200':
+       description: Successful retrieval of files in osfstorage.
+       schema:
+         type: object
+         properties:
+           data:
+             type: array
+             items:
+               type: object
+               required:
+                 - id
+                 - type
+                 - attributes
+                 - links
+               properties:
+                 id:
+                   type: string
+                   description: The ID of the file.
+                   example: 5b8df35e8c7d2e001d6fa3f9
+                 type:
+                   type: string
+                   example: files
+                 attributes:
+                   type: object
+                   properties:
+                     name:
+                       type: string
+                       description: The name of the file.
+                       example: paper.pdf
+                     kind:
+                       type: string
+                       description: Type of the file object ('file' or 'folder').
+                       example: file
+                     size:
+                       type: integer
+                       description: Size of the file in bytes.
+                       example: 102400
+                     modified:
+                       type: string
+                       format: date-time
+                       description: Last modified date of the file.
+                       example: "2023-09-01T12:00:00Z"
+                     contentType:
+                       type: string
+                       description: MIME type of the file.
+                       example: application/pdf
+                 links:
+                   type: object
+                   properties:
+                     download:
+                       type: string
+                       description: URL to download the file.
+                     upload:
+                       type: string
+                       description: URL to upload new versions of the file.
+         example:
+           data:
+             - id: 5b8df35e8c7d2e001d6fa3f9
+               type: files
+               attributes:
+                 name: paper.pdf
+                 kind: file
+                 size: 102400
+                 modified: "2023-09-01T12:00:00Z"
+                 contentType: application/pdf
+               links:
+                 download: https://files.osf.io/v1/resources/abc12/providers/osfstorage/5b8df35e8c7d2e001d6fa3f9
+                 upload: https://files.osf.io/v1/resources/abc12/providers/osfstorage/5b8df35e8c7d2e001d6fa3f9
+     '401':
+       description: Unauthorized. Authentication is required.
+     '403':
+       description: Forbidden. You do not have permission to view these files.
+     '404':
+       description: Not Found. No preprint matches the given ID.

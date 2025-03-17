@@ -1,0 +1,319 @@
+get:
+  summary: Retrieve the relationships between a Node and its Subjects
+  description: >-
+    Retrieve a list of relationship identifiers (resource linkage) representing the subjects associated with a specific node.
+
+    #### Permissions
+    - Public nodes will display public subjects.
+    - Private nodes require read permissions.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each subject linked to the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_subjects_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+  responses:
+    '200':
+      description: Successfully retrieved the subject relationships for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "subjects"
+                id:
+                  type: string
+                  example: "subject_id"
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/relationships/subjects/"
+              related:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/subjects/"
+      examples:
+        application/json:
+          data:
+            - type: "subjects"
+              id: "abc123"
+            - type: "subjects"
+              id: "def456"
+          links:
+            self: "https://api.osf.io/v2/nodes/{node_id}/relationships/subjects/"
+            related: "https://api.osf.io/v2/nodes/{node_id}/subjects/"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view subjects on this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+patch:
+  summary: Update the relationships between a Node and its Subjects
+  description: >-
+    Replace all existing subject relationships on a node with a new list of subjects.
+
+    #### Permissions
+    - The authenticated user must have write permissions on the node.
+
+    #### Request Body
+    - A `data` array containing the new list of subject resource identifier objects (`type` and `id`).
+
+    #### Returns
+    - The updated list of subject relationships for the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_subjects_update
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - subjects
+                  description: Must be `subjects`.
+                id:
+                  type: string
+                  description: The unique identifier for the subject.
+        example:
+          data:
+            - type: "subjects"
+              id: "abc123"
+            - type: "subjects"
+              id: "def456"
+
+  responses:
+    '200':
+      description: Successfully updated the subject relationships for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "subjects"
+                id:
+                  type: string
+                  example: "subject_id"
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/relationships/subjects/"
+              related:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/subjects/"
+      examples:
+        application/json:
+          data:
+            - type: "subjects"
+              id: "abc123"
+            - type: "subjects"
+              id: "def456"
+          links:
+            self: "https://api.osf.io/v2/nodes/{node_id}/relationships/subjects/"
+            related: "https://api.osf.io/v2/nodes/{node_id}/subjects/"
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify subjects on this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+post:
+  summary: Add relationships between a Node and Subjects
+  description: >-
+    Add new subject relationships to a node, keeping the existing subjects intact.
+
+    #### Permissions
+    - The authenticated user must have write permissions on the node.
+
+    #### Request Body
+    - A `data` array containing additional subject resource identifier objects to be added.
+
+    #### Returns
+    - The updated list of subject relationships for the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_subjects_add
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - subjects
+                  description: Must be `subjects`.
+                id:
+                  type: string
+                  description: The unique identifier for the subject.
+        example:
+          data:
+            - type: "subjects"
+              id: "ghi789"
+
+  responses:
+    '200':
+      description: Successfully added subjects to the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "subjects"
+                id:
+                  type: string
+                  example: "subject_id"
+      examples:
+        application/json:
+          data:
+            - type: "subjects"
+              id: "abc123"
+            - type: "subjects"
+              id: "def456"
+            - type: "subjects"
+              id: "ghi789"
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify subjects on this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+delete:
+  summary: Remove relationships between a Node and Subjects
+  description: >-
+    Remove specified subject relationships from a node.
+
+    #### Permissions
+    - The authenticated user must have write permissions on the node.
+
+    #### Request Body
+    - A `data` array containing the subject resource identifier objects to be removed.
+
+    #### Returns
+    - An empty response indicating successful deletion.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_subjects_delete
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - subjects
+                  description: Must be `subjects`.
+                id:
+                  type: string
+                  description: The unique identifier for the subject.
+        example:
+          data:
+            - type: "subjects"
+              id: "abc123"
+
+  responses:
+    '204':
+      description: Successfully deleted the subject relationship(s) from the node. No content returned.
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify subjects on this node.
+    '404':
+      description: Not Found. No node matches the given ID.

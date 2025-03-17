@@ -1,0 +1,134 @@
+get:
+  summary: List Linked By Nodes
+  description: >-
+    Retrieve a list of nodes that have added the specified registration as a node link.
+
+    This endpoint allows you to discover which nodes are referencing the given registration by including it in their node links.
+
+    #### Permissions
+    - Public registrations expose their linked by nodes publicly.
+    - Private registrations require appropriate read permissions to view this relationship.
+
+    #### Returns
+    - A JSON object containing a `data` array of node resources that link to the specified registration.
+
+  tags:
+    - Registration
+
+  operationId: registration_linked_by_nodes_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successful retrieval of nodes linking to the specified registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of nodes that link to the specified registration.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of the node.
+                  example: "abcd1"
+                type:
+                  type: string
+                  example: "nodes"
+                attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: The title of the node.
+                      example: "Linked Node Example"
+                    description:
+                      type: string
+                      description: A short description of the node.
+                      example: "This node includes the registration as a node link."
+                    date_created:
+                      type: string
+                      format: date-time
+                      description: Date the node was created.
+                      example: "2024-02-15T12:00:00Z"
+                    public:
+                      type: boolean
+                      description: Whether the node is publicly visible.
+                      example: true
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: The canonical API endpoint for this node.
+                      example: "https://api.osf.io/v2/nodes/abcd1/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_by_nodes/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_by_nodes/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_by_nodes/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of nodes linking to the specified registration.
+                example: 3
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "abcd1"
+              type: "nodes"
+              attributes:
+                title: "Linked Node Example"
+                description: "This node links to the registration."
+                date_created: "2024-02-15T12:00:00Z"
+                public: true
+              links:
+                self: "https://api.osf.io/v2/nodes/abcd1/"
+          links:
+            self: "https://api.osf.io/v2/registrations/fghij/linked_by_nodes/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/fghij/linked_by_nodes/?page=1"
+            last: "https://api.osf.io/v2/registrations/fghij/linked_by_nodes/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view linked by nodes.
+    '404':
+      description: Not Found. No registration matches the given ID.

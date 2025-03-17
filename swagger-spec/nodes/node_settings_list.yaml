@@ -1,0 +1,208 @@
+get:
+  summary: Retrieve Node Settings
+  description: >-
+    Retrieve the settings for a specific node.  
+    This includes details such as whether wiki functionality is enabled, if comments are enabled, and other configurable settings.
+
+    #### Permissions
+    - Public nodes expose a subset of settings.
+    - Private nodes require read permissions to view full settings.
+
+    #### Returns
+    - A JSON object with a `data` key containing the node's settings.
+
+  tags:
+    - Nodes
+
+  operationId: node_settings_read
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+  responses:
+    '200':
+      description: Successfully retrieved node settings.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The unique identifier of the node settings object (same as node_id).
+              type:
+                type: string
+                example: "node-settings"
+              attributes:
+                type: object
+                properties:
+                  wiki_enabled:
+                    type: boolean
+                    description: Whether the node has the wiki feature enabled.
+                    example: true
+                  comments_enabled:
+                    type: boolean
+                    description: Whether comments are enabled on the node.
+                    example: true
+                  public:
+                    type: boolean
+                    description: Whether the node is public or private.
+                    example: false
+                  preprint:
+                    type: boolean
+                    description: Whether this node is designated as a preprint.
+                    example: false
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: "https://api.osf.io/v2/nodes/{node_id}/settings/"
+
+      examples:
+        application/json:
+          data:
+            id: "{node_id}"
+            type: "node-settings"
+            attributes:
+              wiki_enabled: true
+              comments_enabled: true
+              public: false
+              preprint: false
+            links:
+              self: "https://api.osf.io/v2/nodes/{node_id}/settings/"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access node settings.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+patch:
+  summary: Update Node Settings
+  description: >-
+    Update settings for a specific node.  
+    You can modify properties like `wiki_enabled`, `comments_enabled`, or make the node public/private.
+
+    #### Permissions
+    - Only users with write access to the node can modify its settings.
+
+    #### Request Body
+    - The `attributes` object may include the following fields:
+      - `wiki_enabled`: Enable or disable the node's wiki.
+      - `comments_enabled`: Enable or disable comments on the node.
+      - `public`: Make the node public or private.
+
+    #### Returns
+    - A JSON object with the updated node settings under the `data` key.
+
+  tags:
+    - Nodes
+
+  operationId: node_settings_update
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+            properties:
+              id:
+                type: string
+                description: The unique identifier of the node settings object (same as node_id).
+              type:
+                type: string
+                enum:
+                  - node-settings
+              attributes:
+                type: object
+                properties:
+                  wiki_enabled:
+                    type: boolean
+                    description: Enable or disable the node's wiki.
+                  comments_enabled:
+                    type: boolean
+                    description: Enable or disable comments on the node.
+                  public:
+                    type: boolean
+                    description: Make the node public or private.
+
+        example:
+          data:
+            id: "{node_id}"
+            type: "node-settings"
+            attributes:
+              wiki_enabled: false
+              comments_enabled: false
+              public: true
+
+  responses:
+    '200':
+      description: Node settings successfully updated.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+                example: "node-settings"
+              attributes:
+                type: object
+                properties:
+                  wiki_enabled:
+                    type: boolean
+                  comments_enabled:
+                    type: boolean
+                  public:
+                    type: boolean
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: "https://api.osf.io/v2/nodes/{node_id}/settings/"
+
+      examples:
+        application/json:
+          data:
+            id: "{node_id}"
+            type: "node-settings"
+            attributes:
+              wiki_enabled: false
+              comments_enabled: false
+              public: true
+            links:
+              self: "https://api.osf.io/v2/nodes/{node_id}/settings/"
+
+    '400':
+      description: Bad Request. Invalid input was provided.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify node settings.
+    '404':
+      description: Not Found. No node matches the given ID.

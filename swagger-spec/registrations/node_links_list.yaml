@@ -1,0 +1,137 @@
+get:
+  summary: List Node Links for a Registration
+  description: >-
+    Retrieve a list of node links (linked nodes) associated with a specific registration.
+
+    Node links are references from the registration to other nodes (projects or components).  
+    They allow users to create a relationship between a registration and other nodes within OSF.
+
+    #### Permissions
+    - Public registrations expose their node links publicly.
+    - Private registrations require read access to view node links.
+
+    #### Returns
+    - A JSON object containing a `data` array with node link resources.
+
+  tags:
+    - Registration
+
+  operationId: registration_node_links_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successful retrieval of node links for the specified registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of node links.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier for the node link.
+                  example: "abcde"
+                type:
+                  type: string
+                  example: "node_links"
+                attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: The title of the linked node.
+                      example: "Linked Project"
+                relationships:
+                  type: object
+                  properties:
+                    target:
+                      type: object
+                      description: Link to the target node.
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "nodes"
+                            id:
+                              type: string
+                              example: "xyz12"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      example: "https://api.osf.io/v2/registrations/{registration_id}/node_links/{node_link_id}/"
+
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/node_links/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/node_links/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/node_links/?page=1"
+
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 1
+                description: Total number of node links.
+              per_page:
+                type: integer
+                example: 10
+                description: Number of results per page.
+
+      examples:
+        application/json:
+          data:
+            - id: "nl1abc"
+              type: "node_links"
+              attributes:
+                title: "Linked Project A"
+              relationships:
+                target:
+                  data:
+                    type: "nodes"
+                    id: "node123"
+              links:
+                self: "https://api.osf.io/v2/registrations/fghij/node_links/nl1abc/"
+          links:
+            self: "https://api.osf.io/v2/registrations/fghij/node_links/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/fghij/node_links/?page=1"
+            last: "https://api.osf.io/v2/registrations/fghij/node_links/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required to access this resource.
+    '403':
+      description: Forbidden. You do not have permission to view node links for this registration.
+    '404':
+      description: Not Found. No registration matches the given ID.

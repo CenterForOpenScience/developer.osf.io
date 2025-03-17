@@ -1,0 +1,192 @@
+get:
+  summary: List Review Actions for a Preprint
+  description: >-
+    Retrieve the list of review actions for the specified preprint.
+
+    Review actions track state transitions and comments made during the review process.
+
+    #### Permissions
+    - Requires `view_actions` permission on the preprint's provider for full visibility.
+    - Some actions (like moderator comments) may be hidden if the provider has restrictions.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_review_actions_list
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint whose review actions are being requested.
+
+  responses:
+    '200':
+      description: Successful retrieval of review actions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+                - relationships
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of this review action.
+                type:
+                  type: string
+                  example: review-actions
+                attributes:
+                  type: object
+                  required:
+                    - trigger
+                    - from_state
+                    - to_state
+                    - date_created
+                    - date_modified
+                  properties:
+                    trigger:
+                      type: string
+                      description: The action that was triggered, e.g., "accept", "reject", "withdraw".
+                    from_state:
+                      type: string
+                      description: The workflow state before this action.
+                    to_state:
+                      type: string
+                      description: The workflow state after this action.
+                    comment:
+                      type: string
+                      description: The comment added by the user performing the action.
+                    date_created:
+                      type: string
+                      format: date-time
+                      description: The date the action was created.
+                    date_modified:
+                      type: string
+                      format: date-time
+                      description: The date the action was last modified.
+                relationships:
+                  type: object
+                  properties:
+                    creator:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          required:
+                            - id
+                            - type
+                          properties:
+                            id:
+                              type: string
+                              description: The ID of the user who created the action.
+                            type:
+                              type: string
+                              example: users
+                    provider:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          required:
+                            - id
+                            - type
+                          properties:
+                            id:
+                              type: string
+                              description: The ID of the preprint provider.
+                            type:
+                              type: string
+                              example: preprint_providers
+                    target:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          required:
+                            - id
+                            - type
+                          properties:
+                            id:
+                              type: string
+                              description: The ID of the target preprint.
+                            type:
+                              type: string
+                              example: preprints
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: API link to the review action resource.
+
+          meta:
+            type: object
+            description: Pagination or additional metadata.
+
+      examples:
+        application/json:
+          data:
+            - id: "rwa1"
+              type: review-actions
+              attributes:
+                trigger: accept
+                from_state: pending
+                to_state: accepted
+                comment: "Looks good."
+                date_created: "2023-05-10T14:00:00Z"
+                date_modified: "2023-05-10T14:00:00Z"
+              relationships:
+                creator:
+                  data:
+                    id: "abc123"
+                    type: users
+                provider:
+                  data:
+                    id: "osf"
+                    type: preprint_providers
+                target:
+                  data:
+                    id: "abc12"
+                    type: preprints
+              links:
+                self: "https://api.osf.io/v2/preprints/abc12/review_actions/rwa1/"
+
+            - id: "rwa2"
+              type: review-actions
+              attributes:
+                trigger: reject
+                from_state: pending
+                to_state: rejected
+                comment: "Needs more revisions."
+                date_created: "2023-06-15T10:30:00Z"
+                date_modified: "2023-06-15T10:30:00Z"
+              relationships:
+                creator:
+                  data:
+                    id: "mod456"
+                    type: users
+                provider:
+                  data:
+                    id: "osf"
+                    type: preprint_providers
+                target:
+                  data:
+                    id: "abc12"
+                    type: preprints
+              links:
+                self: "https://api.osf.io/v2/preprints/abc12/review_actions/rwa2/"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view these review actions.
+    '404':
+      description: Not Found. No preprint matches the given ID.

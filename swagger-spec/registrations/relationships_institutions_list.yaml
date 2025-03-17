@@ -1,0 +1,77 @@
+get:
+  summary: Retrieve Institution Relationships for a Registration
+  description: >-
+    Retrieve the relationship data for the institutions affiliated with a specific registration.
+
+    This endpoint returns a resource identifier object for each institution related to the registration.  
+    To retrieve detailed information about these institutions, use the `related` link or query the `/institutions/` endpoint.
+
+    #### Permissions
+    - Public registrations will display their institutions publicly.
+    - Private registrations require appropriate permissions to view affiliated institutions.
+
+    #### Returns
+    - A JSON object with a `data` key, containing an array of `institutions` resource identifier objects (`id` and `type`).
+
+  tags:
+    - Registration
+
+  operationId: relationships_institutions_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successfully retrieved the affiliated institutions relationship data for this registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "cos"
+                  description: The unique identifier for the institution.
+                type:
+                  type: string
+                  example: "institutions"
+                  description: The type of the related resource (always `institutions` for this endpoint).
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/relationships/institutions/"
+                description: The link to this relationship view.
+              related:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/institutions/"
+                description: The link to the related institutions collection.
+
+      examples:
+        application/json:
+          data:
+            - id: "cos"
+              type: "institutions"
+            - id: "uva"
+              type: "institutions"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd1/relationships/institutions/"
+            related: "https://api.osf.io/v2/registrations/abcd1/institutions/"
+
+    '401':
+      description: Unauthorized. Authentication is required to access this resource.
+
+    '403':
+      description: Forbidden. You do not have permission to access the institutions of this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.
