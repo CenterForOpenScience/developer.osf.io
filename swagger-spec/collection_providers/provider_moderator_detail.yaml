@@ -1,0 +1,47 @@
+get:
+  operationId: collection_provider_moderators_detail
+  summary: Retrieve a Moderator for a Collection Provider
+  description: |
+    Retrieve details about a specific moderator assigned to a Collection Provider.
+
+  parameters:
+    - in: path
+      name: provider_id
+      required: true
+      schema:
+        type: string
+      description: The unique ID of the collection provider.
+
+    - in: path
+      name: moderator_id
+      required: true
+      schema:
+        type: string
+      description: The unique ID of the moderator (user ID).
+
+  tags:
+    - Collection Providers
+
+  responses:
+    '200':
+      description: Moderator details retrieved successfully.
+      content:
+        application/vnd.api+json:
+          example:
+            data:
+              id: "abc123"
+              type: "users"
+              attributes:
+                full_name: "Moderator One"
+                permission_group: "moderator"
+
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this moderator.
+    '404':
+      description: Moderator or collection provider not found.
+
+  security:
+    - CookieAuth: []
+

@@ -1,0 +1,30 @@
+get:
+  summary: List Provider Taxonomies
+  description: |
+    Retrieves a list of all taxonomies associated with the provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+    - name: filter[parent]
+      in: query
+      required: false
+      type: string
+      description: Filter by parent taxonomy ID ('null' for top-level).
+  responses:
+    '200':
+      description: Taxonomies retrieved successfully.
+      examples:
+        application/vnd.api+json:
+          data:
+            - id: "23456"
+              type: "taxonomies"
+              attributes:
+                text: "Life Sciences"
+            - id: "34567"
+              type: "taxonomies"
+              attributes:
+                text: "Social Sciences"

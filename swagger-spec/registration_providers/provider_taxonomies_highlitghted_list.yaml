@@ -1,0 +1,25 @@
+get:
+  summary: List Highlighted Taxonomies
+  description: |
+    Retrieves highlighted taxonomies associated with the provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Highlighted taxonomies retrieved successfully.
+      examples:
+        application/vnd.api+json:
+          data:
+            - id: "12345"
+              type: "taxonomies"
+              attributes:
+                text: "Psychology"
+            - id: "67890"
+              type: "taxonomies"
+              attributes:
+                text: "Sociology"

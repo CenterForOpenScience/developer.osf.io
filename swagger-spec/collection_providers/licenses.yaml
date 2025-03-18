@@ -20,7 +20,7 @@ get:
     - in: path
       type: string
       required: true
-      name: collection_id
+      name: provider_id
       description: 'A short id for that collection'
   tags:
     - Collection Providers

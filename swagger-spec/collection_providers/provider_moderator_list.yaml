@@ -1,0 +1,46 @@
+
+get:
+  operationId: collection_provider_moderators_list
+  summary: List Moderators for a Collection Provider
+  description: |
+    Retrieve a list of moderators assigned to a specific Collection Provider.
+    Moderators can review and manage submissions under the provider.
+
+  parameters:
+    - in: path
+      name: provider_id
+      required: true
+      schema:
+        type: string
+      description: The unique ID of the collection provider.
+
+  tags:
+    - Collection Providers
+
+  responses:
+    '200':
+      description: A list of moderators for the specified collection provider.
+      content:
+        application/vnd.api+json:
+          example:
+            data:
+              - id: "abc123"
+                type: "users"
+                attributes:
+                  full_name: "Moderator One"
+                  permission_group: "moderator"
+              - id: "def456"
+                type: "users"
+                attributes:
+                  full_name: "Admin User"
+                  permission_group: "admin"
+
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view moderators for this provider.
+    '404':
+      description: Collection provider not found.
+
+  security:
+    - CookieAuth: []

@@ -234,4 +234,4 @@ example:
       provider:
         data:
           type: providers
-          id: '{preprint_provider_id}'
+          id: '{provider_id}'

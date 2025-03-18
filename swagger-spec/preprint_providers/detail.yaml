@@ -66,7 +66,7 @@ get:
     - in: path
       type: string
       required: true
-      name: preprint_provider_id
+      name: provider_id
       description: 'The unique identifier of the preprint provider.'
   tags:
     - Preprint Providers

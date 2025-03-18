@@ -1,0 +1,122 @@
+# /registrations/{provider_id}/actions/
+
+get:
+  summary: List Registration Actions
+  description: >-
+    Retrieve a list of actions associated with a specific registration.
+
+    Registration Actions represent moderator decisions or contributor responses related to the registration workflow.
+    These actions log the decision history for registrations requiring moderation or contributor approval.
+
+    #### Permissions
+    - Public registrations: No authentication required.
+    - Private registrations: Only contributors with read access may view registration actions.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of registration action resources.
+    - Registration actions describe the decision history, who performed the action, when, and the resulting state of the registration.
+
+  tags:
+    - Registration Providers
+
+  operationId: registration_actions_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to return (for pagination).
+
+    - in: query
+      name: per_page
+      type: integer
+      required: false
+      description: Number of results per page. Defaults to 10.
+
+  responses:
+    '200':
+      description: Successful retrieval of registration actions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: './definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if available).
+              prev:
+                type: string
+                description: Link to the previous page of results (if available).
+          meta:
+            type: object
+            description: Meta information about the response, such as total count.
+      examples:
+        application/json:
+          data:
+            - id: "ract1"
+              type: "registration_action"
+              attributes:
+                trigger: "submit"
+                comment: "Initial submission"
+                from_state: "draft"
+                to_state: "unapproved"
+                date_created: "2024-05-01T12:00:00Z"
+              relationships:
+                creator:
+                  data:
+                    type: "users"
+                    id: "user123"
+                target:
+                  data:
+                    type: "registrations"
+                    id: "reg1"
+              links:
+                self: "https://api.test.osf.io/v2/registrations/reg1/actions/ract1/"
+            - id: "ract2"
+              type: "registration_action"
+              attributes:
+                trigger: "accept"
+                comment: "Moderator approved"
+                from_state: "pending_moderation"
+                to_state: "approved"
+                date_created: "2024-05-03T14:45:00Z"
+              relationships:
+                creator:
+                  data:
+                    type: "users"
+                    id: "moderator1"
+                target:
+                  data:
+                    type: "registrations"
+                    id: "reg1"
+              links:
+                self: "https://api.test.osf.io/v2/registrations/reg1/actions/ract2/"
+          links:
+            self: "https://api.test.osf.io/v2/registrations/reg1/actions/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access these registration actions.
+    '404':
+      description: Not Found. No registration matches the given ID.

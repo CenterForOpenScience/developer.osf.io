@@ -1,0 +1,132 @@
+# /schemas/registrations/
+get:
+  summary: List Registration Schemas
+  description: >-
+    Retrieve a list of all available Registration Schemas.
+
+    Registration Schemas define the structure and content of registration forms. Each schema outlines the fields that users must complete when registering an OSF project. Schemas may include required and optional questions, supporting different types of research workflows and data collections.
+
+    Registration Schemas are maintained by the Center for Open Science and approved affiliated institutions. Some schemas are globally available, while others may be specific to certain providers.
+
+    #### Permissions
+    - Public endpoint. No authentication required.
+    - All registration schemas are available to any user.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of registration schemas.
+    - Each schema includes metadata such as name, description, and schema versioning information.
+
+  tags:
+    - Registration Providers
+
+  operationId: registrations_schema_list
+
+  parameters:
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to return (pagination).
+
+    - in: query
+      name: per_page
+      type: integer
+      required: false
+      description: Number of results per page (default 10, maximum 100).
+
+    - in: query
+      name: filter[name]
+      type: string
+      required: false
+      description: Filter registration schemas by their name.
+
+    - in: query
+      name: filter[active]
+      type: boolean
+      required: false
+      description: Filter registration schemas by their active status (`true` or `false`).
+
+  responses:
+    '200':
+      description: Successful retrieval of registration schemas.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: './definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+              next:
+                type: string
+                description: URL to the next page of results (if applicable).
+              prev:
+                type: string
+                description: URL to the previous page of results (if applicable).
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                description: Total number of registration schemas available.
+              per_page:
+                type: integer
+                description: Number of schemas returned per page.
+              version:
+                type: string
+                description: API version.
+
+      examples:
+        application/json:
+          data:
+            - id: "prereg-challenge"
+              type: "registration_schemas"
+              attributes:
+                name: "Prereg Challenge"
+                description: "A schema supporting pre-registration of research plans for the Preregistration Challenge."
+                schema_version: 1
+                active: true
+                schema:
+                  - id: "q1"
+                    type: "object"
+                    title: "Research Questions"
+                    properties:
+                      text: "What is the main research question or hypothesis?"
+                date_created: "2017-06-01T00:00:00Z"
+                date_modified: "2023-10-01T00:00:00Z"
+              links:
+                self: "https://api.test.osf.io/v2/schemas/registrations/prereg-challenge/"
+            - id: "osf-registration"
+              type: "registration_schemas"
+              attributes:
+                name: "OSF-Standard Registration"
+                description: "The default OSF registration schema for general use."
+                schema_version: 2
+                active: true
+                schema:
+                  - id: "q1"
+                    type: "object"
+                    title: "Purpose of Registration"
+                    properties:
+                      text: "What is the purpose of this registration?"
+                date_created: "2015-01-01T00:00:00Z"
+                date_modified: "2024-01-01T00:00:00Z"
+              links:
+                self: "https://api.test.osf.io/v2/schemas/registrations/osf-registration/"
+          links:
+            self: "https://api.test.osf.io/v2/schemas/registrations/"
+            next: "https://api.test.osf.io/v2/schemas/registrations/?page=2"
+            prev: null
+          meta:
+            total: 25
+            per_page: 10
+            version: "2.0"
+
+    '400':
+      description: Bad Request. Invalid input provided.
+    '404':
+      description: Not Found. No registration schemas match the given parameters.

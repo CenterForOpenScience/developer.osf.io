@@ -1,0 +1,104 @@
+# /provider/preprints/{provider_id}/subjects/
+
+get:
+  summary: List Available Subjects for a Preprint Provider
+  description: >-
+    Retrieve a list of all available subjects associated with a specific Preprint provider.
+
+    These subjects can be used to categorize submissions within the provider's Preprint.  
+    Subjects are often organized in a hierarchical taxonomy.
+
+    #### Permissions
+    - Publicly accessible. No authentication is required.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of subject resources.
+    - Each subject includes its name, parent-child relationships, and additional metadata.
+
+  tags:
+    - Preprint Providers
+
+  operationId: provider_subjects_list
+
+  parameters:
+    - in: path
+      name: collection_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+  responses:
+    '200':
+      description: Successful retrieval of the subjects list.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'subject_definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results, if available.
+              prev:
+                type: string
+                description: Link to the previous page of results, if available.
+          meta:
+            type: object
+            description: Meta information about the response, including pagination info.
+      examples:
+        application/json:
+          data:
+            - id: "subject_1"
+              type: "subjects"
+              attributes:
+                text: "Psychology"
+                parents:
+                  - id: "subject_root"
+                    text: "Social Sciences"
+                has_children: true
+                highlight: false
+              relationships:
+                children:
+                  links:
+                    related:
+                      href: "https://api.test.osf.io/v2/taxonomies/subject_1/children/"
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/subject_1/"
+            - id: "subject_3"
+              type: "subjects"
+              attributes:
+                text: "Anthropology"
+                parents:
+                  - id: "subject_root"
+                    text: "Social Sciences"
+                has_children: false
+                highlight: false
+              relationships:
+                children:
+                  links:
+                    related:
+                      href: "https://api.test.osf.io/v2/taxonomies/subject_3/children/"
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/subject_3/"
+          links:
+            self: "https://api.test.osf.io/v2/provider/preprints/{provider_id}/subjects/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            per_page: 10
+            page: 1
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access this resource.
+    '404':
+      description: Not Found. No Preprint provider matches the given ID.

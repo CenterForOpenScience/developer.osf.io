@@ -1,0 +1,138 @@
+# /registrations/{provider_id}/submissions/
+get:
+  summary: List Submissions for a Registration
+  description: >-
+    Retrieve a list of submissions associated with a specific registration.  
+    A submission represents an attempt to add a registration to a collection, typically requiring moderation or approval.
+
+    #### Permissions
+    - Only authenticated users with access to the registration can view submission data.
+    - Access to submission details may depend on the moderation settings of the related collections.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of submission objects.
+    - Each submission reflects its current moderation status and relevant metadata.
+
+  tags:
+    - Registrations
+    - Collection Submissions
+
+  operationId: registrations_submissions_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: filter[state]
+      type: string
+      required: false
+      description: |
+        Filter submissions by their state.
+        Available values:
+        - `in_progress`
+        - `pending`
+        - `accepted`
+        - `rejected`
+        - `removed`
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to return (pagination).
+
+    - in: query
+      name: per_page
+      type: integer
+      required: false
+      description: Number of results per page (default 10, maximum 100).
+
+  responses:
+    '200':
+      description: Successful retrieval of the list of submissions for the registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../collection_submissions/definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+              next:
+                type: string
+                description: Link to the next page of results, if applicable.
+              prev:
+                type: string
+                description: Link to the previous page of results, if applicable.
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                description: Total number of submissions.
+              per_page:
+                type: integer
+                description: Number of submissions per page.
+              version:
+                type: string
+                description: API version.
+
+      examples:
+        application/json:
+          data:
+            - id: "sub1"
+              type: "collection-submissions"
+              attributes:
+                state: "pending"
+                date_submitted: "2024-12-01T12:00:00Z"
+              relationships:
+                collection:
+                  data:
+                    type: "collections"
+                    id: "col123"
+                creator:
+                  data:
+                    type: "users"
+                    id: "user456"
+              links:
+                self: "https://api.test.osf.io/v2/collection_submissions/sub1/"
+            - id: "sub2"
+              type: "collection-submissions"
+              attributes:
+                state: "accepted"
+                date_submitted: "2024-10-15T10:00:00Z"
+              relationships:
+                collection:
+                  data:
+                    type: "collections"
+                    id: "col456"
+                creator:
+                  data:
+                    type: "users"
+                    id: "user456"
+              links:
+                self: "https://api.test.osf.io/v2/collection_submissions/sub2/"
+          links:
+            self: "https://api.test.osf.io/v2/registrations/abcd1/submissions/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            per_page: 10
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required to access these submissions.
+    '403':
+      description: Forbidden. You do not have permission to view these submissions.
+    '404':
+      description: Not Found. No registration matches the given ID.
+
