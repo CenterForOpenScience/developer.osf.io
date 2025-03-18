@@ -1488,5 +1488,5 @@ paths:
   /registration_subscriptions/{subscription_id}/:
     $ref: 'subscriptions/registration_subscription_detail.yaml'
 
-  /oollection_subscriptions/{subscription_id}/:
+  /collection_subscriptions/{subscription_id}/:
     $ref: 'subscriptions/collection_subscription_detail.yaml'
