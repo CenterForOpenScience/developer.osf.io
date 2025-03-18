@@ -1,0 +1,110 @@
+get:
+  summary: List Registered Applications
+  description: >-
+    Retrieves a list of OAuth2 applications registered by the authenticated user.
+
+    Applications allow external services to authenticate via OAuth2.
+
+    #### Returns
+
+    A JSON object containing an array of registered OAuth2 applications under the `data` key.
+
+  tags:
+    - Applications
+  operationId: application_list
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: Successfully retrieved list of applications.
+      examples:
+        application/json:
+          data:
+            - id: "abc123"
+              type: "applications"
+              attributes:
+                name: "My App"
+                description: "A sample application"
+                home_url: "https://example.com"
+                callback_url: "https://example.com/callback"
+                owner: "user123"
+                date_created: "2024-03-14T10:00:00Z"
+              links:
+                html: "https://osf.io/settings/applications/abc123/"
+                reset: "https://api.osf.io/v2/applications/abc123/reset/"
+          meta:
+            total: 1
+            per_page: 10
+          links:
+            self: "https://api.osf.io/v2/applications/"
+
+post:
+  summary: Create a New Application
+  description: >-
+    Registers a new OAuth2 application.
+
+    The authenticated user becomes the owner of the application.
+
+  tags:
+    - Applications
+  operationId: application_create
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: body
+      name: body
+      required: true
+      description: JSON:API payload representing the new OAuth2 Application.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+            properties:
+              type:
+                type: string
+                example: applications
+              attributes:
+                type: object
+                required:
+                  - name
+                  - home_url
+                  - callback_url
+                properties:
+                  name:
+                    type: string
+                    example: "My App"
+                  description:
+                    type: string
+                    example: "An optional description"
+                  home_url:
+                    type: string
+                    example: "https://example.com"
+                  callback_url:
+                    type: string
+                    example: "https://example.com/oauth/callback"
+  responses:
+    '201':
+      description: OAuth2 Application successfully created.
+      examples:
+        application/json:
+          data:
+            id: "abc123"
+            type: applications
+            attributes:
+              name: "My App"
+              description: "An optional description"
+              home_url: "https://example.com"
+              callback_url: "https://example.com/oauth/callback"
+              client_id: "client_abc123"
+              client_secret: "secret_123"
+              owner: "user123"
+              date_created: "2024-03-14T10:00:00Z"
+            links:
+              html: "https://osf.io/settings/applications/client_abc123/"
+              reset: "https://api.osf.io/v2/applications/client_abc123/reset/"

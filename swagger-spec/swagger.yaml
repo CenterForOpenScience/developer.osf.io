@@ -34,6 +34,7 @@ x-tagGroups:
   - name: API Reference
     tags:
       - Addons
+      - Applications
       - Base
       - Citations
       - Comments
@@ -54,7 +55,10 @@ x-tagGroups:
       - Preprint Providers
       - Draft Registrations
       - Registrations
+      - Regions
+      - OAuth Scopes
       - Taxonomies
+      - Tokens
       - Users
       - View Only Links
 tags:
@@ -854,8 +858,43 @@ tags:
       adheres to the standards set for collection submissions. It aids in providing transparency and order to the
       process of managing collections and ensures that moderators and admins have the tools and information they
       need to effectively manage collection submissions.
-
-
+  - name: Regions
+    description: >-
+      Storage Regions are predefined geographical or cloud-storage areas where files are stored within OSF Storage.
+  
+      Each region provides isolation of data in compliance with geographic or regulatory requirements. Users can specify their preferred region for storing project files when using OSF Storage.
+  
+      **Attributes include:**
+  
+        - `id`: Unique identifier of the region (e.g., `us-east-1`).
+        - `name`: Human-readable name for the region (e.g., `US East`).
+  
+      **Endpoints include:**
+        - **List Regions:** Retrieve all available storage regions.
+        - **Region Detail:** Retrieve details about a specific storage region.
+  - name: Tokens
+    description: >-
+      **Personal Access Tokens** allow users to authenticate API requests without credentials.
+  
+      Tokens support fine-grained permissions (scopes) to control API access levels.  
+  - name: Applications
+    description: >-
+      **OAuth2 Applications** allow external services to securely authenticate and interact with OSF resources via OAuth2.
+  
+      Registered applications manage OAuth2 flows, client credentials, and access tokens.
+  
+      Operations include:
+        - Creating new OAuth2 applications
+        - Viewing and updating application details
+        - Deactivating or deleting applications
+        - Resetting client secrets (deprecated after v2.14)
+  - name: OAuth Scopes
+    description: >-
+      OAuth scopes define specific permissions for OAuth applications and personal access tokens.
+  
+      Each scope indicates the permission level granted to perform actions via the OSF API, such as reading node data (`osf.nodes.read`) or modifying node data (`osf.nodes.write`).
+  
+      Scopes can be queried and managed through these endpoints to understand and control access levels associated with applications and tokens.
 
 paths:
 
@@ -1376,3 +1415,49 @@ paths:
 
   /provider/collections/{collection_id}/moderators/{moderator_id}/:
     $ref: 'collection_provider/moderators_detail.yaml'
+
+  #######################################
+  #               REGIONS              #
+  #######################################
+
+  /regions/:
+    $ref: 'region/region_list.yaml'
+
+  /regions/{region_id}/:
+    $ref: 'region/region_detail.yaml'
+
+  ############################
+  #         TOKENS           #
+  ############################
+
+  /tokens/:
+    $ref: 'tokens/token_list.yaml'
+
+  /tokens/{_id}/:
+    $ref: 'tokens/token_detail.yaml'
+
+  /tokens/{_id}/scopes/:
+    $ref: 'tokens/token_scopes_list.yaml'
+
+  #######################################
+  #            APPLICATIONS             #
+  #######################################
+
+  /applications/:
+    $ref: 'applications/application_list.yaml'
+
+  /applications/{client_id}/:
+    $ref: 'applications/application_detail.yaml'
+
+  /applications/{client_id}/reset/:
+    $ref: 'applications/application_reset.yaml'
+
+#######################################
+#              OAUTH SCOPES           #
+#######################################
+
+  /scopes/:
+    $ref: 'scopes/scope_list.yaml'
+
+  /scopes/{scope_id}/:
+    $ref: 'scopes/scope_detail.yaml'
