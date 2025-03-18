@@ -1,0 +1,114 @@
+get:
+  summary: Retrieve affiliated institutions for a draft registration
+  description: Get all institutions affiliated with the draft registration.
+  tags:
+    - Draft Registrations
+    - Institutions
+  operationId: draft_registration_institutions_relationship_retrieve
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+      description: Draft registration ID.
+  responses:
+    '200':
+      description: Institutions retrieved successfully.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required: [type, id]
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                id:
+                  type: string
+        example:
+          data:
+            - type: institutions
+              id: inst123
+            - type: institutions
+              id: inst456
+    '403':
+      description: Forbidden.
+    '404':
+      description: Draft registration not found.
+
+post:
+  summary: Add affiliated institutions to a draft registration
+  description: Add institutions to the draft registration.
+  tags:
+    - Draft Registrations
+    - Institutions
+  operationId: draft_registration_institutions_relationship_add
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required: [type, id]
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                id:
+                  type: string
+  responses:
+    '204':
+      description: Institutions added successfully.
+    '400':
+      description: User is not affiliated with the institution.
+    '403':
+      description: Forbidden.
+    '404':
+      description: Draft registration not found.
+
+delete:
+  summary: Remove affiliated institutions from a draft registration
+  description: Remove institutions from the draft registration.
+  tags:
+    - Draft Registrations
+    - Institutions
+  operationId: draft_registration_institutions_relationship_delete
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required: [type, id]
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                id:
+                  type: string
+  responses:
+    '204':
+      description: Institutions removed successfully.
+    '403':
+      description: Forbidden.
+    '404':
+      description: Draft registration not found.

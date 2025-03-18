@@ -1,0 +1,87 @@
+  get:
+    summary: Retrieve a single taxonomy subject
+    description: |
+      Retrieve detailed information about a specific taxonomy subject by its ID.
+
+      ### Permissions
+      - Publicly accessible (no authentication required).
+
+    operationId: retrieveSubject
+    tags:
+      - Subjects
+    parameters:
+      - name: subject_id
+        in: path
+        description: The unique identifier of the subject.
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successfully retrieved the subject.
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+                - relationships
+              properties:
+                id:
+                  type: string
+                  example: "abc123"
+                type:
+                  type: string
+                  example: "subjects"
+                attributes:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      example: "Climate Change"
+                    taxonomy_name:
+                      type: string
+                      example: "OSF"
+                relationships:
+                  type: object
+                  properties:
+                    parent:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "parent123"
+                            type:
+                              type: string
+                              example: "subjects"
+                    children:
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: "child123"
+                              type:
+                                type: string
+                                example: "subjects"
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  example: "https://api.osf.io/v2/subjects/abc123/"
+      '404':
+        description: Subject not found.
+    security:
+      - osf_cookie: []
+    produces:
+      - application/vnd.api+json

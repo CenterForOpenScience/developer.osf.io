@@ -1,0 +1,101 @@
+get:
+  summary: List child subjects for a given subject
+  description: |
+    Retrieve all immediate child subjects for the given taxonomy subject.
+    Subjects are categorized hierarchically.
+  operationId: listSubjectChildren
+  tags:
+    - Subjects
+  parameters:
+    - name: subject_id
+      in: path
+      description: The unique identifier of the parent subject.
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Successful retrieval of child subjects.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+              properties:
+                id:
+                  type: string
+                  example: "child123"
+                type:
+                  type: string
+                  example: "subjects"
+                attributes:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      example: "Sub-discipline Example"
+                    taxonomy_name:
+                      type: string
+                      example: "OSF"
+                relationships:
+                  type: object
+                  properties:
+                    parent:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          required:
+                            - id
+                            - type
+                          properties:
+                            id:
+                              type: string
+                              example: "abc123"
+                            type:
+                              type: string
+                              example: "subjects"
+                    children:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              example: "https://api.osf.io/v2/subjects/child123/children/"
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/subjects/{subject_id}/children/"
+              next:
+                type: string
+                example: "https://api.osf.io/v2/subjects/{subject_id}/children/?page=2"
+              prev:
+                type: string
+                example: "https://api.osf.io/v2/subjects/{subject_id}/children/?page=1"
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 20
+              per_page:
+                type: integer
+                example: 10
+              page:
+                type: integer
+                example: 1
+    '404':
+      description: Parent subject not found.
+  security:
+    - osf_cookie: []
+  produces:
+    - application/vnd.api+json

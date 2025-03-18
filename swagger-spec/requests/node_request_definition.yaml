@@ -1,0 +1,91 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+properties:
+  id:
+    type: string
+    description: The unique identifier for the node request.
+    example: "rqst12345"
+  type:
+    type: string
+    example: "node-requests"
+  attributes:
+    type: object
+    properties:
+      request_type:
+        type: string
+        description: >
+          The type of request, such as 'access' or 'institutional_request'.
+        enum:
+          - access
+          - institutional_request
+        example: "access"
+      machine_state:
+        type: string
+        description: >
+          The current state of the request in its workflow.
+        enum:
+          - initial
+          - pending
+          - accepted
+          - rejected
+        example: "pending"
+      comment:
+        type: string
+        description: >
+          Optional comment provided by the request creator.
+        example: "Requesting read access to this project."
+      requested_permissions:
+        type: string
+        description: >
+          Permissions level being requested. Only applies to access and institutional requests.
+        enum:
+          - read
+          - write
+          - admin
+        example: "read"
+      date_created:
+        type: string
+        format: date-time
+        description: Date and time the request was created.
+      date_modified:
+        type: string
+        format: date-time
+        description: Date and time the request was last modified.
+      date_last_transitioned:
+        type: string
+        format: date-time
+        description: >
+          The date and time when the request last changed its machine state.
+  relationships:
+    type: object
+    properties:
+      creator:
+        type: object
+        description: The user who created the request.
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "user123"
+              type:
+                type: string
+                example: "users"
+      target:
+        type: object
+        description: The node that this request is targeting.
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "abcde"
+              type:
+                type: string
+                example: "nodes"

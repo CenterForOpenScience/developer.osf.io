@@ -1,0 +1,63 @@
+get:
+  summary: Retrieve custom file metadata for a file
+  description: >
+    Retrieve a custom file metadata record associated with a specific file by its GUID.
+    Custom file metadata includes fields such as title, description, language, and funding information.
+  operationId: getCustomFileMetadataRecord
+  tags:
+    - Custom Metadata
+  parameters:
+    - name: guid_id
+      in: path
+      description: The unique identifier (GUID) of the file.
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Successfully retrieved custom file metadata record.
+      schema:
+        $ref: './schemas/custom_file_metadata_record.yaml'
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to access this metadata record.
+    '404':
+      description: Metadata record not found.
+  security:
+    - osf_cookie: []
+
+patch:
+  summary: Update custom file metadata for a file
+  description: >
+    Update an existing custom file metadata record. Editable fields include title, description,
+    language, resource type, and funding information.
+  operationId: updateCustomFileMetadataRecord
+  tags:
+    - Custom Metadata
+  parameters:
+    - name: guid_id
+      in: path
+      description: The unique identifier (GUID) of the file.
+      required: true
+      type: string
+    - name: body
+      in: body
+      description: Custom file metadata record object.
+      required: true
+      schema:
+        $ref: 'definition_file.yaml'
+  responses:
+    '200':
+      description: Successfully updated custom file metadata record.
+      schema:
+        $ref: 'definition_file.yaml'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to modify this metadata record.
+    '404':
+      description: Metadata record not found.
+  security:
+    - osf_cookie: []

@@ -1,0 +1,65 @@
+type: object
+required:
+  - data
+properties:
+  data:
+    type: object
+    required:
+      - type
+      - attributes
+    properties:
+      type:
+        type: string
+        description: The resource type.
+        example: "custom-file-metadata-records"
+      attributes:
+        type: object
+        properties:
+          title:
+            type: string
+            description: The title of the file.
+            example: "My Dataset File"
+          description:
+            type: string
+            description: A description of the file.
+            example: "This file contains raw data collected from fieldwork."
+          language:
+            type: string
+            description: The language of the content.
+            example: "en"
+          resource_type_general:
+            type: string
+            description: The general type of the resource.
+            example: "Dataset"
+          funders:
+            type: array
+            description: Information about funding sources.
+            items:
+              type: object
+              required:
+                - funder_name
+              properties:
+                funder_name:
+                  type: string
+                  example: "National Science Foundation"
+                funder_identifier:
+                  type: string
+                  example: "123456"
+                funder_identifier_type:
+                  type: string
+                  enum:
+                    - ISNI
+                    - GRID
+                    - Crossref Funder ID
+                    - ROR
+                    - Other
+                  example: "ROR"
+                award_number:
+                  type: string
+                  example: "NSF-1234"
+                award_uri:
+                  type: string
+                  example: "https://nsf.gov/awardsearch/showAward?AWD_ID=1234"
+                award_title:
+                  type: string
+                  example: "Climate Change Research Grant"

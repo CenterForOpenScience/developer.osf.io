@@ -1,0 +1,111 @@
+get:
+  summary: Retrieve a resource
+  description: |
+    Retrieve details for a specific resource.
+  tags:
+    - Resources
+  operationId: getResource
+  parameters:
+    - name: resource_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the resource.
+  responses:
+    '200':
+      description: Successful retrieval of resource
+      schema:
+        $ref: 'definition.yaml'
+    '404':
+      description: Resource not found.
+    '401':
+      description: Authentication required.
+    '403':
+      description: Permission denied.
+
+patch:
+  summary: Update a resource
+  description: |
+    Update details for a specific resource.
+  tags:
+    - Resources
+  operationId: updateResource
+  parameters:
+    - name: resource_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the resource.
+    - name: body
+      in: body
+      description: Resource object to update
+      required: true
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+            properties:
+              id:
+                type: string
+                example: "abc123"
+              type:
+                type: string
+                example: "resources"
+              attributes:
+                type: object
+                properties:
+                  description:
+                    type: string
+                    example: "Updated resource description"
+                  resource_type:
+                    type: string
+                    example: "materials"
+                  finalized:
+                    type: boolean
+                    example: true
+                  pid:
+                    type: string
+                    example: "10.5678/resource.9012"
+  responses:
+    '200':
+      description: Successfully updated the resource
+      schema:
+        $ref: 'definition.yaml'
+    '400':
+      description: Validation error or invalid data.
+    '404':
+      description: Resource not found.
+    '401':
+      description: Authentication required.
+    '403':
+      description: Permission denied.
+
+delete:
+  summary: Delete a resource
+  description: |
+    Delete a specific resource.
+  tags:
+    - Resources
+  operationId: deleteResource
+  parameters:
+    - name: resource_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the resource.
+  responses:
+    '204':
+      description: Successfully deleted the resource
+    '404':
+      description: Resource not found.
+    '401':
+      description: Authentication required.
+    '403':
+      description: Permission denied.

@@ -1,0 +1,57 @@
+get:
+  summary: Retrieve details for a specific wiki version
+  description: |
+    Retrieve metadata and basic details about a specific version of a wiki page.
+
+    Wiki versions store the history of content changes and are immutable snapshots of the wiki page content at that version.
+
+    ### Permissions
+    - Public nodes: Anyone can view wiki versions.
+    - Private nodes: Only contributors can view wiki versions.
+    - Withdrawn registrations: Wiki versions are not accessible.
+
+  tags:
+    - Wikis
+  operationId: retrieve_wiki_version
+  parameters:
+    - name: wiki_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier for the wiki page.
+    - name: version_id
+      in: path
+      required: true
+      type: string
+      description: The version identifier for the specific wiki version.
+  responses:
+    '200':
+      description: Successfully retrieved the wiki version.
+      schema:
+        $ref: './definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "4"
+            type: "wiki-versions"
+            attributes:
+              date_created: "2024-03-10T12:00:00Z"
+              size: 1024
+              content_type: "text/markdown"
+            relationships:
+              wiki_page:
+                data:
+                  id: "abc12"
+                  type: "wikis"
+              user:
+                data:
+                  id: "user456"
+                  type: "users"
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this wiki version.
+    '404':
+      description: Wiki version not found.
+  security:
+    - osf_cookie: []

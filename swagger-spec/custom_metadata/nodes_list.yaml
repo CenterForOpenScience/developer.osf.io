@@ -1,0 +1,62 @@
+ get:
+    summary: Retrieve custom item metadata for a node or preprint
+    description: >
+      Retrieve a custom item metadata record associated with a node or preprint by its GUID.
+      Custom item metadata includes fields like language, resource type, and funding information.
+    operationId: getCustomItemMetadataRecord
+    tags:
+      - Custom Metadata
+    parameters:
+      - name: guid_id
+        in: path
+        description: The unique identifier (GUID) of the node or preprint.
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successfully retrieved custom item metadata record.
+        schema:
+          $ref: 'definition_nodes.yaml'
+      '401':
+        description: Authentication credentials were not provided or are invalid.
+      '403':
+        description: You do not have permission to access this metadata record.
+      '404':
+        description: Metadata record not found.
+    security:
+      - osf_cookie: []
+patch:
+  summary: Update custom item metadata for a node or preprint
+  description: >
+    Update an existing custom item metadata record for a node or preprint. Editable fields
+    include language, resource type, and funding information.
+  operationId: updateCustomItemMetadataRecord
+  tags:
+    - Custom Metadata
+  parameters:
+    - name: guid_id
+      in: path
+      description: The unique identifier (GUID) of the node or preprint.
+      required: true
+      type: string
+    - name: body
+      in: body
+      description: Custom item metadata record object.
+      required: true
+      schema:
+        $ref: 'definition_nodes.yaml'
+  responses:
+    '200':
+      description: Successfully updated custom item metadata record.
+      schema:
+        $ref: 'definition_nodes.yaml'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to modify this metadata record.
+    '404':
+      description: Metadata record not found.
+  security:
+    - osf_cookie: []

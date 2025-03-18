@@ -1,0 +1,118 @@
+get:
+  summary: Retrieve a GUID resource or redirect to its referent resource
+  description: |
+    Retrieve a GUID object or be redirected to the most appropriate resource.
+
+    By default, this endpoint will redirect (`302 Found`) to the resource URL associated with the GUID.
+    If `?resolve=false` is passed as a query parameter, the request returns the GUID resource itself instead of redirecting.
+
+    This endpoint is helpful for resolving GUIDs that may refer to various OSF objects, including:
+     - Nodes
+     - Registrations
+     - Files
+     - Collections
+     - Preprints
+     - Users
+
+    ### Redirect Behavior
+     - If the GUID is valid and points to a resource with an API endpoint, you will be redirected to that resource.
+     - If the GUID is valid but refers to an object with no endpoint (e.g., a wiki page), you will get a `501 Not Implemented`.
+     - If the GUID does not exist or has been deleted, a `404 Not Found` or `410 Gone` response is returned.
+
+    ### JSON Response Behavior
+    If `resolve=false` is provided as a query parameter, a `200 OK` response returns the GUID resource and relationships to its referent and custom metadata records.
+
+    ### Permissions
+     - Public GUIDs are available to unauthenticated users.
+     - Private GUIDs require appropriate read permissions.
+
+  operationId: retrieveGuid
+  tags:
+    - GUIDs
+  parameters:
+    - name: guid_id
+      in: path
+      required: true
+      type: string
+      description: |
+        The unique identifier for the GUID.
+        This can refer to nodes, registrations, files, collections, preprints, or users.
+    - name: resolve
+      in: query
+      required: false
+      type: boolean
+      description: |
+        If true (default), redirects to the referent resource.
+        If false, returns a representation of the GUID resource itself.
+  responses:
+    '200':
+      description: Successfully retrieved the GUID resource.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+              - relationships
+              - links
+            properties:
+              id:
+                type: string
+                example: abc123
+              type:
+                type: string
+                example: guids
+              attributes:
+                type: object
+                properties: {}
+              relationships:
+                type: object
+                properties:
+                  referent:
+                    type: object
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: https://api.osf.io/v2/nodes/abc123/
+                      meta:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: nodes
+                  custom_metadata:
+                    type: object
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: https://api.osf.io/v2/custom_file_metadata_records/abc123/
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: https://api.osf.io/v2/guids/abc123/
+                  html:
+                    type: string
+                    example: https://osf.io/abc123/
+    '302':
+      description: Redirect to the referent resource.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this GUID.
+    '404':
+      description: The GUID does not exist.
+    '410':
+      description: The GUID once existed but has since been deleted.
+  produces:
+    - application/vnd.api+json

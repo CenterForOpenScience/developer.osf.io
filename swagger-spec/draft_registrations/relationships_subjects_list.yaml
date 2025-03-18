@@ -1,0 +1,113 @@
+
+get:
+  summary: Retrieve subjects relationship for a draft registration
+  description: Get the subjects associated with a draft registration.
+  tags:
+    - Draft Registrations
+    - Subjects
+  operationId: draft_registration_subjects_relationship_retrieve
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the draft registration.
+  responses:
+    '200':
+      description: Subjects retrieved successfully.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: subjects
+                id:
+                  type: string
+                  description: Subject ID
+        example:
+          data:
+            - type: subjects
+              id: abc123
+            - type: subjects
+              id: def456
+    '403':
+      description: Forbidden. You don't have permission to view these subjects.
+    '404':
+      description: Draft registration not found.
+
+post:
+  summary: Add subjects to a draft registration
+  description: Add subjects by ID to the draft registration.
+  tags:
+    - Draft Registrations
+    - Subjects
+  operationId: draft_registration_subjects_relationship_add
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required: [type, id]
+              properties:
+                type:
+                  type: string
+                  example: subjects
+                id:
+                  type: string
+  responses:
+    '204':
+      description: Subjects added successfully.
+    '403':
+      description: Forbidden. You don't have permission to modify subjects.
+    '404':
+      description: Draft registration not found.
+
+delete:
+  summary: Remove subjects from a draft registration
+  description: Remove subjects from the draft registration by ID.
+  tags:
+    - Draft Registrations
+    - Subjects
+  operationId: draft_registration_subjects_relationship_delete
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required: [type, id]
+              properties:
+                type:
+                  type: string
+                  example: subjects
+                id:
+                  type: string
+  responses:
+    '204':
+      description: Subjects removed successfully.
+    '403':
+      description: Forbidden. You don't have permission to modify subjects.
+    '404':
+      description: Draft registration not found.
