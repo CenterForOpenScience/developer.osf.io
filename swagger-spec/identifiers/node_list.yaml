@@ -1,4 +1,4 @@
-# /identifiers/{node_id}/identifiers/
+# /identifiers/
 get:
   summary: List all identifiers
   description: >-

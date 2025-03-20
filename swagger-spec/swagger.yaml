@@ -45,6 +45,7 @@ x-tagGroups:
       - Licenses
       - Logs
       - Institutions
+      - Identifiers
       - Registration Schemas
       - Registration Schema Blocks
       - Schema Responses
@@ -1400,5 +1401,10 @@ paths:
   ######################
 
   /identifiers/{identifier_id}/:
-    $ref: 'identifiers/identifiers_detail.yaml'
+    $ref: 'identifiers/detail.yaml'
+
+  /identifiers/{node_id}/identifiers/:
+    $ref: 'identifiers/node_list.yaml'
+
+
 

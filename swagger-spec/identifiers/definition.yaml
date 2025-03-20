@@ -54,4 +54,3 @@ properties:
         format: url
         readOnly: true
         description: 'URL to the detail page for this identifier.'
-  

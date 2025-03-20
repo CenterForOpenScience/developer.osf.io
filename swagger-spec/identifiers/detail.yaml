@@ -1,0 +1,50 @@
+# /identifiers/{identifier_id}/
+get:
+  summary: Retrieve a Specific Identifier
+  description: >-
+    Retrieve the details of a specific identifier by its unique identifier ID.
+
+    Identifiers represent permanent references to OSF nodes, often registered with external services like DataCite 
+    (for DOIs) or ARK registries. This endpoint provides information about the identifier’s category (e.g., DOI or ARK),
+    its value, and its association with the referent node.
+
+    #### Permissions
+
+     - Public identifiers are accessible by any user.
+     - Private node identifiers require authentication and appropriate permissions (at least read access).
+
+  parameters:
+    - in: path
+      name: identifier_id
+      type: string
+      required: true
+      description: The unique identifier for the identifier resource.
+
+  tags:
+    - Identifiers
+
+  operationId: identifiers_read
+
+  x-response-schema: Identifier
+
+  responses:
+    '200':
+      description: Successful retrieval of the identifier.
+      schema:
+        $ref: definition.yaml
+      examples:
+        application/json:
+          data:
+            id: 57f1641db83f6901ed94b45a
+            type: identifiers
+            attributes:
+              category: ark
+              value: c7605/osf.io/73pnd
+            relationships:
+              referent:
+                links:
+                  related:
+                    href: https://api.osf.io/v2/nodes/73pnd/
+                    meta: {}
+            links:
+              self: https://api.osf.io/v2/identifiers/57f1641db83f6901ed94b45a/
