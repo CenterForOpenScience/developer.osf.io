@@ -854,8 +854,23 @@ tags:
       adheres to the standards set for collection submissions. It aids in providing transparency and order to the
       process of managing collections and ensures that moderators and admins have the tools and information they
       need to effectively manage collection submissions.
-
-
+  - name: Identifiers
+    description: >-
+      Identifiers are unique strings associated with various entities in the OSF system, such as project nodes, 
+      registrations or preprints.
+      Identifiers serve as a means to distinctly reference these entities using standardized formats like DOI 
+      (Digital Object Identifier). Each identifier is linked to a specific entity, providing a persistent and
+      resolvable URL that can be used for citation, sharing, and retrieval purposes.
+  
+      Identifiers play a crucial role in ensuring that entities within the OSF ecosystem can be reliably accessed and
+      referenced across different platforms and services. By adhering to widely recognized standards, identifiers
+      facilitate interoperability and integration with external systems, enhancing the visibility and accessibility
+      of research outputs.
+  
+      The Identifiers system allows users to access both Datacite and Crossref for DOI minting services and stores
+      detailed metadata about each identifier, including its category, value, and the entity it is associated with.
+      This ensures that users can effectively manage and utilize identifiers in their research workflows, promoting 
+      transparency and traceability of scholarly work.
 
 paths:
 
@@ -1379,3 +1394,11 @@ paths:
 
   /provider/collections/{collection_id}/moderators/{moderator_id}/:
     $ref: 'collection_provider/moderators_detail.yaml'
+
+  ######################
+  #   IDENTIFIERS      #
+  ######################
+
+  /identifiers/{identifier_id}/:
+    $ref: 'identifiers/identifiers_detail.yaml'
+

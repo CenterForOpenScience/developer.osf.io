@@ -4,7 +4,7 @@ get:
   description: >-
     List all identifiers associated with a given node.
 
-    #### Returns
+    ## Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
@@ -15,7 +15,7 @@ get:
 
     The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
 
-    #### Filtering
+    ## Filtering
 
 
     You can optionally request that the response only include nodes that match your filters by utilizing the `filter` query parameter, e.g.
@@ -80,3 +80,72 @@ get:
             meta:
               total: 2
               per_page: 10
+
+post:
+  summary: Create a New Identifier for a Node
+  description: >-
+    Create a new identifier for the specified node.
+
+    #### Supported Identifiers
+
+    Currently, only `doi` identifiers can be minted through this endpoint.
+
+    #### Requirements
+
+    - The user must have appropriate permissions (Admin or Write access) on the node.
+    - Nodes that are collections or folders cannot have identifiers minted.
+
+    #### Example Request
+
+    ```json
+    
+    {
+      "data": {
+        "type": "identifiers",
+        "attributes": {
+          "category": "doi"
+        }
+      }
+    }
+    
+    ```
+
+  operationId: nodes_identifiers_create
+  tags:
+    - Nodes
+  parameters:
+    - in: path
+      name: node_id
+      required: true
+      type: string
+      description: The unique identifier of the node.
+
+  responses:
+    '201':
+      description: Identifier successfully created.
+      schema:
+          $ref: '../identifiers/definition.yaml'
+      examples:
+        application/json:
+          data:
+              type: identifiers
+              id: 57f1641db83f6901ed94b459
+              attributes:
+                category: doi
+                value: 10.17605/OSF.IO/73PND
+              relationships:
+                referent:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/nodes/73pnd/
+                      meta: {}
+              links:
+                self: https://api.osf.io/v2/identifiers/57f1641db83f6901ed94b459/
+    '400':
+      description: Invalid request (e.g., DOI already exists or unsupported category).
+    '403':
+      description: You do not have permission to create identifiers on this node.
+    '404':
+      description: Node not found.
+    '503':
+      description: External identifier service unavailable.

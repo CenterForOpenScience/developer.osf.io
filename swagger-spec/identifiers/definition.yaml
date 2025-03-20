@@ -1,50 +1,57 @@
 type: object
 title: Identifier
+description: Representation of an identifier entity within the OSF API.
 properties:
   id:
     type: string
     readOnly: true
-    description: 'The identifier of the identifier entity.'
+    description: 'Unique identifier for the identifier entity.'
   type:
     type: string
     readOnly: true
-    description: 'The type identifier of the identifier entity (`identifiers`).'
+    description: 'Resource type, always `identifiers` for identifier entities.'
   attributes:
     type: object
     title: Attributes
     readOnly: true
-    description: 'The properties of the identifier entity.'
+    description: 'Attributes of the identifier entity, including category and value.'
     properties:
       category:
         type: string
         enum:
-          - ark
           - doi
         readOnly: true
-        description: 'The category of the identifier'
+        description: 'The category of the identifier, such as ARK or DOI.'
       value:
         type: string
         readOnly: true
-        description: 'The identifier value itself'
+        description: 'The actual value of the identifier.'
   relationships:
     type: object
     title: Relationships
     readOnly: true
-    description: 'URLs to other entities or entity collections that have a relationship to the identifier entity.'
+    description: 'Relationships to other entities, indicating the node this identifier refers to.'
     properties:
       referent:
-        type: string
-        format: URL
-        readOnly: true
-        description: 'A relationship to the node the identifier refers to.'
+        type: object
+        description: 'Relationship object linking to the node associated with this identifier.'
+        properties:
+          links:
+            type: object
+            properties:
+              related:
+                type: string
+                format: url
+                description: 'URL to the related node.'
   links:
     type: object
     title: Links
     readOnly: true
-    description: 'URLs to alternative representations of the identifier entity.'
+    description: 'Links to representations of the identifier entity.'
     properties:
       self:
         type: string
-        format: URL
+        format: url
         readOnly: true
-        description: 'A link to the detail page for the identifier.'
+        description: 'URL to the detail page for this identifier.'
+  
