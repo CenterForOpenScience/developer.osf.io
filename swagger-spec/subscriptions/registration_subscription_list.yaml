@@ -1,0 +1,155 @@
+get:
+  summary: Retrieve Registration Provider Notification Subscriptions
+  description: >-
+    Retrieve a paginated list of notification subscriptions associated with a specific registration provider.
+    Each subscription resource details a user's preferences for receiving notifications on specific events,
+    such as new pending registrations.
+
+    ## Permissions
+
+    - The user **must be authenticated**.
+    - The user must have existing subscriptions associated with the specified registration provider.
+
+    ## Returns
+
+    Returns a JSON:API-compliant paginated list of subscription resources.
+
+    Each subscription includes:
+    - `event_name`: The event that triggers notifications (e.g., `new_pending_submissions`).
+    - `frequency`: The notification frequency (e.g., `instant`, `daily`, `none`).
+    - `relationships`: Links to the provider and user entities.
+    - `links`: A `self` link to the subscription resource.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: registration_provider_subscription_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration provider.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: The page number of the results to retrieve.
+
+  responses:
+    '200':
+      description: Successful retrieval of a paginated list of notification subscriptions for the registration provider.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "reg123_subscription456"
+                type:
+                  type: string
+                  example: "subscription"
+                attributes:
+                  type: object
+                  properties:
+                    event_name:
+                      type: string
+                      example: "new_pending_submissions"
+                    frequency:
+                      type: string
+                      enum:
+                        - instant
+                        - daily
+                        - none
+                      example: "instant"
+                relationships:
+                  type: object
+                  properties:
+                    user:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "users"
+                            id:
+                              type: string
+                              example: "user123"
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              format: uri
+                              example: "https://api.osf.io/v2/users/user123/"
+                    provider:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "providers"
+                            id:
+                              type: string
+                              example: "reg123"
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              format: uri
+                              example: "https://api.osf.io/v2/providers/registrations/reg123/"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      format: uri
+                      example: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/reg123_subscription456/"
+
+          links:
+            type: object
+            properties:
+              first:
+                type: string
+                format: uri
+                example: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/?page=1"
+              last:
+                type: string
+                format: uri
+                example: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/?page=4"
+              prev:
+                type: string
+                format: uri
+                example: null
+              next:
+                type: string
+                format: uri
+                example: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/?page=2"
+
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 33
+              per_page:
+                type: integer
+                example: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. The user does not have permission to access subscriptions for this provider.
+    '404':
+      description: Not Found. The specified registration provider does not exist or has no subscriptions for the user.

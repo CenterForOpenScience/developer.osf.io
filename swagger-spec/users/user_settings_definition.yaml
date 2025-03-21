@@ -1,0 +1,38 @@
+UserSettings:
+  type: object
+  properties:
+    id:
+      type: string
+      description: The unique identifier of the user.
+      example: abc123
+    type:
+      type: string
+      description: Resource type.
+      example: user-settings
+    attributes:
+      type: object
+      properties:
+        two_factor_enabled:
+          type: boolean
+          description: Whether two-factor authentication is enabled.
+          example: true
+        two_factor_confirmed:
+          type: boolean
+          description: Whether two-factor authentication is confirmed.
+          example: true
+        subscribe_osf_general_email:
+          type: boolean
+          description: Whether the user is subscribed to OSF general emails.
+          example: true
+        subscribe_osf_help_email:
+          type: boolean
+          description: Whether the user is subscribed to OSF help emails.
+          example: false
+        deactivation_requested:
+          type: boolean
+          description: Whether the user has requested deactivation of their account.
+          example: false
+        contacted_deactivation:
+          type: boolean
+          description: Whether the OSF support team has contacted the user about deactivation.
+          example: false

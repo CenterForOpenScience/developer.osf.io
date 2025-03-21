@@ -1,0 +1,165 @@
+# /users/{user_id}/settings/emails/:
+
+get:
+  summary: List User Email Addresses
+  description: >-
+    Retrieves a list of all confirmed and unconfirmed email addresses associated with the user.
+
+    The authenticated user can view their own email addresses.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing a list of email addresses associated with the user.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  tags:
+    - Users
+  operationId: user_emails_list
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user whose emails are being listed.
+
+        Example: `abc123`
+  responses:
+    '200':
+      description: >-
+        A list of confirmed and unconfirmed email addresses for the user.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: 1a2b3c
+              type: user-emails
+              attributes:
+                email_address: user@example.com
+                confirmed: true
+                verified: true
+                primary: true
+                is_merge: false
+            - id: unconfirmed_token
+              type: user-emails
+              attributes:
+                email_address: another@example.com
+                confirmed: false
+                verified: false
+                primary: false
+                is_merge: false
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to view email addresses for this user.
+
+
+post:
+  summary: Add a New Email Address
+  description: >-
+    Adds a new unconfirmed email address to the user's account.
+
+    Once added, the system will send a confirmation email to the specified address.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the newly added (unconfirmed) email address.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  tags:
+    - Users
+  operationId: user_email_create
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user to whom the email will be added.
+
+        Example: `abc123`
+    - in: body
+      name: body
+      required: true
+      description: >-
+        A JSON API representation of the new email address to add.
+
+        You must provide an `email_address` in the attributes object.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [user-emails]
+                example: user-emails
+              attributes:
+                type: object
+                properties:
+                  email_address:
+                    type: string
+                    description: The new email address to add.
+                    example: newemail@example.com
+        required:
+          - data
+      x-examples:
+        application/json:
+          data:
+            type: user-emails
+            attributes:
+              email_address: newemail@example.com
+  responses:
+    '201':
+      description: >-
+        The email address was successfully added and is pending confirmation.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: unconfirmed_token_123
+            type: user-emails
+            attributes:
+              email_address: newemail@example.com
+              confirmed: false
+              verified: false
+              primary: false
+              is_merge: false
+    '400':
+      description: >-
+        Bad request.
+
+        The email address is invalid or already exists on this user.
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to add an email for this user.
+    '429':
+      description: >-
+        Too many requests.
+
+        You have exceeded the allowed number of email additions. Please wait and try again later.

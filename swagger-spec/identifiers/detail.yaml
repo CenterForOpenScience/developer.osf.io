@@ -1,37 +1,45 @@
 # /identifiers/{identifier_id}/
 get:
-  summary: Retrieve an identifier
+  summary: Retrieve a Specific Identifier
   description: >-
-    Retrieves the details of an identifier
+    Retrieve the details of a specific identifier by its unique identifier ID.
 
-    #### Returns
+    Identifiers represent permanent references to OSF nodes, often registered with external services like DataCite 
+    (for DOIs) or ARK registries. This endpoint provides information about the identifier’s category (e.g., DOI or ARK),
+    its value, and its association with the referent node.
 
-    Returns a JSON object with a `data` key containing the representation of the requested
-    identifier, if the request was successful.
+    #### Permissions
 
-
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
+     - Public identifiers are accessible by any user.
+     - Private node identifiers require authentication and appropriate permissions (at least read access).
 
   parameters:
     - in: path
+      name: identifier_id
       type: string
       required: true
-      name: identifier_id
-      description: 'The unique id of the identifier.'
+      description: The unique identifier for the identifier resource.
+
   tags:
     - Identifiers
+
   operationId: identifiers_read
+
   x-response-schema: Identifier
+
   responses:
     '200':
-      description: 'OK'
+      description: Successful retrieval of the identifier.
       schema:
         $ref: definition.yaml
       examples:
         application/json:
           data:
+            id: 57f1641db83f6901ed94b45a
+            type: identifiers
+            attributes:
+              category: ark
+              value: c7605/osf.io/73pnd
             relationships:
               referent:
                 links:
@@ -40,8 +48,3 @@ get:
                     meta: {}
             links:
               self: https://api.osf.io/v2/identifiers/57f1641db83f6901ed94b45a/
-            attributes:
-              category: ark
-              value: c7605/osf.io/73pnd
-            type: identifiers
-            id: 57f1641db83f6901ed94b45a

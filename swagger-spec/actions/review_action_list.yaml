@@ -1,0 +1,167 @@
+# /actions/reviews/:
+
+get:
+  summary: List Review Actions
+  description: >-
+    Retrieve a list of review actions visible to the authenticated user.
+
+    Review actions represent state transitions or comments made on reviewable objects, such as preprints.
+    This endpoint returns all review actions the user is authorized to view.
+
+    #### Filtering & Pagination
+
+    Supports pagination and filtering by `id`, `trigger`, `from_state`, `to_state`, `date_created`, and `date_modified`.
+
+    #### Returns
+
+    A JSON object containing an array of review actions under the `data` key.
+
+    #### Errors
+
+    Returns an `errors` object if unsuccessful. See [Errors and Error Codes](#tag/Errors-and-Error-Codes).
+
+  tags:
+    - Actions
+  operationId: review_action_list
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: Successful retrieval of review actions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: reviewAction123
+                type:
+                  type: string
+                  example: review-actions
+                attributes:
+                  type: object
+                  properties:
+                    trigger:
+                      type: string
+                      example: accept
+                    comment:
+                      type: string
+                      example: "This looks great!"
+                    from_state:
+                      type: string
+                      example: pending
+                    to_state:
+                      type: string
+                      example: accepted
+                    date_created:
+                      type: string
+                      format: date-time
+                      example: '2024-03-14T10:00:00Z'
+                    date_modified:
+                      type: string
+                      format: date-time
+                      example: '2024-03-14T10:05:00Z'
+                    auto:
+                      type: boolean
+                      example: false
+                    visible:
+                      type: boolean
+                      example: true
+                relationships:
+                  type: object
+                  properties:
+                    creator:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: object
+                              properties:
+                                href:
+                                  type: string
+                                  format: uri
+                                  example: 'https://api.osf.io/v2/users/user456/'
+                                meta:
+                                  type: object
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: user456
+                            type:
+                              type: string
+                              example: users
+                    target:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: object
+                              properties:
+                                href:
+                                  type: string
+                                  format: uri
+                                  example: 'https://api.osf.io/v2/preprints/xyz789/'
+                                meta:
+                                  type: object
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: xyz789
+                            type:
+                              type: string
+                              example: preprints
+                    provider:
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: object
+                              properties:
+                                href:
+                                  type: string
+                                  format: uri
+                                  example: 'https://api.osf.io/v2/providers/osf/'
+                                meta:
+                                  type: object
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: osf
+                            type:
+                              type: string
+                              example: providers
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 1
+              per_page:
+                type: integer
+                example: 10
+              version:
+                type: string
+                example: '2.20'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                format: uri
+                example: 'https://api.osf.io/v2/actions/reviews/'
