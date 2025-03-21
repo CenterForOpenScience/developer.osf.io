@@ -46,6 +46,7 @@ x-tagGroups:
       - Licenses
       - Logs
       - Institutions
+      - Identifiers
       - Registration Schemas
       - Registration Schema Blocks
       - Schema Responses
@@ -890,6 +891,23 @@ tags:
         - `403 Forbidden`: Insufficient permissions to perform the action.
         - `404 Not Found`: The target resource does not exist or is inaccessible.
         - `409 Conflict`: Invalid action due to the current state of the target resource.
+  - name: Identifiers
+    description: >-
+      Identifiers are unique strings associated with various entities in the OSF system, such as project nodes, 
+      registrations or preprints.
+      Identifiers serve as a means to distinctly reference these entities using standardized formats like DOI 
+      (Digital Object Identifier). Each identifier is linked to a specific entity, providing a persistent and
+      resolvable URL that can be used for citation, sharing, and retrieval purposes.
+  
+      Identifiers play a crucial role in ensuring that entities within the OSF ecosystem can be reliably accessed and
+      referenced across different platforms and services. By adhering to widely recognized standards, identifiers
+      facilitate interoperability and integration with external systems, enhancing the visibility and accessibility
+      of research outputs.
+  
+      The Identifiers system allows users to access both Datacite and Crossref for DOI minting services and stores
+      detailed metadata about each identifier, including its category, value, and the entity it is associated with.
+      This ensures that users can effectively manage and utilize identifiers in their research workflows, promoting 
+      transparency and traceability of scholarly work.
 
 paths:
 
@@ -1137,6 +1155,9 @@ paths:
 
   /preprints/:
     $ref: 'preprints/list.yaml'
+
+  /preprints/{preprint_id}/versions/:
+    $ref: 'preprints/versioned_preprints_list.yaml'
 
   /preprints/{preprint_id}/:
     $ref: 'preprints/detail.yaml'
@@ -1460,3 +1481,13 @@ paths:
 
   /actions/{action_id}/:
     $ref: 'actions/action_detail.yaml'
+
+  ######################
+  #   IDENTIFIERS      #
+  ######################
+
+  /identifiers/{identifier_id}/:
+    $ref: 'identifiers/detail.yaml'
+
+  /identifiers/{node_id}/identifiers/:
+    $ref: 'identifiers/node_list.yaml'
