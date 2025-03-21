@@ -1,0 +1,167 @@
+get:
+  summary: Retrieve a Preprint Provider Subscription
+  description: >-
+    Retrieve details of an individual notification subscription associated with a preprint provider.
+
+    ## Permissions
+
+    User must be authenticated and subscribed to the specified preprint provider notification.
+
+    ## Returns
+
+    A JSON object containing details about the requested subscription, including frequency, event type, and provider information.
+
+  parameters:
+    - in: path
+      type: string
+      name: provider_id
+      required: true
+      description: The unique identifier of the preprint provider.
+    - in: path
+      type: string
+      name: subscription_id
+      required: true
+      description: The unique identifier of the subscription.
+
+  tags:
+    - Notification Subscriptions
+  operationId: preprint_provider_subscription_detail
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "provider123_subscription456"
+              type:
+                type: string
+                example: "notification_subscriptions"
+              attributes:
+                type: object
+                properties:
+                  frequency:
+                    type: string
+                    enum:
+                      - none
+                      - email_digest
+                      - email_transactional
+                  event_name:
+                    type: string
+                    example: "preprint_added"
+                  provider_name:
+                    type: string
+                    example: "TestArXiv"
+                  provider_id:
+                    type: string
+                    example: "testarxiv"
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    format: uri
+                    example: "https://api.osf.io/v2/providers/preprints/testarxiv/subscriptions/provider123_subscription456/"
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found
+
+patch:
+  summary: Update a Preprint Provider Subscription
+  description: >-
+    Updates a preprint provider subscription by setting the values specified in the request body. 
+    Unspecified attributes remain unchanged.
+
+    The subscription can be updated using a **PATCH** request. The only editable attribute is `frequency`.
+
+    ## Permissions
+
+    User must be authenticated and the owner of the subscription.
+
+    ## Returns
+
+    A JSON object containing the updated subscription details.
+
+  parameters:
+    - in: path
+      type: string
+      name: provider_id
+      required: true
+      description: The unique identifier of the preprint provider.
+    - in: path
+      type: string
+      name: subscription_id
+      required: true
+      description: The unique identifier of the subscription.
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: notification_subscriptions
+            id: "provider123_subscription456"
+            attributes:
+              frequency: "email_digest"
+
+  tags:
+    - Notification Subscriptions
+  operationId: preprint_provider_subscription_update
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "provider123_subscription456"
+              type:
+                type: string
+                example: "notification_subscriptions"
+              attributes:
+                type: object
+                properties:
+                  frequency:
+                    type: string
+                    enum:
+                      - none
+                      - email_digest
+                      - email_transactional
+                  event_name:
+                    type: string
+                    example: "preprint_added"
+                  provider_name:
+                    type: string
+                    example: "TestArXiv"
+                  provider_id:
+                    type: string
+                    example: "testarxiv"
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    format: uri
+                    example: "https://api.osf.io/v2/providers/preprints/testarxiv/subscriptions/provider123_subscription456/"
+    '400':
+      description: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found

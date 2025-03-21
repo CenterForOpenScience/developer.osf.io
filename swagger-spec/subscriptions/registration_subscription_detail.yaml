@@ -1,0 +1,118 @@
+get:
+  summary: Retrieve a Registration Provider Subscription
+  description: >-
+    Retrieve details of a specific notification subscription for a registration provider.
+
+    ## Permissions
+
+    The user must be authenticated and have permission to access the specified registration provider subscription.
+
+    ## Returns
+
+    A JSON object containing details of the notification subscription for the registration provider.
+
+  parameters:
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+  tags:
+    - Notification Subscriptions
+  operationId: registration_subscription_detail
+  responses:
+    '200':
+      description: OK
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "reg123_subscription456"
+              type:
+                type: string
+                example: "notification_subscriptions"
+              attributes:
+                type: object
+                properties:
+                  frequency:
+                    type: string
+                    enum:
+                      - none
+                      - email_digest
+                      - email_transactional
+                    example: "email_transactional"
+                  event_name:
+                    type: string
+                    example: "new_pending_registration"
+                  provider_name:
+                    type: string
+                    example: "TestRegistrationProvider"
+                  provider_id:
+                    type: string
+                    example: "reg123"
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    format: uri
+                    example: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/reg123_subscription456/"
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found
+
+patch:
+  summary: Update a Registration Provider Subscription
+  description: >-
+    Update the frequency of a specific notification subscription for a registration provider.
+
+    ## Permissions
+
+    User must be authenticated and be the owner of the subscription to modify it.
+
+    ## Returns
+
+    A JSON object containing the updated details of the notification subscription.
+
+  parameters:
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: notification_subscriptions
+            id: "reg123_subscription456"
+            attributes:
+              frequency: "none"
+
+  tags:
+    - Notification Subscriptions
+  operationId: registration_subscription_update
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found

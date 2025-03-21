@@ -1,0 +1,65 @@
+# /regions/:
+
+get:
+  summary: List Regions
+  description: >-
+    Retrieves a list of available storage regions within OSF.
+
+    Regions define geographical or cloud storage locations for storing files uploaded through OSF Storage.
+
+    ## Returns
+     A JSON:API-compliant response containing an array of regions under the `data` key, including region attributes such as `id` and `name`.
+
+    Supports standard pagination and sorting by name.
+
+    ## Errors
+     If unsuccessful, returns an `errors` object. Refer to the [Errors and Error Codes](#tag/Errors-and-Error-Codes) section for details.
+  tags:
+    - Regions
+  operationId: region_list
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: Successfully retrieved the list of regions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: us-east-1
+                type:
+                  type: string
+                  example: regions
+                attributes:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: US East
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      example: 'https://api.osf.io/v2/regions/us-east-1/'
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 1
+              per_page:
+                type: integer
+                example: 10
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: 'https://api.osf.io/v2/regions/'

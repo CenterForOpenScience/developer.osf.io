@@ -35,6 +35,7 @@ x-tagGroups:
     tags:
       - Actions
       - Addons
+      - Applications
       - Base
       - Citations
       - Comments
@@ -52,11 +53,15 @@ x-tagGroups:
       - Schema Responses
       - Schema Response Actions
       - Nodes
+      - Notification Subscriptions
       - Preprints
       - Preprint Providers
       - Draft Registrations
       - Registrations
+      - Regions
+      - OAuth Scopes
       - Taxonomies
+      - Tokens
       - Users
       - View Only Links
 tags:
@@ -856,6 +861,121 @@ tags:
       adheres to the standards set for collection submissions. It aids in providing transparency and order to the
       process of managing collections and ensures that moderators and admins have the tools and information they
       need to effectively manage collection submissions.
+  - name: Notification Subscriptions
+    description: >-
+      **Notification Subscriptions** allow users to manage how they receive alerts about activities and events 
+      related to OSF resources, such as projects, preprints, registrations, and collections. Subscriptions control 
+      **when** notifications are sent and **which events** trigger them.
+  
+      These subscriptions are **private** and are only visible to the authenticated user who owns them.
+  
+      ### Subscription Scope and Types
+  
+      Subscriptions can be configured at different scopes depending on the resource type:
+  
+      - **Global Subscriptions**  
+        Apply OSF-wide, affecting events like comment replies, mentions, and review updates across all resources.
+      
+      - **Node Subscriptions**  
+        Apply to individual projects or components (nodes), tracking events such as new comments or file updates.
+      
+      - **Provider Subscriptions**  
+        Apply to resources within a specific provider (collection, preprint, or registration providers). These subscriptions
+        typically track events relevant to moderation workflows, such as new pending submissions.
+  
+      ### Attributes
+  
+      - `event_name`  
+        The specific event that triggers this subscription.  
+        Available event names depend on the scope of the subscription. Examples include:
+          - `comments`
+          - `file_updated`
+          - `global_mentions`
+          - `new_pending_submissions`
+      
+      - `frequency`  
+        Determines how often the user receives notifications for the event:
+          - `instant`: Sends an email notification immediately after the event occurs.
+          - `daily`: Groups event notifications into a daily summary email.
+          - `none`: Disables notifications for the event.
+  
+        Users can update their notification frequency for each subscription.
+  
+      ### Relationships
+  
+       - `user`  
+        The user who owns the subscription. Each subscription is tied to a single user.
+       - `provider`  
+        The provider associated with the subscription, if applicable. This may be a Collection Provider, Preprint Provider, 
+        or Registration Provider. Global subscriptions do not have a provider relationship.
+  
+      ### Available Event Names by Subscription Scope
+  
+      #### Node-Level Subscriptions
+      Subscriptions specific to individual projects or components:
+       - `comments`: Notify when comments are added.
+       - `file_updated`: Notify when files are updated.
+  
+      #### Global Subscriptions
+      Default notification preferences applied OSF-wide:
+       - `global_comment_replies`: Notify when someone replies to your comments.
+       - `global_comments`: Notify when comments are added to your projects.
+       - `global_file_updated`: Notify when files are updated in your projects.
+       - `global_mentions`: Notify when you are mentioned.
+       - `global_reviews`: Notify when your preprint submissions are updated.
+  
+      #### Provider-Level Subscriptions
+      Notifications related to moderation workflows or submissions within a specific provider:
+       - `new_pending_submissions`: Notify when new preprint submissions are awaiting moderation.
+  
+      ### Notification Channels
+  
+      Notifications are delivered via **email**, according to the selected `frequency`:
+       - `instant`: Immediate email notifications per event.
+       - `daily`: Batched email summary delivered daily.
+       - `none`: No email notifications are sent.
+  
+      ### Permissions and Access
+  
+       - Only the authenticated user who owns a subscription can view or update it.
+       - Subscriptions are managed via the OSF API and reflect the user's current notification preferences for supported events.
+  - name: Regions
+    description: >-
+      Storage Regions are predefined geographical or cloud-storage areas where files are stored within OSF Storage.
+  
+      Each region provides isolation of data in compliance with geographic or regulatory requirements. Users can specify their preferred region for storing project files when using OSF Storage.
+  
+      **Attributes include:**
+  
+        - `id`: Unique identifier of the region (e.g., `us-east-1`).
+        - `name`: Human-readable name for the region (e.g., `US East`).
+  
+      **Endpoints include:**
+        - **List Regions:** Retrieve all available storage regions.
+        - **Region Detail:** Retrieve details about a specific storage region.
+  - name: Tokens
+    description: >-
+      **Personal Access Tokens** allow users to authenticate API requests without credentials.
+  
+      Tokens support fine-grained permissions (scopes) to control API access levels.  
+  - name: Applications
+    description: >-
+      **OAuth2 Applications** allow external services to securely authenticate and interact with OSF resources via OAuth2.
+  
+      Registered applications manage OAuth2 flows, client credentials, and access tokens.
+  
+      Operations include:
+        - Creating new OAuth2 applications
+        - Viewing and updating application details
+        - Deactivating or deleting applications
+        - Resetting client secrets (deprecated after v2.14)
+  - name: OAuth Scopes
+    description: >-
+      OAuth scopes define specific permissions for OAuth applications and personal access tokens.
+  
+      Each scope indicates the permission level granted to perform actions via the OSF API, such as reading node data (`osf.nodes.read`) or modifying node data (`osf.nodes.write`).
+  
+      Scopes can be queried and managed through these endpoints to understand and control access levels associated with applications and tokens.
   - name: Actions
     description: >-
       Actions represent state transitions or comments performed on reviewable or request-related resources within the OSF platform, such as Preprints, Nodes, Preprint Requests, Node Requests, and Collection Submissions. These endpoints document and facilitate moderation and administrative workflows, ensuring transparency and accountability in managing user interactions, moderation processes, and lifecycle management for various resources.
@@ -1466,6 +1586,86 @@ paths:
   /provider/collections/{collection_id}/moderators/{moderator_id}/:
     $ref: 'collection_provider/moderators_detail.yaml'
 
+  ################################
+  #   NOTIFICATION SUBSCRIPTIONS #
+  ################################
+
+  /subscriptions/:
+    $ref: 'subscriptions/subscription_list.yaml'
+
+  /subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/subscription_detail.yaml'
+
+  /providers/collections/{provider_id}/subscriptions/:
+    $ref: 'subscriptions/collection_provider_subscription_list.yaml'
+
+  /providers/collections/{provider_id}/subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/collection_provider_subscription_detail.yaml'
+
+  /providers/preprints/{provider_id}/subscriptions/:
+    $ref: 'subscriptions/preprint_provider_subscription_list.yaml'
+
+  /providers/preprints/{provider_id}/subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/preprint_provider_subscription_detail.yaml'
+
+  /providers/registrations/{provider_id}/subscriptions/:
+    $ref: 'subscriptions/registration_provider_subscription_list.yaml'
+
+  /providers/registrations/{provider_id}/subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/registration_provider_subscription_detail.yaml'
+
+  /registration_subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/registration_subscription_detail.yaml'
+
+  /collection_subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/collection_subscription_detail.yaml'
+
+  #######################################
+  #               REGIONS              #
+  #######################################
+
+  /regions/:
+    $ref: 'region/region_list.yaml'
+
+  /regions/{region_id}/:
+    $ref: 'region/region_detail.yaml'
+
+  ############################
+  #         TOKENS           #
+  ############################
+
+  /tokens/:
+    $ref: 'tokens/token_list.yaml'
+
+  /tokens/{_id}/:
+    $ref: 'tokens/token_detail.yaml'
+
+  /tokens/{_id}/scopes/:
+    $ref: 'tokens/token_scopes_list.yaml'
+
+  #######################################
+  #            APPLICATIONS             #
+  #######################################
+
+  /applications/:
+    $ref: 'applications/application_list.yaml'
+
+  /applications/{client_id}/:
+    $ref: 'applications/application_detail.yaml'
+
+  /applications/{client_id}/reset/:
+    $ref: 'applications/application_reset.yaml'
+
+#######################################
+#              OAUTH SCOPES           #
+#######################################
+
+  /scopes/:
+    $ref: 'scopes/scope_list.yaml'
+
+  /scopes/{scope_id}/:
+    $ref: 'scopes/scope_detail.yaml'
+    
   ############################
   #        ACTIONS          #
   ############################
@@ -1491,3 +1691,4 @@ paths:
 
   /identifiers/{node_id}/identifiers/:
     $ref: 'identifiers/node_list.yaml'
+ 
