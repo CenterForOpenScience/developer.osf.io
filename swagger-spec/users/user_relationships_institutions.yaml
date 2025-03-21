@@ -1,0 +1,143 @@
+# /users/{user_id}/relationships/institutions/:
+
+get:
+  summary: Retrieve a User's Institution Relationships
+  description: >-
+    Retrieves the relationships between a user and their affiliated institutions.
+
+    Only the authenticated user can view their affiliated institutions in this relationship endpoint.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing an array of institution relationship identifiers.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+  tags:
+    - Users
+  operationId: user_institutions_relationship_read
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: "The unique identifier of the user. Example: `abc123`"
+  responses:
+    '200':
+      description: >-
+        Successfully retrieved the user's affiliated institutions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The institution ID.
+                  example: mit
+                type:
+                  type: string
+                  description: Resource type.
+                  example: institutions
+      examples:
+        application/json:
+          data:
+            - id: mit
+              type: institutions
+            - id: cambridge
+              type: institutions
+    '403':
+      description: >-
+        Permission denied. You do not have permission to view these institution relationships.
+    '404':
+      description: >-
+        User not found.
+
+
+delete:
+  summary: Remove Institutions from a User's Affiliations
+  description: >-
+    Removes one or more institutions from a user's list of affiliations.
+
+    #### Usage Notes
+
+    - Only the authenticated user can remove their institution affiliations.
+    - You cannot add institutions through this endpoint—use the user-institutions list endpoint for reading full records.
+
+    #### Returns
+
+    Returns a `204 No Content` response if the removal is successful.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+
+    #### Example Request Payload
+
+    ```json
+    {
+      "data": [
+        { "type": "institutions", "id": "mit" },
+        { "type": "institutions", "id": "cambridge" }
+      ]
+    }
+    ```
+  tags:
+    - Users
+  operationId: user_institutions_relationship_delete
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: "The unique identifier of the user. Example: `abc123`"
+    - in: body
+      name: body
+      required: true
+      description: List of institution relationships to remove.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum: [institutions]
+                id:
+                  type: string
+                  example: mit
+  responses:
+    '204':
+      description: >-
+        Successfully removed institutions from user's affiliations.
+    '400':
+      description: >-
+        Bad request. Possible reasons include:
+        - Institution `type` does not match `institutions`.
+        - Institution ID is invalid or not affiliated with the user.
+    '403':
+      description: >-
+        Permission denied. You do not have permission to modify these affiliations.
+    '404':
+      description: >-
+        User not found.

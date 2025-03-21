@@ -33,6 +33,7 @@ x-tagGroups:
       - Entities & Entity Collections
   - name: API Reference
     tags:
+      - Actions
       - Addons
       - Applications
       - Base
@@ -46,6 +47,7 @@ x-tagGroups:
       - Licenses
       - Logs
       - Institutions
+      - Identifiers
       - Registration Schemas
       - Registration Schema Blocks
       - Schema Responses
@@ -974,6 +976,58 @@ tags:
       Each scope indicates the permission level granted to perform actions via the OSF API, such as reading node data (`osf.nodes.read`) or modifying node data (`osf.nodes.write`).
   
       Scopes can be queried and managed through these endpoints to understand and control access levels associated with applications and tokens.
+  - name: Actions
+    description: >-
+      Actions represent state transitions or comments performed on reviewable or request-related resources within the OSF platform, such as Preprints, Nodes, Preprint Requests, Node Requests, and Collection Submissions. These endpoints document and facilitate moderation and administrative workflows, ensuring transparency and accountability in managing user interactions, moderation processes, and lifecycle management for various resources.
+      Each Action captures:
+
+        **State transitions**: Tracking the movement of resources through different states (e.g., from pending to accepted).
+        **Comments** : Optional explanations or notes added during an action to provide context or reasons for state transitions.
+        **Triggers** : Specific actions (`submit`, `accept`, `reject`, `withdraw`, `edit_comment`, etc.) that initiate state transitions.
+        **Metadata** : Information such as timestamps for creation and modification, visibility settings, and whether the action was automated.
+
+      Actions are categorized based on their targets:
+
+       - **Review Actions**: Pertaining to moderation and review processes on Preprints.
+       - **Node Request Actions**: Related to Node Requests (e.g., access or withdrawal requests).
+       - **Preprint Request Actions**: Related to Preprint Requests, such as withdrawal requests.
+
+       Actions require specific permissions depending on their triggers:
+        - `submit`: Typically open, no special permissions required.
+        - `accept`/`reject`: Require moderation or admin permissions.
+        - `edit_comment`: Requires administrative permissions.
+
+       Each successful action response returns a JSON:API formatted object containing:
+        - **id** : The identifier of the action.
+        - **type** : Type of action performed (e.g., `review-actions`, `node-request-actions`).
+        - **attributes** : Information including `trigger`, `comment`, `from_state`, `to_state`, timestamps (`date_created`, `date_modified`), visibility (`visible`), and automation flag (`auto`).
+        - **relationships** :
+        - `creator`: User who initiated the action.
+        - **target** : The resource the action applies to (e.g., Preprint, Node Request).
+        - **provider** : Provider associated with the target, if applicable.
+
+       Actions may fail due to various reasons, resulting in standard error responses:
+        - `400 Bad Request`: Invalid or malformed payload.
+        - `403 Forbidden`: Insufficient permissions to perform the action.
+        - `404 Not Found`: The target resource does not exist or is inaccessible.
+        - `409 Conflict`: Invalid action due to the current state of the target resource.
+  - name: Identifiers
+    description: >-
+      Identifiers are unique strings associated with various entities in the OSF system, such as project nodes, 
+      registrations or preprints.
+      Identifiers serve as a means to distinctly reference these entities using standardized formats like DOI 
+      (Digital Object Identifier). Each identifier is linked to a specific entity, providing a persistent and
+      resolvable URL that can be used for citation, sharing, and retrieval purposes.
+  
+      Identifiers play a crucial role in ensuring that entities within the OSF ecosystem can be reliably accessed and
+      referenced across different platforms and services. By adhering to widely recognized standards, identifiers
+      facilitate interoperability and integration with external systems, enhancing the visibility and accessibility
+      of research outputs.
+  
+      The Identifiers system allows users to access both Datacite and Crossref for DOI minting services and stores
+      detailed metadata about each identifier, including its category, value, and the entity it is associated with.
+      This ensures that users can effectively manage and utilize identifiers in their research workflows, promoting 
+      transparency and traceability of scholarly work.
 
 paths:
 
@@ -1397,12 +1451,46 @@ paths:
   /users/{user_id}/addons/{provider}/accounts/{account_id}/:
     $ref: 'users/addon_account_detail.yaml'
 
+  /users/{user_id}/claim/:
+    $ref: 'users/user_claim.yaml'
+
+  /users/{user_id}/draft_preprints/:
+    $ref: 'users/user_draft_preprints_list.yaml'
+
+  /users/{user_id}/draft_registrations/:
+    $ref: 'users/user_draft_registrations_list.yaml'
+
+  /users/{user_id}/relationships/institutions/:
+    $ref: 'users/user_relationships_institutions.yaml'
+
+  /users/{user_id}/settings/:
+   $ref: 'users/user_settings.yaml'
+
+  /users/{user_id}/settings/emails/:
+    $ref: 'users/user_settings_emails_list.yaml'
+
+  /users/{user_id}/settings/emails/{email_id}/:
+    $ref: 'users/user_settings_email_detail.yaml'
+
+  /users/{user_id}/settings/export/:
+    $ref: 'users/user_settings_export.yaml'
+
+  /users/{user_id}/settings/identities/:
+    $ref: 'users/user_settings_identities_list.yaml'
+
+  /users/{user_id}/settings/identities/{identity_id}:
+    $ref: 'users/user_settings_identities_detail.yaml'
+
+  /users/{user_id}/settings/password/:
+    $ref: 'users/user_password.yaml'
+
   ######################
   #   View Only Links  #
   ######################
 
   /view_only_links/{link_id}/:
     $ref: 'view_only_links/detail.yaml'
+
   /view_only_links/{link_id}/nodes/:
     $ref: 'view_only_links/nodes.yaml'
 
@@ -1577,3 +1665,30 @@ paths:
 
   /scopes/{scope_id}/:
     $ref: 'scopes/scope_detail.yaml'
+    
+  ############################
+  #        ACTIONS          #
+  ############################
+
+  /actions/reviews/:
+    $ref: 'actions/review_action_list.yaml'
+
+  /actions/requests/nodes/:
+    $ref: 'actions/node_request_action_list.yaml'
+
+  /actions/requests/preprints/:
+    $ref: 'actions/preprint_request_action_list.yaml'
+
+  /actions/{action_id}/:
+    $ref: 'actions/action_detail.yaml'
+
+  ######################
+  #   IDENTIFIERS      #
+  ######################
+
+  /identifiers/{identifier_id}/:
+    $ref: 'identifiers/detail.yaml'
+
+  /identifiers/{node_id}/identifiers/:
+    $ref: 'identifiers/node_list.yaml'
+ 
