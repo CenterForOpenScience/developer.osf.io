@@ -1,0 +1,85 @@
+# /tokens/{_id}/:
+
+get:
+  summary: Personal Access Token Detail
+  description: >-
+    Retrieve details of a specific personal access token.
+
+    #### Returns
+    A JSON:API-compliant response with the token's details.
+
+    #### Errors
+    - `404 Not Found`: Token not found or not owned by the user.
+
+  tags:
+    - Tokens
+  operationId: token_detail
+  produces:
+    - application/json
+  parameters:
+    - name: _id
+      in: path
+      required: true
+      type: string
+      description: The tokens's unique identifier.
+  responses:
+    '200':
+      description: Successful retrieval of tokens details.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: token123
+              type:
+                type: string
+                example: tokens
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "My API Token"
+                  date_created:
+                    type: string
+                    format: date-time
+                    example: "2024-03-14T15:00:00Z"
+              relationships:
+                type: object
+                properties:
+                  scopes:
+                    type: object
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: "https://api.osf.io/v2/tokens/token123/scopes/"
+    '404':
+      description: Token not found.
+
+delete:
+  summary: Deactivate Personal Access Token
+  description: >-
+    Deactivate (revoke) a personal access token. The token becomes inactive but is retained in the database.
+
+    #### Errors
+    - `404 Not Found`: Token does not exist or is not accessible.
+
+  tags:
+    - Tokens
+  operationId: token_deactivate
+  parameters:
+    - name: _id
+      in: path
+      required: true
+      type: string
+      description: The tokens's unique identifier.
+  responses:
+    '204':
+      description: Token successfully deactivated.
+

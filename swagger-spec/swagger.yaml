@@ -33,7 +33,9 @@ x-tagGroups:
       - Entities & Entity Collections
   - name: API Reference
     tags:
+      - Actions
       - Addons
+      - Applications
       - Base
       - CEDAR Metadata
       - Citations
@@ -47,16 +49,21 @@ x-tagGroups:
       - Licenses
       - Logs
       - Institutions
+      - Identifiers
       - Registration Schemas
       - Registration Schema Blocks
       - Schema Responses
       - Schema Response Actions
       - Nodes
+      - Notification Subscriptions
       - Preprints
       - Preprint Providers
       - Draft Registrations
       - Registrations
+      - Regions
+      - OAuth Scopes
       - Taxonomies
+      - Tokens
       - Users
       - View Only Links
       - Wikis
@@ -946,7 +953,173 @@ tags:
        - Read access requires view permissions on the parent Registration.
        - Write access requires edit permissions on the parent Registration.
 
+  - name: Notification Subscriptions
+    description: >-
+      **Notification Subscriptions** allow users to manage how they receive alerts about activities and events 
+      related to OSF resources, such as projects, preprints, registrations, and collections. Subscriptions control 
+      **when** notifications are sent and **which events** trigger them.
+  
+      These subscriptions are **private** and are only visible to the authenticated user who owns them.
+  
+      ### Subscription Scope and Types
+  
+      Subscriptions can be configured at different scopes depending on the resource type:
+  
+      - **Global Subscriptions**  
+        Apply OSF-wide, affecting events like comment replies, mentions, and review updates across all resources.
+      
+      - **Node Subscriptions**  
+        Apply to individual projects or components (nodes), tracking events such as new comments or file updates.
+      
+      - **Provider Subscriptions**  
+        Apply to resources within a specific provider (collection, preprint, or registration providers). These subscriptions
+        typically track events relevant to moderation workflows, such as new pending submissions.
+  
+      ### Attributes
+  
+      - `event_name`  
+        The specific event that triggers this subscription.  
+        Available event names depend on the scope of the subscription. Examples include:
+          - `comments`
+          - `file_updated`
+          - `global_mentions`
+          - `new_pending_submissions`
+      
+      - `frequency`  
+        Determines how often the user receives notifications for the event:
+          - `instant`: Sends an email notification immediately after the event occurs.
+          - `daily`: Groups event notifications into a daily summary email.
+          - `none`: Disables notifications for the event.
+  
+        Users can update their notification frequency for each subscription.
+  
+      ### Relationships
+  
+       - `user`  
+        The user who owns the subscription. Each subscription is tied to a single user.
+       - `provider`  
+        The provider associated with the subscription, if applicable. This may be a Collection Provider, Preprint Provider, 
+        or Registration Provider. Global subscriptions do not have a provider relationship.
+  
+      ### Available Event Names by Subscription Scope
+  
+      #### Node-Level Subscriptions
+      Subscriptions specific to individual projects or components:
+       - `comments`: Notify when comments are added.
+       - `file_updated`: Notify when files are updated.
+  
+      #### Global Subscriptions
+      Default notification preferences applied OSF-wide:
+       - `global_comment_replies`: Notify when someone replies to your comments.
+       - `global_comments`: Notify when comments are added to your projects.
+       - `global_file_updated`: Notify when files are updated in your projects.
+       - `global_mentions`: Notify when you are mentioned.
+       - `global_reviews`: Notify when your preprint submissions are updated.
+  
+      #### Provider-Level Subscriptions
+      Notifications related to moderation workflows or submissions within a specific provider:
+       - `new_pending_submissions`: Notify when new preprint submissions are awaiting moderation.
+  
+      ### Notification Channels
+  
+      Notifications are delivered via **email**, according to the selected `frequency`:
+       - `instant`: Immediate email notifications per event.
+       - `daily`: Batched email summary delivered daily.
+       - `none`: No email notifications are sent.
+  
+      ### Permissions and Access
+  
+       - Only the authenticated user who owns a subscription can view or update it.
+       - Subscriptions are managed via the OSF API and reflect the user's current notification preferences for supported events.
+  - name: Regions
+    description: >-
+      Storage Regions are predefined geographical or cloud-storage areas where files are stored within OSF Storage.
+  
+      Each region provides isolation of data in compliance with geographic or regulatory requirements. Users can specify their preferred region for storing project files when using OSF Storage.
+  
+      **Attributes include:**
+  
+        - `id`: Unique identifier of the region (e.g., `us-east-1`).
+        - `name`: Human-readable name for the region (e.g., `US East`).
+  
+      **Endpoints include:**
+        - **List Regions:** Retrieve all available storage regions.
+        - **Region Detail:** Retrieve details about a specific storage region.
+  - name: Tokens
+    description: >-
+      **Personal Access Tokens** allow users to authenticate API requests without credentials.
+  
+      Tokens support fine-grained permissions (scopes) to control API access levels.  
+  - name: Applications
+    description: >-
+      **OAuth2 Applications** allow external services to securely authenticate and interact with OSF resources via OAuth2.
+  
+      Registered applications manage OAuth2 flows, client credentials, and access tokens.
+  
+      Operations include:
+        - Creating new OAuth2 applications
+        - Viewing and updating application details
+        - Deactivating or deleting applications
+        - Resetting client secrets (deprecated after v2.14)
+  - name: OAuth Scopes
+    description: >-
+      OAuth scopes define specific permissions for OAuth applications and personal access tokens.
+  
+      Each scope indicates the permission level granted to perform actions via the OSF API, such as reading node data (`osf.nodes.read`) or modifying node data (`osf.nodes.write`).
+  
+      Scopes can be queried and managed through these endpoints to understand and control access levels associated with applications and tokens.
+  - name: Actions
+    description: >-
+      Actions represent state transitions or comments performed on reviewable or request-related resources within the OSF platform, such as Preprints, Nodes, Preprint Requests, Node Requests, and Collection Submissions. These endpoints document and facilitate moderation and administrative workflows, ensuring transparency and accountability in managing user interactions, moderation processes, and lifecycle management for various resources.
+      Each Action captures:
 
+        **State transitions**: Tracking the movement of resources through different states (e.g., from pending to accepted).
+        **Comments** : Optional explanations or notes added during an action to provide context or reasons for state transitions.
+        **Triggers** : Specific actions (`submit`, `accept`, `reject`, `withdraw`, `edit_comment`, etc.) that initiate state transitions.
+        **Metadata** : Information such as timestamps for creation and modification, visibility settings, and whether the action was automated.
+
+      Actions are categorized based on their targets:
+
+       - **Review Actions**: Pertaining to moderation and review processes on Preprints.
+       - **Node Request Actions**: Related to Node Requests (e.g., access or withdrawal requests).
+       - **Preprint Request Actions**: Related to Preprint Requests, such as withdrawal requests.
+
+       Actions require specific permissions depending on their triggers:
+        - `submit`: Typically open, no special permissions required.
+        - `accept`/`reject`: Require moderation or admin permissions.
+        - `edit_comment`: Requires administrative permissions.
+
+       Each successful action response returns a JSON:API formatted object containing:
+        - **id** : The identifier of the action.
+        - **type** : Type of action performed (e.g., `review-actions`, `node-request-actions`).
+        - **attributes** : Information including `trigger`, `comment`, `from_state`, `to_state`, timestamps (`date_created`, `date_modified`), visibility (`visible`), and automation flag (`auto`).
+        - **relationships** :
+        - `creator`: User who initiated the action.
+        - **target** : The resource the action applies to (e.g., Preprint, Node Request).
+        - **provider** : Provider associated with the target, if applicable.
+
+       Actions may fail due to various reasons, resulting in standard error responses:
+        - `400 Bad Request`: Invalid or malformed payload.
+        - `403 Forbidden`: Insufficient permissions to perform the action.
+        - `404 Not Found`: The target resource does not exist or is inaccessible.
+        - `409 Conflict`: Invalid action due to the current state of the target resource.
+  - name: Identifiers
+    description: >-
+      Identifiers are unique strings associated with various entities in the OSF system, such as project nodes, 
+      registrations or preprints.
+      Identifiers serve as a means to distinctly reference these entities using standardized formats like DOI 
+      (Digital Object Identifier). Each identifier is linked to a specific entity, providing a persistent and
+      resolvable URL that can be used for citation, sharing, and retrieval purposes.
+  
+      Identifiers play a crucial role in ensuring that entities within the OSF ecosystem can be reliably accessed and
+      referenced across different platforms and services. By adhering to widely recognized standards, identifiers
+      facilitate interoperability and integration with external systems, enhancing the visibility and accessibility
+      of research outputs.
+  
+      The Identifiers system allows users to access both Datacite and Crossref for DOI minting services and stores
+      detailed metadata about each identifier, including its category, value, and the entity it is associated with.
+      This ensures that users can effectively manage and utilize identifiers in their research workflows, promoting 
+      transparency and traceability of scholarly work.
 
 paths:
 
@@ -1199,6 +1372,9 @@ paths:
   /preprints/:
     $ref: 'preprints/list.yaml'
 
+  /preprints/{preprint_id}/versions/:
+    $ref: 'preprints/versioned_preprints_list.yaml'
+
   /preprints/{preprint_id}/:
     $ref: 'preprints/detail.yaml'
 
@@ -1380,12 +1556,46 @@ paths:
   /users/{user_id}/addons/{provider}/accounts/{account_id}/:
     $ref: 'users/addon_account_detail.yaml'
 
+  /users/{user_id}/claim/:
+    $ref: 'users/user_claim.yaml'
+
+  /users/{user_id}/draft_preprints/:
+    $ref: 'users/user_draft_preprints_list.yaml'
+
+  /users/{user_id}/draft_registrations/:
+    $ref: 'users/user_draft_registrations_list.yaml'
+
+  /users/{user_id}/relationships/institutions/:
+    $ref: 'users/user_relationships_institutions.yaml'
+
+  /users/{user_id}/settings/:
+   $ref: 'users/user_settings.yaml'
+
+  /users/{user_id}/settings/emails/:
+    $ref: 'users/user_settings_emails_list.yaml'
+
+  /users/{user_id}/settings/emails/{email_id}/:
+    $ref: 'users/user_settings_email_detail.yaml'
+
+  /users/{user_id}/settings/export/:
+    $ref: 'users/user_settings_export.yaml'
+
+  /users/{user_id}/settings/identities/:
+    $ref: 'users/user_settings_identities_list.yaml'
+
+  /users/{user_id}/settings/identities/{identity_id}:
+    $ref: 'users/user_settings_identities_detail.yaml'
+
+  /users/{user_id}/settings/password/:
+    $ref: 'users/user_password.yaml'
+
   ######################
   #   View Only Links  #
   ######################
 
   /view_only_links/{link_id}/:
     $ref: 'view_only_links/detail.yaml'
+
   /view_only_links/{link_id}/nodes/:
     $ref: 'view_only_links/nodes.yaml'
 
@@ -1550,3 +1760,108 @@ paths:
   /custom_item_metadata_records/{node_id}/:
     $ref: 'cedar_metadata/nodes_list.yaml'
 
+  ################################
+  #   NOTIFICATION SUBSCRIPTIONS #
+  ################################
+
+  /subscriptions/:
+    $ref: 'subscriptions/subscription_list.yaml'
+
+  /subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/subscription_detail.yaml'
+
+  /providers/collections/{provider_id}/subscriptions/:
+    $ref: 'subscriptions/collection_provider_subscription_list.yaml'
+
+  /providers/collections/{provider_id}/subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/collection_provider_subscription_detail.yaml'
+
+  /providers/preprints/{provider_id}/subscriptions/:
+    $ref: 'subscriptions/preprint_provider_subscription_list.yaml'
+
+  /providers/preprints/{provider_id}/subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/preprint_provider_subscription_detail.yaml'
+
+  /providers/registrations/{provider_id}/subscriptions/:
+    $ref: 'subscriptions/registration_provider_subscription_list.yaml'
+
+  /providers/registrations/{provider_id}/subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/registration_provider_subscription_detail.yaml'
+
+  /registration_subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/registration_subscription_detail.yaml'
+
+  /collection_subscriptions/{subscription_id}/:
+    $ref: 'subscriptions/collection_subscription_detail.yaml'
+
+  #######################################
+  #               REGIONS              #
+  #######################################
+
+  /regions/:
+    $ref: 'region/region_list.yaml'
+
+  /regions/{region_id}/:
+    $ref: 'region/region_detail.yaml'
+
+  ############################
+  #         TOKENS           #
+  ############################
+
+  /tokens/:
+    $ref: 'tokens/token_list.yaml'
+
+  /tokens/{_id}/:
+    $ref: 'tokens/token_detail.yaml'
+
+  /tokens/{_id}/scopes/:
+    $ref: 'tokens/token_scopes_list.yaml'
+
+  #######################################
+  #            APPLICATIONS             #
+  #######################################
+
+  /applications/:
+    $ref: 'applications/application_list.yaml'
+
+  /applications/{client_id}/:
+    $ref: 'applications/application_detail.yaml'
+
+  /applications/{client_id}/reset/:
+    $ref: 'applications/application_reset.yaml'
+
+#######################################
+#              OAUTH SCOPES           #
+#######################################
+
+  /scopes/:
+    $ref: 'scopes/scope_list.yaml'
+
+  /scopes/{scope_id}/:
+    $ref: 'scopes/scope_detail.yaml'
+    
+  ############################
+  #        ACTIONS          #
+  ############################
+
+  /actions/reviews/:
+    $ref: 'actions/review_action_list.yaml'
+
+  /actions/requests/nodes/:
+    $ref: 'actions/node_request_action_list.yaml'
+
+  /actions/requests/preprints/:
+    $ref: 'actions/preprint_request_action_list.yaml'
+
+  /actions/{action_id}/:
+    $ref: 'actions/action_detail.yaml'
+
+  ######################
+  #   IDENTIFIERS      #
+  ######################
+
+  /identifiers/{identifier_id}/:
+    $ref: 'identifiers/detail.yaml'
+
+  /identifiers/{node_id}/identifiers/:
+    $ref: 'identifiers/node_list.yaml'

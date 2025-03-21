@@ -1,0 +1,78 @@
+# /users/{user_id}/settings/export/:
+
+post:
+  summary: Request User Account Export
+  description: >-
+    Initiates an export of the user's account data.
+
+    This endpoint triggers an email to OSF support requesting an export of the user's account data.
+    Only the authenticated user can request their own account export.
+
+    ## Returns
+
+    Returns a `204 No Content` response if the export request was successfully submitted.
+
+    ## Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+    Some common error cases:
+     - `403 Forbidden`: You do not have permission to request an export for this user.
+     - `429 Too Many Requests`: Export requests are throttled. You may need to wait before trying again.
+  tags:
+    - Users
+  operationId: user_account_export_create
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user requesting the export.
+
+        Example: `abc123`
+    - in: body
+      name: body
+      required: true
+      description: >-
+        A JSON API representation of the export request.
+
+        No additional attributes are required in the request payload.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [user-account-export-form]
+                example: user-account-export-form
+        required:
+          - data
+      x-examples:
+        application/json:
+          data:
+            type: user-account-export-form
+  responses:
+    '204':
+      description: >-
+        Export request successfully submitted.
+
+        The user will receive confirmation once the export process is completed.
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to request an export for this user.
+    '429':
+      description: >-
+        Too many requests.
+
+        You have exceeded the allowed number of export requests. Please wait and try again later.

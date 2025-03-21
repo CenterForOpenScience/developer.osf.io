@@ -1,0 +1,211 @@
+# /actions/requests/preprints/:
+post:
+  summary: Create a Preprint Request Action
+  description: >-
+    Create a new action on an existing Preprint Request.
+
+    Preprint Request Actions represent state changes or comments on preprint-related requests,
+    such as requests for access or withdrawal. Actions document and facilitate moderation workflows
+    for preprints submitted through the OSF.
+
+    #### Available Triggers
+
+    Preprint Request Actions support the following triggers:
+
+     - `submit`: Submit the request for review or re-submit after changes.
+     - `accept`: Approve the request (e.g., approve withdrawal).
+     - `reject`: Reject the request.
+     - `edit_comment`: Update or add a comment without altering the request’s state.
+
+    #### Request Format
+
+    The request payload must follow the [JSON:API specification](https://jsonapi.org/), structured as:
+
+    ```json
+    {
+      "data": {
+        "type": "preprint-request-actions",
+        "attributes": {
+          "trigger": "accept",
+          "comment": "Approving the preprint withdrawal request."
+        },
+        "relationships": {
+          "target": {
+            "data": {
+              "type": "preprint-requests",
+              "id": "preprintReq123"
+            }
+          }
+        }
+      }
+    ```
+
+    #### Returns
+
+    On success, returns a `201 Created` response with the newly created Preprint Request Action.
+
+    #### Errors
+
+    Errors return an `errors` object describing the failure:
+
+     - `400 Bad Request`: Payload is invalid or missing required fields.
+     - `403 Forbidden`: Insufficient permissions to perform the action.
+     - `409 Conflict`: Invalid state transition.
+
+    Refer to [Errors and Error Codes](#tag/Errors-and-Error-Codes) for more details.
+
+  tags:
+    - Actions
+  operationId: preprint_request_action_create
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: body
+      name: body
+      required: true
+      description: A JSON:API representation of the Preprint Request Action to create.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+              - relationships
+            properties:
+              type:
+                type: string
+                example: preprint-request-actions
+              attributes:
+                type: object
+                required:
+                  - trigger
+                properties:
+                  trigger:
+                    type: string
+                    example: accept
+                  comment:
+                    type: string
+                    example: "Approving the preprint withdrawal request."
+              relationships:
+                type: object
+                required:
+                  - target
+                properties:
+                  target:
+                    type: object
+                    required:
+                      - data
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - type
+                          - id
+                        properties:
+                          type:
+                            type: string
+                            example: preprint-requests
+                          id:
+                            type: string
+                            example: preprintReq123
+  responses:
+    '201':
+      description: Preprint Request Action successfully created.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: preprintAction123
+              type:
+                type: string
+                example: preprint-request-actions
+              attributes:
+                type: object
+                properties:
+                  trigger:
+                    type: string
+                    example: accept
+                  comment:
+                    type: string
+                    example: "Approved preprint withdrawal request."
+                  from_state:
+                    type: string
+                    example: pending
+                  to_state:
+                    type: string
+                    example: accepted
+                  date_created:
+                    type: string
+                    format: date-time
+                    example: '2024-03-13T15:30:00Z'
+                  date_modified:
+                    type: string
+                    format: date-time
+                    example: '2024-03-13T15:30:00Z'
+                  auto:
+                    type: boolean
+                    example: false
+                  visible:
+                    type: boolean
+                    example: true
+              relationships:
+                type: object
+                properties:
+                  creator:
+                    type: object
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: 'https://api.osf.io/v2/users/user456/'
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: user456
+                          type:
+                            type: string
+                            example: users
+                  target:
+                    type: object
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: 'https://api.osf.io/v2/requests/preprints/preprintReq123/'
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: preprintReq123
+                          type:
+                            type: string
+                            example: preprint-requests
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: 'https://api.osf.io/v2/actions/preprintAction123/'
+    '400':
+      description: Bad request. The request payload is invalid or incomplete.
+    '403':
+      description: Permission denied.
+    '409':
+      description: Conflict due to invalid state transition.

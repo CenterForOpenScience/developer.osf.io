@@ -1,0 +1,51 @@
+# /tokens/{_id}/scopes/:
+
+get:
+  summary: List Scopes of a Personal Access Token
+  description: >-
+    Retrieve the scopes associated with a specific personal access token.
+
+    Scopes determine the level of access and operations permitted by the token.
+
+    #### Returns
+    A JSON:API-compliant response containing an array of scopes.
+
+    #### Errors
+    - `404 Not Found`: Token or scopes not accessible by user.
+
+  tags:
+    - Tokens
+  operationId: token_scopes_list
+  produces:
+    - application/json
+  parameters:
+    - name: _id
+      in: path
+      required: true
+      type: string
+      description: The token's unique identifier.
+  responses:
+    '200':
+      description: Successfully retrieved tokens scopes.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "osf.full_write"
+                type:
+                  type: string
+                  example: scopes
+                attributes:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+                      example: "Full write access to OSF resources."
+    '404':
+      description: Token not found.

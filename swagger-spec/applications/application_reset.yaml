@@ -1,0 +1,34 @@
+post:
+  summary: Reset Application Client Secret
+  description: >-
+    Resets the client secret for a specific OAuth2 application, revoking all associated tokens.
+
+    **Deprecated in API v2.14+**
+
+  tags:
+    - Applications
+  operationId: application_reset
+  produces:
+    - application/json
+  parameters:
+    - name: client_id
+      in: path
+      required: true
+      type: string
+  responses:
+    '201':
+      description: Client secret successfully reset.
+      examples:
+        application/json:
+          data:
+            id: "client_abc123"
+            type: "applications"
+            attributes:
+              client_secret: "new_secret_xyz789"
+            links:
+              html: "https://osf.io/settings/applications/client_abc123/"
+              reset: "https://api.osf.io/v2/applications/client_abc123/reset/"
+    '404':
+      description: Application not found or unauthorized.
+    '410':
+      description: Endpoint deprecated and removed in v2.15.
