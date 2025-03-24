@@ -1,63 +1,37 @@
-# /actions/requests/nodes/:
-
+# /actions/requests/nodes/
 post:
   summary: Create a Node Request Action
-  description: >-
+  description: >
     Create a new action on an existing Node Request.
 
     Node Request Actions represent state transitions or comments on node-related requests,
     such as access or withdrawal requests. Actions document and facilitate moderation workflows
     for node requests managed through the OSF.
 
-    ## Available Triggers
+    #### Available Triggers
 
     Supported triggers for Node Request Actions include:
-     - `submit`: Submit or resubmit the node request for review. No special permissions required.
-     - `accept`: Approve the node request. Requires admin permissions.
-     - `reject`: Reject the node request. Requires admin permissions.
-     - `edit_comment`: Add or update a comment without changing the request’s state. Requires admin permissions.
-
-    #### Request Format
-
-    This endpoint expects a JSON:API compliant payload structured as follows:
-
-    ```json
-    {
-      "data": {
-        "type": "node-request-actions",
-        "attributes": {
-          "trigger": "accept",
-          "comment": "Approving the node access request."
-        },
-        "relationships": {
-          "target": {
-            "data": {
-              "type": "node-requests",
-              "id": "nodeReq123"
-            }
-          }
-        }
-      }
-    }
-    ```
+     - submit: Submit or resubmit the node request for review. No special permissions required.
+     - accept: Approve the node request. Requires admin permissions.
+     - reject: Reject the node request. Requires admin permissions.
+     - edit_comment: Add or update a comment without changing the request’s state. Requires admin permissions.
 
     #### Permissions
 
     Permission checks are enforced based on the trigger:
-     - Actions like `accept`, `reject`, and `edit_comment` require admin permissions on the target node.
+     - Actions like accept, reject, and edit_comment require admin permissions on the target node.
 
     #### Returns
 
-    On success, returns a `201 Created` response with a `data` object representing the newly created
+    On success, returns a 201 Created response with a data object representing the newly created
     Node Request Action.
 
     #### Errors
 
     Possible errors include:
-
-     - `400 Bad Request`: Invalid payload or missing required fields.
-     - `403 Forbidden`: Insufficient permissions to perform the requested action.
-     - `409 Conflict`: The trigger is invalid for the node request’s current state.
+     - 400 Bad Request: Invalid payload or missing required fields.
+     - 403 Forbidden: Insufficient permissions to perform the requested action.
+     - 409 Conflict: The trigger is invalid for the node request’s current state.
 
     Refer to [Errors and Error Codes](#tag/Errors-and-Error-Codes) for more details.
 
@@ -75,10 +49,11 @@ post:
     - in: body
       name: body
       required: true
-      description: >-
-        A JSON:API payload describing the Node Request Action to create.
+      description: A JSON:API compliant payload describing the Node Request Action to create.
       schema:
         type: object
+        required:
+          - data
         properties:
           data:
             type: object
@@ -89,6 +64,8 @@ post:
             properties:
               type:
                 type: string
+                enum:
+                  - node-request-actions
                 example: node-request-actions
               attributes:
                 type: object
@@ -97,10 +74,15 @@ post:
                 properties:
                   trigger:
                     type: string
+                    enum:
+                      - submit
+                      - accept
+                      - reject
+                      - edit_comment
                     example: accept
                   comment:
                     type: string
-                    example: "Approved node request."
+                    example: Approving the node access request.
               relationships:
                 type: object
                 required:
@@ -119,6 +101,8 @@ post:
                         properties:
                           type:
                             type: string
+                            enum:
+                              - node-requests
                             example: node-requests
                           id:
                             type: string
@@ -128,7 +112,7 @@ post:
     '201':
       description: Node Request Action successfully created.
       schema:
-        type: object
+        $ref: 'definition.yaml'
       examples:
         application/json:
           data:
@@ -136,7 +120,7 @@ post:
             type: node-request-actions
             attributes:
               trigger: accept
-              comment: "Approved node request."
+              comment: Approved node request.
               from_state: pending
               to_state: accepted
               date_created: '2024-03-13T15:30:00Z'
@@ -164,13 +148,10 @@ post:
               self: 'https://api.osf.io/v2/actions/nodeAction123/'
 
     '400':
-      description: >-
-        Bad request. The payload is invalid or missing required fields.
+      description: Bad request. The payload is invalid or missing required fields.
 
     '403':
-      description: >-
-        Forbidden. You do not have permission to perform this action.
+      description: Forbidden. You do not have permission to perform this action.
 
     '409':
-      description: >-
-        Conflict. Invalid state transition for the given trigger.
+      description: Conflict. Invalid state transition for the given trigger.
