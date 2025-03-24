@@ -37,7 +37,7 @@ get:
           data:
             type: array
             items:
-              $ref: './definition.yaml'
+              $ref: '../registrations/definition.yaml'
           links:
             type: object
             properties:

@@ -1,5 +1,4 @@
-# /registrations/{provider_id}/requests/
-
+# providers/registrations/{provider_id}/requests/
 get:
   summary: List Registration Requests
   description: >-
@@ -39,7 +38,7 @@ get:
           data:
             type: array
             items:
-              $ref: './definition.yaml'
+              $ref: '../registration_request/definition.yaml'
           links:
             type: object
             properties:

@@ -49,7 +49,7 @@ get:
           data:
             type: array
             items:
-              $ref: './definition.yaml'
+              $ref: '../registration_action/definition.yaml'
           links:
             type: object
             properties:

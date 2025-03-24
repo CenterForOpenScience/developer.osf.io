@@ -1021,6 +1021,7 @@ paths:
 
   /schemas/registrations/:
     $ref: 'registration_schemas/list.yaml'
+
   /schemas/registrations/{registration_schema_id}:
     $ref: 'registration_schemas/detail.yaml'
 
@@ -1265,6 +1266,53 @@ paths:
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
 
+  ############################
+  #  REGISTRATION PROVIDERS  #
+  ############################
+
+  /providers/registrations/:
+    $ref: 'registration_providers/list.yaml'
+
+  /providers/registrations/{provider_id}/:
+    $ref: 'registration_providers/detail.yaml'
+
+  /providers/registrations/{provider_id}/registrations/:
+    $ref: 'registration_providers/registrations_list.yaml'
+
+  /providers/registrations/{provider_id}/taxonomies/:
+    $ref: 'registration_providers/provider_taxonomies_list.yaml'
+
+  /providers/registrations/{provider_id}/taxonomies/highlighted/:
+    $ref: 'registration_providers/provider_taxonomies_highlighted_list.yaml'
+
+  /providers/registrations/{provider_id}/licenses/:
+    $ref: 'registration_providers/licenses_list.yaml'
+
+  /providers/registrations/{provider_id}/actions/:
+    $ref: 'registration_providers/actions_list.yaml'
+
+  /providers/registrations/{provider_id}/requests/:
+    $ref: 'registration_providers/requests_list.yaml'
+
+  /providers/registrations/{provider_id}/schemas/:
+    $ref: 'registration_providers/schemas_list.yaml'
+
+  /providers/registrations/{provider_id}/subjects/:
+    $ref: 'registration_providers/subjects_list.yaml'
+
+  /providers/registrations/{provider_id}/submissions/:
+    $ref: 'registration_providers/submissions_list.yaml'
+
+  /providers/registrations/{provider_id}/subjects/highlighted/:
+    $ref: 'registration_providers/subjects_highlighted_list.yaml'
+
+  /providers/registrations/{provider_id}/moderators/:
+    $ref: 'registration_providers/moderators_list.yaml'
+
+  /providers/registrations/{provider_id}/moderators/{moderator_id}/:
+    $ref: 'registration_providers/moderators_detail.yaml'
+
+
   ##########################
   #  DRAFT REGISTRATIONS   #
   ##########################
@@ -1387,6 +1435,37 @@ paths:
   /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
     $ref: 'collections/collected_metadata_subjects_relationships.yaml'
 
+  ############################
+  #   COLLECTION PROVIDERS   #
+  ############################
+
+  /providers/collections/:
+    $ref: 'collection_providers/list.yaml'
+
+  /providers/collections/{provider_id}/:
+    $ref: 'collection_providers/detail.yaml'
+
+  /providers/collections/{provider_id}/licenses/:
+    $ref: 'collection_providers/licenses_list.yaml'
+
+  /providers/collections/{provider_id}/taxonomies/:
+    $ref: 'collection_providers/provider_taxonomies_list.yaml'
+
+  /providers/collections/{provider_id}/taxonomies/highlighted/:
+    $ref: 'collection_providers/provider_taxonomies_highlighted_list.yaml'
+
+  /providers/collections/{provider_id}/submissions/:
+    $ref: 'collection_providers/submissions_list.yaml'
+
+  /providers/collections/{provider_id}/subjects/highlighted/:
+    $ref: 'collection_providers/subjects_highlighted_list.yaml'
+
+  /providers/collections/{provider_id}/moderators/:
+    $ref: 'collection_providers/moderators_list.yaml'
+
+  /providers/collections/{provider_id}/moderators/{moderator_id}/:
+    $ref: 'collection_providers/moderators_detail.yaml'
+
   ###############################
   #   COLLECTIONS SUBMISSIONS   #
   ###############################
@@ -1415,10 +1494,10 @@ paths:
     $ref: 'collection_providers/detail.yaml'
 
   /provider/collections/{provider_id}/licenses/:
-    $ref: 'collection_providers/licenses.yaml'
+    $ref: 'collection_providers/licenses_list.yaml'
 
   /provider/collections/{provider_id}/submissions/:
-    $ref: 'collection_providers/submissions.yaml'
+    $ref: 'collection_providers/submissions_list.yaml'
 
   /provider/collections/{provider_id}/subjects/:
     $ref: 'collection_providers/subjects.yaml'

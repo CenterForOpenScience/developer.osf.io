@@ -1,8 +1,8 @@
-# /registrations/{provider_id}/submissions/
 get:
   summary: List Submissions for a Registration
-  description: >-
-    Retrieve a list of submissions associated with a specific registration.  
+  description: >
+    Retrieve a list of submissions associated with a specific registration.
+
     A submission represents an attempt to add a registration to a collection, typically requiring moderation or approval.
 
     #### Permissions
@@ -19,6 +19,9 @@ get:
 
   operationId: registrations_submissions_list
 
+  produces:
+    - application/json
+
   parameters:
     - in: path
       name: provider_id
@@ -33,11 +36,11 @@ get:
       description: |
         Filter submissions by their state.
         Available values:
-        - `in_progress`
-        - `pending`
-        - `accepted`
-        - `rejected`
-        - `removed`
+        - in_progress
+        - pending
+        - accepted
+        - rejected
+        - removed
 
     - in: query
       name: page
@@ -56,6 +59,8 @@ get:
       description: Successful retrieval of the list of submissions for the registration.
       schema:
         type: object
+        required:
+          - data
         properties:
           data:
             type: array
@@ -84,7 +89,6 @@ get:
               version:
                 type: string
                 description: API version.
-
       examples:
         application/json:
           data:
@@ -135,4 +139,3 @@ get:
       description: Forbidden. You do not have permission to view these submissions.
     '404':
       description: Not Found. No registration matches the given ID.
-

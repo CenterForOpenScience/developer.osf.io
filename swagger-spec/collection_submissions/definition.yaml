@@ -1,0 +1,69 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+properties:
+  id:
+    type: string
+    example: sub1
+  type:
+    type: string
+    example: collection-submissions
+  attributes:
+    type: object
+    required:
+      - state
+      - date_submitted
+    properties:
+      state:
+        type: string
+        enum:
+          - in_progress
+          - pending
+          - accepted
+          - rejected
+          - removed
+        example: pending
+      date_submitted:
+        type: string
+        format: date-time
+        example: '2024-12-01T12:00:00Z'
+  relationships:
+    type: object
+    required:
+      - collection
+      - creator
+    properties:
+      collection:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                example: collections
+              id:
+                type: string
+                example: col123
+      creator:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                example: users
+              id:
+                type: string
+                example: user456
+  links:
+    type: object
+    properties:
+      self:
+        type: string
+        example: "https://api.test.osf.io/v2/collection_submissions/sub1/"

@@ -3,7 +3,7 @@ get:
   summary: List Highlighted Taxonomies for a Collection Provider (Deprecated)
   description: |
     Retrieve the list of highlighted taxonomies for a Collection Provider.
-    
+
     **Deprecated:** Use the `highlighted subjects` endpoint instead.
 
   deprecated: true
@@ -12,8 +12,7 @@ get:
     - in: path
       name: provider_id
       required: true
-      schema:
-        type: string
+      type: string
       description: The unique ID of the collection provider.
 
   tags:
@@ -22,15 +21,21 @@ get:
   responses:
     '200':
       description: A list of highlighted taxonomies.
-      content:
-        application/vnd.api+json:
-          example:
-            data:
-              - id: "xyz-highlighted"
-                type: "taxonomies"
-                attributes:
-                  text: "Open Science"
-                  parents: []
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../taxonomies/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: "xyz-highlighted"
+              type: "taxonomies"
+              attributes:
+                text: "Open Science"
+                parents: []
 
     '401':
       description: Authentication credentials were not provided or are invalid.
