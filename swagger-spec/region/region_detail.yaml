@@ -7,12 +7,15 @@ get:
 
     A storage region defines the geographical or cloud-based location used by OSF Storage for storing files.
 
-    ## Returns
-     A JSON:API-compliant response containing a single `region` entity under the `data` key.
+    #### Returns
+    
+    A JSON:API-compliant response containing a single `region` entity under the `data` key.
 
-    ## Errors
+    #### Errors
+
     Returns an `errors` object if unsuccessful:
       - `404 Not Found`: No region matches the provided `region_id`.
+
   tags:
     - Regions
   operationId: region_detail

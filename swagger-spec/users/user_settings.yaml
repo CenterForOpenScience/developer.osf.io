@@ -1,0 +1,156 @@
+# /users/{user_id}/settings/:
+
+get:
+  summary: Retrieve a User's Settings
+  description: >-
+    Retrieves a user's settings, including two-factor authentication status, email subscriptions, and deactivation status.
+
+    Only the authenticated user can access their settings.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the user's settings.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+  tags:
+    - Users
+  operationId: user_settings_read
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user.
+
+        Example: `abc123`
+  responses:
+    '200':
+      description: >-
+        Successfully retrieved the user's settings.
+      examples:
+        application/json:
+          data:
+            id: abc123
+            type: user-settings
+            attributes:
+              two_factor_enabled: true
+              two_factor_confirmed: true
+              subscribe_osf_general_email: true
+              subscribe_osf_help_email: false
+              deactivation_requested: false
+              contacted_deactivation: false
+    '403':
+      description: >-
+        Permission denied. You do not have permission to view these settings.
+
+
+patch:
+  summary: Update a User's Settings
+  description: >-
+    Updates a user's settings, including email subscriptions, two-factor authentication setup, and account deactivation status.
+
+    Only the authenticated user can modify their settings.
+
+    ## Editable Attributes
+
+     - `two_factor_enabled` (boolean): Enables or disables two-factor authentication.
+     - `two_factor_verification` (integer): Verification code for two-factor setup.
+     - `subscribe_osf_general_email` (boolean): Subscribe/unsubscribe from OSF general communications.
+     - `subscribe_osf_help_email` (boolean): Subscribe/unsubscribe from OSF help communications.
+     - `deactivation_requested` (boolean): Request deactivation of your OSF account.
+
+    #### Returns
+
+    Returns the updated user's settings in a JSON object with a `data` key.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+  tags:
+    - Users
+  operationId: user_settings_update
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user.
+
+        Example: `abc123`
+    - in: body
+      name: body
+      required: true
+      description: JSON API representation of the updates to the user's settings.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [user-settings]
+                example: user-settings
+              id:
+                type: string
+                description: The user ID for the settings update.
+                example: abc123
+              attributes:
+                type: object
+                properties:
+                  two_factor_enabled:
+                    type: boolean
+                    description: Enable or disable two-factor authentication.
+                    example: true
+                  two_factor_verification:
+                    type: integer
+                    description: Verification code for two-factor authentication.
+                    example: 123456
+                  subscribe_osf_general_email:
+                    type: boolean
+                    description: Subscribe or unsubscribe from OSF general emails.
+                    example: true
+                  subscribe_osf_help_email:
+                    type: boolean
+                    description: Subscribe or unsubscribe from OSF help emails.
+                    example: false
+                  deactivation_requested:
+                    type: boolean
+                    description: Request deactivation of your OSF account.
+                    example: false
+      x-examples:
+        application/json:
+          data:
+            type: user-settings
+            id: abc123
+            attributes:
+              two_factor_enabled: true
+              two_factor_verification: 123456
+              subscribe_osf_general_email: true
+              subscribe_osf_help_email: false
+              deactivation_requested: false
+  responses:
+    '200':
+      description: >-
+        Successfully updated the user's settings.
+    '400':
+      description: >-
+        Bad request. This can occur if the two-factor verification code is invalid, or subscription values are incorrect.
+    '403':
+      description: >-
+        Permission denied. You do not have permission to update these settings.
+    '404':
+      description: >-
+        User not found.

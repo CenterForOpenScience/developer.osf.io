@@ -134,6 +134,10 @@ properties:
         type: string
         readOnly: false
         description: 'The text of the any explanation of preprint preregistration link infomation.'
+      version:
+        type: integer
+        readOnly: true
+        description: 'Preprint version'
   relationships:
     type: object
     title: Relationships

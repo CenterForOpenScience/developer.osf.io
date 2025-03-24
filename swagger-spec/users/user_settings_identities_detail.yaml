@@ -1,0 +1,118 @@
+# /users/{user_id}/settings/identities/{identity_id}/:
+
+get:
+  summary: Retrieve a User's External Identity
+  description: >-
+    Retrieves detailed information about a single external identity linked to the user.
+
+    External identities represent accounts linked from external services or identity providers (e.g., ORCID, institutions).
+
+    Only the authenticated user can view their own external identities.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the details of the requested external identity.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  tags:
+    - Users
+  operationId: user_identity_detail_read
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user whose external identity is being retrieved.
+
+        Example: `abc123`
+    - in: path
+      name: identity_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the external identity to retrieve.
+
+        Example: `orcid`
+  responses:
+    '200':
+      description: >-
+        A single external identity for the user.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: orcid
+            type: external-identities
+            attributes:
+              external_id: 0000-0002-1825-0097
+              status: VERIFIED
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to view external identities for this user.
+    '404':
+      description: >-
+        External identity not found.
+
+        No identity with the given ID exists for this user.
+
+delete:
+  summary: Remove a User's External Identity
+  description: >-
+    Deletes (removes) an external identity from the user's account.
+
+    Only the authenticated user can delete their own external identities.
+
+    #### Returns
+
+    Returns a `204 No Content` response if the external identity was successfully removed.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  tags:
+    - Users
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user whose external identity is being deleted.
+
+        Example: `abc123`
+    - in: path
+      name: identity_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the external identity to delete.
+
+        Example: `orcid`
+  responses:
+    '204':
+      description: >-
+        External identity successfully removed.
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to remove external identities for this user.
+    '404':
+      description: >-
+        External identity not found.
+
+        No identity with the given ID exists for this user.
