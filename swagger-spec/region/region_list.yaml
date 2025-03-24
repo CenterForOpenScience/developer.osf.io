@@ -13,7 +13,9 @@ get:
     Supports standard pagination and sorting by name.
 
     ## Errors
-     If unsuccessful, returns an `errors` object. Refer to the [Errors and Error Codes](#tag/Errors-and-Error-Codes) section for details.
+     
+    If unsuccessful, returns an `errors` object. Refer to the [Errors and Error Codes](#tag/Errors-and-Error-Codes) section for details.
+
   tags:
     - Regions
   operationId: region_list

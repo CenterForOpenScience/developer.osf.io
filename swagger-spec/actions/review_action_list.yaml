@@ -1,8 +1,7 @@
 # /actions/reviews/:
-
 get:
   summary: List Review Actions
-  description: >-
+  description: >
     Retrieve a list of review actions visible to the authenticated user.
 
     Review actions represent state transitions or comments made on reviewable objects, such as preprints.
@@ -10,7 +9,15 @@ get:
 
     #### Filtering & Pagination
 
-    Supports pagination and filtering by `id`, `trigger`, `from_state`, `to_state`, `date_created`, and `date_modified`.
+    Supports pagination and filtering by the following fields:
+     - `id`
+     - `trigger`
+     - `from_state`
+     - `to_state`
+     - `date_created`
+     - `date_modified`
+
+    Pagination follows the [JSON:API pagination specification](https://jsonapi.org/format/#fetching-pagination).
 
     #### Returns
 
@@ -25,6 +32,49 @@ get:
   operationId: review_action_list
   produces:
     - application/json
+
+  parameters:
+    - name: page
+      in: query
+      type: integer
+      description: Page number of the results to fetch.
+      required: false
+    - name: per_page
+      in: query
+      type: integer
+      description: Number of results per page.
+      required: false
+    - name: filter[id]
+      in: query
+      type: string
+      description: Filter by the unique ID of the review action.
+      required: false
+    - name: filter[trigger]
+      in: query
+      type: string
+      description: Filter by the trigger that initiated the action.
+      required: false
+    - name: filter[from_state]
+      in: query
+      type: string
+      description: Filter by the previous state of the resource.
+      required: false
+    - name: filter[to_state]
+      in: query
+      type: string
+      description: Filter by the new state of the resource.
+      required: false
+    - name: filter[date_created]
+      in: query
+      type: string
+      description: Filter by the creation date of the action.
+      required: false
+    - name: filter[date_modified]
+      in: query
+      type: string
+      description: Filter by the last modification date of the action.
+      required: false
+
   responses:
     '200':
       description: Successful retrieval of review actions.
@@ -34,129 +84,21 @@ get:
           data:
             type: array
             items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  example: reviewAction123
-                type:
-                  type: string
-                  example: review-actions
-                attributes:
-                  type: object
-                  properties:
-                    trigger:
-                      type: string
-                      example: accept
-                    comment:
-                      type: string
-                      example: "This looks great!"
-                    from_state:
-                      type: string
-                      example: pending
-                    to_state:
-                      type: string
-                      example: accepted
-                    date_created:
-                      type: string
-                      format: date-time
-                      example: '2024-03-14T10:00:00Z'
-                    date_modified:
-                      type: string
-                      format: date-time
-                      example: '2024-03-14T10:05:00Z'
-                    auto:
-                      type: boolean
-                      example: false
-                    visible:
-                      type: boolean
-                      example: true
-                relationships:
-                  type: object
-                  properties:
-                    creator:
-                      type: object
-                      properties:
-                        links:
-                          type: object
-                          properties:
-                            related:
-                              type: object
-                              properties:
-                                href:
-                                  type: string
-                                  format: uri
-                                  example: 'https://api.osf.io/v2/users/user456/'
-                                meta:
-                                  type: object
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              example: user456
-                            type:
-                              type: string
-                              example: users
-                    target:
-                      type: object
-                      properties:
-                        links:
-                          type: object
-                          properties:
-                            related:
-                              type: object
-                              properties:
-                                href:
-                                  type: string
-                                  format: uri
-                                  example: 'https://api.osf.io/v2/preprints/xyz789/'
-                                meta:
-                                  type: object
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              example: xyz789
-                            type:
-                              type: string
-                              example: preprints
-                    provider:
-                      type: object
-                      properties:
-                        links:
-                          type: object
-                          properties:
-                            related:
-                              type: object
-                              properties:
-                                href:
-                                  type: string
-                                  format: uri
-                                  example: 'https://api.osf.io/v2/providers/osf/'
-                                meta:
-                                  type: object
-                        data:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              example: osf
-                            type:
-                              type: string
-                              example: providers
+              $ref: 'definition.yaml'
           meta:
             type: object
             properties:
               total:
                 type: integer
+                description: Total number of actions available.
                 example: 1
               per_page:
                 type: integer
+                description: Number of actions per page.
                 example: 10
               version:
                 type: string
+                description: API version.
                 example: '2.20'
           links:
             type: object
@@ -164,4 +106,21 @@ get:
               self:
                 type: string
                 format: uri
+                description: Link to the current page of results.
                 example: 'https://api.osf.io/v2/actions/reviews/'
+              next:
+                type: string
+                format: uri
+                description: Link to the next page of results.
+                example: 'https://api.osf.io/v2/actions/reviews/?page=2'
+              prev:
+                type: string
+                format: uri
+                description: Link to the previous page of results.
+                example: 'https://api.osf.io/v2/actions/reviews/?page=1'
+
+    '400':
+      description: Bad request. Invalid filter or pagination parameters.
+
+    '403':
+      description: Forbidden. The user does not have permission to view these review actions.

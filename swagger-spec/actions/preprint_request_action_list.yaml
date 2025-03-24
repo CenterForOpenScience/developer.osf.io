@@ -1,7 +1,7 @@
 # /actions/requests/preprints/:
 post:
   summary: Create a Preprint Request Action
-  description: >-
+  description: >
     Create a new action on an existing Preprint Request.
 
     Preprint Request Actions represent state changes or comments on preprint-related requests,
@@ -19,9 +19,10 @@ post:
 
     #### Request Format
 
-    The request payload must follow the [JSON:API specification](https://jsonapi.org/), structured as:
+    The request payload must follow the JSON:API specification, structured as:
 
     ```json
+    
     {
       "data": {
         "type": "preprint-request-actions",
@@ -38,34 +39,39 @@ post:
           }
         }
       }
+    }
+    
     ```
 
     #### Returns
 
-    On success, returns a `201 Created` response with the newly created Preprint Request Action.
+    On success, returns a 201 Created response with the newly created Preprint Request Action.
 
     #### Errors
 
-    Errors return an `errors` object describing the failure:
+    Errors return an errors object describing the failure:
 
-     - `400 Bad Request`: Payload is invalid or missing required fields.
-     - `403 Forbidden`: Insufficient permissions to perform the action.
-     - `409 Conflict`: Invalid state transition.
+     - 400 Bad Request: Payload is invalid or missing required fields.
+     - 403 Forbidden: Insufficient permissions to perform the action.
+     - 409 Conflict: Invalid state transition.
 
     Refer to [Errors and Error Codes](#tag/Errors-and-Error-Codes) for more details.
 
   tags:
     - Actions
+
   operationId: preprint_request_action_create
+
   consumes:
     - application/json
   produces:
     - application/json
+
   parameters:
     - in: body
       name: body
       required: true
-      description: A JSON:API representation of the Preprint Request Action to create.
+      description: A JSON:API compliant payload describing the Preprint Request Action to create.
       schema:
         type: object
         required:
@@ -80,6 +86,8 @@ post:
             properties:
               type:
                 type: string
+                enum:
+                  - preprint-request-actions
                 example: preprint-request-actions
               attributes:
                 type: object
@@ -88,6 +96,11 @@ post:
                 properties:
                   trigger:
                     type: string
+                    enum:
+                      - submit
+                      - accept
+                      - reject
+                      - edit_comment
                     example: accept
                   comment:
                     type: string
@@ -110,102 +123,57 @@ post:
                         properties:
                           type:
                             type: string
+                            enum:
+                              - preprint-requests
                             example: preprint-requests
                           id:
                             type: string
                             example: preprintReq123
+
   responses:
     '201':
       description: Preprint Request Action successfully created.
       schema:
-        type: object
-        properties:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
           data:
-            type: object
-            properties:
-              id:
-                type: string
-                example: preprintAction123
-              type:
-                type: string
-                example: preprint-request-actions
-              attributes:
-                type: object
-                properties:
-                  trigger:
-                    type: string
-                    example: accept
-                  comment:
-                    type: string
-                    example: "Approved preprint withdrawal request."
-                  from_state:
-                    type: string
-                    example: pending
-                  to_state:
-                    type: string
-                    example: accepted
-                  date_created:
-                    type: string
-                    format: date-time
-                    example: '2024-03-13T15:30:00Z'
-                  date_modified:
-                    type: string
-                    format: date-time
-                    example: '2024-03-13T15:30:00Z'
-                  auto:
-                    type: boolean
-                    example: false
-                  visible:
-                    type: boolean
-                    example: true
-              relationships:
-                type: object
-                properties:
-                  creator:
-                    type: object
-                    properties:
-                      links:
-                        type: object
-                        properties:
-                          related:
-                            type: string
-                            example: 'https://api.osf.io/v2/users/user456/'
-                      data:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            example: user456
-                          type:
-                            type: string
-                            example: users
-                  target:
-                    type: object
-                    properties:
-                      links:
-                        type: object
-                        properties:
-                          related:
-                            type: string
-                            example: 'https://api.osf.io/v2/requests/preprints/preprintReq123/'
-                      data:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            example: preprintReq123
-                          type:
-                            type: string
-                            example: preprint-requests
-              links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    example: 'https://api.osf.io/v2/actions/preprintAction123/'
+            id: preprintAction123
+            type: preprint-request-actions
+            attributes:
+              trigger: accept
+              comment: "Approved preprint withdrawal request."
+              from_state: pending
+              to_state: accepted
+              date_created: '2024-03-13T15:30:00Z'
+              date_modified: '2024-03-13T15:30:00Z'
+              auto: false
+              visible: true
+            relationships:
+              creator:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/users/user456/'
+                    meta: {}
+                data:
+                  id: user456
+                  type: users
+              target:
+                links:
+                  related:
+                    href: 'https://api.osf.io/v2/requests/preprints/preprintReq123/'
+                    meta: {}
+                data:
+                  id: preprintReq123
+                  type: preprint-requests
+            links:
+              self: 'https://api.osf.io/v2/actions/preprintAction123/'
+
     '400':
       description: Bad request. The request payload is invalid or incomplete.
+
     '403':
-      description: Permission denied.
+      description: Permission denied. Insufficient permissions to perform the requested action.
+
     '409':
-      description: Conflict due to invalid state transition.
+      description: Conflict due to an invalid state transition.
