@@ -34,7 +34,7 @@ get:
     '200':
       description: Successful retrieval of the moderator.
       schema:
-        $ref: 'definition.yaml'
+        $ref: 'moderator_definition.yaml'
       examples:
         application/json:
           data:
@@ -66,18 +66,19 @@ patch:
   description: >-
     Update the permission group for a specific moderator on a preprint provider.
 
-    #### Permissions
+    ## Permissions
     - The authenticated user must be an administrator of the preprint provider.
 
-    #### Request Body
+    ## Request Body
+    
     Provide the `permission_group` attribute in the `attributes` object to update the moderator.
     Available values for `permission_group` are:
       - `moderator`: Can review and moderate preprint submissions.
       - `admin`: Can manage submissions and other moderators.
 
-    #### Returns
-    - A JSON object with the updated moderator details under the `data` key if the update is successful.
-    - If unsuccessful, returns an `errors` object detailing the validation issues.
+    ## Returns
+     - A JSON object with the updated moderator details under the `data` key if the update is successful.
+     - If unsuccessful, returns an `errors` object detailing the validation issues.
 
   tags:
     - Preprint Providers
@@ -144,7 +145,7 @@ patch:
     '200':
       description: Moderator successfully updated.
       schema:
-        $ref: 'definition.yaml'
+        $ref: 'moderator_definition.yaml'
       examples:
         application/json:
           data:
@@ -178,12 +179,12 @@ delete:
   description: >-
     Remove a moderator from a preprint provider.
 
-    #### Permissions
-    - The authenticated user must be an administrator of the preprint provider.
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
 
-    #### Returns
-    - Returns a `204 No Content` response if the deletion is successful.
-    - If unsuccessful, returns an `errors` object detailing the issue.
+    ## Returns
+     - Returns a `204 No Content` response if the deletion is successful.
+     - If unsuccessful, returns an `errors` object detailing the issue.
 
   tags:
     - Preprint Providers

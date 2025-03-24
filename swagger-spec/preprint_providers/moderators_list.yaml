@@ -5,12 +5,12 @@ get:
   description: >-
     Retrieve a list of moderators for a specific preprint provider, including their assigned roles and user information.
 
-    #### Permissions
-    - The authenticated user must be an administrator of the preprint provider.
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
 
-    #### Returns
-    - A JSON object with a `data` key containing a list of moderators.
-    - Each moderator includes user details and their assigned permission group.
+    ## Returns
+     - A JSON object with a `data` key containing a list of moderators.
+     - Each moderator includes user details and their assigned permission group.
 
   tags:
     - Preprint Providers
@@ -33,7 +33,7 @@ get:
           data:
             type: array
             items:
-              $ref: 'definition.yaml'
+              $ref: 'moderator_definition.yaml'
         example:
           data:
             - id: "moderator_1"
@@ -79,10 +79,10 @@ post:
   description: >-
     Add a new moderator to the preprint provider by specifying the user and their permission group.
 
-    #### Permissions
-    - The authenticated user must be an administrator of the preprint provider.
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
 
-    #### Request Body
+    ## Request Body
     Provide the `user_id` and `permission_group` in the `attributes` object to create a new moderator assignment.
     Available values for `permission_group` are:
       - `moderator`: Can review and moderate preprint submissions.

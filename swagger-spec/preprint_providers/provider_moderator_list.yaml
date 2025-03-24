@@ -5,12 +5,12 @@ get:
   description: >-
     Retrieve a list of all moderators assigned to a specific preprint provider.
 
-    #### Permissions
-    - The authenticated user must be an administrator of the preprint provider.
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
 
-    #### Returns
-    - A JSON object with a `data` key containing an array of moderator records.
-    - Each moderator includes their permission group and basic user information.
+    ## Returns
+     - A JSON object with a `data` key containing an array of moderator records.
+     - Each moderator includes their permission group and basic user information.
 
   tags:
     - Preprint Providers
@@ -114,15 +114,15 @@ post:
   description: >-
     Add a new moderator to the specified preprint provider.
 
-    #### Permissions
-    - The authenticated user must be an administrator of the preprint provider.
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
 
-    #### Request Body
+    ## Request Body
     Provide the `permission_group` and the `user_id` for the moderator in the `relationships` object.
 
     #### Returns
-    - A JSON object with the newly created moderator details under the `data` key if successful.
-    - If unsuccessful, returns an `errors` object detailing the validation issues.
+     - A JSON object with the newly created moderator details under the `data` key if successful.
+     - If unsuccessful, returns an `errors` object detailing the validation issues.
 
   tags:
     - Preprint Providers

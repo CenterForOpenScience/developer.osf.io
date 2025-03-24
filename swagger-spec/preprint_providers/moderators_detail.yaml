@@ -34,7 +34,7 @@ get:
     '200':
       description: Successful retrieval of the moderator details.
       schema:
-        $ref: 'definition.yaml'
+        $ref: 'moderator_definition.yaml'
       examples:
         application/json:
           data:
