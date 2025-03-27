@@ -1,0 +1,53 @@
+definitions:
+  CedarMetadataRecordCreate:
+    type: object
+    required:
+      - data
+    properties:
+      data:
+        type: object
+        required:
+          - type
+          - attributes
+          - relationships
+        properties:
+          type:
+            type: string
+            example: cedar-metadata-records
+          attributes:
+            type: object
+            required:
+              - metadata
+              - is_published
+            properties:
+              metadata:
+                type: object
+                description: Metadata fields defined by the CEDAR template.
+                example:
+                  title: Example Title
+                  description: Example Description
+              is_published:
+                type: boolean
+                example: false
+          relationships:
+            type: object
+            required:
+              - template
+            properties:
+              template:
+                type: object
+                description: The CEDAR template this record uses.
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                    properties:
+                      id:
+                        type: string
+                        description: ID of the template.
+                        example: 123abc
+                      type:
+                        type: string
+                        example: cedar-metadata-templates

@@ -1,0 +1,79 @@
+description: A resource associated with a registration, such as datasets, materials, code, or papers.
+type: object
+required:
+  - data
+properties:
+  data:
+    type: object
+    required:
+      - id
+      - type
+      - attributes
+    properties:
+      id:
+        type: string
+        description: Unique identifier of the resource.
+        example: "abc123"
+      type:
+        type: string
+        description: The type of the resource object.
+        example: "resources"
+      attributes:
+        type: object
+        properties:
+          date_created:
+            type: string
+            format: date-time
+            example: "2024-01-01T00:00:00Z"
+            description: The date the resource was created.
+          date_modified:
+            type: string
+            format: date-time
+            example: "2024-01-02T00:00:00Z"
+            description: The date the resource was last modified.
+          description:
+            type: string
+            description: A brief description of the resource.
+            example: "Dataset resource for analysis of trial results"
+          resource_type:
+            type: string
+            description: |
+              The type of the resource. Acceptable values include:
+              - data
+              - analytic_code
+              - materials
+              - papers
+              - supplements
+            example: "data"
+          finalized:
+            type: boolean
+            description: Indicates whether the resource has been finalized.
+            example: true
+          pid:
+            type: string
+            description: Persistent Identifier (PID) assigned to the resource.
+            example: "10.1234/osf.io/abcde"
+      relationships:
+        type: object
+        properties:
+          registration:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "reg123"
+                    description: The unique identifier of the registration.
+                  type:
+                    type: string
+                    example: "registrations"
+                    description: Type for the registration.
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            example: "https://api.osf.io/v2/resources/abc123/"
+            description: The canonical API endpoint for this resource.

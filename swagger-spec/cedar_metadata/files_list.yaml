@@ -1,0 +1,39 @@
+post:
+  summary: Create a CEDAR metadata record for a file
+  description: >
+    Create a new CEDAR metadata record for the specified file. CEDAR metadata records follow
+    structured templates and can include rich metadata for data sharing and reuse.
+  operationId: createCedarMetadataRecordForFile
+  tags:
+    - CEDAR Metadata
+  consumes:
+    - application/vnd.api+json
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: file_id
+      in: path
+      description: The unique identifier of the file.
+      required: true
+      type: string
+    - in: body
+      name: body
+      description: CEDAR metadata record object to be created.
+      required: true
+      schema:
+        $ref: './definition_create.yaml#/definitions/CedarMetadataRecordCreate'
+  responses:
+    '201':
+      description: Successfully created a new CEDAR metadata record.
+      schema:
+        $ref: './definition.yaml#/definitions/CedarMetadataRecord'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to create metadata for this file.
+    '404':
+      description: File not found.
+  security:
+    - osf_cookie: []

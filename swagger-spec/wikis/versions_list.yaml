@@ -1,0 +1,62 @@
+post:
+  summary: Create a new version of a wiki page
+  description: |
+    Create a new version of a wiki page by submitting updated content.
+
+    This will store the updated content as a new version, incrementing the version number.
+
+    ### Permissions
+    - Only contributors with write access can create new wiki versions.
+    - Withdrawn registrations: Cannot create new wiki versions.
+
+  tags:
+    - Wikis
+  operationId: create_wiki_version
+  consumes:
+    - application/vnd.api+json
+  parameters:
+    - name: wiki_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier for the wiki page.
+    - in: body
+      name: body
+      required: true
+      description: The content to save in the new wiki version.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+            properties:
+              type:
+                type: string
+                example: wiki-versions
+              attributes:
+                type: object
+                required:
+                  - content
+                properties:
+                  content:
+                    type: string
+                    description: The new content for the wiki.
+                    example: "This is an updated wiki page."
+  responses:
+    '201':
+      description: Wiki version created successfully.
+      schema:
+        $ref: './definition.yaml'
+    '400':
+      description: Invalid request payload.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to update this wiki page.
+    '404':
+      description: Wiki page not found.

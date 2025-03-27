@@ -1,0 +1,148 @@
+get:
+  summary: Retrieve affiliated institutions for a draft registration
+  description: >
+    Retrieve the list of institutions currently affiliated with a draft registration.
+
+    Returns institution IDs in JSON:API relationship format.
+  tags:
+    - Draft Registrations
+    - Institutions
+  operationId: draft_registration_institutions_relationship_retrieve
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the draft registration.
+  responses:
+    '200':
+      description: Institutions retrieved successfully.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                  description: The resource type; must be `institutions`.
+                id:
+                  type: string
+                  example: inst123
+                  description: The unique identifier of the institution.
+        example:
+          data:
+            - type: institutions
+              id: inst123
+            - type: institutions
+              id: inst456
+    '403':
+      description: Forbidden. You do not have permission to view affiliated institutions.
+    '404':
+      description: Draft registration not found.
+
+post:
+  summary: Add affiliated institutions to a draft registration
+  description: >
+    Add one or more institutions to a draft registration by their identifiers.
+
+    The user must be affiliated with the institutions they are attempting to add.
+  tags:
+    - Draft Registrations
+    - Institutions
+  operationId: draft_registration_institutions_relationship_add
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the draft registration.
+    - name: body
+      in: body
+      required: true
+      description: JSON:API list of institution identifiers to associate with the draft registration.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                  description: The resource type; must be `institutions`.
+                id:
+                  type: string
+                  example: inst123
+                  description: The unique ID of the institution to add.
+  responses:
+    '204':
+      description: Institutions added successfully.
+    '400':
+      description: Bad Request. User is not affiliated with the specified institution(s).
+    '403':
+      description: Forbidden. You do not have permission to add institutions.
+    '404':
+      description: Draft registration not found.
+
+delete:
+  summary: Remove affiliated institutions from a draft registration
+  description: >
+    Remove one or more institutions from the draft registration by their identifiers.
+
+    This operation only modifies the relationship and does not delete the institutions themselves.
+  tags:
+    - Draft Registrations
+    - Institutions
+  operationId: draft_registration_institutions_relationship_delete
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the draft registration.
+    - name: body
+      in: body
+      required: true
+      description: JSON:API list of institution identifiers to disassociate from the draft registration.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                  description: The resource type; must be `institutions`.
+                id:
+                  type: string
+                  example: inst456
+                  description: The unique ID of the institution to remove.
+  responses:
+    '204':
+      description: Institutions removed successfully.
+    '403':
+      description: Forbidden. You do not have permission to modify institutions.
+    '404':
+      description: Draft registration not found.
