@@ -6,10 +6,11 @@ get:
 
     ### Permissions
     - Publicly accessible (no authentication required).
-
   operationId: listSubjects
   tags:
     - Subjects
+  produces:
+    - application/vnd.api+json
   parameters:
     - name: filter[text]
       in: query
@@ -59,9 +60,11 @@ get:
                     text:
                       type: string
                       example: "Climate Change"
+                      description: The label for this subject.
                     taxonomy_name:
                       type: string
                       example: "OSF"
+                      description: The taxonomy this subject belongs to.
                 relationships:
                   type: object
                   properties:
@@ -77,6 +80,7 @@ get:
                             type:
                               type: string
                               example: "subjects"
+                      description: The parent subject, if any.
                     children:
                       type: object
                       properties:
@@ -91,6 +95,7 @@ get:
                               type:
                                 type: string
                                 example: "subjects"
+                      description: Array of child subjects.
           links:
             type: object
             properties:
@@ -109,15 +114,16 @@ get:
               total:
                 type: integer
                 example: 100
+                description: Total number of subjects.
               per_page:
                 type: integer
                 example: 10
+                description: Number of results per page.
               page:
                 type: integer
                 example: 1
+                description: Current page number.
     '400':
-      description: Bad request (e.g., invalid filter or pagination params)
+      description: Bad request (e.g., invalid filter or pagination parameters)
   security:
     - osf_cookie: []
-  produces:
-    - application/vnd.api+json

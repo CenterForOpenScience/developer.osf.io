@@ -3,47 +3,42 @@ get:
   description: |
     Retrieve a GUID object or be redirected to the most appropriate resource.
 
-    By default, this endpoint will redirect (`302 Found`) to the resource URL associated with the GUID.
-    If `?resolve=false` is passed as a query parameter, the request returns the GUID resource itself instead of redirecting.
+    By default, this endpoint redirects (`302 Found`) to the resource URL associated with the GUID.
+    If `?resolve=false` is passed, it returns the GUID resource object instead of redirecting.
 
-    This endpoint is helpful for resolving GUIDs that may refer to various OSF objects, including:
-     - Nodes
-     - Registrations
-     - Files
-     - Collections
-     - Preprints
-     - Users
+    GUIDs may reference nodes, registrations, files, collections, preprints, or users.
 
     ### Redirect Behavior
-     - If the GUID is valid and points to a resource with an API endpoint, you will be redirected to that resource.
-     - If the GUID is valid but refers to an object with no endpoint (e.g., a wiki page), you will get a `501 Not Implemented`.
-     - If the GUID does not exist or has been deleted, a `404 Not Found` or `410 Gone` response is returned.
+    - If the GUID refers to a supported resource, this will redirect to its detail endpoint.
+    - If it refers to an unsupported type (e.g., wiki), `501 Not Implemented` is returned.
+    - If the GUID is invalid or deleted, a `404` or `410` is returned.
 
     ### JSON Response Behavior
-    If `resolve=false` is provided as a query parameter, a `200 OK` response returns the GUID resource and relationships to its referent and custom metadata records.
+    - If `resolve=false` is used, a `200 OK` is returned with the GUID resource object.
 
     ### Permissions
-     - Public GUIDs are available to unauthenticated users.
-     - Private GUIDs require appropriate read permissions.
+    - Public GUIDs are accessible without authentication.
+    - Private GUIDs require appropriate access permissions.
 
   operationId: retrieveGuid
   tags:
     - GUIDs
+  produces:
+    - application/vnd.api+json
   parameters:
     - name: guid_id
       in: path
-      required: true
       type: string
-      description: |
-        The unique identifier for the GUID.
-        This can refer to nodes, registrations, files, collections, preprints, or users.
+      required: true
+      description: The unique identifier for the GUID.
     - name: resolve
       in: query
-      required: false
       type: boolean
+      required: false
       description: |
-        If true (default), redirects to the referent resource.
-        If false, returns a representation of the GUID resource itself.
+        If true (default), redirect to the referent resource.
+        If false, return a representation of the GUID resource.
+
   responses:
     '200':
       description: Successfully retrieved the GUID resource.
@@ -61,18 +56,22 @@ get:
             properties:
               id:
                 type: string
+                description: The GUID string.
                 example: abc123
               type:
                 type: string
+                description: The type of this resource.
                 example: guids
               attributes:
                 type: object
-                properties: {}
+                description: Optional metadata (usually empty).
+                example: {}
               relationships:
                 type: object
                 properties:
                   referent:
                     type: object
+                    description: The resource this GUID points to.
                     properties:
                       links:
                         type: object
@@ -85,9 +84,11 @@ get:
                         properties:
                           type:
                             type: string
+                            description: Resource type of the referent.
                             example: nodes
                   custom_metadata:
                     type: object
+                    description: Link to any associated custom metadata record.
                     properties:
                       links:
                         type: object
@@ -101,18 +102,19 @@ get:
                   self:
                     type: string
                     example: https://api.osf.io/v2/guids/abc123/
+                    description: API link to this GUID resource.
                   html:
                     type: string
                     example: https://osf.io/abc123/
+                    description: Public web URL of this resource.
+
     '302':
-      description: Redirect to the referent resource.
+      description: Redirects to the referent resource if `resolve=true` or omitted.
     '401':
-      description: Authentication credentials were not provided or are invalid.
+      description: Authentication required.
     '403':
       description: You do not have permission to view this GUID.
     '404':
-      description: The GUID does not exist.
+      description: GUID not found.
     '410':
-      description: The GUID once existed but has since been deleted.
-  produces:
-    - application/vnd.api+json
+      description: The GUID has been deleted.

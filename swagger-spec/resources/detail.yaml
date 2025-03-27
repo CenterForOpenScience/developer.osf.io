@@ -1,7 +1,9 @@
 get:
   summary: Retrieve a resource
   description: |
-    Retrieve details for a specific resource.
+    Retrieve the full metadata for a specific resource associated with a registration.
+
+    A resource may include datasets, materials, code, papers, or supplements.
   tags:
     - Resources
   operationId: getResource
@@ -13,20 +15,22 @@ get:
       description: The unique identifier of the resource.
   responses:
     '200':
-      description: Successful retrieval of resource
+      description: Successful retrieval of the resource.
       schema:
         $ref: 'definition.yaml'
-    '404':
-      description: Resource not found.
     '401':
       description: Authentication required.
     '403':
       description: Permission denied.
+    '404':
+      description: Resource not found.
 
 patch:
   summary: Update a resource
   description: |
-    Update details for a specific resource.
+    Update one or more metadata fields of a specific resource.
+
+    Only the fields provided in the request payload will be updated.
   tags:
     - Resources
   operationId: updateResource
@@ -35,11 +39,11 @@ patch:
       in: path
       required: true
       type: string
-      description: The unique identifier of the resource.
-    - name: body
-      in: body
-      description: Resource object to update
+      description: The unique identifier of the resource to update.
+    - in: body
+      name: body
       required: true
+      description: A JSON:API compliant object describing the updates.
       schema:
         type: object
         required:
@@ -55,42 +59,56 @@ patch:
               id:
                 type: string
                 example: "abc123"
+                description: The ID of the resource being updated.
               type:
                 type: string
                 example: "resources"
+                description: The resource type — must be `"resources"`.
               attributes:
                 type: object
                 properties:
                   description:
                     type: string
-                    example: "Updated resource description"
+                    example: "Updated dataset description."
+                    description: A short description of the resource.
                   resource_type:
                     type: string
                     example: "materials"
+                    description: |
+                      Type of the resource. Allowed values:
+                      - data
+                      - analytic_code
+                      - materials
+                      - papers
+                      - supplements
                   finalized:
                     type: boolean
                     example: true
+                    description: Whether the resource is finalized (locked for editing).
                   pid:
                     type: string
                     example: "10.5678/resource.9012"
+                    description: A persistent identifier (e.g. DOI) for the resource.
   responses:
     '200':
-      description: Successfully updated the resource
+      description: Resource updated successfully.
       schema:
         $ref: 'definition.yaml'
     '400':
-      description: Validation error or invalid data.
-    '404':
-      description: Resource not found.
+      description: Validation error or malformed request data.
     '401':
       description: Authentication required.
     '403':
       description: Permission denied.
+    '404':
+      description: Resource not found.
 
 delete:
   summary: Delete a resource
   description: |
-    Delete a specific resource.
+    Permanently delete a specific resource.
+
+    Finalized resources or those linked to active registrations may not be deletable.
   tags:
     - Resources
   operationId: deleteResource
@@ -99,13 +117,13 @@ delete:
       in: path
       required: true
       type: string
-      description: The unique identifier of the resource.
+      description: The unique identifier of the resource to delete.
   responses:
     '204':
-      description: Successfully deleted the resource
-    '404':
-      description: Resource not found.
+      description: Resource deleted successfully. No content returned.
     '401':
       description: Authentication required.
     '403':
-      description: Permission denied.
+      description: Permission denied or resource cannot be deleted.
+    '404':
+      description: Resource not found.

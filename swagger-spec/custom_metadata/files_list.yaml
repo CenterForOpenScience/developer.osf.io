@@ -7,16 +7,16 @@ get:
   tags:
     - Custom Metadata
   parameters:
-    - name: guid_id
+    - name: file_id
       in: path
-      description: The unique identifier (GUID) of the file.
+      description: The unique identifier of the file.
       required: true
       type: string
   responses:
     '200':
       description: Successfully retrieved custom file metadata record.
       schema:
-        $ref: './schemas/custom_file_metadata_record.yaml'
+        $ref: './definition_file.yaml'
     '401':
       description: Authentication credentials were not provided or are invalid.
     '403':
@@ -35,9 +35,9 @@ patch:
   tags:
     - Custom Metadata
   parameters:
-    - name: guid_id
+    - name: file_id
       in: path
-      description: The unique identifier (GUID) of the file.
+      description: The unique identifier of the file.
       required: true
       type: string
     - name: body

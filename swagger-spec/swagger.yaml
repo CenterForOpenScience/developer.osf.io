@@ -1755,10 +1755,10 @@ paths:
 #######################################
 
   /custom_file_metadata_records/{file_id}/:
-    $ref: 'cedar_metadata/files_list.yaml'
+    $ref: 'custom_metadata/files_list.yaml'
 
-  /custom_item_metadata_records/{node_id}/:
-    $ref: 'cedar_metadata/nodes_list.yaml'
+  /custom_item_metadata_records/{guid_id}/:
+    $ref: 'custom_metadata/nodes_list.yaml'
 
   ################################
   #   NOTIFICATION SUBSCRIPTIONS #

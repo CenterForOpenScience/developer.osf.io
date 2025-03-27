@@ -1,17 +1,24 @@
 get:
   summary: List child subjects for a given subject
   description: |
-    Retrieve all immediate child subjects for the given taxonomy subject.
-    Subjects are categorized hierarchically.
+    Retrieve all immediate child taxonomy subjects of the specified parent subject.
+    
+    Taxonomy subjects are structured hierarchically. This endpoint returns only the direct descendants (children) of the given subject.
+
+    ### Permissions
+    - Publicly accessible (no authentication required).
+
   operationId: listSubjectChildren
   tags:
     - Subjects
+  produces:
+    - application/vnd.api+json
   parameters:
     - name: subject_id
       in: path
-      description: The unique identifier of the parent subject.
-      required: true
       type: string
+      required: true
+      description: The unique identifier of the parent taxonomy subject.
   responses:
     '200':
       description: Successful retrieval of child subjects.
@@ -26,27 +33,33 @@ get:
                 - id
                 - type
                 - attributes
+                - relationships
               properties:
                 id:
                   type: string
                   example: "child123"
+                  description: Unique identifier for the subject.
                 type:
                   type: string
                   example: "subjects"
+                  description: The resource type.
                 attributes:
                   type: object
                   properties:
                     text:
                       type: string
                       example: "Sub-discipline Example"
+                      description: Human-readable name of the subject.
                     taxonomy_name:
                       type: string
                       example: "OSF"
+                      description: Name of the taxonomy this subject belongs to.
                 relationships:
                   type: object
                   properties:
                     parent:
                       type: object
+                      description: The parent of this subject.
                       properties:
                         data:
                           type: object
@@ -57,11 +70,14 @@ get:
                             id:
                               type: string
                               example: "abc123"
+                              description: ID of the parent subject.
                             type:
                               type: string
                               example: "subjects"
+                              description: The resource type (subjects).
                     children:
                       type: object
+                      description: Nested relationship to this subject’s own children.
                       properties:
                         links:
                           type: object
@@ -69,8 +85,10 @@ get:
                             related:
                               type: string
                               example: "https://api.osf.io/v2/subjects/child123/children/"
+                              description: Link to this subject's own children.
           links:
             type: object
+            description: Pagination links.
             properties:
               self:
                 type: string
@@ -83,19 +101,21 @@ get:
                 example: "https://api.osf.io/v2/subjects/{subject_id}/children/?page=1"
           meta:
             type: object
+            description: Pagination metadata.
             properties:
               total:
                 type: integer
                 example: 20
+                description: Total number of child subjects available.
               per_page:
                 type: integer
                 example: 10
+                description: Number of results returned per page.
               page:
                 type: integer
                 example: 1
+                description: Current page number.
     '404':
       description: Parent subject not found.
   security:
     - osf_cookie: []
-  produces:
-    - application/vnd.api+json

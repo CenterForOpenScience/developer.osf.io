@@ -1,155 +1,190 @@
-  get:
-    summary: List resources
-    description: |
-      Retrieve a list of resources associated with registrations.
-    tags:
-      - Resources
-    operationId: listResources
-    responses:
-      '200':
-        description: Successful retrieval of resource list
-        schema:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
-                type: object
-                required:
-                  - id
-                  - type
-                  - attributes
-                  - relationships
-                properties:
-                  id:
-                    type: string
-                    example: "abc123"
-                  type:
-                    type: string
-                    example: "resources"
-                  attributes:
-                    type: object
-                    properties:
-                      date_created:
-                        type: string
-                        format: date-time
-                        example: "2024-01-01T00:00:00Z"
-                      date_modified:
-                        type: string
-                        format: date-time
-                        example: "2024-01-02T00:00:00Z"
-                      description:
-                        type: string
-                        example: "Dataset resource"
-                      resource_type:
-                        type: string
-                        example: "data"
-                      finalized:
-                        type: boolean
-                        example: true
-                      pid:
-                        type: string
-                        example: "10.1234/resource.5678"
-                  relationships:
-                    type: object
-                    properties:
-                      registration:
-                        type: object
-                        properties:
-                          data:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                                example: "reg123"
-                              type:
-                                type: string
-                                example: "registrations"
-                  links:
-                    type: object
-                    properties:
-                      self:
-                        type: string
-                        example: "https://api.osf.io/v2/resources/abc123/"
-            meta:
-              type: object
-              properties:
-                total:
-                  type: integer
-                  example: 1
-                per_page:
-                  type: integer
-                  example: 10
-                page:
-                  type: integer
-                  example: 1
-      '401':
-        description: Authentication required.
-      '403':
-        description: Permission denied.
-
-  post:
-    summary: Create a new resource
-    description: |
-      Create a new resource associated with a registration.
-    tags:
-      - Resources
-    operationId: createResource
-    parameters:
-      - name: body
-        in: body
-        description: Resource object to create
-        required: true
-        schema:
-          type: object
-          required:
-            - data
-          properties:
-            data:
+get:
+  summary: List resources
+  description: Retrieve a list of resources associated with registrations.
+  tags:
+    - Resources
+  operationId: listResources
+  responses:
+    '200':
+      description: Successful retrieval of resource list
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: Array of resource objects.
+            items:
               type: object
               required:
+                - id
                 - type
                 - attributes
                 - relationships
               properties:
+                id:
+                  type: string
+                  example: "abc123"
+                  description: Unique identifier for the resource.
                 type:
                   type: string
                   example: "resources"
+                  description: "The type of this object: `resources`."
                 attributes:
                   type: object
+                  description: Resource metadata.
                   properties:
+                    date_created:
+                      type: string
+                      format: date-time
+                      example: "2024-01-01T00:00:00Z"
+                      description: When the resource was created.
+                    date_modified:
+                      type: string
+                      format: date-time
+                      example: "2024-01-02T00:00:00Z"
+                      description: When the resource was last updated.
                     description:
                       type: string
                       example: "Dataset resource"
+                      description: A short summary of the resource.
                     resource_type:
                       type: string
                       example: "data"
+                      description: >
+                        The category of the resource. Valid values include:
+                         - data
+                         - analytic_code
+                         - materials
+                         - papers
+                         - supplements
+                    finalized:
+                      type: boolean
+                      example: true
+                      description: Whether the resource is finalized and no longer editable.
+                    pid:
+                      type: string
+                      example: "10.1234/resource.5678"
+                      description: A persistent identifier (DOI) assigned to this resource.
                 relationships:
                   type: object
+                  description: Relationships for the resource.
                   properties:
                     registration:
                       type: object
+                      description: The registration associated with the resource.
                       properties:
                         data:
                           type: object
-                          required:
-                            - type
-                            - id
                           properties:
-                            type:
-                              type: string
-                              example: "registrations"
                             id:
                               type: string
                               example: "reg123"
-    responses:
-      '201':
-        description: Successfully created a new resource
-        schema:
-          $ref: 'definition.yaml'
-      '400':
-        description: Validation error or invalid data.
-      '401':
-        description: Authentication required.
-      '403':
-        description: Permission denied.
+                              description: ID of the related registration.
+                            type:
+                              type: string
+                              example: "registrations"
+                              description: Type of the related object.
+                links:
+                  type: object
+                  description: Related API URLs for this resource.
+                  properties:
+                    self:
+                      type: string
+                      example: "https://api.osf.io/v2/resources/abc123/"
+                      description: URL to the resource detail.
+          meta:
+            type: object
+            description: Metadata for pagination.
+            properties:
+              total:
+                type: integer
+                example: 1
+                description: Total number of resources.
+              per_page:
+                type: integer
+                example: 10
+                description: Results per page.
+              page:
+                type: integer
+                example: 1
+                description: Current page number.
+    '401':
+      description: Authentication required.
+    '403':
+      description: Permission denied.
+
+post:
+  summary: Create a new resource
+  description: Create a new resource associated with a registration.
+  tags:
+    - Resources
+  operationId: createResource
+  parameters:
+    - name: body
+      in: body
+      description: JSON:API-compliant resource creation payload.
+      required: true
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+              - relationships
+            properties:
+              type:
+                type: string
+                example: "resources"
+                description: Must be `resources`.
+              attributes:
+                type: object
+                description: Metadata about the new resource.
+                required:
+                  - description
+                  - resource_type
+                properties:
+                  description:
+                    type: string
+                    example: "Dataset resource"
+                    description: Short text describing the resource.
+                  resource_type:
+                    type: string
+                    example: "data"
+                    description: Type of resource (e.g., data, materials).
+              relationships:
+                type: object
+                description: Relationships for the resource.
+                properties:
+                  registration:
+                    type: object
+                    description: The registration this resource is linked to.
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - type
+                          - id
+                        properties:
+                          type:
+                            type: string
+                            example: "registrations"
+                            description: Must be `registrations`.
+                          id:
+                            type: string
+                            example: "reg123"
+                            description: ID of the related registration.
+  responses:
+    '201':
+      description: Successfully created a new resource.
+      schema:
+        $ref: 'definition.yaml'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication required.
+    '403':
+      description: Permission denied.
