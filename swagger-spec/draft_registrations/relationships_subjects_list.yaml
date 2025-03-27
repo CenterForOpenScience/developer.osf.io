@@ -1,7 +1,9 @@
-
 get:
   summary: Retrieve subjects relationship for a draft registration
-  description: Get the subjects associated with a draft registration.
+  description: >
+    Retrieve the list of subjects currently associated with a draft registration.
+
+    This endpoint returns subject IDs in the JSON:API relationship format.
   tags:
     - Draft Registrations
     - Subjects
@@ -22,13 +24,18 @@ get:
             type: array
             items:
               type: object
+              required:
+                - type
+                - id
               properties:
                 type:
                   type: string
                   example: subjects
+                  description: The resource type; always `subjects`.
                 id:
                   type: string
-                  description: Subject ID
+                  example: abc123
+                  description: The unique identifier for the subject.
         example:
           data:
             - type: subjects
@@ -42,7 +49,10 @@ get:
 
 post:
   summary: Add subjects to a draft registration
-  description: Add subjects by ID to the draft registration.
+  description: >
+    Add one or more subjects to the draft registration by their identifiers.
+
+    This modifies the subjects relationship and does not affect the subject resource itself.
   tags:
     - Draft Registrations
     - Subjects
@@ -52,22 +62,32 @@ post:
       in: path
       required: true
       type: string
-    - in: body
-      name: body
+      description: The unique identifier of the draft registration.
+    - name: body
+      in: body
+      required: true
+      description: JSON:API list of subject identifiers to associate with the draft registration.
       schema:
         type: object
+        required:
+          - data
         properties:
           data:
             type: array
             items:
               type: object
-              required: [type, id]
+              required:
+                - type
+                - id
               properties:
                 type:
                   type: string
                   example: subjects
+                  description: The resource type; must be `subjects`.
                 id:
                   type: string
+                  example: abc123
+                  description: The unique ID of the subject to add.
   responses:
     '204':
       description: Subjects added successfully.
@@ -78,7 +98,10 @@ post:
 
 delete:
   summary: Remove subjects from a draft registration
-  description: Remove subjects from the draft registration by ID.
+  description: >
+    Remove one or more subjects from the draft registration by their identifiers.
+
+    This only updates the relationship and does not delete the subject resource.
   tags:
     - Draft Registrations
     - Subjects
@@ -88,22 +111,32 @@ delete:
       in: path
       required: true
       type: string
-    - in: body
-      name: body
+      description: The unique identifier of the draft registration.
+    - name: body
+      in: body
+      required: true
+      description: JSON:API list of subject identifiers to disassociate from the draft registration.
       schema:
         type: object
+        required:
+          - data
         properties:
           data:
             type: array
             items:
               type: object
-              required: [type, id]
+              required:
+                - type
+                - id
               properties:
                 type:
                   type: string
                   example: subjects
+                  description: The resource type; must be `subjects`.
                 id:
                   type: string
+                  example: def456
+                  description: The unique ID of the subject to remove.
   responses:
     '204':
       description: Subjects removed successfully.
