@@ -134,5 +134,3 @@ get:
       description: You do not have permission to view this request.
     '404':
       description: Request not found.
-  security:
-    - osf_cookie: []

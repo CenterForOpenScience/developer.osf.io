@@ -41,6 +41,3 @@ get:
       description: You do not have permission to view moderators for this provider.
     '404':
       description: Collection provider not found.
-
-  security:
-    - CookieAuth: []

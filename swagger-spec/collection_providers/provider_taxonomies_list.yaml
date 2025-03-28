@@ -54,6 +54,3 @@ get:
 
     '404':
       description: Collection provider not found.
-
-  security:
-    - CookieAuth: []

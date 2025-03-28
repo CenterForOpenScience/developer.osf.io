@@ -53,5 +53,4 @@ get:
       description: You do not have permission to view this wiki version.
     '404':
       description: Wiki version not found.
-  security:
-    - osf_cookie: []
+

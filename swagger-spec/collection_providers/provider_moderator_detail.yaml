@@ -42,6 +42,4 @@ get:
     '404':
       description: Moderator or collection provider not found.
 
-  security:
-    - CookieAuth: []
 

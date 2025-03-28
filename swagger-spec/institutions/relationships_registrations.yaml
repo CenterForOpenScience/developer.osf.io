@@ -49,8 +49,6 @@ get:
       description: You do not have permission to view this institution's registrations.
     '404':
       description: Institution not found.
-  security:
-    - osf_cookie: []
 
 post:
   summary: Add registration relationships to an institution
@@ -103,8 +101,7 @@ post:
       description: You do not have permission to affiliate these registrations.
     '404':
       description: Institution not found.
-  security:
-    - osf_cookie: []
+
 
 delete:
   summary: Remove registration relationships from an institution

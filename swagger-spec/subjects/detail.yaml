@@ -93,5 +93,3 @@ get:
                 description: Canonical link to this subject resource.
     '404':
       description: Subject not found.
-  security:
-    - osf_cookie: []
