@@ -60,6 +60,7 @@ x-tagGroups:
       - Preprint Providers
       - Draft Registrations
       - Registrations
+      - Registration Providers
       - Regions
       - OAuth Scopes
       - Taxonomies
@@ -899,7 +900,7 @@ tags:
         - `cancel` is used to cancel a Collection Submission in a `pending` state, reverting it back to the
           `in_progress`.
 
-  - name: Collection Submissions Provider
+  - name: Collection Providers
     description: >-
       A Collection Submissions Provider represents the data for moderators and admins for a group of collections.
       It acts as a central hub for managing all collection submissions within various collections, ensuring that
@@ -914,6 +915,32 @@ tags:
       adheres to the standards set for collection submissions. It aids in providing transparency and order to the
       process of managing collections and ensures that moderators and admins have the tools and information they
       need to effectively manage collection submissions.
+  - name: Registration Providers
+    description: >-
+      Registration Providers are entities that manage and moderate groups of registrations on the OSF platform.  
+      
+      Each Registration Provider defines workflows, review policies, and customization options for their collection of
+      registrations. Registration Providers can be configured to operate in different moderation modes,
+      such as pre-moderation, post-moderation, or automated workflows.
+      
+      Registration Providers may also specify accepted license types, registration schemas, taxonomies, and review 
+      workflows for their associated registrations. They allow communities or organizations to manage the 
+      visibility and curation of registered research within their domain.
+
+      **Attributes include:**
+        - `id`: The unique identifier for the registration provider.
+        - `name`: Human-readable name of the provider.
+        - `description`: A description of the provider’s purpose and scope.
+        - `reviews_workflow`: Defines the moderation workflow type (e.g., pre-moderation, post-moderation).
+        - `allow_submissions`: Boolean indicating whether new registrations can be submitted.
+        - `licenses_acceptable`: List of licenses accepted by the provider.
+
+      **Endpoints include:**
+        - List and detail views of Registration Providers.
+        - Access to registrations under a given provider.
+        - Access to registration schemas and licenses supported by a provider.
+        - Management of moderators and submission actions within the provider's moderation system.
+
   - name: Requests
     description: >
       Manage user-initiated requests related to nodes and preprints, including access requests,
@@ -1032,12 +1059,8 @@ tags:
     description: >-
       Storage Regions are predefined geographical or cloud-storage areas where files are stored within OSF Storage.
   
-      Each region provides isolation of data in compliance with geographic or regulatory requirements. Users can specify their preferred region for storing project files when using OSF Storage.
-  
-  
-      **Attributes include:**
-
-
+      Each region provides isolation of data in compliance with geographic or regulatory requirements. Users can 
+      specify their preferred region for storing project files when using OSF Storage.
         - `id`: Unique identifier of the region (e.g., `us-east-1`).
         - `name`: Human-readable name for the region (e.g., `US East`).
   
@@ -1045,6 +1068,29 @@ tags:
 
         - **List Regions:** Retrieve all available storage regions.
         - **Region Detail:** Retrieve details about a specific storage region.
+
+  - name: Preprint Providers
+    description: >-
+      Preprint Providers are entities that manage and moderate groups of preprints on the OSF platform.  
+      
+      Each Preprint Provider oversees its own preprint service, which can include branding, theming, subject areas, moderation workflows, and licensing policies. Preprint Providers are often affiliated with journals, societies, or research communities and enable researchers to share early versions of their work.
+
+      Preprint Providers can implement customizable review and moderation workflows, as well as curate the preprints submitted to their service. Providers can also specify submission requirements, allowable licenses, and taxonomies for classifying preprints.
+
+      **Attributes include:**
+        - `id`: The unique identifier for the preprint provider.
+        - `name`: Human-readable name of the provider.
+        - `description`: A description of the provider’s purpose and scope.
+        - `reviews_workflow`: Defines the moderation workflow type (e.g., pre-moderation, post-moderation).
+        - `allow_submissions`: Boolean indicating whether new preprints can be submitted.
+        - `licenses_acceptable`: List of licenses accepted by the provider.
+        - `social_links`: Optional links to provider social media (e.g., Twitter, Facebook).
+
+      **Endpoints include:**
+        - List and detail views of Preprint Providers.
+        - Access to preprints associated with a given provider.
+        - Access to taxonomies and licenses supported by a provider.
+        - Management of moderators and submission actions within the provider's moderation system.
   - name: Tokens
     description: >-
       **Personal Access Tokens** allow users to authenticate API requests without credentials.
@@ -1118,7 +1164,6 @@ tags:
       detailed metadata about each identifier, including its category, value, and the entity it is associated with.
       This ensures that users can effectively manage and utilize identifiers in their research workflows, promoting 
       transparency and traceability of scholarly work.
-
 paths:
 
   ##############
@@ -1397,8 +1442,6 @@ paths:
   /preprints/{preprint_id}/relationships/institutions/:
     $ref: 'preprints/institutions_relationship_list.yaml'
 
-
-
   ##########################
   #   PREPRINT PROVIDERS   #
   ##########################
@@ -1406,17 +1449,32 @@ paths:
   /preprint_providers/:
     $ref: 'preprint_providers/list.yaml'
 
-  /preprint_providers/{preprint_provider_id}/:
+  /preprint_providers/{provider_id}/:
     $ref: 'preprint_providers/detail.yaml'
 
-  /preprint_providers/{preprint_provider_id}/preprints/:
+  /preprint_providers/{provider_id}/preprints/:
     $ref: 'preprint_providers/preprints_list.yaml'
 
-  /preprint_providers/{preprint_provider_id}/taxonomies/:
-    $ref: 'preprint_providers/taxonomies_list.yaml'
+  /preprint_providers/{provider_id}/taxonomies/:
+    $ref: 'preprint_providers/provider_taxonomies_list.yaml'
 
-  /preprint_providers/{preprint_provider_id}/licenses/:
+  /preprint_providers/{provider_id}/taxonomies/highlighted/:
+    $ref: 'preprint_providers/provider_taxonomies_highlighted_list.yaml'
+
+  /providers/preprints/{provider_id}/citation_styles/:
+    $ref: 'preprint_providers/providers_citation_styles.yaml'
+
+  /preprint_providers/{provider_id}/licenses/:
     $ref: 'preprint_providers/licenses_list.yaml'
+
+  /preprint_providers/{provider_id}/moderators/:
+    $ref: 'preprint_providers/provider_moderator_list.yaml'
+
+  /preprint_providers/{provider_id}/moderators/{moderator_id}/:
+    $ref: 'preprint_providers/provider_moderator_detail.yaml'
+
+  /providers/preprints/{provider_id}/withdraw_requests/:
+    $ref: 'preprint_providers/withdraw_requests.yaml'
 
   #####################
   #   REGISTRATIONS   #
@@ -1478,6 +1536,53 @@ paths:
 
   /registrations/{registration_id}/wikis/:
     $ref: 'registrations/wikis_list.yaml'
+
+  ############################
+  #  REGISTRATION PROVIDERS  #
+  ############################
+
+  /providers/registrations/:
+    $ref: 'registration_providers/list.yaml'
+
+  /providers/registrations/{provider_id}/:
+    $ref: 'registration_providers/detail.yaml'
+
+  /providers/registrations/{provider_id}/registrations/:
+    $ref: 'registration_providers/registrations_list.yaml'
+
+  /providers/registrations/{provider_id}/taxonomies/:
+    $ref: 'registration_providers/provider_taxonomies_list.yaml'
+
+  /providers/registrations/{provider_id}/taxonomies/highlighted/:
+    $ref: 'registration_providers/provider_taxonomies_highlighted_list.yaml'
+
+  /providers/registrations/{provider_id}/licenses/:
+    $ref: 'registration_providers/licenses_list.yaml'
+
+  /providers/registrations/{provider_id}/actions/:
+    $ref: 'registration_providers/actions_list.yaml'
+
+  /providers/registrations/{provider_id}/requests/:
+    $ref: 'registration_providers/requests_list.yaml'
+
+  /providers/registrations/{provider_id}/schemas/:
+    $ref: 'registration_providers/schemas_list.yaml'
+
+  /providers/registrations/{provider_id}/subjects/:
+    $ref: 'registration_providers/subjects_list.yaml'
+
+  /providers/registrations/{provider_id}/submissions/:
+    $ref: 'registration_providers/submissions_list.yaml'
+
+  /providers/registrations/{provider_id}/subjects/highlighted/:
+    $ref: 'registration_providers/subjects_highlighted_list.yaml'
+
+  /providers/registrations/{provider_id}/moderators/:
+    $ref: 'registration_providers/moderators_list.yaml'
+
+  /providers/registrations/{provider_id}/moderators/{moderator_id}/:
+    $ref: 'registration_providers/moderators_detail.yaml'
+
 
   ##########################
   #  DRAFT REGISTRATIONS   #
@@ -1653,6 +1758,37 @@ paths:
   /collections/{collection_id}/collected_metadata/{cgm_id}/relationships/subjects/:
     $ref: 'collections/collected_metadata_subjects_relationships.yaml'
 
+  ############################
+  #   COLLECTION PROVIDERS   #
+  ############################
+
+  /providers/collections/:
+    $ref: 'collection_providers/list.yaml'
+
+  /providers/collections/{provider_id}/:
+    $ref: 'collection_providers/detail.yaml'
+
+  /providers/collections/{provider_id}/licenses/:
+    $ref: 'collection_providers/licenses_list.yaml'
+
+  /providers/collections/{provider_id}/taxonomies/:
+    $ref: 'collection_providers/provider_taxonomies_list.yaml'
+
+  /providers/collections/{provider_id}/taxonomies/highlighted/:
+    $ref: 'collection_providers/provider_taxonomies_highlighted_list.yaml'
+
+  /providers/collections/{provider_id}/submissions/:
+    $ref: 'collection_providers/submissions_list.yaml'
+
+  /providers/collections/{provider_id}/subjects/highlighted/:
+    $ref: 'collection_providers/subjects_highlighted_list.yaml'
+
+  /providers/collections/{provider_id}/moderators/:
+    $ref: 'collection_providers/moderators_list.yaml'
+
+  /providers/collections/{provider_id}/moderators/{moderator_id}/:
+    $ref: 'collection_providers/moderators_detail.yaml'
+
   ###############################
   #   COLLECTIONS SUBMISSIONS   #
   ###############################
@@ -1675,28 +1811,28 @@ paths:
   ############################
 
   /provider/collections/:
-    $ref: 'collection_provider/list.yaml'
+    $ref: 'collection_providers/list.yaml'
 
-  /provider/collections/{collection_id}/:
-    $ref: 'collection_provider/detail.yaml'
+  /provider/collections/{provider_id}/:
+    $ref: 'collection_providers/detail.yaml'
 
-  /provider/collections/{collection_id}/licenses/:
-    $ref: 'collection_provider/licenses.yaml'
+  /provider/collections/{provider_id}/licenses/:
+    $ref: 'collection_providers/licenses_list.yaml'
 
-  /provider/collections/{collection_id}/submissions/:
-    $ref: 'collection_provider/submissions.yaml'
+  /provider/collections/{provider_id}/submissions/:
+    $ref: 'collection_providers/submissions_list.yaml'
 
-  /provider/collections/{collection_id}/subjects/:
-    $ref: 'collection_provider/subjects.yaml'
+  /provider/collections/{provider_id}/subjects/:
+    $ref: 'collection_providers/subjects.yaml'
 
-  /provider/collections/{collection_id}/subjects/highlighted/:
-    $ref: 'collection_provider/subjects_highlighted.yaml'
+  /provider/collections/{provider_id}/subjects/highlighted/:
+    $ref: 'collection_providers/subjects_highlighted_list.yaml'
 
-  /provider/collections/{collection_id}/moderators/:
-    $ref: 'collection_provider/moderators_list.yaml'
+  /provider/collections/{provider_id}/moderators/:
+    $ref: 'collection_providers/moderators_list.yaml'
 
-  /provider/collections/{collection_id}/moderators/{moderator_id}/:
-    $ref: 'collection_provider/moderators_detail.yaml'
+  /provider/collections/{provider_id}/moderators/{moderator_id}/:
+    $ref: 'collection_providers/moderators_detail.yaml'
 
 #######################################
 #              REQUESTS               #

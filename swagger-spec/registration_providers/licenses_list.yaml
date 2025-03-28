@@ -1,9 +1,9 @@
-# /provider/collections/{collection_id}/licenses/
+# /providers/registations/{provider_id}/licenses/
 get:
-  summary: Collections Providers Licenses List
+  summary: Registration Providers Licenses List
   description: >-
 
-    This returns the lists of possible licenses for a Collection.
+    This returns the lists of possible licenses for a Registration.
 
     #### Permissions
 
@@ -20,12 +20,12 @@ get:
     - in: path
       type: string
       required: true
-      name: collection_id
-      description: 'A short id for that collection'
+      name: provider_id
+      description: 'A short id for that Registration'
   tags:
-    - Collection Providers
-  operationId: collection_provider_detail
-  x-response-schema: Collection Provider
+    - Registration Providers
+  operationId: registration_provider_detail
+  x-response-schema: Registration Provider
   consumes:
     - application/json
   responses:
@@ -560,7 +560,7 @@ get:
             per_page: 10
             version: '2.20'
           links:
-            self: https://api.staging.osf.io/v2/providers/collections/temp/licenses/
+            self: https://api.staging.osf.io/v2/providers/registrations/temp/licenses/
             first:
             last:
             prev:

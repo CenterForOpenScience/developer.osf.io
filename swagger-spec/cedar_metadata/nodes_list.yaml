@@ -35,5 +35,4 @@ post:
       description: You do not have permission to create metadata for this node.
     '404':
       description: Node not found.
-  security:
-    - osf_cookie: []
+

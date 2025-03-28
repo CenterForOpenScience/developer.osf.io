@@ -1,0 +1,183 @@
+# /preprint_providers/{provider_id}/moderators/
+
+get:
+  summary: List Moderators for a Preprint Provider
+  description: >-
+    Retrieve a list of moderators for a specific preprint provider, including their assigned roles and user information.
+
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
+
+    ## Returns
+     - A JSON object with a `data` key containing a list of moderators.
+     - Each moderator includes user details and their assigned permission group.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderators_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+  responses:
+    '200':
+      description: Successful retrieval of moderators.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'moderator_definition.yaml'
+        example:
+          data:
+            - id: "moderator_1"
+              type: "moderators"
+              attributes:
+                full_name: "Ada Lovelace"
+                email: "ada.lovelace@example.com"
+                permission_group: "admin"
+                date_added: "2024-01-15T12:34:56Z"
+              relationships:
+                preprint_provider:
+                  data:
+                    type: "preprint_providers"
+                    id: "{provider_id}"
+              links:
+                self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_1/"
+            - id: "moderator_2"
+              type: "moderators"
+              attributes:
+                full_name: "Grace Hopper"
+                email: "grace.hopper@example.com"
+                permission_group: "moderator"
+                date_added: "2024-01-16T09:00:00Z"
+              relationships:
+                preprint_provider:
+                  data:
+                    type: "preprint_providers"
+                    id: "{provider_id}"
+              links:
+                self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_2/"
+          meta:
+            total: 2
+            version: "2.0"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access this list of moderators.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.
+
+post:
+  summary: Add a Moderator to a Preprint Provider
+  description: >-
+    Add a new moderator to the preprint provider by specifying the user and their permission group.
+
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
+
+    ## Request Body
+    Provide the `user_id` and `permission_group` in the `attributes` object to create a new moderator assignment.
+    Available values for `permission_group` are:
+      - `moderator`: Can review and moderate preprint submissions.
+      - `admin`: Can manage submissions and other moderators.
+
+    #### Returns
+    - A JSON object with the new moderator details under the `data` key if the creation is successful.
+    - If unsuccessful, returns an `errors` object detailing the validation issues.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderators_create
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+            properties:
+              type:
+                type: string
+                enum:
+                  - moderators
+                description: Must be `moderators`.
+              attributes:
+                type: object
+                required:
+                  - user_id
+                  - permission_group
+                properties:
+                  user_id:
+                    type: string
+                    description: The unique identifier of the user being added as a moderator.
+                  permission_group:
+                    type: string
+                    enum:
+                      - moderator
+                      - admin
+                    description: |
+                      The permission group for the moderator:
+                      - `moderator`: Can review and moderate preprint submissions.
+                      - `admin`: Can manage submissions and other moderators.
+
+        example:
+          data:
+            type: moderators
+            attributes:
+              user_id: "user_123"
+              permission_group: "moderator"
+
+  responses:
+    '201':
+      description: Moderator successfully added.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "moderator_3"
+            type: "moderators"
+            attributes:
+              full_name: "Katherine Johnson"
+              email: "katherine.johnson@example.com"
+              permission_group: "moderator"
+              date_added: "2024-01-20T10:15:30Z"
+            relationships:
+              preprint_provider:
+                data:
+                  type: "preprint_providers"
+                  id: "{provider_id}"
+            links:
+              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_3/"
+          meta:
+            version: "2.0"
+    '400':
+      description: Bad Request. Invalid input provided.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to add a moderator.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.
+    '409':
+      description: Conflict. The user is already a moderator.

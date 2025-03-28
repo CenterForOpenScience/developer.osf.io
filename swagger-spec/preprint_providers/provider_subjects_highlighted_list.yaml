@@ -1,0 +1,69 @@
+# /provider/preprints/{provider_id}/subjects/highlighted/
+
+get:
+  summary: List Highlighted Subjects for a Preprint Provider
+  description: >-
+    Retrieve a list of highlighted subjects associated with a specific Preprint provider.
+    
+    Highlighted subjects are shown prominently on the provider's site and often represent commonly used or recommended categories for submissions.
+
+    #### Permissions
+    - Publicly accessible. No authentication is required.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of subject resources.
+    - Each subject includes the display name, hierarchical relationships, and additional metadata.
+
+  tags:
+    - Preprint Providers
+
+  operationId: provider_subjects_highlighted_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the Preprint provider.
+  responses:
+    '200':
+      description: Successful retrieval of the highlighted subjects list.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'subject_definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results, if available.
+              prev:
+                type: string
+                description: Link to the previous page of results, if available.
+          meta:
+            type: object
+            description: Meta information about the response, including pagination info.
+      examples:
+        application/json:
+          data:
+            - id: "subject_1"
+              type: "subjects"
+              attributes:
+                text: "Psychology"
+                parents:
+                  - id: "subject_root"
+                    text: "Social Sciences"
+                has_children: true
+                highlight: true
+              relationships:
+                children:
+                  links:
+                    related:
+                      href: "https://api.test.osf.io/v2/taxonomies/subject_1/chil

@@ -125,5 +125,4 @@ get:
                 description: Current page number.
     '400':
       description: Bad request (e.g., invalid filter or pagination parameters)
-  security:
-    - osf_cookie: []
+

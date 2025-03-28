@@ -1,12 +1,12 @@
 get:
-  summary: Retrieve a preprint provider
+  summary: Retrieve a Registration Provider
   description: >-
-    Retrieves the details of a preprint provider.
+    Retrieves the details of a Registration Provider.
 
     #### Returns
 
     Returns a JSON object with a `data` key containing the representation of the requested
-    preprint provider, if the request is successful.
+    Registration Provider, if the request is successful.
 
 
     If the request is unsuccessful, an `errors` key containing
@@ -16,7 +16,7 @@ get:
 
     #### Acceptable Subjects Structure
 
-    Each preprint provider specifies acceptable subjects.
+    Each Registration Provider specifies acceptable subjects.
 
     `subjects_acceptable` is an array found in `attributes`.
 
@@ -67,11 +67,11 @@ get:
       type: string
       required: true
       name: provider_id
-      description: 'The unique identifier of the preprint provider.'
+      description: 'The unique identifier of the Registration Provider.'
   tags:
-    - Preprint Providers
-  operationId: preprint_provider_detail
-  x-response-schema: 'Preprint Provider'
+    - Registration Providers
+  operationId: registration_provider_detail
+  x-response-schema: 'Registration Provider'
   responses:
     '200':
       description: 'OK'
@@ -84,28 +84,28 @@ get:
               licenses_acceptable:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/licenses/
+                    href: https://api.osf.io/v2/registration_providers/osf/licenses/
                     meta: {}
               taxonomies:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/taxonomies/
+                    href: https://api.osf.io/v2/registration_providers/osf/taxonomies/
                     meta: {}
-              preprints:
+              registrations:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/preprints/
+                    href: https://api.osf.io/v2/registration_providers/osf/registrations/
                     meta: {}
             links:
-              self: https://api.osf.io/v2/preprint_providers/osf/
-              preprints: https://api.osf.io/v2/preprint_providers/osf/preprints/
-              external_url: https://osf.io/preprints/
+              self: https://api.osf.io/v2/registration_providers/osf/
+              registrations: https://api.osf.io/v2/registration_providers/osf/registrations/
+              external_url: https://osf.io/registrations/
             attributes:
               social_instagram: ''
               advisory_board: ''
               email_support: ''
-              banner_path: "/static/img/preprint_providers/cos-logo.png"
-              logo_path: "/static/img/preprint_providers/cos-logo.png"
+              banner_path: "/static/img/registration_providers/cos-logo.png"
+              logo_path: "/static/img/registration_providers/cos-logo.png"
               subjects_acceptable: []
               description: A scholarly commons to connect the entire research cycle
               social_facebook: ''

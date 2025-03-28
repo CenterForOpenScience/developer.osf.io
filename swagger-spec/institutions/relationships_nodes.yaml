@@ -49,8 +49,6 @@ get:
       description: You do not have permission to view this institution's nodes.
     '404':
       description: Institution not found.
-  security:
-    - osf_cookie: []
 
 post:
   summary: Add node relationships to an institution
@@ -103,8 +101,7 @@ post:
       description: You do not have permission to affiliate these nodes.
     '404':
       description: Institution not found.
-  security:
-    - osf_cookie: []
+
 
 delete:
   summary: Remove node relationships from an institution

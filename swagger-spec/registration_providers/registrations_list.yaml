@@ -1,0 +1,108 @@
+# /registrations/{provider_id}/requests/
+
+get:
+  summary: List Registration Requests
+  description: >-
+    Retrieve a list of requests associated with a specific registration.
+
+    Registration Requests represent user-initiated requests that may include withdrawal requests or requests for changes.
+    These requests are typically part of moderated workflows and require approval or rejection by moderators or contributors.
+
+    #### Permissions
+    - Public registrations: No authentication required to view public requests.
+    - Private registrations: Only contributors with read access may view registration requests.
+    - Moderators of the registration provider may view all requests, including pending ones.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of registration request resources.
+    - Each request describes the request type, status, creator, and any related comments.
+
+  tags:
+    - Registration Providers
+
+  operationId: registration_requests_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+  responses:
+    '200':
+      description: Successful retrieval of registration requests.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../registrations/definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if available).
+              prev:
+                type: string
+                description: Link to the previous page of results (if available).
+          meta:
+            type: object
+            description: Meta information about the response, such as total count.
+      examples:
+        application/json:
+          data:
+            - id: "req1"
+              type: "registration_request"
+              attributes:
+                request_type: "withdrawal"
+                state: "pending"
+                justification: "Authors requested withdrawal due to data issues."
+                date_created: "2024-06-01T09:30:00Z"
+              relationships:
+                creator:
+                  data:
+                    type: "users"
+                    id: "user123"
+                target:
+                  data:
+                    type: "registrations"
+                    id: "reg1"
+              links:
+                self: "https://api.test.osf.io/v2/registrations/reg1/requests/req1/"
+            - id: "req2"
+              type: "registration_request"
+              attributes:
+                request_type: "withdrawal"
+                state: "accepted"
+                justification: "Withdrawal approved by moderator."
+                date_created: "2024-06-05T15:45:00Z"
+              relationships:
+                creator:
+                  data:
+                    type: "users"
+                    id: "moderator1"
+                target:
+                  data:
+                    type: "registrations"
+                    id: "reg1"
+              links:
+                self: "https://api.test.osf.io/v2/registrations/reg1/requests/req2/"
+          links:
+            self: "https://api.test.osf.io/v2/registrations/reg1/requests/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access these registration requests.
+    '404':
+      description: Not Found. No registration matches the given ID.

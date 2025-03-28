@@ -1,0 +1,115 @@
+# /providers/preprints/{provider_id}/withdraw_requests/
+
+get:
+  summary: List Withdraw Requests for a Preprint Provider
+  description: >-
+    Retrieve a list of withdraw requests for a specific preprint provider.
+    
+    Withdraw requests are initiated by contributors to request the withdrawal of a preprint from public view.
+    These requests require moderation and can be either approved or rejected by provider moderators.
+
+    #### Permissions
+    - Admins and moderators for the provider can view all withdraw requests.
+    - Unauthorized users will receive a `403 Forbidden` response.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of withdraw request resources.
+    - Each withdraw request includes the current state, the associated preprint, and relevant timestamps.
+
+  tags:
+    - Preprint Providers
+
+  operationId: provider_preprints_withdraw_requests_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+  responses:
+    '200':
+      description: Successful retrieval of withdraw requests.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if applicable).
+              prev:
+                type: string
+                description: Link to the previous page of results (if applicable).
+          meta:
+            type: object
+            description: Meta information about the response (e.g., total number of results).
+      examples:
+        application/json:
+          data:
+            - id: "wrq_1234"
+              type: "withdraw-request"
+              attributes:
+                state: "pending"
+                justification: "Authors discovered a critical error."
+                date_submitted: "2024-10-15T14:12:00Z"
+                date_reviewed: null
+              relationships:
+                preprint:
+                  data:
+                    type: "preprints"
+                    id: "preprint_5678"
+                provider:
+                  data:
+                    type: "preprint_providers"
+                    id: "{provider_id}"
+                reviews_state:
+                  data:
+                    type: "reviews_state"
+                    id: "pending"
+              links:
+                self: "https://api.test.osf.io/v2/withdraw_requests/wrq_1234/"
+            - id: "wrq_5678"
+              type: "withdraw-request"
+              attributes:
+                state: "accepted"
+                justification: "Plagiarism identified."
+                date_submitted: "2024-09-20T08:05:00Z"
+                date_reviewed: "2024-09-25T16:45:00Z"
+              relationships:
+                preprint:
+                  data:
+                    type: "preprints"
+                    id: "preprint_9101"
+                provider:
+                  data:
+                    type: "preprint_providers"
+                    id: "{provider_id}"
+                reviews_state:
+                  data:
+                    type: "reviews_state"
+                    id: "accepted"
+              links:
+                self: "https://api.test.osf.io/v2/withdraw_requests/wrq_5678/"
+          links:
+            self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/withdraw_requests/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access withdraw requests for this provider.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.

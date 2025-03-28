@@ -35,5 +35,4 @@ post:
       description: You do not have permission to create metadata for this file.
     '404':
       description: File not found.
-  security:
-    - osf_cookie: []
+

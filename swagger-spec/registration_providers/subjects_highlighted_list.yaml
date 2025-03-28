@@ -1,0 +1,25 @@
+get:
+  summary: List Highlighted Subjects
+  description: |
+    Retrieves highlighted subjects for the specified provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Highlighted subjects retrieved successfully.
+      examples:
+        application/vnd.api+json:
+          data:
+            - id: "54321"
+              type: "subjects"
+              attributes:
+                text: "Clinical Psychology"
+            - id: "98765"
+              type: "subjects"
+              attributes:
+                text: "Neuroscience"

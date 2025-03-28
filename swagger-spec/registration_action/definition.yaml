@@ -1,0 +1,122 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+
+properties:
+  id:
+    type: string
+    description: Unique identifier for the registration action.
+    example: ract1
+
+  type:
+    type: string
+    description: The type of this resource; always `registration_action`.
+    example: registration_action
+
+  attributes:
+    type: object
+    required:
+      - trigger
+      - from_state
+      - to_state
+      - date_created
+    properties:
+      trigger:
+        type: string
+        description: >
+          The trigger event that caused the action.  
+          Examples include: `submit`, `accept`, `reject`, `edit_comment`, etc.
+        example: submit
+
+      comment:
+        type: string
+        description: Optional comment explaining the reason or context for the action.
+        example: "Initial submission"
+
+      from_state:
+        type: string
+        description: >
+          The state of the registration before the action was performed.
+        example: draft
+
+      to_state:
+        type: string
+        description: >
+          The state of the registration after the action was performed.
+        example: unapproved
+
+      date_created:
+        type: string
+        format: date-time
+        description: Timestamp indicating when the action was performed.
+        example: "2024-05-01T12:00:00Z"
+
+      date_modified:
+        type: string
+        format: date-time
+        description: Timestamp indicating when the action was last modified (if applicable).
+        example: "2024-05-01T12:00:00Z"
+
+      auto:
+        type: boolean
+        description: Indicates if the action was automatically triggered by the system.
+        example: false
+
+      visible:
+        type: boolean
+        description: Indicates whether the action is visible to non-admin users.
+        example: true
+
+  relationships:
+    type: object
+    required:
+      - creator
+      - target
+    properties:
+      creator:
+        type: object
+        description: The user who performed the action.
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+            properties:
+              id:
+                type: string
+                example: user123
+              type:
+                type: string
+                example: users
+
+      target:
+        type: object
+        description: The registration this action applies to.
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+            properties:
+              id:
+                type: string
+                example: reg1
+              type:
+                type: string
+                example: registrations
+
+  links:
+    type: object
+    description: Links related to this registration action.
+    properties:
+      self:
+        type: string
+        format: uri
+        description: The API URL to access this action directly.
+        example: "https://api.test.osf.io/v2/registrations/reg1/actions/ract1/"

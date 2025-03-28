@@ -23,8 +23,7 @@ get:
       description: You do not have permission to access this metadata record.
     '404':
       description: Metadata record not found.
-  security:
-    - osf_cookie: []
+
 
 patch:
   summary: Update custom file metadata for a file
@@ -59,5 +58,3 @@ patch:
       description: You do not have permission to modify this metadata record.
     '404':
       description: Metadata record not found.
-  security:
-    - osf_cookie: []

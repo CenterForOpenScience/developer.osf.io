@@ -117,5 +117,4 @@ get:
                 description: Current page number.
     '404':
       description: Parent subject not found.
-  security:
-    - osf_cookie: []
+

@@ -1,0 +1,94 @@
+  type: object
+  required:
+    - id
+    - type
+    - attributes
+    - relationships
+    - links
+  properties:
+    id:
+      type: string
+      description: Unique identifier for the registration request.
+      example: req1
+
+    type:
+      type: string
+      description: The type of this resource; always `registration_request`.
+      example: registration_request
+
+    attributes:
+      type: object
+      required:
+        - request_type
+        - state
+        - justification
+        - date_created
+      properties:
+        request_type:
+          type: string
+          description: >
+            Type of the registration request. Common types include `withdrawal`.
+          example: withdrawal
+        state:
+          type: string
+          description: >
+            Current status of the request in the moderation workflow.
+            Examples include `pending`, `accepted`, `rejected`.
+          enum:
+            - pending
+            - accepted
+            - rejected
+          example: pending
+        justification:
+          type: string
+          description: >
+            Justification provided by the requester for making the request.
+          example: "Authors requested withdrawal due to data issues."
+        date_created:
+          type: string
+          format: date-time
+          description: The date and time when the request was created.
+          example: "2024-06-01T09:30:00Z"
+
+    relationships:
+      type: object
+      required:
+        - creator
+        - target
+      properties:
+        creator:
+          type: object
+          description: The user who created the request.
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: users
+                id:
+                  type: string
+                  example: user123
+        target:
+          type: object
+          description: The registration this request applies to.
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: registrations
+                id:
+                  type: string
+                  example: reg1
+
+    links:
+      type: object
+      description: Links related to this registration request.
+      properties:
+        self:
+          type: string
+          format: uri
+          description: Link to the detail page for this request.
+          example: "https://api.test.osf.io/v2/registrations/reg1/requests/req1/"

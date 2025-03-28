@@ -1,0 +1,105 @@
+# /providers/preprints/{provider_id}/citation_styles/
+
+get:
+  summary: List Citation Styles for a Preprint Provider
+  description: >-
+    Retrieve a list of citation styles supported by a specific preprint provider.
+
+    These citation styles can be used to generate formatted citations for preprints associated with this provider.
+
+    #### Permissions
+    - No authentication required for public providers.
+    - Only authorized users can access restricted providers.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of citation style resources.
+    - Each citation style includes its ID, title, and whether it is the default style.
+
+  tags:
+    - Preprint Providers
+
+  operationId: providers_preprint_citation_styles_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: query
+      name: filter[default]
+      type: boolean
+      required: false
+      description: Filter citation styles by whether they are marked as default.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to return (for pagination).
+
+    - in: query
+      name: per_page
+      type: integer
+      required: false
+      description: Number of results per page. Defaults to 10.
+
+  responses:
+    '200':
+      description: Successful retrieval of citation styles.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if applicable).
+              prev:
+                type: string
+                description: Link to the previous page of results (if applicable).
+          meta:
+            type: object
+            description: Meta information about the response (e.g., total number of results).
+      examples:
+        application/json:
+          data:
+            - id: "apa"
+              type: "citation-style"
+              attributes:
+                title: "APA 7th Edition"
+                short_name: "APA"
+                default: true
+              links:
+                self: "https://api.test.osf.io/v2/citations/styles/apa/"
+            - id: "mla"
+              type: "citation-style"
+              attributes:
+                title: "MLA 8th Edition"
+                short_name: "MLA"
+                default: false
+              links:
+                self: "https://api.test.osf.io/v2/citations/styles/mla/"
+          links:
+            self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/citation_styles/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access citation styles for this provider.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.

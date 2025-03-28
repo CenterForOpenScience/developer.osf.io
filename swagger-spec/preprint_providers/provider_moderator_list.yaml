@@ -1,0 +1,239 @@
+# /preprint_providers/{provider_id}/moderators/
+
+get:
+  summary: List Moderators for a Preprint Provider
+  description: >-
+    Retrieve a list of all moderators assigned to a specific preprint provider.
+
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
+
+    ## Returns
+     - A JSON object with a `data` key containing an array of moderator records.
+     - Each moderator includes their permission group and basic user information.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderator_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to view.
+
+    - in: query
+      name: filter[permission_group]
+      type: string
+      required: false
+      description: Filter moderators by permission group (`moderator` or `admin`).
+
+  responses:
+    '200':
+      description: Successful retrieval of the moderators list.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results, if available.
+              prev:
+                type: string
+                description: Link to the previous page of results, if available.
+          meta:
+            type: object
+            description: Meta information about the response, including pagination info.
+      examples:
+        application/json:
+          data:
+            - id: "moderator_1"
+              type: "moderators"
+              attributes:
+                full_name: "Ada Lovelace"
+                email: "ada.lovelace@example.com"
+                permission_group: "admin"
+                date_added: "2024-01-15T12:34:56Z"
+              relationships:
+                preprint_provider:
+                  data:
+                    type: "preprint_providers"
+                    id: "{provider_id}"
+              links:
+                self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_1/"
+            - id: "moderator_2"
+              type: "moderators"
+              attributes:
+                full_name: "Alan Turing"
+                email: "alan.turing@example.com"
+                permission_group: "moderator"
+                date_added: "2024-01-20T10:00:00Z"
+              relationships:
+                preprint_provider:
+                  data:
+                    type: "preprint_providers"
+                    id: "{provider_id}"
+              links:
+                self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_2/"
+          links:
+            self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            per_page: 10
+            page: 1
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access this list.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.
+
+post:
+  summary: Add a Moderator to a Preprint Provider
+  description: >-
+    Add a new moderator to the specified preprint provider.
+
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
+
+    ## Request Body
+    Provide the `permission_group` and the `user_id` for the moderator in the `relationships` object.
+
+    #### Returns
+     - A JSON object with the newly created moderator details under the `data` key if successful.
+     - If unsuccessful, returns an `errors` object detailing the validation issues.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderator_create
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+              - relationships
+            properties:
+              type:
+                type: string
+                enum:
+                  - moderators
+                description: Must be `moderators`.
+              attributes:
+                type: object
+                required:
+                  - permission_group
+                properties:
+                  permission_group:
+                    type: string
+                    enum:
+                      - moderator
+                      - admin
+                    description: |
+                      The permission group for the moderator:
+                      - `moderator`: Can review and moderate preprint submissions.
+                      - `admin`: Can manage submissions and other moderators.
+              relationships:
+                type: object
+                required:
+                  - user
+                properties:
+                  user:
+                    type: object
+                    required:
+                      - data
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - type
+                          - id
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                              - users
+                          id:
+                            type: string
+                            description: The user ID of the person you wish to add as a moderator.
+
+        example:
+          data:
+            type: moderators
+            attributes:
+              permission_group: moderator
+            relationships:
+              user:
+                data:
+                  type: users
+                  id: "user_123"
+
+  responses:
+    '201':
+      description: Moderator successfully added.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "moderator_3"
+            type: "moderators"
+            attributes:
+              full_name: "Grace Hopper"
+              email: "grace.hopper@example.com"
+              permission_group: "moderator"
+              date_added: "2024-02-01T14:20:00Z"
+            relationships:
+              preprint_provider:
+                data:
+                  type: "preprint_providers"
+                  id: "{provider_id}"
+            links:
+              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_3/"
+          meta:
+            version: "2.0"
+
+    '400':
+      description: Bad Request. Invalid input provided.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to add a moderator.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.
+
