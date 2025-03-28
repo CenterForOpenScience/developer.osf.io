@@ -1,0 +1,56 @@
+get:
+  operationId: collection_provider_taxonomies_list
+  summary: List Taxonomies for a Collection Provider (Deprecated)
+  description: |
+    Retrieve the full taxonomy for a specific Collection Provider.
+
+    **Deprecated:** Use `subjects` endpoints instead.
+
+  deprecated: true
+
+  produces:
+    - application/vnd.api+json
+
+  tags:
+    - Collection Providers
+
+  parameters:
+    - in: path
+      name: provider_id
+      required: true
+      type: string
+      description: The unique ID of the collection provider.
+
+  responses:
+    '200':
+      description: A list of taxonomies.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../taxonomies/definition.yaml'
+      examples:
+        application/vnd.api+json:
+          data:
+            - id: "abc-subject"
+              type: "taxonomies"
+              attributes:
+                text: "Psychology"
+                parents: []
+            - id: "def-subject"
+              type: "taxonomies"
+              attributes:
+                text: "Cognitive Psychology"
+                parents:
+                  - abc-subject
+
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+
+    '403':
+      description: You do not have permission to view taxonomies for this provider.
+
+    '404':
+      description: Collection provider not found.

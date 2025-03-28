@@ -1,4 +1,4 @@
-# /provider/collections/{collection_id}/moderators/{moderator_id}/:
+# /provider/collections/{provider_id}/moderators/{moderator_id}/:
 get:
   summary: Collections Providers Moderators Detail
   description: >-
@@ -18,7 +18,7 @@ get:
     - in: path
       type: string
       required: true
-      name: collection_id
+      name: provider_id
       description: 'A short id for that collection'
     - in: path
       type: string

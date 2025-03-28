@@ -1,0 +1,126 @@
+# /registrations/{provider_id}/subjects/
+get:
+  summary: List Subjects for a Registration
+  description: >-
+    Retrieve a list of subjects (taxonomy terms) assigned to a specific registration.
+
+    Subjects are used to categorize the content of a registration according to a predefined taxonomy.
+    Each subject may be a part of a hierarchical structure, allowing for detailed categorization.
+
+    #### Permissions
+    - Public registrations: No authentication required.
+    - Private registrations: Only contributors with read access can view subjects.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of subjects.
+    - Each subject includes metadata such as the subject text and its hierarchical position.
+
+  tags:
+    - Registration Providers
+
+  operationId: registrations_subjects_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to return (pagination).
+
+    - in: query
+      name: per_page
+      type: integer
+      required: false
+      description: Number of results per page (default 10, maximum 100).
+
+  responses:
+    '200':
+      description: Successful retrieval of subjects for the registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../taxonomies/definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+              next:
+                type: string
+                description: URL to the next page of results (if applicable).
+              prev:
+                type: string
+                description: URL to the previous page of results (if applicable).
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                description: Total number of subjects assigned to this registration.
+              per_page:
+                type: integer
+                description: Number of subjects returned per page.
+              version:
+                type: string
+                description: API version.
+
+      examples:
+        application/json:
+          data:
+            - id: "12345"
+              type: "subjects"
+              attributes:
+                text: "Psychology"
+                parent: null
+                children:
+                  - id: "67890"
+                    text: "Cognitive Psychology"
+              relationships:
+                children:
+                  links:
+                    related: "https://api.test.osf.io/v2/taxonomies/12345/children/"
+                parent:
+                  links:
+                    related: null
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/12345/"
+            - id: "67890"
+              type: "subjects"
+              attributes:
+                text: "Cognitive Psychology"
+                parent: "Psychology"
+                children: []
+              relationships:
+                parent:
+                  links:
+                    related: "https://api.test.osf.io/v2/taxonomies/12345/"
+                children:
+                  links:
+                    related: null
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/67890/"
+          links:
+            self: "https://api.test.osf.io/v2/registrations/abcd1/subjects/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            per_page: 10
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required to access this registration's subjects.
+    '403':
+      description: Forbidden. You do not have permission to access subjects for this registration.
+    '404':
+      description: Not Found. No registration matches the given ID.
+

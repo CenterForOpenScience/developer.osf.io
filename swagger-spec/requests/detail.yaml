@@ -1,0 +1,136 @@
+get:
+  summary: Retrieve details for a specific request
+  description: >
+    Retrieve a specific request by ID. Requests can be associated with either a node or a preprint. 
+    Depending on the type, this will return a `node-request` or a `preprint-request` resource.
+
+    A request is a formal submission for actions like access to private content, withdrawal of a preprint, 
+    or institutional affiliation. This endpoint returns details about the request's status, creator, type, and comments.
+
+    Permissions:
+    - Node requests: Viewable by the node's administrators and the request creator.
+    - Preprint requests: Viewable by preprint admins, moderators (for moderated providers), and the request creator.
+  tags:
+    - Requests
+  operationId: retrieve_request
+  parameters:
+    - name: request_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier for the request (either NodeRequest or PreprintRequest).
+  responses:
+    '200':
+      description: Successfully retrieved request details.
+      schema:
+        type: object
+        description: >
+          Returns either a node-request or a preprint-request resource, following JSON:API format.
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+              - relationships
+            properties:
+              id:
+                type: string
+                description: Unique identifier for the request.
+                example: "abc123"
+              type:
+                type: string
+                description: Resource type. Will be `node-requests` or `preprint-requests`.
+                enum: [node-requests, preprint-requests]
+              attributes:
+                type: object
+                properties:
+                  request_type:
+                    type: string
+                    description: >
+                      Type of request. Examples: `access`, `withdrawal`, or `institutional_request`.
+                    example: "access"
+                  machine_state:
+                    type: string
+                    description: >
+                      Current workflow state of the request. Examples: `pending`, `accepted`, `rejected`.
+                    example: "pending"
+                  comment:
+                    type: string
+                    description: Comment provided with the request.
+                    example: "Please grant me access."
+                  created:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 timestamp of when the request was created.
+                    example: "2024-06-01T12:00:00Z"
+                  modified:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 timestamp of the last modification to the request.
+                    example: "2024-06-02T15:30:00Z"
+                  date_last_transitioned:
+                    type: string
+                    format: date-time
+                    description: >
+                      ISO 8601 timestamp of when the request last transitioned to a new workflow state.
+                    example: "2024-06-02T15:30:00Z"
+              relationships:
+                type: object
+                properties:
+                  creator:
+                    type: object
+                    description: The user who created the request.
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "user123"
+                          type:
+                            type: string
+                            example: "users"
+                  target:
+                    type: object
+                    description: >
+                      The node or preprint this request is associated with.
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "project456"
+                          type:
+                            type: string
+                            example: "nodes"  # or "preprints"
+                  actions:
+                    type: object
+                    description: >
+                      Related actions for the request (only for preprint-requests).
+                    properties:
+                      links:
+                        type: object
+                        properties:
+                          related:
+                            type: string
+                            example: "/v2/requests/abc123/actions/"
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: "/v2/requests/abc123/"
+                  target:
+                    type: string
+                    example: "/v2/nodes/project456/"
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this request.
+    '404':
+      description: Request not found.

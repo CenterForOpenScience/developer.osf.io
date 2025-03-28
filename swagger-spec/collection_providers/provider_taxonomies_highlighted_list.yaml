@@ -1,0 +1,46 @@
+get:
+  operationId: collection_provider_taxonomies_highlighted_list
+  summary: List Highlighted Taxonomies for a Collection Provider (Deprecated)
+  description: |
+    Retrieve the list of highlighted taxonomies for a Collection Provider.
+
+    **Deprecated:** Use the `highlighted subjects` endpoint instead.
+
+  deprecated: true
+
+  parameters:
+    - in: path
+      name: provider_id
+      required: true
+      type: string
+      description: The unique ID of the collection provider.
+
+  tags:
+    - Collection Providers
+
+  responses:
+    '200':
+      description: A list of highlighted taxonomies.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../taxonomies/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: "xyz-highlighted"
+              type: "taxonomies"
+              attributes:
+                text: "Open Science"
+                parents: []
+
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view taxonomies for this provider.
+    '404':
+      description: Collection provider not found.
+

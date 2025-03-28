@@ -1,0 +1,105 @@
+get:
+  summary: Retrieve Moderator Details
+  description: |
+    Retrieves details about a moderator associated with a provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the provider.
+    - name: moderator_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the moderator.
+  responses:
+    '200':
+      description: Moderator details retrieved successfully.
+      examples:
+        application/vnd.api+json:
+          data:
+            id: "abcde"
+            type: "moderators"
+            attributes:
+              full_name: "Jane Doe"
+              permission_group: "moderator"
+              email: "jane.doe@example.com"
+    '403':
+      description: Forbidden – insufficient permissions.
+    '404':
+      description: Not found – moderator does not exist.
+
+patch:
+  summary: Update Moderator Permissions
+  description: |
+    Updates the permissions of a moderator associated with a provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+    - name: moderator_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+            properties:
+              type:
+                type: string
+                enum: ["moderators"]
+              id:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  permission_group:
+                    type: string
+                    enum: ["moderator", "admin"]
+  responses:
+    '200':
+      description: Moderator permissions updated successfully.
+    '400':
+      description: Invalid request – validation errors.
+    '403':
+      description: Forbidden – insufficient permissions.
+
+delete:
+  summary: Remove Moderator
+  description: |
+    Removes a moderator from the specified provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+    - name: moderator_id
+      in: path
+      required: true
+      type: string
+  responses:
+    '204':
+      description: Moderator removed successfully.
+    '403':
+      description: Forbidden – insufficient permissions.
+    '404':
+      description: Not found – moderator does not exist.

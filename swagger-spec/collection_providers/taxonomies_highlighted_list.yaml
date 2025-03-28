@@ -1,0 +1,100 @@
+# /provider/collections/{provider_id}/taxonomies/highlighted/
+
+get:
+  summary: List Highlighted Taxonomies for a Collection Provider
+  description: >-
+    Retrieve a list of highlighted taxonomies (subjects) for a specific Collection Provider.
+
+    Highlighted taxonomies are curated subjects that appear prominently within a Collection Provider's submission or discovery interface.
+
+    #### Permissions
+    - No authentication required for public collection providers.
+    - Authentication required if the collection provider is private or restricted.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of taxonomy (subject) resources.
+    - Each taxonomy describes a subject used to categorize collected metadata and is marked as highlighted.
+
+  tags:
+    - Collection Providers
+    - Taxonomies
+
+  operationId: collection_provider_taxonomies_highlighted_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to return (for pagination).
+
+    - in: query
+      name: per_page
+      type: integer
+      required: false
+      description: Number of results per page. Defaults to 10.
+
+  responses:
+    '200':
+      description: Successful retrieval of highlighted taxonomies.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if available).
+              prev:
+                type: string
+                description: Link to the previous page of results (if available).
+          meta:
+            type: object
+            description: Meta information about the response, such as total count.
+      examples:
+        application/json:
+          data:
+            - id: "psychology"
+              type: "taxonomy"
+              attributes:
+                text: "Psychology"
+                parent: null
+                has_children: true
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/psychology/"
+            - id: "climate_change"
+              type: "taxonomy"
+              attributes:
+                text: "Climate Change"
+                parent: "environmental_sciences"
+                has_children: false
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/climate_change/"
+          links:
+            self: "https://api.test.osf.io/v2/provider/collections/{provider_id}/taxonomies/highlighted/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access highlighted taxonomies for this collection provider.
+    '404':
+      description: Not Found. No collection provider matches the given ID.

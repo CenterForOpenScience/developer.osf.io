@@ -1,0 +1,73 @@
+get:
+  summary: List Moderators
+  description: |
+    Retrieves a list of moderators associated with a provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+  responses:
+    '200':
+      description: List of moderators retrieved successfully.
+      examples:
+        application/vnd.api+json:
+          data:
+            - id: "abcde"
+              type: "moderators"
+              attributes:
+                full_name: "Jane Doe"
+                permission_group: "moderator"
+            - id: "fghij"
+              type: "moderators"
+              attributes:
+                full_name: "John Smith"
+                permission_group: "admin"
+
+post:
+  summary: Add Moderator
+  description: |
+    Adds a moderator to the specified provider.
+  tags:
+    - Registration Providers
+  parameters:
+    - name: provider_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+            properties:
+              type:
+                type: string
+                enum: ["moderators"]
+              id:
+                type: string
+                description: User ID to add as moderator.
+              attributes:
+                type: object
+                properties:
+                  permission_group:
+                    type: string
+                    enum: ["moderator", "admin"]
+  responses:
+    '201':
+      description: Moderator added successfully.
+    '400':
+      description: Invalid request – user already moderator or invalid data.
+    '403':
+      description: Forbidden – insufficient permissions.

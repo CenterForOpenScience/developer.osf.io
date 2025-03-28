@@ -1,0 +1,96 @@
+get:
+  summary: List actions associated with a request
+  description: >
+    Retrieve a list of actions performed on a specific request.
+
+    Currently, actions are supported for `preprint-request` resources, typically related to withdrawal requests.
+    Actions track the workflow of the request, including submission, approvals, rejections, and comments.
+
+    ### Permissions:
+    - Request creators can view actions on their requests.
+    - Preprint moderators can view actions for withdrawal requests.
+    - Preprint administrators can view actions on requests for preprints they manage.
+  tags:
+    - Requests
+  operationId: list_request_actions
+  parameters:
+    - name: request_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier for the request.
+    - name: filter
+      in: query
+      required: false
+      type: string
+      description: |
+        Filter actions by attributes.
+
+        Supported filters:
+          - `machine_state`: Filter by current state (e.g., `pending`, `accepted`, `rejected`)
+
+        Example:
+          - filter[machine_state]=pending
+  responses:
+    '200':
+      description: Successfully retrieved actions for the request.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of actions related to the request.
+            items:
+              $ref: './preprint_request_action_definition.yaml'
+          links:
+            type: object
+            description: Pagination links.
+            properties:
+              self:
+                type: string
+                example: /v2/requests/{request_id}/actions/?page=1
+              next:
+                type: string
+                example: /v2/requests/{request_id}/actions/?page=2
+              prev:
+                type: string
+                example: null
+      examples:
+        application/json:
+          data:
+            - id: "action123"
+              type: "preprint-request-actions"
+              attributes:
+                trigger: "accept"
+                comment: "Withdrawal approved."
+                from_state: "pending"
+                to_state: "accepted"
+                created: "2024-06-01T12:00:00Z"
+              relationships:
+                creator:
+                  data:
+                    id: "user456"
+                    type: "users"
+            - id: "action456"
+              type: "preprint-request-actions"
+              attributes:
+                trigger: "submit"
+                comment: "Request submitted."
+                from_state: "initial"
+                to_state: "pending"
+                created: "2024-05-30T08:15:00Z"
+              relationships:
+                creator:
+                  data:
+                    id: "user456"
+                    type: "users"
+          links:
+            self: /v2/requests/abc123/actions/?page=1
+            next: null
+            prev: null
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view actions on this request.
+    '404':
+      description: Request not found or no actions are available for the given request.

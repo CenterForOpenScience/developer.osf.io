@@ -1,0 +1,82 @@
+# /registration_providers/
+get:
+  summary: List all Registration Providers
+  description: >-
+
+    A paginated list of all Registration Providers.
+    The returned Registration Providers are sorted by their creation date, with the most recent
+    registrations appearing first.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 Registration providers.
+    Each resource in the array is a separate Registration provider object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#tag/Pagination).
+
+
+    This request should never return an error.
+
+    #### Filtering
+
+    You can optionally request that the response only include preprint providers that
+    match your filters by utilizing the `filter` query parameter, e.g.
+    https://api.osf.io/v2/registration_providers/?filter[id]=osf.
+
+
+    Preprint Providers may be filtered by their `id`, `name`,  and `description`
+
+  tags:
+    - Registration Providers
+  operationId: registration_provider_list
+  x-response-schema: 'Registration Provider'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - relationships:
+                licenses_acceptable:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/registration_providers/osf/licenses/
+                      meta: {}
+                taxonomies:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/registration_providers/osf/taxonomies/
+                      meta: {}
+                registrations:
+                  links:
+                    related:
+                      href: https://api.osf.io/v2/registration_providers/osf/registrations/
+                      meta: {}
+              links:
+                self: https://api.osf.io/v2/registration_providers/osf/
+                registrations: https://api.osf.io/v2/registration_providers/osf/registrations/
+                external_url: https://osf.io/registrations/
+              attributes:
+                social_instagram: ''
+                advisory_board: ''
+                email_support: ''
+                banner_path: "/static/img/registration_providers/cos-logo.png"
+                logo_path: "/static/img/registration_providers/cos-logo.png"
+                subjects_acceptable: []
+                description: A scholarly commons to connect the entire research cycle
+                social_facebook: ''
+                header_text: ''
+                social_twitter: ''
+                email_contact: ''
+                example: khbvy
+                name: Open Science Framework
+                domain: 'osf.io'
+              type: registration_providers
+              id: osf

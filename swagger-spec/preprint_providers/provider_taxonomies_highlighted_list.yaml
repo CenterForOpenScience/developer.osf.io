@@ -1,0 +1,88 @@
+# /preprint_providers/{provider_id}/taxonomies/highlighted/
+
+get:
+  summary: List Highlighted Taxonomies for a Preprint Provider
+  description: >-
+    Retrieve a list of highlighted taxonomies (subjects) for a specific preprint provider.
+
+    Highlighted taxonomies are the primary subjects that the preprint provider chooses to showcase for organizing and filtering preprints.
+
+    #### Permissions
+    - No authentication required for public providers.
+    - Only authorized users can access restricted providers.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of taxonomy resources.
+    - Each taxonomy represents a subject that can be assigned to preprints.
+
+  tags:
+    - Preprint Providers
+    - Taxonomies
+
+  operationId: preprint_provider_taxonomies_highlighted_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+  responses:
+    '200':
+      description: Successful retrieval of highlighted taxonomies.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if applicable).
+              prev:
+                type: string
+                description: Link to the previous page of results (if applicable).
+          meta:
+            type: object
+            description: Meta information about the response (e.g., total number of results).
+      examples:
+        application/json:
+          data:
+            - id: "sociology"
+              type: "taxonomy"
+              attributes:
+                text: "Sociology"
+                parent: null
+                has_children: true
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/sociology/"
+            - id: "psychology"
+              type: "taxonomy"
+              attributes:
+                text: "Psychology"
+                parent: null
+                has_children: true
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/psychology/"
+          links:
+            self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/taxonomies/highlighted/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access taxonomies for this provider.
+    '404':
+      description: Not Found. No preprint provider matches the given ID.
