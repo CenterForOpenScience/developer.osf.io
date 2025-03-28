@@ -1,0 +1,33 @@
+get:
+  summary: List Registration Provider Subscriptions
+  description: >-
+    Retrieve a list of notification subscriptions for a specific registration provider associated with the authenticated user.
+
+    ## Permissions
+
+    User must be authenticated to access their registration provider subscriptions.
+
+    ## Returns
+
+    A paginated JSON object containing notification subscriptions for the registration provider.
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration provider.
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of the results to retrieve.
+
+  tags:
+    - Notification Subscriptions
+  operationId: registration_subscription_list
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: 'definition.yaml'

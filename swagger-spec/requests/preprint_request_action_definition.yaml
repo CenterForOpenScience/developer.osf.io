@@ -1,0 +1,68 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+properties:
+  id:
+    type: string
+    description: The unique identifier for the preprint request action.
+    example: "actn54321"
+  type:
+    type: string
+    example: "preprint-request-actions"
+  attributes:
+    type: object
+    properties:
+      trigger:
+        type: string
+        description: The event that caused this action.
+        enum:
+          - submit
+          - accept
+          - reject
+          - edit_comment
+        example: "accept"
+      comment:
+        type: string
+        description: Optional comment made during the action.
+        example: "This withdrawal request has been approved."
+      auto:
+        type: boolean
+        description: >
+          Whether the action was triggered automatically by the system rather than manually by a user.
+        example: false
+      date_created:
+        type: string
+        format: date-time
+        description: Date and time the action was created.
+  relationships:
+    type: object
+    properties:
+      creator:
+        type: object
+        description: The user who performed this action.
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "user789"
+              type:
+                type: string
+                example: "users"
+      target:
+        type: object
+        description: The preprint request this action is associated with.
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "prrqst67890"
+              type:
+                type: string
+                example: "preprint-requests"

@@ -1,0 +1,63 @@
+# /users/{user_id}/settings/identities/:
+
+get:
+  summary: List User External Identities
+  description: >-
+    Retrieves a list of external identities connected to the user.
+
+    External identities represent accounts linked from external services or identity providers (e.g., ORCID, institutions).
+
+    Only the authenticated user can view their own external identities.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing a list of external identities associated with the user.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+  tags:
+    - Users
+  operationId: user_identities_list
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user whose external identities are being listed.
+
+        Example: `abc123`
+  responses:
+    '200':
+      description: >-
+        A list of external identities associated with the user.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: orcid
+              type: external-identities
+              attributes:
+                external_id: 0000-0002-1825-0097
+                status: VERIFIED
+            - id: institution-abc
+              type: external-identities
+              attributes:
+                external_id: example-university.edu
+                status: LINKED
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to view external identities for this user.

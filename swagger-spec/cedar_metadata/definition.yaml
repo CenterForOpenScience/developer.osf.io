@@ -1,0 +1,51 @@
+definitions:
+  CedarMetadataRecord:
+    type: object
+    required:
+      - id
+      - type
+      - attributes
+      - relationships
+    properties:
+      id:
+        type: string
+        example: record-abc123
+      type:
+        type: string
+        example: cedar-metadata-records
+      attributes:
+        type: object
+        properties:
+          metadata:
+            type: object
+            description: The metadata object.
+            example:
+              title: Example Title
+              description: Example Description
+          is_published:
+            type: boolean
+            example: true
+      relationships:
+        type: object
+        properties:
+          template:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: template-abc123
+                  type:
+                    type: string
+                    example: cedar-metadata-templates
+      links:
+        type: object
+        properties:
+          self:
+            type: string
+            example: https://api.osf.io/v2/_/cedar_metadata_records/record-abc123/
+          metadata_download:
+            type: string
+            example: https://api.osf.io/v2/_/cedar_metadata_records/record-abc123/metadata_download/

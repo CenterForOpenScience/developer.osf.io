@@ -1,0 +1,99 @@
+# /users/{user_id}/draft_registrations/:
+
+get:
+  summary: List a User's Draft Registrations
+  description: >-
+    Retrieves a list of draft registrations for the specified user.
+
+    Only the authenticated user can view their own draft registrations.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing an array of draft registration resources.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+
+  tags:
+    - Users
+  operationId: user_draft_registrations_list
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: "The unique identifier of the user. Example: `abc123`"
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to view (pagination). Default is 1.
+    - in: query
+      name: filter[title]
+      type: string
+      description: Filter draft registrations by title.
+  responses:
+    '200':
+      description: >-
+        Successfully retrieved the list of draft registrations.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+              per_page:
+                type: integer
+              version:
+                type: string
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+              next:
+                type: string
+              prev:
+                type: string
+      examples:
+        application/json:
+          data:
+            - id: draftreg123
+              type: draft-registrations
+              attributes:
+                title: Draft Registration Example
+                date_created: '2024-01-01T00:00:00Z'
+                date_modified: '2024-01-01T12:00:00Z'
+                registration_metadata: {}
+              relationships:
+                creator:
+                  data:
+                    id: abc123
+                    type: users
+                branched_from:
+                  data:
+                    id: proj456
+                    type: nodes
+          meta:
+            total: 1
+            per_page: 10
+            version: '2.20'
+          links:
+            self: 'https://api.osf.io/v2/users/abc123/draft_registrations/'
+            next: null
+            prev: null
+    '403':
+      description: >-
+        Permission denied. You do not have permission to view these draft registrations.
+    '404':
+      description: >-
+        User not found.

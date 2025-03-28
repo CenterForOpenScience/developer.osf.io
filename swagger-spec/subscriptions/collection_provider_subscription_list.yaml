@@ -1,0 +1,50 @@
+get:
+  summary: List Notification Subscriptions for a Collection Provider
+  description: >-
+    Retrieve a paginated list of notification subscriptions associated with a specific collection provider
+    for the authenticated user.
+
+    Each subscription resource represents the user's notification preferences for specific events
+    (e.g., new pending submissions) within the specified collection provider.
+
+    ## Permissions
+     - The user must be authenticated.
+     - The user must have existing subscriptions for the specified collection provider.
+
+    ## Response Format
+     - Returns a JSON:API compliant response with a `data` array containing subscription resources.
+     - Each subscription includes:
+       - `event_name`: The event that triggers notifications (e.g., `new_pending_submissions`).
+       - `frequency`: How often notifications are sent (`instant`, `daily`, `none`).
+       - `provider`: Relationship object linking to the collection provider.
+
+    ## Pagination
+     - Standard JSON:API pagination links (`first`, `last`, `prev`, `next`) and `meta` information
+      (e.g., `total`, `per_page`) are included in the response.
+
+
+  parameters:
+    - in: path
+      type: string
+      name: provider_id
+      required: true
+      description: 'The unique identifier of the collection provider.'
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: collection_provider_subscription_list
+
+  responses:
+    '200':
+      description: Successful response with a paginated list of subscriptions.
+      examples:
+        application/json:
+          schema:
+            $ref: 'definition.yaml'
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. The user does not have permission to access subscriptions for this provider.
+    '404':
+      description: Not Found. The specified collection provider does not exist or has no subscriptions for the user.

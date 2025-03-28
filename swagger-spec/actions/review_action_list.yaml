@@ -1,0 +1,126 @@
+# /actions/reviews/:
+get:
+  summary: List Review Actions
+  description: >
+    Retrieve a list of review actions visible to the authenticated user.
+
+    Review actions represent state transitions or comments made on reviewable objects, such as preprints.
+    This endpoint returns all review actions the user is authorized to view.
+
+    #### Filtering & Pagination
+
+    Supports pagination and filtering by the following fields:
+     - `id`
+     - `trigger`
+     - `from_state`
+     - `to_state`
+     - `date_created`
+     - `date_modified`
+
+    Pagination follows the [JSON:API pagination specification](https://jsonapi.org/format/#fetching-pagination).
+
+    #### Returns
+
+    A JSON object containing an array of review actions under the `data` key.
+
+    #### Errors
+
+    Returns an `errors` object if unsuccessful. See [Errors and Error Codes](#tag/Errors-and-Error-Codes).
+
+  tags:
+    - Actions
+  operationId: review_action_list
+  produces:
+    - application/json
+
+  parameters:
+    - name: page
+      in: query
+      type: integer
+      description: Page number of the results to fetch.
+      required: false
+    - name: per_page
+      in: query
+      type: integer
+      description: Number of results per page.
+      required: false
+    - name: filter[id]
+      in: query
+      type: string
+      description: Filter by the unique ID of the review action.
+      required: false
+    - name: filter[trigger]
+      in: query
+      type: string
+      description: Filter by the trigger that initiated the action.
+      required: false
+    - name: filter[from_state]
+      in: query
+      type: string
+      description: Filter by the previous state of the resource.
+      required: false
+    - name: filter[to_state]
+      in: query
+      type: string
+      description: Filter by the new state of the resource.
+      required: false
+    - name: filter[date_created]
+      in: query
+      type: string
+      description: Filter by the creation date of the action.
+      required: false
+    - name: filter[date_modified]
+      in: query
+      type: string
+      description: Filter by the last modification date of the action.
+      required: false
+
+  responses:
+    '200':
+      description: Successful retrieval of review actions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                description: Total number of actions available.
+                example: 1
+              per_page:
+                type: integer
+                description: Number of actions per page.
+                example: 10
+              version:
+                type: string
+                description: API version.
+                example: '2.20'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                format: uri
+                description: Link to the current page of results.
+                example: 'https://api.osf.io/v2/actions/reviews/'
+              next:
+                type: string
+                format: uri
+                description: Link to the next page of results.
+                example: 'https://api.osf.io/v2/actions/reviews/?page=2'
+              prev:
+                type: string
+                format: uri
+                description: Link to the previous page of results.
+                example: 'https://api.osf.io/v2/actions/reviews/?page=1'
+
+    '400':
+      description: Bad request. Invalid filter or pagination parameters.
+
+    '403':
+      description: Forbidden. The user does not have permission to view these review actions.

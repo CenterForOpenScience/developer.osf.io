@@ -1,0 +1,39 @@
+get:
+  summary: List Preprint Provider Subscriptions
+  description: >-
+    Retrieve a paginated list of notification subscriptions for a specific preprint provider associated with the authenticated user.
+
+    ## Permissions
+
+    User must be authenticated and must have subscriptions for the specified preprint provider.
+
+    ## Returns
+
+    A JSON object with a paginated list of notification subscriptions, including subscription frequency, event type, and provider details.
+
+  parameters:
+    - in: path
+      type: string
+      name: provider_id
+      required: true
+      description: The unique identifier of the preprint provider.
+    - in: query
+      type: integer
+      name: page
+      required: false
+      description: The page number of results to retrieve.
+
+  tags:
+    - Notification Subscriptions
+  operationId: preprint_provider_subscription_list
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: 'definition.yaml'
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+    '404':
+      description: Not Found

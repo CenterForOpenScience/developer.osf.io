@@ -1,0 +1,156 @@
+get:
+  summary: List nodes affiliated with an institution (relationship data)
+  description: |
+    Retrieve relationship data for nodes affiliated with the given institution.
+
+    ### Permissions
+    - Public nodes: Anyone can view the affiliation.
+    - Private nodes: Only contributors can view affiliation.
+    - Requires read access to the institution and nodes.
+
+  tags:
+    - Institutions
+  operationId: listInstitutionNodeRelationships
+  parameters:
+    - name: institution_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the institution.
+  responses:
+    '200':
+      description: Successfully retrieved node relationships.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: nodes
+                id:
+                  type: string
+                  example: abcd1
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: /v2/institutions/{institution_id}/relationships/nodes/
+              related:
+                type: string
+                example: /v2/institutions/{institution_id}/nodes/
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this institution's nodes.
+    '404':
+      description: Institution not found.
+  security:
+    - osf_cookie: []
+
+post:
+  summary: Add node relationships to an institution
+  description: |
+    Add nodes to an institution's affiliated nodes relationship.
+
+    ### Permissions
+    - Requires write access on each node being added.
+    - User must be affiliated with the institution.
+
+  tags:
+    - Institutions
+  operationId: addInstitutionNodeRelationships
+  consumes:
+    - application/vnd.api+json
+  parameters:
+    - name: institution_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the institution.
+    - in: body
+      name: body
+      required: true
+      description: List of node relationships to add.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: nodes
+                id:
+                  type: string
+                  example: abcd1
+  responses:
+    '201':
+      description: Nodes successfully affiliated with institution.
+    '204':
+      description: No changes made (nodes already affiliated).
+    '400':
+      description: Invalid request payload.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to affiliate these nodes.
+    '404':
+      description: Institution not found.
+  security:
+    - osf_cookie: []
+
+delete:
+  summary: Remove node relationships from an institution
+  description: |
+    Remove nodes from an institution's affiliated nodes relationship.
+
+    ### Permissions
+    - Requires write access on each node being removed.
+
+  tags:
+    - Institutions
+  operationId: removeInstitutionNodeRelationships
+  consumes:
+    - application/vnd.api+json
+  parameters:
+    - name: institution_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the institution.
+    - in: body
+      name: body
+      required: true
+      description: List of node relationships to remove.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: nodes
+                id:
+                  type: string
+                  example: abcd1
+  responses:
+    '204':
+      description: Nodes successfully removed from affiliation.
+    '400':
+      description: Invalid request payload.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to modify these nodes.
+    '404':
+      description: Institution not found.

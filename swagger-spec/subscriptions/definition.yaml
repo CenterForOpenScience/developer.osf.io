@@ -1,0 +1,150 @@
+type: object
+title: Subscription
+description: |
+  A Subscription resource represents a user's notification preferences for specific events
+  occurring on the OSF. Subscriptions can be global or tied to specific providers such as 
+  collections, preprints, or registrations.
+
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: |
+      The unique identifier of the Subscription.
+      This corresponds to the `_id` field on the NotificationSubscription model.
+
+  type:
+    type: string
+    readOnly: true
+    enum:
+      - subscription
+    description: |
+      The type identifier of this resource. Always `subscription`.
+
+  attributes:
+    type: object
+    title: Attributes
+    description: |
+      Attributes describing the subscription event and notification frequency.
+    properties:
+      event_name:
+        type: string
+        readOnly: true
+        description: |
+          The name of the event that triggers this subscription.
+          Possible values include:
+            - `global_comments`
+            - `global_mentions`
+            - `global_reviews`
+            - `global_comment_replies`
+            - `comments`
+            - `file_updated`
+            - `new_pending_submissions`
+      frequency:
+        type: string
+        description: |
+          The notification frequency for the subscribed event.
+          Accepted values:
+            - `instant`: Receive email notifications immediately when the event occurs.
+            - `daily`: Receive a daily summary email.
+            - `none`: Do not receive notifications for this subscription.
+        enum:
+          - instant
+          - daily
+          - none
+
+  relationships:
+    type: object
+    title: Relationships
+    description: |
+      Links to related resources: the user and (optionally) a provider.
+    properties:
+      user:
+        type: object
+        description: |
+          The user associated with this subscription.
+        properties:
+          links:
+            type: object
+            properties:
+              related:
+                type: string
+                format: uri
+                description: |
+                  A link to the user resource.
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - users
+                description: |
+                  The resource type (`users`).
+              id:
+                type: string
+                description: |
+                  The unique identifier of the user.
+
+      provider:
+        type: object
+        description: |
+          The provider associated with this subscription.
+          This can be a Collection Provider, Preprint Provider, or Registration Provider.
+        properties:
+          links:
+            type: object
+            properties:
+              related:
+                type: string
+                format: uri
+                description: |
+                  A link to the provider resource.
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - providers
+                description: |
+                  The resource type (`providers`).
+              id:
+                type: string
+                description: |
+                  The unique identifier of the provider.
+
+  links:
+    type: object
+    title: Links
+    description: |
+      Links to alternative representations or actions for the Subscription resource.
+    properties:
+      self:
+        type: string
+        format: uri
+        description: |
+          A link to the detail page for this subscription.
+
+example:
+  data:
+    id: "abcd1234"
+    type: subscription
+    attributes:
+      event_name: "new_pending_submissions"
+      frequency: "instant"
+    relationships:
+      user:
+        data:
+          type: users
+          id: user_id
+        links:
+          related: "https://api.osf.io/v2/users/user_id/"
+      provider:
+        data:
+          type: providers
+          id: provider_id
+        links:
+          related: "https://api.osf.io/v2/providers/collections/provider_id/"
+    links:
+      self: "https://api.osf.io/v2/subscriptions/abcd1234/"

@@ -1,0 +1,69 @@
+# /regions/{region_id}/:
+
+get:
+  summary: Region Detail
+  description: >-
+    Retrieves detailed information for a specific storage region identified by `{region_id}`.
+
+    A storage region defines the geographical or cloud-based location used by OSF Storage for storing files.
+
+    #### Returns
+    
+    A JSON:API-compliant response containing a single `region` entity under the `data` key.
+
+    #### Errors
+
+    Returns an `errors` object if unsuccessful:
+      - `404 Not Found`: No region matches the provided `region_id`.
+
+  tags:
+    - Regions
+  operationId: region_detail
+  produces:
+    - application/json
+  parameters:
+    - name: region_id
+      in: path
+      description: The unique identifier for the region.
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Successfully retrieved region details.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: us-east-1
+              type:
+                type: string
+                example: regions
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: US East
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: 'https://api.osf.io/v2/regions/us-east-1/'
+    '404':
+      description: Region not found.
+      schema:
+        type: object
+        properties:
+          errors:
+            type: array
+            items:
+              type: object
+              properties:
+                detail:
+                  type: string
+                  example: 'No region matching that region_id could be found.'

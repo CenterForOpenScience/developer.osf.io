@@ -1,0 +1,200 @@
+# /users/{user_id}/settings/emails/{email_id}/:
+get:
+  summary: Retrieve a User's Email Address
+  description: >-
+    Retrieves detailed information about a specific email address linked to the user.
+
+    Only the authenticated user can view their own email addresses.
+
+    #### Query Parameters
+
+    - `resend_confirmation=true` -- Optional. If the email address is unconfirmed, this query param will resend the confirmation email.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the details of the requested email address.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
+  tags:
+    - Users
+  operationId: user_email_detail_read
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: "The unique identifier of the user. Example: `abc123`"
+    - in: path
+      name: email_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the email address (either a hashed ID or unconfirmed token). Example: `1a2b3c`
+    - in: query
+      name: resend_confirmation
+      required: false
+      type: boolean
+      description: >-
+        If true, resend a confirmation email to the unconfirmed address (if applicable).
+  responses:
+    '200':
+      description: >-
+        Successfully retrieved the email address.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: 1a2b3c
+            type: user-emails
+            attributes:
+              email_address: user@example.com
+              confirmed: true
+              verified: true
+              primary: true
+              is_merge: false
+    '403':
+      description: >-
+        Permission denied. You do not have permission to view this email.
+    '404':
+      description: >-
+        Email address not found.
+
+
+patch:
+  summary: Update a User's Email Address
+  description: >-
+    Updates attributes of a user's email address.
+
+    #### Allowed Updates
+
+    - Set an email address as `primary` (must already be confirmed).
+    - Mark an email as `verified` (must already be confirmed).
+
+    #### Returns
+
+    Returns the updated email address in a JSON object with a `data` key.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+  tags:
+    - Users
+  operationId: user_email_detail_update
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: "The unique identifier of the user. Example: `abc123`"
+    - in: path
+      name: email_id
+      required: true
+      type: string
+      description: "The unique identifier of the email address. Example: `1a2b3c`"
+    - in: body
+      name: body
+      required: true
+      description: JSON API representation of the updates to the email address.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [user-emails]
+                example: user-emails
+              id:
+                type: string
+                description: "The email ID to update. Example: `1a2b3c`"
+              attributes:
+                type: object
+                properties:
+                  primary:
+                    type: boolean
+                    description: Whether this email should be set as primary.
+                  verified:
+                    type: boolean
+                    description: Whether this email should be marked as verified (requires confirmation first).
+      x-examples:
+        application/json:
+          data:
+            type: user-emails
+            id: 1a2b3c
+            attributes:
+              primary: true
+  responses:
+    '200':
+      description: >-
+        Successfully updated the email address.
+      schema:
+        $ref: 'definition.yaml'
+    '400':
+      description: >-
+        Bad request. This can occur if trying to set an unconfirmed email as primary or verify an unconfirmed email.
+    '403':
+      description: >-
+        Permission denied.
+    '404':
+      description: >-
+        Email address not found.
+
+
+delete:
+  summary: Remove a User's Email Address
+  description: >-
+    Deletes an email address from the user's account.
+
+    - If the email is confirmed and verified, it will be removed.
+    - If the email is unconfirmed, it will be removed from unconfirmed emails.
+    - Cannot delete the primary email address.
+
+    #### Returns
+
+    Returns a `204 No Content` response if the email was successfully removed.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
+    Refer to the [list of error codes](#tag/Errors-and-Error-Codes).
+  tags:
+    - Users
+  operationId: user_email_detail_delete
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: "The unique identifier of the user. Example: `abc123`"
+    - in: path
+      name: email_id
+      required: true
+      type: string
+      description: "The unique identifier of the email address. Example: `1a2b3c`"
+  responses:
+    '204':
+      description: >-
+        Email address successfully removed.
+    '400':
+      description: >-
+        Bad request. Cannot delete the primary email address.
+    '403':
+      description: >-
+        Permission denied.
+    '404':
+      description: >-
+        Email address not found.

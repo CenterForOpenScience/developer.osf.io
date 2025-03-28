@@ -1,0 +1,39 @@
+post:
+  summary: Create a CEDAR metadata record for a node
+  description: >
+    Create a new CEDAR metadata record for the specified node. CEDAR metadata records are based
+    on predefined templates and can be associated with nodes or files.
+  operationId: createCedarMetadataRecordForNode
+  tags:
+    - CEDAR Metadata
+  consumes:
+    - application/vnd.api+json
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: node_id
+      in: path
+      description: The unique identifier of the node.
+      required: true
+      type: string
+    - in: body
+      name: body
+      description: CEDAR metadata record object to be created.
+      required: true
+      schema:
+        $ref: './definition_create.yaml#/definitions/CedarMetadataRecordCreate'
+  responses:
+    '201':
+      description: Successfully created a new CEDAR metadata record.
+      schema:
+        $ref: './definition.yaml#/definitions/CedarMetadataRecord'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to create metadata for this node.
+    '404':
+      description: Node not found.
+  security:
+    - osf_cookie: []

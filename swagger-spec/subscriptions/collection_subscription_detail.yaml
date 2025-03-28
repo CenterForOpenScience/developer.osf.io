@@ -1,0 +1,170 @@
+# /collection_subscriptions/{subscription_id}/
+get:
+  summary: Retrieve a Collection Subscription
+  description: >-
+    Retrieve the details of a specific notification subscription associated with a collection provider.
+
+    ## Permissions
+     - The authenticated user **must** be the owner of the subscription.
+     - Access is restricted to subscriptions owned by the requesting user.
+
+    ## Returns
+     - A JSON:API compliant representation of the subscription resource.
+     - Includes event name, frequency, user, provider, and related links.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: collection_subscription_detail
+
+  parameters:
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+  responses:
+    '200':
+      description: Subscription successfully retrieved.
+      schema:
+        $ref: 'definition.yaml'  # Or use '#/components/schemas/Subscription' if OpenAPI 3
+      examples:
+        application/json:
+          data:
+            id: "collection123_subscription456"
+            type: "subscription"
+            attributes:
+              event_name: "new_pending_submissions"
+              frequency: "instant"
+            relationships:
+              user:
+                data:
+                  type: "users"
+                  id: "user_id"
+              provider:
+                data:
+                  type: "providers"
+                  id: "collection123"
+            links:
+              self: "https://api.osf.io/v2/collection_subscriptions/collection123_subscription456/"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view this subscription.
+    '404':
+      description: Not Found. No subscription found matching the given ID.
+
+patch:
+  summary: Update a Collection Subscription
+  description: >-
+    Update the notification frequency for a specific collection provider subscription.
+
+    ## Permissions
+     - The authenticated user **must** be the owner of the subscription.
+     - Only the `frequency` attribute can be modified.
+
+    ## Request Body
+    Provide the `frequency` inside the `attributes` object. Valid values include:
+     - `instant`: Immediate email notifications.
+     - `daily`: Daily digest emails.
+     - `none`: Disable notifications for this event.
+
+    ## Returns
+     - A JSON:API compliant representation of the updated subscription resource.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: collection_subscription_update
+
+  parameters:
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+    - in: body
+      name: body
+      required: true
+      description: JSON:API-compliant payload specifying the updated subscription attributes.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+            properties:
+              type:
+                type: string
+                enum:
+                  - subscription
+                description: Must be `subscription`.
+              id:
+                type: string
+                description: The unique identifier of the subscription.
+              attributes:
+                type: object
+                required:
+                  - frequency
+                properties:
+                  frequency:
+                    type: string
+                    enum:
+                      - instant
+                      - daily
+                      - none
+                    description: |
+                      The notification frequency for this subscription.
+                      - `instant`: Immediate email notifications.
+                      - `daily`: Daily digest emails.
+                      - `none`: No notifications.
+
+        example:
+          data:
+            type: subscription
+            id: "collection123_subscription456"
+            attributes:
+              frequency: "daily"
+
+  consumes:
+    - application/json
+
+  responses:
+    '200':
+      description: Subscription successfully updated.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "collection123_subscription456"
+            type: "subscription"
+            attributes:
+              event_name: "new_pending_submissions"
+              frequency: "daily"
+            relationships:
+              user:
+                data:
+                  type: "users"
+                  id: "user_id"
+              provider:
+                data:
+                  type: "providers"
+                  id: "collection123"
+            links:
+              self: "https://api.osf.io/v2/collection_subscriptions/collection123_subscription456/"
+    '400':
+      description: Bad Request. Invalid input provided.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to update this subscription.
+    '404':
+      description: Not Found. No subscription matches the given ID.
