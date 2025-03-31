@@ -5,11 +5,11 @@ get:
     This includes details such as whether wiki functionality is enabled, if comments are enabled, and other configurable settings.
 
     #### Permissions
-    - Public nodes expose a subset of settings.
-    - Private nodes require read permissions to view full settings.
+     - Public nodes expose a subset of settings.
+     - Private nodes require read permissions to view full settings.
 
     #### Returns
-    - A JSON object with a `data` key containing the node's settings.
+     - A JSON object with a `data` key containing the node's settings.
 
   tags:
     - Nodes
@@ -94,13 +94,13 @@ patch:
     - Only users with write access to the node can modify its settings.
 
     #### Request Body
-    - The `attributes` object may include the following fields:
-      - `wiki_enabled`: Enable or disable the node's wiki.
-      - `comments_enabled`: Enable or disable comments on the node.
-      - `public`: Make the node public or private.
+     - The `attributes` object may include the following fields:
+       - `wiki_enabled`: Enable or disable the node's wiki.
+       - `comments_enabled`: Enable or disable comments on the node.
+       - `public`: Make the node public or private.
 
     #### Returns
-    - A JSON object with the updated node settings under the `data` key.
+     - A JSON object with the updated node settings under the `data` key.
 
   tags:
     - Nodes

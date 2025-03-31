@@ -7,14 +7,14 @@ get:
     They allow users to create a relationship between a registration and other nodes within OSF.
 
     #### Permissions
-    - Public registrations expose their node links publicly.
-    - Private registrations require read access to view node links.
+     - Public registrations expose their node links publicly.
+     - Private registrations require read access to view node links.
 
     #### Returns
-    - A JSON object containing a `data` array with node link resources.
+     - A JSON object containing a `data` array with node link resources.
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_node_links_list
 

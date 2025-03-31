@@ -6,14 +6,14 @@ get:
     This endpoint allows you to discover which nodes are referencing the given registration by including it in their node links.
 
     #### Permissions
-    - Public registrations expose their linked by nodes publicly.
-    - Private registrations require appropriate read permissions to view this relationship.
+     - Public registrations expose their linked by nodes publicly.
+     - Private registrations require appropriate read permissions to view this relationship.
 
     #### Returns
-    - A JSON object containing a `data` array of node resources that link to the specified registration.
+     - A JSON object containing a `data` array of node resources that link to the specified registration.
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_linked_by_nodes_list
 

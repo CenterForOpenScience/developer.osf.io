@@ -4,12 +4,12 @@ get:
     Retrieve a list of registrations that have created links to the specified node.
 
     #### Permissions
-    - Public registrations are visible to everyone.
-    - Registrations with restricted visibility require appropriate permissions to access.
-    - The authenticated user must have read access to see restricted registrations linking to this node.
+     - Public registrations are visible to everyone.
+     - Registrations with restricted visibility require appropriate permissions to access.
+     - The authenticated user must have read access to see restricted registrations linking to this node.
 
     #### Returns
-    - A paginated list of registrations that link to the specified node.
+     - A paginated list of registrations that link to the specified node.
 
   tags:
     - Nodes

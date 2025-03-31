@@ -7,12 +7,12 @@ get:
     These subjects help with search, discovery, and classification within the OSF platform.
 
     #### Permissions
-    - Publicly accessible if the registration is public.
-    - Private registrations require admin permissions to access.
+     - Publicly accessible if the registration is public.
+     - Private registrations require admin permissions to access.
 
     #### Returns
-    - A JSON object with a `data` key containing an array of subject resources.
-    - Each subject describes a taxonomy term, including its name and hierarchical position.
+     - A JSON object with a `data` key containing an array of subject resources.
+     - Each subject describes a taxonomy term, including its name and hierarchical position.
 
   tags:
     - Registrations

@@ -7,14 +7,14 @@ get:
     This endpoint returns all registrations that are children of the given parent registration.
 
     #### Permissions
-    - Public registrations will display their children publicly.
-    - Private registrations require appropriate permissions to view child registrations.
+     - Public registrations will display their children publicly.
+     - Private registrations require appropriate permissions to view child registrations.
 
     #### Returns
-    - A JSON object with a `data` key containing a list of child registration resources.
+     - A JSON object with a `data` key containing a list of child registration resources.
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registrations_children_list
 

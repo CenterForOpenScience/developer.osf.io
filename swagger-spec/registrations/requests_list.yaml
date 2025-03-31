@@ -7,13 +7,13 @@ get:
     including withdrawal requests, embargo requests, and schema update requests.
     
     #### Permissions
-    - Public registrations expose some request metadata publicly.
-    - Private registrations require read access for non-admin contributors.
-    - Only admins and moderators can view and manage sensitive request details.
+     - Public registrations expose some request metadata publicly.
+     - Private registrations require read access for non-admin contributors.
+     - Only admins and moderators can view and manage sensitive request details.
 
     #### Returns
-    - A JSON object with a `data` key containing an array of request records.
-    - Each request includes the type of request (withdrawal, embargo, etc.), its state,
+     - A JSON object with a `data` key containing an array of request records.
+     - Each request includes the type of request (withdrawal, embargo, etc.), its state,
       and information about who initiated the request.
 
   tags:

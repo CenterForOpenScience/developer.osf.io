@@ -8,12 +8,12 @@ get:
     A registration can have multiple schema responses over time due to edits or updates, depending on the registration provider's workflow.
 
     #### Permissions
-    - Publicly accessible for public registrations.
-    - Private registrations require appropriate permissions (must be a contributor with read access).
+     - Publicly accessible for public registrations.
+     - Private registrations require appropriate permissions (must be a contributor with read access).
 
     #### Returns
-    - A JSON object with a `data` key containing an array of schema response resources.
-    - Each schema response includes its current state, related actions, and the data provided in the registration form.
+     - A JSON object with a `data` key containing an array of schema response resources.
+     - Each schema response includes its current state, related actions, and the data provided in the registration form.
 
   tags:
     - Registrations

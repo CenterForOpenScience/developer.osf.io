@@ -6,11 +6,11 @@ get:
     A node can have multiple subjects, typically applied in the context of preprints or projects associated with specific disciplines.
 
     #### Permissions
-    - Public nodes expose subjects publicly.
-    - Private nodes require read permissions to access subjects.
+     - Public nodes expose subjects publicly.
+     - Private nodes require read permissions to access subjects.
 
     #### Returns
-    - A JSON object with a `data` array containing subject resources assigned to the node.
+     - A JSON object with a `data` array containing subject resources assigned to the node.
 
   tags:
     - Nodes

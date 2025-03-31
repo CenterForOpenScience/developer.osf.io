@@ -7,14 +7,14 @@ get:
     To retrieve detailed information about these institutions, use the `related` link or query the `/institutions/` endpoint.
 
     #### Permissions
-    - Public registrations will display their institutions publicly.
-    - Private registrations require appropriate permissions to view affiliated institutions.
+     - Public registrations will display their institutions publicly.
+     - Private registrations require appropriate permissions to view affiliated institutions.
 
     #### Returns
-    - A JSON object with a `data` key, containing an array of `institutions` resource identifier objects (`id` and `type`).
+     - A JSON object with a `data` key, containing an array of `institutions` resource identifier objects (`id` and `type`).
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: relationships_institutions_list
 

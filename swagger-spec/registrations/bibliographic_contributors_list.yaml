@@ -7,14 +7,14 @@ get:
     These contributors appear in citations and are considered authors on the registration's public pages and metadata.
 
     #### Permissions
-    - Public registrations expose bibliographic contributors publicly.
-    - Private registrations require appropriate read permissions to view bibliographic contributors.
+     - Public registrations expose bibliographic contributors publicly.
+     - Private registrations require appropriate read permissions to view bibliographic contributors.
 
     #### Returns
-    - A JSON object with a `data` array containing contributor resources that are marked as bibliographic for the registration.
+     - A JSON object with a `data` array containing contributor resources that are marked as bibliographic for the registration.
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_bibliographic_contributors_list
 

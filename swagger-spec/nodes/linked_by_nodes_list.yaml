@@ -4,12 +4,12 @@
       Retrieve a list of nodes that link to the specified node.
 
       #### Permissions
-      - Public nodes are visible to everyone.
-      - Private nodes require appropriate permissions to access.
-      - The authenticated user must have read access to see restricted nodes linking to this node.
+       - Public nodes are visible to everyone.
+       - Private nodes require appropriate permissions to access.
+       - The authenticated user must have read access to see restricted nodes linking to this node.
 
       #### Returns
-      - A paginated list of nodes that link to the specified node.
+       - A paginated list of nodes that link to the specified node.
 
     tags:
       - Nodes

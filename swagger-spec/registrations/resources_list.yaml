@@ -7,12 +7,12 @@ get:
     These resources help provide additional context, background, or supporting materials for the registration.
 
     #### Permissions
-    - Public registrations expose their related resources publicly.
-    - Private registrations require the user to have read access to view related resources.
+     - Public registrations expose their related resources publicly.
+     - Private registrations require the user to have read access to view related resources.
 
     #### Returns
-    - A JSON object with a `data` key containing an array of related resources.
-    - Related resources may include nodes, preprints, and other OSF resources.
+     - A JSON object with a `data` key containing an array of related resources.
+     - Related resources may include nodes, preprints, and other OSF resources.
 
   tags:
     - Registrations

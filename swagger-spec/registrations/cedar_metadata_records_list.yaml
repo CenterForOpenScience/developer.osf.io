@@ -7,14 +7,14 @@ get:
     Each record corresponds to a specific metadata schema provided by the CEDAR system and enhances the discoverability and documentation of a registration.
 
     #### Permissions
-    - Public registrations expose their CEDAR metadata records publicly.
-    - Private registrations require appropriate read permissions to view CEDAR metadata records.
+     - Public registrations expose their CEDAR metadata records publicly.
+     - Private registrations require appropriate read permissions to view CEDAR metadata records.
 
     #### Returns
-    - A JSON object with a `data` array containing CEDAR metadata records related to the registration.
+     - A JSON object with a `data` array containing CEDAR metadata records related to the registration.
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_cedar_metadata_records_list
 

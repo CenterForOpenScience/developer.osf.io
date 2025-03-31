@@ -4,8 +4,8 @@ get:
     Retrieve a list of relationship identifiers (resource linkage) representing the subjects associated with a specific node.
 
     #### Permissions
-    - Public nodes will display public subjects.
-    - Private nodes require read permissions.
+     - Public nodes will display public subjects.
+     - Private nodes require read permissions.
 
     #### Returns
     - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each subject linked to the node.

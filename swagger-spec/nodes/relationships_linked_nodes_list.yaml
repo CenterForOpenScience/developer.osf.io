@@ -4,8 +4,8 @@ get:
     Retrieve a list of resource identifier objects that represent the nodes linked to the given node.
 
     #### Permissions
-    - Public nodes will display their public linked nodes.
-    - Private nodes require read permissions.
+     - Public nodes will display their public linked nodes.
+     - Private nodes require read permissions.
 
     #### Returns
     - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each linked node.

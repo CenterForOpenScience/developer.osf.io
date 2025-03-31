@@ -5,11 +5,11 @@ get:
     Each node in the OSF automatically has an OSF Storage provider, and may have additional third-party storage providers (such as Dropbox or Google Drive) if configured.
 
     #### Permissions
-    - Public nodes expose storage provider information publicly.
-    - Private nodes require read permissions to access storage providers.
+     - Public nodes expose storage provider information publicly.
+     - Private nodes require read permissions to access storage providers.
 
     #### Returns
-    - A JSON object with a `data` array containing storage provider resources assigned to the node.
+     - A JSON object with a `data` array containing storage provider resources assigned to the node.
 
   tags:
     - Nodes

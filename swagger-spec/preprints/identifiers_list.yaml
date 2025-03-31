@@ -5,8 +5,8 @@ get:
     Identifiers include DOIs, ARKs, and other unique resource locators.
 
     #### Permissions
-    - Public identifiers are accessible to unauthenticated users.
-    - Private preprints require read access to view their identifiers.
+     - Public identifiers are accessible to unauthenticated users.
+     - Private preprints require read access to view their identifiers.
 
   tags:
     - Preprints

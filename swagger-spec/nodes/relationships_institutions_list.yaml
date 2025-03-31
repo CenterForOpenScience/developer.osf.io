@@ -4,8 +4,8 @@ get:
     Retrieve a list of resource identifier objects that represent the institutions affiliated with the given node.
 
     #### Permissions
-    - Public nodes will display their affiliated institutions.
-    - Private nodes require read permissions.
+     - Public nodes will display their affiliated institutions.
+     - Private nodes require read permissions.
 
     #### Returns
     - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each affiliated institution.
@@ -71,13 +71,13 @@ patch:
     Replace all existing affiliated institutions for a node with a new set of institutions.
 
     #### Permissions
-    - The authenticated user must have admin permissions on the node.
+     - The authenticated user must have admin permissions on the node.
 
     #### Request Body
-    - A `data` array containing the new list of institution resource identifier objects (`type` and `id`).
+     - A `data` array containing the new list of institution resource identifier objects (`type` and `id`).
 
     #### Returns
-    - The updated list of affiliated institutions for the node.
+     - The updated list of affiliated institutions for the node.
 
   tags:
     - Nodes
@@ -150,13 +150,13 @@ post:
     Add new affiliated institutions to the node, while keeping the existing ones intact.
 
     #### Permissions
-    - The authenticated user must have admin permissions on the node.
+     - The authenticated user must have admin permissions on the node.
 
     #### Request Body
-    - A `data` array containing additional institution resource identifier objects to be added.
+     - A `data` array containing additional institution resource identifier objects to be added.
 
     #### Returns
-    - The updated list of affiliated institutions for the node.
+     - The updated list of affiliated institutions for the node.
 
   tags:
     - Nodes

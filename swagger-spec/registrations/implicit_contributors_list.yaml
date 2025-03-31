@@ -7,14 +7,14 @@ get:
     are inherited by this registration. They are not explicitly listed as contributors but have an implied relationship.
 
     #### Permissions
-    - Public registrations expose their implicit contributors publicly.
-    - Private registrations require appropriate read permissions to view contributors.
+     - Public registrations expose their implicit contributors publicly.
+     - Private registrations require appropriate read permissions to view contributors.
 
     #### Returns
-    - A JSON object containing a `data` array of user resources representing implicit contributors to the registration.
+     - A JSON object containing a `data` array of user resources representing implicit contributors to the registration.
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_implicit_contributors_list
 

@@ -7,14 +7,14 @@ get:
     To get the full details of the subjects, you should follow the `related` link provided in the relationships object or query the `/registrations/{registration_id}/subjects/` endpoint.
 
     #### Permissions
-    - Public registrations expose this relationship publicly.
-    - Private registrations require appropriate permissions to view their subjects.
+     - Public registrations expose this relationship publicly.
+     - Private registrations require appropriate permissions to view their subjects.
 
     #### Returns
-    - A JSON object with a `data` key, which contains an array of `subject` resource identifier objects (`id` and `type`).
+     - A JSON object with a `data` key, which contains an array of `subject` resource identifier objects (`id` and `type`).
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_subjects_relationship_list
 

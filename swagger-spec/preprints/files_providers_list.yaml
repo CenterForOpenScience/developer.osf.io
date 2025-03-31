@@ -5,8 +5,8 @@ get:
     Only "osfstorage" is supported for preprints.
 
     #### Permissions
-    - Public storage providers are accessible to unauthenticated users.
-    - Viewing non-public preprints requires appropriate permissions.
+     - Public storage providers are accessible to unauthenticated users.
+     - Viewing non-public preprints requires appropriate permissions.
 
   tags:
     - Preprints

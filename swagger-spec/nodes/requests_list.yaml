@@ -5,12 +5,12 @@ get:
     Requests include actions such as registration approval, withdrawal, or other moderation-related requests initiated on the node.
 
     #### Permissions
-    - The authenticated user must have read access to the node to view its requests.
-    - Moderators or admins of the provider may have additional access to request details depending on their role.
+     - The authenticated user must have read access to the node to view its requests.
+     - Moderators or admins of the provider may have additional access to request details depending on their role.
 
     #### Returns
-    - A JSON object with a `data` key containing a list of request resources.
-    - Each request provides metadata about its current state, type, creator, and review process.
+     - A JSON object with a `data` key containing a list of request resources.
+     - Each request provides metadata about its current state, type, creator, and review process.
 
   tags:
     - Nodes

@@ -5,13 +5,13 @@ get:
     or moderation events, such as submission, approval, rejection, and withdrawal requests.
 
     #### Permissions
-    - Publicly accessible if the registration is public.
-    - Administrators of the registration always have access.
-    - Moderators of the associated Registration Provider may have access depending on action type.
+     - Publicly accessible if the registration is public.
+     - Administrators of the registration always have access.
+     - Moderators of the associated Registration Provider may have access depending on action type.
 
     #### Returns
-    - A JSON object containing a list of `registration actions` returned in a `data` array.
-    - Each action describes a specific event or state transition applied to the registration.
+     - A JSON object containing a list of `registration actions` returned in a `data` array.
+     - Each action describes a specific event or state transition applied to the registration.
 
   tags:
     - Registrations

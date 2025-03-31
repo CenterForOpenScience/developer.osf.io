@@ -24,13 +24,13 @@ get:
     **Example:**
 
     Supported filter categories include:
-     - `doi` - Digital Object Identifier
-     - `ark` - Archival Resource Key
+      - `doi` - Digital Object Identifier
+      - `ark` - Archival Resource Key
 
     #### Permissions
 
-    - This endpoint is public for nodes that are public.
-    - Authentication is required to access identifiers on private nodes, and the authenticated user must have read access.
+     - This endpoint is public for nodes that are public.
+     - Authentication is required to access identifiers on private nodes, and the authenticated user must have read access.
 
   parameters:
     - in: path

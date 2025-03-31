@@ -10,14 +10,14 @@ get:
     or follow the `related` link provided in this response.
 
     #### Permissions
-    - Public registrations expose linked registrations publicly.
-    - Private registrations require appropriate permissions to view their linked registrations.
+     - Public registrations expose linked registrations publicly.
+     - Private registrations require appropriate permissions to view their linked registrations.
 
     #### Returns
-    - A JSON object with a `data` key, containing an array of `registration` resource identifier objects (`id` and `type`).
+     - A JSON object with a `data` key, containing an array of `registration` resource identifier objects (`id` and `type`).
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: registration_linked_registrations_relationship_list
 

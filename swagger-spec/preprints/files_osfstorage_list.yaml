@@ -5,8 +5,8 @@ get:
      Only "osfstorage" is available for preprints.
 
      #### Permissions
-     - Public files are accessible to unauthenticated users.
-     - Viewing non-public files requires appropriate permissions.
+      - Public files are accessible to unauthenticated users.
+      - Viewing non-public files requires appropriate permissions.
 
    tags:
      - Preprints

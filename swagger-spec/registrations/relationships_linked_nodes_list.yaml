@@ -10,14 +10,14 @@ get:
     or follow the `related` link provided in this response.
 
     #### Permissions
-    - Public nodes/registrations expose linked nodes publicly.
-    - Private nodes/registrations require appropriate permissions to view their linked nodes.
+     - Public nodes/registrations expose linked nodes publicly.
+     - Private nodes/registrations require appropriate permissions to view their linked nodes.
 
     #### Returns
-    - A JSON object with a `data` key, containing an array of `nodes` resource identifier objects (`id` and `type`).
+     - A JSON object with a `data` key, containing an array of `nodes` resource identifier objects (`id` and `type`).
 
   tags:
-    - Registration
+    - Registrations
 
   operationId: relationships_linked_nodes_list
 

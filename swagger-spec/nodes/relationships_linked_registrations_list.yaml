@@ -4,8 +4,8 @@ get:
     Retrieve a list of resource identifier objects that represent the registrations linked to the given node.
 
     #### Permissions
-    - Public nodes will show public linked registrations.
-    - Private nodes require read permissions.
+     - Public nodes will show public linked registrations.
+     - Private nodes require read permissions.
 
     #### Returns
     - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each linked registration.
@@ -71,7 +71,7 @@ patch:
     Replace all existing linked registrations for a node with a new set of linked registrations.
 
     #### Permissions
-    - The authenticated user must have write permissions on the node.
+     - The authenticated user must have write permissions on the node.
 
     #### Request Body
     - A `data` array containing the new list of registration resource identifier objects (`type` and `id`).

@@ -4,8 +4,8 @@ get:
     Retrieve a relationship object that points to the supplemental node associated with this preprint.
 
     #### Permissions
-    - Public preprints will return their supplemental node if it exists.
-    - Private preprints require the user to have read access.
+     - Public preprints will return their supplemental node if it exists.
+     - Private preprints require the user to have read access.
 
   tags:
     - Preprints
