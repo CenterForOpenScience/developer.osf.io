@@ -1,0 +1,80 @@
+get:
+  summary: Retrieve Linked Registrations Relationship for a Registration
+  description: >-
+    Retrieve the relationship data for linked registrations associated with a specific registration.
+
+    Linked registrations are registrations that have been explicitly linked to the given registration through the `linked_registrations` relationship.
+
+    This endpoint returns an array of linked registration resource identifier objects (`id` and `type`).  
+    To retrieve detailed information about each linked registration, you should query the `/registrations/{registration_id}/linked_registrations/` endpoint  
+    or follow the `related` link provided in this response.
+
+    #### Permissions
+     - Public registrations expose linked registrations publicly.
+     - Private registrations require appropriate permissions to view their linked registrations.
+
+    #### Returns
+     - A JSON object with a `data` key, containing an array of `registration` resource identifier objects (`id` and `type`).
+
+  tags:
+    - Registrations
+
+  operationId: registration_linked_registrations_relationship_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successfully retrieved linked registrations relationship data for this registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "reg123"
+                  description: The unique identifier of the linked registration.
+                type:
+                  type: string
+                  example: "registrations"
+                  description: The type of the related resource (always `registrations` for this endpoint).
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/relationships/linked_registrations/"
+                description: The link to this relationship view.
+              related:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_registrations/"
+                description: The link to the related linked registrations resources.
+
+      examples:
+        application/json:
+          data:
+            - id: "reg123"
+              type: "registrations"
+            - id: "reg456"
+              type: "registrations"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd1/relationships/linked_registrations/"
+            related: "https://api.osf.io/v2/registrations/abcd1/linked_registrations/"
+
+    '401':
+      description: Unauthorized. Authentication is required to access this resource.
+
+    '403':
+      description: Forbidden. You do not have permission to access the linked registrations of this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

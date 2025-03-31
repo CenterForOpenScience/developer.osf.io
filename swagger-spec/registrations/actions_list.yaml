@@ -1,0 +1,71 @@
+get:
+  summary: List Registration Actions
+  description: >-
+    Retrieve a list of actions performed on a specific registration. Actions represent state transitions
+    or moderation events, such as submission, approval, rejection, and withdrawal requests.
+
+    #### Permissions
+     - Publicly accessible if the registration is public.
+     - Administrators of the registration always have access.
+     - Moderators of the associated Registration Provider may have access depending on action type.
+
+    #### Returns
+     - A JSON object containing a list of `registration actions` returned in a `data` array.
+     - Each action describes a specific event or state transition applied to the registration.
+
+  tags:
+    - Registrations
+
+  operationId: registrations_actions_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successful retrieval of registration actions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: "action_1"
+              type: "registration_action"
+              attributes:
+                trigger: "submit"
+                from_state: "initial"
+                to_state: "unapproved"
+                comment: "Submitted for review."
+                date_created: "2024-03-01T12:00:00Z"
+                date_modified: "2024-03-01T12:00:00Z"
+              relationships:
+                creator:
+                  data:
+                    type: "users"
+                    id: "user_1"
+                target:
+                  data:
+                    type: "registrations"
+                    id: "reg_abc123"
+              links:
+                self: "https://api.osf.io/v2/registrations/abc123/actions/action_1/"
+          meta:
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication credentials were not provided or are invalid.
+
+    '403':
+      description: Forbidden. You do not have permission to view registration actions for this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

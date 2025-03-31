@@ -1,0 +1,296 @@
+get:
+  summary: Retrieve relationships between a Node and its affiliated Institutions
+  description: >-
+    Retrieve a list of resource identifier objects that represent the institutions affiliated with the given node.
+
+    #### Permissions
+     - Public nodes will display their affiliated institutions.
+     - Private nodes require read permissions.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of resource identifier objects (`type` and `id`) for each affiliated institution.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_institutions_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+  responses:
+    '200':
+      description: Successfully retrieved affiliated institutions for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "institutions"
+                id:
+                  type: string
+                  example: "cos"
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/relationships/institutions/"
+              related:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/institutions/"
+      examples:
+        application/json:
+          data:
+            - type: "institutions"
+              id: "cos"
+            - type: "institutions"
+              id: "uva"
+          links:
+            self: "https://api.osf.io/v2/nodes/{node_id}/relationships/institutions/"
+            related: "https://api.osf.io/v2/nodes/{node_id}/institutions/"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view institutions for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+patch:
+  summary: Replace relationships between a Node and its affiliated Institutions
+  description: >-
+    Replace all existing affiliated institutions for a node with a new set of institutions.
+
+    #### Permissions
+     - The authenticated user must have admin permissions on the node.
+
+    #### Request Body
+     - A `data` array containing the new list of institution resource identifier objects (`type` and `id`).
+
+    #### Returns
+     - The updated list of affiliated institutions for the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_institutions_update
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - institutions
+                  description: Must be `institutions`.
+                id:
+                  type: string
+                  description: The unique identifier of the institution.
+        example:
+          data:
+            - type: "institutions"
+              id: "cos"
+
+  responses:
+    '200':
+      description: Successfully replaced affiliated institutions for the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: institutions
+                id:
+                  type: string
+                  example: cos
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify institutions for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+post:
+  summary: Add relationships between a Node and Institutions
+  description: >-
+    Add new affiliated institutions to the node, while keeping the existing ones intact.
+
+    #### Permissions
+     - The authenticated user must have admin permissions on the node.
+
+    #### Request Body
+     - A `data` array containing additional institution resource identifier objects to be added.
+
+    #### Returns
+     - The updated list of affiliated institutions for the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_institutions_add
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - institutions
+                  description: Must be `institutions`.
+                id:
+                  type: string
+                  description: The unique identifier for the institution.
+        example:
+          data:
+            - type: "institutions"
+              id: "uva"
+
+  responses:
+    '200':
+      description: Successfully added affiliated institutions to the node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "institutions"
+                id:
+                  type: string
+                  example: "uva"
+      examples:
+        application/json:
+          data:
+            - type: "institutions"
+              id: "cos"
+            - type: "institutions"
+              id: "uva"
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify institutions for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
+
+delete:
+  summary: Remove relationships between a Node and Institutions
+  description: >-
+    Remove specified affiliated institutions from the node.
+
+    #### Permissions
+    - The authenticated user must have admin permissions on the node.
+
+    #### Request Body
+    - A `data` array containing the institution resource identifier objects to be removed.
+
+    #### Returns
+    - An empty response indicating successful deletion.
+
+  tags:
+    - Nodes
+
+  operationId: node_relationships_institutions_delete
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - institutions
+                  description: Must be `institutions`.
+                id:
+                  type: string
+                  description: The unique identifier for the institution.
+        example:
+          data:
+            - type: "institutions"
+              id: "cos"
+
+  responses:
+    '204':
+      description: Successfully removed affiliated institutions from the node. No content returned.
+    '400':
+      description: Bad Request. The submitted data is invalid.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to modify institutions for this node.
+    '404':
+      description: Not Found. No node matches the given ID.

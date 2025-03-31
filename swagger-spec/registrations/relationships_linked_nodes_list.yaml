@@ -1,0 +1,81 @@
+get:
+  summary: Retrieve Linked Nodes Relationship for a Registration or Node
+  description: >-
+    Retrieve the relationship data for linked nodes associated with a specific registration or node.
+
+    Linked nodes are nodes that have been explicitly linked to the current registration/node through the `linked_nodes` relationship.
+
+    This endpoint returns an array of linked node resource identifier objects (`id` and `type`).  
+    To retrieve detailed information about each linked node, you should query the `/linked_nodes/` endpoint  
+    or follow the `related` link provided in this response.
+
+    #### Permissions
+     - Public nodes/registrations expose linked nodes publicly.
+     - Private nodes/registrations require appropriate permissions to view their linked nodes.
+
+    #### Returns
+     - A JSON object with a `data` key, containing an array of `nodes` resource identifier objects (`id` and `type`).
+
+  tags:
+    - Registrations
+
+  operationId: relationships_linked_nodes_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+      # Swap with node_id if this is for nodes
+
+  responses:
+    '200':
+      description: Successfully retrieved linked nodes relationship data for this registration/node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "abcde"
+                  description: The unique identifier of the linked node.
+                type:
+                  type: string
+                  example: "nodes"
+                  description: The type of the related resource (always `nodes` for this endpoint).
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/relationships/linked_nodes/"
+                description: The link to this relationship view.
+              related:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/linked_nodes/"
+                description: The link to the related linked nodes resources.
+
+      examples:
+        application/json:
+          data:
+            - id: "abcde"
+              type: "nodes"
+            - id: "fghij"
+              type: "nodes"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd1/relationships/linked_nodes/"
+            related: "https://api.osf.io/v2/registrations/abcd1/linked_nodes/"
+
+    '401':
+      description: Unauthorized. Authentication is required to access this resource.
+
+    '403':
+      description: Forbidden. You do not have permission to access the linked nodes of this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

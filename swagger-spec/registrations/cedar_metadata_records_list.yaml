@@ -1,0 +1,163 @@
+get:
+  summary: List CEDAR Metadata Records for a Registration
+  description: >-
+    Retrieve a list of CEDAR metadata records associated with a specific registration.
+
+    CEDAR metadata records store structured metadata collected from external CEDAR templates and are attached to registrations.
+    Each record corresponds to a specific metadata schema provided by the CEDAR system and enhances the discoverability and documentation of a registration.
+
+    #### Permissions
+     - Public registrations expose their CEDAR metadata records publicly.
+     - Private registrations require appropriate read permissions to view CEDAR metadata records.
+
+    #### Returns
+     - A JSON object with a `data` array containing CEDAR metadata records related to the registration.
+
+  tags:
+    - Registrations
+
+  operationId: registration_cedar_metadata_records_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successful retrieval of CEDAR metadata records for the specified registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of CEDAR metadata records.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier for the CEDAR metadata record.
+                  example: "cmr789"
+                type:
+                  type: string
+                  description: Resource type identifier.
+                  example: "cedar-metadata-records"
+                attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the metadata record.
+                      example: "Sample Dataset Metadata"
+                    status:
+                      type: string
+                      description: Status of the metadata record (e.g., draft, submitted, approved).
+                      example: "approved"
+                    schema_name:
+                      type: string
+                      description: Name of the schema used to generate this metadata record.
+                      example: "Human Subjects Research Metadata Schema"
+                    date_created:
+                      type: string
+                      format: date-time
+                      description: ISO 8601 formatted date and time the record was created.
+                      example: "2024-02-20T14:35:00Z"
+                    date_modified:
+                      type: string
+                      format: date-time
+                      description: ISO 8601 formatted date and time the record was last modified.
+                      example: "2024-03-01T10:15:00Z"
+                relationships:
+                  type: object
+                  properties:
+                    registration:
+                      description: The registration associated with this metadata record.
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "abcd1"
+                            type:
+                              type: string
+                              example: "registrations"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: Canonical link to this metadata record.
+                      example: "https://api.osf.io/v2/cedar_metadata_records/cmr789/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/cedar_metadata_records/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/cedar_metadata_records/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/cedar_metadata_records/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of CEDAR metadata records available.
+                example: 1
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "cmr789"
+              type: "cedar-metadata-records"
+              attributes:
+                title: "Sample Dataset Metadata"
+                status: "approved"
+                schema_name: "Human Subjects Research Metadata Schema"
+                date_created: "2024-02-20T14:35:00Z"
+                date_modified: "2024-03-01T10:15:00Z"
+              relationships:
+                registration:
+                  data:
+                    id: "abcd1"
+                    type: "registrations"
+              links:
+                self: "https://api.osf.io/v2/cedar_metadata_records/cmr789/"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd1/cedar_metadata_records/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/abcd1/cedar_metadata_records/?page=1"
+            last: "https://api.osf.io/v2/registrations/abcd1/cedar_metadata_records/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view CEDAR metadata records on this registration.
+    '404':
+      description: Not Found. No registration matches the given ID.

@@ -1,0 +1,96 @@
+get:
+  summary: List identifiers for a preprint
+  description: >-
+    Retrieves a list of identifiers associated with the specified preprint.
+    Identifiers include DOIs, ARKs, and other unique resource locators.
+
+    #### Permissions
+     - Public identifiers are accessible to unauthenticated users.
+     - Private preprints require read access to view their identifiers.
+
+  tags:
+    - Preprints
+    - Identifiers
+
+  operationId: preprint_identifiers_list
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint.
+
+  responses:
+    '200':
+      description: Successful retrieval of preprint identifiers.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+              properties:
+                id:
+                  type: string
+                  description: The identifier value itself.
+                  example: doi:10.1234/osf.io/abcde
+                type:
+                  type: string
+                  description: The type of this resource object.
+                  example: identifiers
+                attributes:
+                  type: object
+                  required:
+                    - category
+                    - value
+                  properties:
+                    category:
+                      type: string
+                      description: The category of the identifier (e.g., DOI, ARK).
+                      example: doi
+                    value:
+                      type: string
+                      description: The identifier value.
+                      example: 10.1234/osf.io/abcde
+          links:
+            type: object
+            description: Links for pagination and resource access.
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if available).
+              prev:
+                type: string
+                description: Link to the previous page of results (if available).
+        example:
+          data:
+            - id: doi:10.1234/osf.io/abcde
+              type: identifiers
+              attributes:
+                category: doi
+                value: 10.1234/osf.io/abcde
+            - id: ark:/12345/osf.io/xyz12
+              type: identifiers
+              attributes:
+                category: ark
+                value: ark:/12345/osf.io/xyz12
+          links:
+            self: https://api.osf.io/v2/preprints/abc12/identifiers/
+            next: null
+            prev: null
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view identifiers for this preprint.
+    '404':
+      description: Not Found. No preprint matches the given ID.

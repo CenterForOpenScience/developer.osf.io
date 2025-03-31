@@ -74,9 +74,9 @@ patch:
     Provide the `frequency` attribute within the `attributes` object to update the subscription.
 
     #### Available Frequency Values:
-    - `instant`: Immediate email notifications.
-    - `daily`: Daily summary emails.
-    - `none`: Disable email notifications.
+     - `instant`: Immediate email notifications.
+     - `daily`: Daily summary emails.
+     - `none`: Disable email notifications.
 
     #### Returns
     - A JSON object with the updated subscription details under the `data` key if the update is successful.

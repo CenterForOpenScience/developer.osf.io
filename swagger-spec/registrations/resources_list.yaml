@@ -1,0 +1,70 @@
+get:
+  summary: List Related Resources for a Registration
+  description: >-
+    Retrieve a list of resources associated with a specific registration.
+
+    This endpoint returns a list of nodes, preprints, and other resources that have been explicitly linked to the registration as related resources. 
+    These resources help provide additional context, background, or supporting materials for the registration.
+
+    #### Permissions
+     - Public registrations expose their related resources publicly.
+     - Private registrations require the user to have read access to view related resources.
+
+    #### Returns
+     - A JSON object with a `data` key containing an array of related resources.
+     - Related resources may include nodes, preprints, and other OSF resources.
+
+  tags:
+    - Registrations
+    - Resources
+
+  operationId: registrations_resources_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to return (pagination).
+
+  responses:
+    '200':
+      description: Successfully retrieved related resources for this registration.
+      examples:
+        application/json:
+          data:
+            - id: "xyz123"
+              type: "nodes"
+              attributes:
+                title: "Supporting Project A"
+                description: "Dataset related to the registration study"
+                public: true
+                date_created: "2024-01-10T10:00:00Z"
+                date_modified: "2024-03-22T15:30:00Z"
+              relationships:
+                contributors:
+                  links:
+                    related:
+                      href: "https://api.osf.io/v2/nodes/xyz123/contributors/"
+                affiliated_institutions:
+                  links:
+                    related:
+                      href: "https://api.osf.io/v2/nodes/xyz123/institutions/"
+              links:
+                self: "https://api.osf.io/v2/nodes/xyz123/"
+          meta:
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required to access related resources for this registration.
+
+    '403':
+      description: Forbidden. You do not have permission to view the related resources for this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

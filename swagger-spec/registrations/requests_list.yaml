@@ -1,0 +1,81 @@
+get:
+  summary: List Requests for a Registration
+  description: >-
+    Retrieve a list of requests associated with a specific registration.
+
+    Requests allow contributors and moderators to manage changes to a registration,
+    including withdrawal requests, embargo requests, and schema update requests.
+    
+    #### Permissions
+     - Public registrations expose some request metadata publicly.
+     - Private registrations require read access for non-admin contributors.
+     - Only admins and moderators can view and manage sensitive request details.
+
+    #### Returns
+     - A JSON object with a `data` key containing an array of request records.
+     - Each request includes the type of request (withdrawal, embargo, etc.), its state,
+      and information about who initiated the request.
+
+  tags:
+    - Registrations
+
+  operationId: registrations_requests_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: filter[type]
+      type: string
+      description: |
+        Filter requests by type.
+        Allowed values:
+          - withdrawal
+          - embargo
+          - schema_update
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to return (pagination).
+
+  responses:
+    '200':
+      description: Successfully retrieved the list of requests for this registration.
+      examples:
+        application/json:
+          data:
+            - id: "rq1xyz"
+              type: "registration_requests"
+              attributes:
+                request_type: "withdrawal"
+                state: "pending"
+                created: "2024-03-01T12:00:00Z"
+                updated: "2024-03-03T09:00:00Z"
+                comment: "Requesting withdrawal due to data errors."
+              relationships:
+                creator:
+                  data:
+                    type: "users"
+                    id: "user123"
+                target:
+                  data:
+                    type: "registrations"
+                    id: "reg456"
+              links:
+                self: "https://api.osf.io/v2/registration_requests/rq1xyz/"
+          meta:
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required to access requests for this registration.
+
+    '403':
+      description: Forbidden. You do not have permission to view requests for this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

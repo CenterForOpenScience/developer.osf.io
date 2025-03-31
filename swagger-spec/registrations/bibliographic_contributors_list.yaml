@@ -1,0 +1,156 @@
+get:
+  summary: List Bibliographic Contributors for a Registration
+  description: >-
+    Retrieve a list of bibliographic contributors associated with a specific registration.
+
+    Bibliographic contributors are users who have made significant contributions to the registration and are listed as authors.
+    These contributors appear in citations and are considered authors on the registration's public pages and metadata.
+
+    #### Permissions
+     - Public registrations expose bibliographic contributors publicly.
+     - Private registrations require appropriate read permissions to view bibliographic contributors.
+
+    #### Returns
+     - A JSON object with a `data` array containing contributor resources that are marked as bibliographic for the registration.
+
+  tags:
+    - Registrations
+
+  operationId: registration_bibliographic_contributors_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successful retrieval of bibliographic contributors for the specified registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of bibliographic contributors.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier of the contributor.
+                  example: "abc123"
+                type:
+                  type: string
+                  description: Resource type identifier.
+                  example: "contributors"
+                attributes:
+                  type: object
+                  properties:
+                    bibliographic:
+                      type: boolean
+                      description: Indicates whether this contributor is bibliographic.
+                      example: true
+                    permission:
+                      type: string
+                      description: Contributor's permission level on the registration.
+                      example: "admin"
+                    unregistered_contributor:
+                      type: string
+                      description: Name of the unregistered contributor (if applicable).
+                      example: "John Doe"
+                    index:
+                      type: integer
+                      description: Contributor's order in the contributor list.
+                      example: 0
+                relationships:
+                  type: object
+                  properties:
+                    users:
+                      description: The user associated with this contributor (if registered).
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "abc123"
+                            type:
+                              type: string
+                              example: "users"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: Canonical link to this contributor.
+                      example: "https://api.osf.io/v2/registrations/abcd1/contributors/abc123/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/bibliographic_contributors/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/bibliographic_contributors/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/bibliographic_contributors/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of bibliographic contributors.
+                example: 2
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "abc123"
+              type: "contributors"
+              attributes:
+                bibliographic: true
+                permission: "admin"
+                unregistered_contributor: null
+                index: 0
+              relationships:
+                users:
+                  data:
+                    id: "abc123"
+                    type: "users"
+              links:
+                self: "https://api.osf.io/v2/registrations/abcd1/contributors/abc123/"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd1/bibliographic_contributors/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/abcd1/bibliographic_contributors/?page=1"
+            last: "https://api.osf.io/v2/registrations/abcd1/bibliographic_contributors/?page=1"
+          meta:
+            total: 2
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view contributors on this registration.
+    '404':
+      description: Not Found. No registration matches the given ID.

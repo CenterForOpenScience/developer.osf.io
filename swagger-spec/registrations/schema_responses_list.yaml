@@ -1,0 +1,86 @@
+get:
+  summary: List Schema Responses for a Registration
+  description: >-
+    Retrieve a list of all Schema Responses associated with a specific registration.
+
+    Schema Responses represent the answers provided to a registration schema's questions. They reflect the current and historical state of responses submitted for the registration.
+
+    A registration can have multiple schema responses over time due to edits or updates, depending on the registration provider's workflow.
+
+    #### Permissions
+     - Publicly accessible for public registrations.
+     - Private registrations require appropriate permissions (must be a contributor with read access).
+
+    #### Returns
+     - A JSON object with a `data` key containing an array of schema response resources.
+     - Each schema response includes its current state, related actions, and the data provided in the registration form.
+
+  tags:
+    - Registrations
+
+  operationId: registrations_schema_responses_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to view (pagination).
+
+    - in: query
+      name: filter[state]
+      type: string
+      description: Filter schema responses by their state (e.g., `in_progress`, `unapproved`, `approved`, `pending_moderation`).
+
+  responses:
+    '200':
+      description: Successfully retrieved list of schema responses for this registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../schema_responses/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: "sr123"
+              type: "schema-responses"
+              attributes:
+                state: "approved"
+                date_created: "2024-05-01T12:00:00Z"
+                date_modified: "2024-06-10T09:30:00Z"
+                revision_justification: "Updated methodology section for clarity"
+              relationships:
+                registration_schema:
+                  data:
+                    type: "registration-schemas"
+                    id: "rs1"
+                registration:
+                  data:
+                    type: "registrations"
+                    id: "abcd1"
+                current_user_permissions:
+                  data:
+                    - "read"
+                    - "write"
+                    - "admin"
+              links:
+                self: "https://api.osf.io/v2/schema_responses/sr123/"
+          meta:
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required to access schema responses for a private registration.
+
+    '403':
+      description: Forbidden. You do not have permission to view schema responses for this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

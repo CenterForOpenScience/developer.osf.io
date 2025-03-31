@@ -1,0 +1,143 @@
+get:
+  summary: List Implicit Contributors for a Registration
+  description: >-
+    Retrieve a list of implicit contributors for the specified registration.
+
+    Implicit contributors are users who contributed to a parent node or a fork and whose contributions
+    are inherited by this registration. They are not explicitly listed as contributors but have an implied relationship.
+
+    #### Permissions
+     - Public registrations expose their implicit contributors publicly.
+     - Private registrations require appropriate read permissions to view contributors.
+
+    #### Returns
+     - A JSON object containing a `data` array of user resources representing implicit contributors to the registration.
+
+  tags:
+    - Registrations
+
+  operationId: registration_implicit_contributors_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+  responses:
+    '200':
+      description: Successful retrieval of implicit contributors for the specified registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of users who are implicit contributors.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of the user.
+                  example: "user123"
+                type:
+                  type: string
+                  example: "users"
+                attributes:
+                  type: object
+                  properties:
+                    full_name:
+                      type: string
+                      description: Full name of the user.
+                      example: "Ada Lovelace"
+                    given_name:
+                      type: string
+                      description: Given name of the user.
+                      example: "Ada"
+                    family_name:
+                      type: string
+                      description: Family name of the user.
+                      example: "Lovelace"
+                    date_registered:
+                      type: string
+                      format: date-time
+                      description: Date the user registered on OSF.
+                      example: "2024-01-01T12:00:00Z"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: Canonical API endpoint for this user.
+                      example: "https://api.osf.io/v2/users/user123/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/implicit_contributors/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/implicit_contributors/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/implicit_contributors/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of implicit contributors.
+                example: 2
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "user123"
+              type: "users"
+              attributes:
+                full_name: "Ada Lovelace"
+                given_name: "Ada"
+                family_name: "Lovelace"
+                date_registered: "2024-01-01T12:00:00Z"
+              links:
+                self: "https://api.osf.io/v2/users/user123/"
+            - id: "user456"
+              type: "users"
+              attributes:
+                full_name: "Alan Turing"
+                given_name: "Alan"
+                family_name: "Turing"
+                date_registered: "2023-06-01T08:30:00Z"
+              links:
+                self: "https://api.osf.io/v2/users/user456/"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd/implicit_contributors/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/registrations/abcd/implicit_contributors/?page=1"
+            last: "https://api.osf.io/v2/registrations/abcd/implicit_contributors/?page=1"
+          meta:
+            total: 2
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view the implicit contributors.
+    '404':
+      description: Not Found. No registration matches the given ID.

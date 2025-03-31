@@ -1,0 +1,156 @@
+get:
+  summary: List Preprint Versions
+  description: >-
+    Retrieve a list of versions for the specified preprint.
+
+    #### Permissions
+    - Public versions are accessible to unauthenticated users.
+    - To view non-public versions, you must have appropriate permissions.
+
+  tags:
+    - Preprints
+
+  operationId: preprint_versions_list
+
+  parameters:
+    - name: preprint_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the preprint whose versions are being requested.
+
+  responses:
+    '200':
+      description: Successful retrieval of preprint versions.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier for this preprint version.
+                type:
+                  type: string
+                  example: preprints
+                attributes:
+                  type: object
+                  required:
+                    - version
+                    - date_created
+                    - machine_state
+                  properties:
+                    version:
+                      type: integer
+                      description: Version number of this preprint.
+                    date_created:
+                      type: string
+                      format: date-time
+                      description: Date this version was created.
+                    date_published:
+                      type: string
+                      format: date-time
+                      description: Date this version was published, if applicable.
+                    is_published:
+                      type: boolean
+                      description: Whether this version has been published.
+                    machine_state:
+                      type: string
+                      description: Workflow state of the preprint version.
+                relationships:
+                  type: object
+                  properties:
+                    provider:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          required:
+                            - id
+                            - type
+                          properties:
+                            id:
+                              type: string
+                              description: The ID of the preprint provider.
+                            type:
+                              type: string
+                              example: preprint_providers
+                    primary_file:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          required:
+                            - id
+                            - type
+                          properties:
+                            id:
+                              type: string
+                              description: The ID of the primary file for this version.
+                            type:
+                              type: string
+                              example: files
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: API link to this version.
+          meta:
+            type: object
+            description: Pagination or additional metadata.
+
+      examples:
+        application/json:
+          data:
+            - id: "abc12_v1"
+              type: preprints
+              attributes:
+                version: 1
+                date_created: "2023-05-15T12:00:00Z"
+                date_published: "2023-05-16T12:00:00Z"
+                is_published: true
+                machine_state: accepted
+              relationships:
+                provider:
+                  data:
+                    type: preprint_providers
+                    id: osf
+                primary_file:
+                  data:
+                    type: files
+                    id: xyz987
+              links:
+                self: "https://api.osf.io/v2/preprints/abc12_v1/"
+            - id: "abc12_v2"
+              type: preprints
+              attributes:
+                version: 2
+                date_created: "2024-01-10T09:30:00Z"
+                date_published: null
+                is_published: false
+                machine_state: pending
+              relationships:
+                provider:
+                  data:
+                    type: preprint_providers
+                    id: osf
+                primary_file:
+                  data:
+                    type: files
+                    id: xyz988
+              links:
+                self: "https://api.osf.io/v2/preprints/abc12_v2/"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view these versions.
+    '404':
+      description: Not Found. No preprint matches the given ID.
