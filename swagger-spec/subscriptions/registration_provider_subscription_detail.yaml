@@ -1,0 +1,200 @@
+# /providers/registrations/{provider_id}/subscriptions/{subscription_id}/
+
+get:
+  summary: Retrieve a Registration Provider Notification Subscription
+  description: >-
+    Retrieve the details of a specific notification subscription associated with a registration provider.
+    
+    This endpoint allows an authenticated user to view their current subscription preferences for events related to a specific registration provider.
+
+    ## Permissions
+     - The requesting user **must be authenticated**.
+     - The requesting user **must be the owner** of the subscription.
+    
+    Unauthorized or forbidden access attempts will result in `401 Unauthorized` or `403 Forbidden` errors.
+
+    ## Returns
+    A JSON object representing the notification subscription, including:
+    
+     - `id`: Unique identifier of the subscription.
+     - `type`: Resource type (always `subscription`).
+     - `attributes`: Event type and notification frequency.
+     - `relationships`: Links to the associated user and provider resources.
+     - `links`: A `self` link to this subscription resource.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: registration_provider_subscription_detail
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration provider associated with this subscription.
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+  responses:
+    '200':
+      description: Subscription successfully retrieved.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "reg123_subscription456"
+            type: "subscription"
+            attributes:
+              event_name: "new_pending_submissions"
+              frequency: "instant"
+            relationships:
+              user:
+                data:
+                  type: "users"
+                  id: "user_id"
+              provider:
+                data:
+                  type: "providers"
+                  id: "reg123"
+            links:
+              self: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/reg123_subscription456/"
+          meta:
+            version: "2.0"
+    '401':
+      description: Unauthorized. Authentication credentials are missing or invalid.
+    '403':
+      description: Forbidden. You do not have permission to access this subscription.
+    '404':
+      description: Not Found. The subscription or provider does not exist.
+
+patch:
+  summary: Update a Registration Provider Notification Subscription
+  description: >-
+    Update a specific notification subscription associated with a registration provider. 
+    
+    Typically, this endpoint is used to change the notification `frequency` for the subscription.
+
+    ## Permissions
+     - The requesting user **must be authenticated**.
+     - The requesting user **must be the owner** of the subscription.
+
+    Unauthorized or forbidden access attempts will result in `401 Unauthorized` or `403 Forbidden` errors.
+
+    ## Request Body
+    Provide the subscription ID and the updated `frequency` attribute.
+
+    ## Available Frequency Values
+     - `instant`: Immediate email notifications.
+     - `daily`: Daily summary emails.
+     - `none`: No notifications.
+
+    ## Returns
+    A JSON object representing the updated subscription.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: registration_provider_subscription_patch
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the registration provider associated with this subscription.
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+    - in: body
+      name: body
+      required: true
+      description: JSON API-formatted payload specifying the updated subscription attributes.
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+            properties:
+              type:
+                type: string
+                enum:
+                  - subscription
+                description: The resource type. Must be `subscription`.
+              id:
+                type: string
+                description: The unique identifier of the subscription.
+              attributes:
+                type: object
+                required:
+                  - frequency
+                properties:
+                  frequency:
+                    type: string
+                    enum:
+                      - instant
+                      - daily
+                      - none
+                    description: |
+                      Determines how frequently the user receives notifications.
+                      - `instant`: Immediate email notifications.
+                      - `daily`: Daily summary emails.
+                      - `none`: No notifications.
+
+        example:
+          data:
+            type: subscription
+            id: "reg123_subscription456"
+            attributes:
+              frequency: "daily"
+
+  consumes:
+    - application/json
+
+  responses:
+    '200':
+      description: Subscription successfully updated.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "reg123_subscription456"
+            type: "subscription"
+            attributes:
+              event_name: "new_pending_submissions"
+              frequency: "daily"
+            relationships:
+              user:
+                data:
+                  type: "users"
+                  id: "user_id"
+              provider:
+                data:
+                  type: "providers"
+                  id: "reg123"
+            links:
+              self: "https://api.osf.io/v2/providers/registrations/reg123/subscriptions/reg123_subscription456/"
+          meta:
+            version: "2.0"
+    '400':
+      description: Bad Request. The request body is malformed or missing required fields.
+    '401':
+      description: Unauthorized. Authentication credentials are missing or invalid.
+    '403':
+      description: Forbidden. You do not have permission to modify this subscription.
+    '404':
+      description: Not Found. The subscription or provider does not exist.

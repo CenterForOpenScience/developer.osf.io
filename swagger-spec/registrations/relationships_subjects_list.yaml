@@ -1,0 +1,77 @@
+get:
+  summary: Retrieve Subjects Relationship for a Registration
+  description: >-
+    Retrieve the relationship data for the subjects associated with a specific registration.
+
+    This endpoint returns an array of subject identifiers in a `relationships` object, without the full subject resource details.  
+    To get the full details of the subjects, you should follow the `related` link provided in the relationships object or query the `/registrations/{registration_id}/subjects/` endpoint.
+
+    #### Permissions
+     - Public registrations expose this relationship publicly.
+     - Private registrations require appropriate permissions to view their subjects.
+
+    #### Returns
+     - A JSON object with a `data` key, which contains an array of `subject` resource identifier objects (`id` and `type`).
+
+  tags:
+    - Registrations
+
+  operationId: registration_subjects_relationship_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+  responses:
+    '200':
+      description: Successfully retrieved the subject relationship data for this registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "subj123"
+                  description: The unique identifier of the subject.
+                type:
+                  type: string
+                  example: "subjects"
+                  description: The type of the related resource (always `subjects` for this endpoint).
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/relationships/subjects/"
+                description: The link to this relationship view.
+              related:
+                type: string
+                example: "https://api.osf.io/v2/registrations/{registration_id}/subjects/"
+                description: The link to the related subjects resources.
+
+      examples:
+        application/json:
+          data:
+            - id: "subj123"
+              type: "subjects"
+            - id: "subj456"
+              type: "subjects"
+          links:
+            self: "https://api.osf.io/v2/registrations/abcd1/relationships/subjects/"
+            related: "https://api.osf.io/v2/registrations/abcd1/subjects/"
+
+    '401':
+      description: Unauthorized. Authentication is required to access this resource.
+
+    '403':
+      description: Forbidden. You do not have permission to access this registration's subjects.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

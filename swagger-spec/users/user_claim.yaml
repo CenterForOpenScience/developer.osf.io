@@ -1,0 +1,101 @@
+# /users/{user_id}/claim/:
+
+post:
+  summary: Claim a User Account
+  description: >-
+    Allows a user to claim an unregistered OSF account.
+
+    This endpoint is typically used when a contributor is added to a project with an unregistered account,
+    and the user wants to claim that account.
+
+    The user can be claimed by either:
+     - A logged-in user (who is not the referrer of the unclaimed account).
+     - A user who provides an email address for the claim.
+
+    #### Returns
+
+    Returns a `204 No Content` response on successful claim initiation.
+
+    #### Errors
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+    Some common error cases:
+     - `403 Forbidden`: The user is not authorized to claim this account.
+     - `404 Not Found`: The specified user or record does not exist.
+     - `400 Bad Request`: Invalid claim request parameters.
+  tags:
+    - Users
+  operationId: user_claim_create
+  parameters:
+    - in: path
+      name: user_id
+      required: true
+      type: string
+      description: >-
+        The unique identifier of the user you are trying to claim.
+
+        Example: `abc123`
+    - in: body
+      name: body
+      required: true
+      description: >-
+        A JSON API representation of the claim request.
+
+        You must provide at least a `record id`. Optionally, an `email` may be included if you are not authenticated.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [claim-user]
+                example: claim-user
+              attributes:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: >-
+                      The record ID associated with the unclaimed user. Usually corresponds to a project, preprint, etc.
+                    example: xyz456
+                  email:
+                    type: string
+                    description: >-
+                      The email address to use for claiming the user account. Required if the claimer is not authenticated.
+                    example: user@example.com
+        required:
+          - data
+      x-examples:
+        application/json:
+          data:
+            type: claim-user
+            attributes:
+              id: xyz456
+              email: user@example.com
+  responses:
+    '204':
+      description: >-
+        Successfully initiated the claim process.
+
+        If the claimer is authenticated, they will receive an email confirming the claim.
+        If not authenticated and an email is provided, the claim invitation will be sent to the specified email address.
+    '400':
+      description: >-
+        Bad request.
+
+        The request payload is invalid or missing required fields (such as `id`).
+    '403':
+      description: >-
+        Permission denied.
+
+        You do not have permission to claim this user, or the user has already been claimed.
+    '404':
+      description: >-
+        Not found.
+
+        The specified user or record could not be found.

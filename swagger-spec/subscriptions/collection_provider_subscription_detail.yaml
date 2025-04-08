@@ -1,0 +1,182 @@
+# /providers/collections/{provider_id}/subscriptions/{subscription_id}/
+
+get:
+  summary: Retrieve a Collection Provider Notification Subscription
+  description: >-
+    Retrieve the details of a specific notification subscription associated with a collection provider.
+
+    ## Permissions
+     - The authenticated user must be the owner of the subscription.
+    
+    ## Returns
+     - A JSON object with a `data` key containing the subscription details.
+     - Each subscription describes the event being subscribed to and the frequency at which notifications are sent.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: collection_provider_subscription_detail
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+  responses:
+    '200':
+      description: Successful retrieval of the subscription.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "collection123_subscription456"
+            type: "subscription"
+            attributes:
+              event_name: "new_pending_submissions"
+              frequency: "instant"
+            relationships:
+              user:
+                data:
+                  type: "users"
+                  id: "user_id"
+              provider:
+                data:
+                  type: "providers"
+                  id: "collection123"
+            links:
+              self: "https://api.osf.io/v2/providers/collections/collection123/subscriptions/collection123_subscription456/"
+          meta:
+            version: "2.0"
+    '401':
+      description: Unauthorized. Authentication credentials are missing or invalid.
+    '403':
+      description: Forbidden. You do not have permission to access this subscription.
+    '404':
+      description: Not Found. No subscription matches the given ID or the collection provider does not exist.
+
+patch:
+  summary: Update a Collection Provider Notification Subscription
+  description: >-
+    Update the notification frequency for a specific subscription associated with a collection provider.
+
+    #### Permissions
+    - The authenticated user must be the owner of the subscription.
+
+    #### Request Body
+    Provide the `frequency` attribute within the `attributes` object to update the subscription.
+
+    #### Available Frequency Values:
+     - `instant`: Immediate email notifications.
+     - `daily`: Daily summary emails.
+     - `none`: Disable email notifications.
+
+    #### Returns
+    - A JSON object with the updated subscription details under the `data` key if the update is successful.
+    - If unsuccessful, returns an `errors` object detailing the validation issues.
+
+  tags:
+    - Notification Subscriptions
+
+  operationId: collection_provider_subscription_patch
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+    - in: path
+      name: subscription_id
+      type: string
+      required: true
+      description: The unique identifier of the notification subscription.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+            properties:
+              type:
+                type: string
+                enum:
+                  - subscription
+                description: Must be `subscription`.
+              id:
+                type: string
+                description: The unique identifier of the subscription.
+              attributes:
+                type: object
+                required:
+                  - frequency
+                properties:
+                  frequency:
+                    type: string
+                    enum:
+                      - instant
+                      - daily
+                      - none
+                    description: |
+                      The notification frequency for this subscription.
+                      - `instant`: Immediate email notifications.
+                      - `daily`: Daily summary emails.
+                      - `none`: No notifications.
+
+        example:
+          data:
+            type: subscription
+            id: "collection123_subscription456"
+            attributes:
+              frequency: "daily"
+
+  responses:
+    '200':
+      description: Subscription successfully updated.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "collection123_subscription456"
+            type: "subscription"
+            attributes:
+              event_name: "new_pending_submissions"
+              frequency: "daily"
+            relationships:
+              user:
+                data:
+                  type: "users"
+                  id: "user_id"
+              provider:
+                data:
+                  type: "providers"
+                  id: "collection123"
+            links:
+              self: "https://api.osf.io/v2/providers/collections/collection123/subscriptions/collection123_subscription456/"
+          meta:
+            version: "2.0"
+    '400':
+      description: Bad Request. Invalid input provided or missing required fields.
+    '401':
+      description: Unauthorized. Authentication credentials are missing or invalid.
+    '403':
+      description: Forbidden. You do not have permission to update this subscription.
+    '404':
+      description: Not Found. No subscription matches the given ID or the collection provider does not exist.

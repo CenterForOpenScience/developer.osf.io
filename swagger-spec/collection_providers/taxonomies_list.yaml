@@ -1,0 +1,87 @@
+# /provider/collections/{provider_id}/taxonomies/
+
+get:
+  summary: List Taxonomies for a Collection Provider
+  description: >-
+    Retrieve a list of all taxonomies (subjects) available for a specific collection provider.
+
+    These taxonomies can be used to classify and filter the resources within a collection.
+
+    #### Permissions
+    - No authentication required for public collection providers.
+    - Only authorized users can access restricted collection providers.
+
+    #### Returns
+    - A JSON object with a `data` key containing an array of taxonomy (subject) resources.
+    - Each taxonomy describes a subject that can be used to categorize collected metadata.
+
+  tags:
+    - Collection Providers
+
+  operationId: collection_provider_taxonomies_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+
+  responses:
+    '200':
+      description: Successful retrieval of taxonomies for the collection provider.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../taxonomies/definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results (if available).
+              prev:
+                type: string
+                description: Link to the previous page of results (if available).
+          meta:
+            type: object
+            description: Meta information about the response, such as total count.
+      examples:
+        application/json:
+          data:
+            - id: "psychology"
+              type: "taxonomy"
+              attributes:
+                text: "Psychology"
+                parent: null
+                has_children: true
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/psychology/"
+            - id: "neuroscience"
+              type: "taxonomy"
+              attributes:
+                text: "Neuroscience"
+                parent: "psychology"
+                has_children: false
+              links:
+                self: "https://api.test.osf.io/v2/taxonomies/neuroscience/"
+          links:
+            self: "https://api.test.osf.io/v2/provider/collections/{provider_id}/taxonomies/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access taxonomies for this collection provider.
+    '404':
+      description: Not Found. No collection provider matches the given ID.

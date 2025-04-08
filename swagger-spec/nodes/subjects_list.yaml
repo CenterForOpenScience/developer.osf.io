@@ -1,0 +1,169 @@
+get:
+  summary: List Subjects for a Node
+  description: >-
+    Retrieve the list of taxonomy subjects assigned to a specific node.  
+    Subjects represent thematic classifications for the content of a node.  
+    A node can have multiple subjects, typically applied in the context of preprints or projects associated with specific disciplines.
+
+    #### Permissions
+     - Public nodes expose subjects publicly.
+     - Private nodes require read permissions to access subjects.
+
+    #### Returns
+     - A JSON object with a `data` array containing subject resources assigned to the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_subjects_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to retrieve.
+
+    - in: query
+      name: filter
+      type: string
+      description: |
+        Filter subjects by specific fields.  
+        Example: `filter[text]=biology`
+
+    - in: query
+      name: embed
+      type: string
+      description: Comma-separated list of related resources to embed in the response.
+
+  responses:
+    '200':
+      description: Successful retrieval of subjects for the specified node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of subjects assigned to the node.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier for the subject.
+                  example: "12345"
+                type:
+                  type: string
+                  description: The resource type.
+                  example: "subjects"
+                attributes:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: The human-readable text of the subject.
+                      example: "Biology"
+                    parent_ids:
+                      type: array
+                      description: List of parent subject IDs (for hierarchical subjects).
+                      items:
+                        type: string
+                        example: "6789"
+                    has_children:
+                      type: boolean
+                      description: Whether the subject has child subjects.
+                      example: false
+                relationships:
+                  type: object
+                  properties:
+                    parent:
+                      description: Parent subject of this subject.
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "6789"
+                            type:
+                              type: string
+                              example: "subjects"
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: Canonical link to this subject.
+                      example: "https://api.osf.io/v2/taxonomies/12345/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/subjects/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/subjects/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/subjects/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of subjects assigned to the node.
+                example: 3
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "12345"
+              type: "subjects"
+              attributes:
+                text: "Biology"
+                parent_ids: ["0001"]
+                has_children: false
+              relationships:
+                parent:
+                  data:
+                    id: "0001"
+                    type: "subjects"
+              links:
+                self: "https://api.osf.io/v2/taxonomies/12345/"
+          links:
+            self: "https://api.osf.io/v2/nodes/abc12/subjects/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/nodes/abc12/subjects/?page=1"
+            last: "https://api.osf.io/v2/nodes/abc12/subjects/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view subjects for this node.
+    '404':
+      description: Not Found. No node matches the given ID.

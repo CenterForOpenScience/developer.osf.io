@@ -1,0 +1,44 @@
+get:
+  summary: Retrieve the raw content of a specific wiki version
+  description: |
+    Retrieve the plain text content of a specific version of a wiki page.
+
+    This endpoint returns the actual content stored in the wiki page for the specified version.  
+    The response is returned as plain text (`text/plain`).
+
+    ### Permissions
+    - Public nodes: Anyone can view wiki version content.
+    - Private nodes: Only contributors can view wiki version content.
+    - Withdrawn registrations: Wiki version content is not accessible.
+
+  tags:
+    - Wikis
+  operationId: retrieve_wiki_version_content
+  parameters:
+    - name: wiki_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier for the wiki page.
+    - name: version_id
+      in: path
+      required: true
+      type: string
+      description: The version identifier for the specific wiki version.
+  produces:
+    - text/plain
+  responses:
+    '200':
+      description: Successfully retrieved raw wiki content.
+      schema:
+        type: string
+        example: |
+          # My Wiki Page  
+          This is the content of my wiki page in version 4.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this wiki version content.
+    '404':
+      description: Wiki version not found.
+

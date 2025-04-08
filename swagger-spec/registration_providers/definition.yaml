@@ -1,0 +1,182 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+
+properties:
+  id:
+    type: string
+    description: The unique identifier of the Registration Provider.
+    example: osf
+
+  type:
+    type: string
+    description: The type of resource; always `registration_providers`.
+    example: registration_providers
+
+  attributes:
+    type: object
+    required:
+      - name
+      - description
+      - domain
+      - subjects_acceptable
+    properties:
+      name:
+        type: string
+        description: The name of the registration provider.
+        example: Open Science Framework
+
+      description:
+        type: string
+        description: A short description of the provider.
+        example: A scholarly commons to connect the entire research cycle.
+
+      domain:
+        type: string
+        description: The domain associated with the registration provider.
+        example: osf.io
+
+      banner_path:
+        type: string
+        description: The path to the banner image displayed for the provider.
+        example: /static/img/registration_providers/cos-logo.png
+
+      logo_path:
+        type: string
+        description: The path to the logo image for the provider.
+        example: /static/img/registration_providers/cos-logo.png
+
+      header_text:
+        type: string
+        description: Optional custom text for the provider's header.
+        example: ''
+
+      social_twitter:
+        type: string
+        description: Twitter handle or link for the provider.
+        example: ''
+
+      social_facebook:
+        type: string
+        description: Facebook handle or link for the provider.
+        example: ''
+
+      social_instagram:
+        type: string
+        description: Instagram handle or link for the provider.
+        example: ''
+
+      email_support:
+        type: string
+        description: Email address for technical support inquiries.
+        example: ''
+
+      email_contact:
+        type: string
+        description: Email address for general contact.
+        example: ''
+
+      advisory_board:
+        type: string
+        description: Details about the provider's advisory board (if any).
+        example: ''
+
+      example:
+        type: string
+        description: Example metadata related to the provider.
+        example: khbvy
+
+      subjects_acceptable:
+        type: array
+        description: >
+          An array describing the subjects acceptable to this provider.  
+          This array consists of nested subject hierarchies with booleans indicating whether all child subjects are included.
+        example:
+          - - - "584240d954be81056ceca9e5" # Parent subject ID (Architecture)
+              - "584240da54be81056cecac87" # Child subject ID (Architectural Engineering)
+            - true
+          - - - "584240da54be81056cecaca9" # Parent subject ID (Engineering)
+              - "584240db54be81056cecacd6" # Child subject ID (Aerospace Engineering)
+              - "584240da54be81056cecaa74" # Grandchild subject ID (Aerodynamics and Fluid Mechanics)
+            - false
+
+  relationships:
+    type: object
+    description: Related resources associated with this registration provider.
+    properties:
+      licenses_acceptable:
+        type: object
+        description: Licenses accepted by this provider.
+        properties:
+          links:
+            type: object
+            properties:
+              related:
+                type: object
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                    example: https://api.osf.io/v2/registration_providers/osf/licenses/
+                  meta:
+                    type: object
+
+      taxonomies:
+        type: object
+        description: Taxonomies (subjects) available for this provider.
+        properties:
+          links:
+            type: object
+            properties:
+              related:
+                type: object
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                    example: https://api.osf.io/v2/registration_providers/osf/taxonomies/
+                  meta:
+                    type: object
+
+      registrations:
+        type: object
+        description: Registrations managed by this provider.
+        properties:
+          links:
+            type: object
+            properties:
+              related:
+                type: object
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                    example: https://api.osf.io/v2/registration_providers/osf/registrations/
+                  meta:
+                    type: object
+
+  links:
+    type: object
+    description: Links to useful URLs for the registration provider.
+    properties:
+      self:
+        type: string
+        format: uri
+        description: The canonical API endpoint for this provider.
+        example: https://api.osf.io/v2/registration_providers/osf/
+
+      registrations:
+        type: string
+        format: uri
+        description: Link to the registrations list for this provider.
+        example: https://api.osf.io/v2/registration_providers/osf/registrations/
+
+      external_url:
+        type: string
+        format: uri
+        description: External website for this provider.
+        example: https://osf.io/registrations/

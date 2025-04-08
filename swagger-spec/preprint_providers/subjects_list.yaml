@@ -1,0 +1,63 @@
+get:
+  summary: List all taxonomies
+  description: >-
+
+    A paginated list of the taxonomies for a preprint provider.
+    The returned preprint providers taxonomies are sorted by their creation date, with the most recent
+    preprints appearing first.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+
+    The `data` key contains an array of 10 preprint providers.
+    Each resource in the array is a separate preprint provider object.
+
+
+    The `links` key contains a dictionary of links that can be used
+    for [pagination](#tag/Pagination).
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: provider_id
+      description: 'The unique identifier of the preprint provider.'
+  tags:
+    - Preprint Providers
+  operationId: preprint_provider_taxonomies_list
+  x-response-schema: 'Taxonomies'
+  responses:
+    '200':
+      description: 'OK'
+      schema:
+        $ref: '../taxonomies/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - links:
+                self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca838/
+                parents:
+                - https://api.osf.io/v2/taxonomies/584240d954be81056ceca97a/
+              attributes:
+                text: History of Philosophy
+                parents:
+                - text: Philosophy
+                  id: 584240d954be81056ceca97a
+                child_count: 0
+              type: taxonomies
+              id: 584240d854be81056ceca838
+          links:
+            first:
+            last: https://api.osf.io/v2/preprint_providers/osf/taxonomies/?page=122
+            prev:
+            next: https://api.osf.io/v2/preprint_providers/osf/taxonomies/?page=2
+            meta:
+              total: 1217
+              per_page: 10

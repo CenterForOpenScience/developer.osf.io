@@ -1,0 +1,80 @@
+get:
+  summary: List Registration Subjects
+  description: >-
+    Retrieve a list of taxonomy subjects assigned to a specific registration.
+
+    Subjects represent the topics, disciplines, or areas of research that the registration is categorized under.
+    These subjects help with search, discovery, and classification within the OSF platform.
+
+    #### Permissions
+     - Publicly accessible if the registration is public.
+     - Private registrations require admin permissions to access.
+
+    #### Returns
+     - A JSON object with a `data` key containing an array of subject resources.
+     - Each subject describes a taxonomy term, including its name and hierarchical position.
+
+  tags:
+    - Registrations
+
+  operationId: registrations_subjects_list
+
+  parameters:
+    - in: path
+      name: registration_id
+      type: string
+      required: true
+      description: The unique identifier of the registration.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to view (pagination).
+
+    - in: query
+      name: filter[text]
+      type: string
+      description: Filter subjects by name.
+
+  responses:
+    '200':
+      description: Successfully retrieved list of subjects for this registration.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../taxonomies/definition.yaml'
+      examples:
+        application/json:
+          data:
+            - id: "1234"
+              type: "taxonomy"
+              attributes:
+                text: "Psychology"
+                parent_ids: []
+                child_ids:
+                  - "5678"
+                path: ["Psychology"]
+                is_highlighted: true
+              relationships:
+                parent:
+                  data: null
+                children:
+                  data:
+                    - type: "taxonomy"
+                      id: "5678"
+              links:
+                self: "https://api.osf.io/v2/taxonomies/1234/"
+          meta:
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required to access subjects for a private registration.
+
+    '403':
+      description: Forbidden. You do not have permission to view subjects for this registration.
+
+    '404':
+      description: Not Found. No registration matches the given ID.

@@ -1,0 +1,62 @@
+# /preprint_providers/{provider_id}/moderators/{moderator_id}/
+
+get:
+  summary: Retrieve a Preprint Provider Moderator
+  description: >-
+    Retrieve the details of a specific moderator for a given preprint provider, including their permissions and assigned roles.
+
+    #### Permissions
+    - The authenticated user must be an administrator of the preprint provider.
+
+    #### Returns
+    - A JSON object with a `data` key containing the moderator details.
+    - Each moderator includes user details and their permission level.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderator_detail
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: path
+      name: moderator_id
+      type: string
+      required: true
+      description: The unique identifier of the moderator.
+
+  responses:
+    '200':
+      description: Successful retrieval of the moderator details.
+      schema:
+        $ref: 'moderator_definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "{moderator_id}"
+            type: "moderators"
+            attributes:
+              full_name: "Ada Lovelace"
+              email: "ada.lovelace@example.com"
+              permission_group: "admin"
+              date_added: "2024-01-15T12:34:56Z"
+            relationships:
+              preprint_provider:
+                data:
+                  type: "preprint_providers"
+                  id: "{provider_id}"
+            links:
+              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/{moderator_id}/"
+          meta:
+            version: "2.0"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access this moderator.
+    '404':
+      description: Not Found. No moderator matches the given ID.

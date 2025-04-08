@@ -1,0 +1,98 @@
+type: object
+description: A moderator for a preprint provider.
+required:
+  - id
+  - type
+  - attributes
+  - relationships
+  - links
+properties:
+  id:
+    type: string
+    description: The unique identifier of the moderator.
+    example: moderator_1
+  type:
+    type: string
+    enum:
+      - moderators
+    description: Must be 'moderators'.
+    example: moderators
+  attributes:
+    type: object
+    required:
+      - full_name
+      - email
+      - permission_group
+      - date_added
+    properties:
+      full_name:
+        type: string
+        description: Full name of the moderator.
+        example: Ada Lovelace
+      email:
+        type: string
+        format: email
+        description: Email address of the moderator.
+        example: ada.lovelace@example.com
+      permission_group:
+        type: string
+        enum:
+          - moderator
+          - admin
+        description: |
+          The permission group for the moderator.
+          - `moderator`: Can review and moderate preprint submissions.
+          - `admin`: Can manage submissions and other moderators.
+        example: admin
+      date_added:
+        type: string
+        format: date-time
+        description: The date the moderator was added to the provider.
+        example: '2024-01-15T12:34:56Z'
+  relationships:
+    type: object
+    properties:
+      preprint_provider:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+            properties:
+              type:
+                type: string
+                enum:
+                  - preprint_providers
+                description: Must be 'preprint_providers'.
+                example: preprint_providers
+              id:
+                type: string
+                description: The unique identifier of the preprint provider.
+                example: provider_1
+  links:
+    type: object
+    properties:
+      self:
+        type: string
+        format: uri
+        description: A link to this moderator resource.
+        example: https://api.test.osf.io/v2/preprint_providers/provider_1/moderators/moderator_1/
+example:
+  id: moderator_1
+  type: moderators
+  attributes:
+    full_name: Ada Lovelace
+    email: ada.lovelace@example.com
+    permission_group: admin
+    date_added: '2024-01-15T12:34:56Z'
+  relationships:
+    preprint_provider:
+      data:
+        type: preprint_providers
+        id: provider_1
+  links:
+    self: https://api.test.osf.io/v2/preprint_providers/provider_1/moderators/moderator_1/

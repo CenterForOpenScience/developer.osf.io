@@ -1,0 +1,60 @@
+get:
+  summary: List bibliographic contributors on a draft registration
+  description: Retrieve a list of contributors marked as bibliographic (visible) for a draft registration.
+  tags:
+    - Draft Registrations
+    - Contributors
+  operationId: draft_registration_bibliographic_contributors_list
+  parameters:
+    - name: draft_id
+      in: path
+      required: true
+      type: string
+      description: Draft registration ID.
+  responses:
+    '200':
+      description: Bibliographic contributors retrieved successfully.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required: [id, type, attributes]
+              properties:
+                id:
+                  type: string
+                  description: Contributor ID
+                type:
+                  type: string
+                  example: contributors
+                attributes:
+                  type: object
+                  properties:
+                    full_name:
+                      type: string
+                    bibliographic:
+                      type: boolean
+                      description: Indicates if the contributor is visible.
+                    email:
+                      type: string
+                      description: Email of the contributor.
+        example:
+          data:
+            - id: user123
+              type: contributors
+              attributes:
+                full_name: Alice Smith
+                bibliographic: true
+                email: alice@example.com
+            - id: user456
+              type: contributors
+              attributes:
+                full_name: Bob Jones
+                bibliographic: true
+                email: bob@example.com
+    '403':
+      description: Forbidden.
+    '404':
+      description: Draft registration not found.

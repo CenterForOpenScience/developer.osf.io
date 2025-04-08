@@ -1,0 +1,216 @@
+# /preprint_providers/{provider_id}/moderators/{moderator_id}/
+
+get:
+  summary: Retrieve a Moderator for a Preprint Provider
+  description: >-
+    Retrieve the details of a specific moderator for a preprint provider, including their permission group and user information.
+
+    #### Permissions
+    - The authenticated user must be an administrator of the preprint provider.
+
+    #### Returns
+    - A JSON object with a `data` key containing the moderator's details.
+    - Each moderator includes their permission group and basic user information.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderator_detail
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: path
+      name: moderator_id
+      type: string
+      required: true
+      description: The unique identifier of the moderator.
+
+  responses:
+    '200':
+      description: Successful retrieval of the moderator.
+      schema:
+        $ref: 'moderator_definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "moderator_1"
+            type: "moderators"
+            attributes:
+              full_name: "Ada Lovelace"
+              email: "ada.lovelace@example.com"
+              permission_group: "admin"
+              date_added: "2024-01-15T12:34:56Z"
+            relationships:
+              preprint_provider:
+                data:
+                  type: "preprint_providers"
+                  id: "{provider_id}"
+            links:
+              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_1/"
+          meta:
+            version: "2.0"
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access this moderator.
+    '404':
+      description: Not Found. No moderator matches the given ID.
+
+patch:
+  summary: Update a Moderator's Permission Group for a Preprint Provider
+  description: >-
+    Update the permission group for a specific moderator on a preprint provider.
+
+    ## Permissions
+    - The authenticated user must be an administrator of the preprint provider.
+
+    ## Request Body
+    
+    Provide the `permission_group` attribute in the `attributes` object to update the moderator.
+    Available values for `permission_group` are:
+      - `moderator`: Can review and moderate preprint submissions.
+      - `admin`: Can manage submissions and other moderators.
+
+    ## Returns
+     - A JSON object with the updated moderator details under the `data` key if the update is successful.
+     - If unsuccessful, returns an `errors` object detailing the validation issues.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderator_update
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: path
+      name: moderator_id
+      type: string
+      required: true
+      description: The unique identifier of the moderator.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+            properties:
+              type:
+                type: string
+                enum:
+                  - moderators
+                description: Must be `moderators`.
+              id:
+                type: string
+                description: The unique identifier of the moderator.
+              attributes:
+                type: object
+                required:
+                  - permission_group
+                properties:
+                  permission_group:
+                    type: string
+                    enum:
+                      - moderator
+                      - admin
+                    description: |
+                      The permission group for the moderator:
+                      - `moderator`: Can review and moderate preprint submissions.
+                      - `admin`: Can manage submissions and other moderators.
+
+        example:
+          data:
+            type: moderators
+            id: "{moderator_id}"
+            attributes:
+              permission_group: "admin"
+
+  responses:
+    '200':
+      description: Moderator successfully updated.
+      schema:
+        $ref: 'moderator_definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "moderator_1"
+            type: "moderators"
+            attributes:
+              full_name: "Ada Lovelace"
+              email: "ada.lovelace@example.com"
+              permission_group: "admin"
+              date_added: "2024-01-15T12:34:56Z"
+            relationships:
+              preprint_provider:
+                data:
+                  type: "preprint_providers"
+                  id: "{provider_id}"
+            links:
+              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_1/"
+          meta:
+            version: "2.0"
+    '400':
+      description: Bad Request. Invalid input provided.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to update this moderator.
+    '404':
+      description: Not Found. No moderator matches the given ID.
+
+delete:
+  summary: Remove a Moderator from a Preprint Provider
+  description: >-
+    Remove a moderator from a preprint provider.
+
+    ## Permissions
+     - The authenticated user must be an administrator of the preprint provider.
+
+    ## Returns
+     - Returns a `204 No Content` response if the deletion is successful.
+     - If unsuccessful, returns an `errors` object detailing the issue.
+
+  tags:
+    - Preprint Providers
+
+  operationId: preprint_provider_moderator_delete
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the preprint provider.
+
+    - in: path
+      name: moderator_id
+      type: string
+      required: true
+      description: The unique identifier of the moderator.
+
+  responses:
+    '204':
+      description: Moderator successfully removed. No content returned.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to remove this moderator.
+    '404':
+      description: Not Found. No moderator matches the given ID.
+

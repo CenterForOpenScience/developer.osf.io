@@ -1,0 +1,104 @@
+get:
+  summary: Retrieve Application Details
+  description: >-
+    Fetch detailed information for a specific OAuth2 application registered by the authenticated user.
+
+  tags:
+    - Applications
+  operationId: application_detail
+  produces:
+    - application/json
+  parameters:
+    - name: client_id
+      in: path
+      required: true
+      type: string
+      description: The application's `client_id`.
+  responses:
+    '200':
+      description: Successfully retrieved application details.
+      examples:
+        application/json:
+          data:
+            id: "client_abc123"
+            type: "applications"
+            attributes:
+              name: "My App"
+              description: "An optional description"
+              home_url: "https://example.com"
+              callback_url: "https://example.com/oauth/callback"
+              owner: "user123"
+              date_created: "2024-03-14T10:00:00Z"
+            links:
+              html: "https://osf.io/settings/applications/client_abc123/"
+              reset: "https://api.osf.io/v2/applications/client_abc123/reset/"
+
+patch:
+  summary: Update Application
+  description: >-
+    Modify fields of an existing OAuth2 application. Fields such as `name`, `description`, `home_url`, or `callback_url` can be modified.
+
+    To reset the client secret, set `"client_secret": ""`.
+
+  tags:
+    - Applications
+  operationId: application_update
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - name: client_id
+      in: path
+      required: true
+      type: string
+    - in: body
+      name: body
+      required: true
+      description: JSON:API payload with updated OAuth2 Application fields.
+      schema:
+        type: object
+        example:
+          application/json:
+            data:
+              type: "applications"
+              attributes:
+                name: "My Updated App"
+                description: "Updated description"
+  responses:
+    '200':
+      description: Application successfully updated.
+      examples:
+        application/json:
+          data:
+            id: "client_abc123"
+            type: "applications"
+            attributes:
+              name: "My Updated App"
+              description: "Updated description"
+              home_url: "https://example.com"
+              callback_url: "https://example.com/oauth/callback"
+              owner: "user123"
+              date_created: "2024-03-14T10:00:00Z"
+            links:
+              html: "https://osf.io/settings/applications/client_abc123/"
+              reset: "https://api.osf.io/v2/applications/client_abc123/reset/"
+
+delete:
+  summary: Deactivate Application
+  description: >-
+    Deactivates an OAuth2 application, hiding it from lists without deleting from the database.
+
+  tags:
+    - Applications
+  operationId: application_deactivate
+  produces:
+    - application/json
+  parameters:
+    - name: client_id
+      in: path
+      required: true
+      type: string
+  responses:
+    '204':
+      description: Application successfully deactivated.

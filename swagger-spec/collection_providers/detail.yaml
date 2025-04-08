@@ -1,0 +1,98 @@
+# /provider/collections/{provider_id}/
+get:
+  summary: Collections Providers Detail
+  description: >-
+
+    This returns a single Collections Provider entity.
+
+    #### Permissions
+
+    This information is public.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    Returns a JSON object with a `data` key containing the representation of the requested collection provider object, if the request is successful.
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: provider_id
+      description: 'A short id for that collection'
+  tags:
+    - Collection Providers
+  operationId: collection_provider_detail
+  x-response-schema: Collection Provider
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            id: testlab
+            type: collection-providers
+            attributes:
+              name: Test Lab (Stage1)
+              description: |-
+                <p>Test Description Data</p>
+              advisory_board: ''
+              example:
+              domain: ''
+              domain_redirect_enabled: false
+              footer_links: ''
+              email_support:
+              facebook_app_id:
+              allow_submissions: true
+              allow_commenting: false
+              assets:
+                square_color_no_transparent: https://test.storage.googleapis.com/cos-osf-stage-cdn-us/assets/characterlabmain_l39QL66.png
+                style: https://test.storage.googleapis.com/cos-osf-stage-cdn-us/assets/characterlab_YwvMKWW.css
+              share_source: ''
+              share_publish_type: Thesis
+              permissions: []
+              reviews_workflow: pre-moderation
+            relationships:
+              subjects:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/subjects/
+                    meta: {}
+              highlighted_subjects:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/subjects/highlighted/
+                    meta:
+                      has_highlighted_subjects: false
+              licenses_acceptable:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/licenses/
+                    meta: {}
+              schemas:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/registrations/characterlab/schemas/
+                    meta: {}
+              primary_collection:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/collections/9g8hx/
+                    meta: {}
+                data:
+                  id: 9g8hx
+                  type: collections
+              moderators:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/moderators/
+                    meta: {}
+              subscriptions:
+                links:
+                  related:
+                    href: https://api.staging.osf.io/v2/providers/collections/characterlab/subscriptions/
+                    meta: {}
+            links:
+              self: https://api.staging.osf.io/v2/providers/collections/characterlab/

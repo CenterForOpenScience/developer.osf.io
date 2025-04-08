@@ -1,0 +1,153 @@
+get:
+  summary: List registrations affiliated with an institution (relationship data)
+  description: |
+    Retrieve relationship data for registrations affiliated with the given institution.
+
+    ### Permissions
+    - Public registrations: Anyone can view the affiliation.
+    - Private registrations: Only contributors can view affiliation.
+    - Requires read access to the institution and registrations.
+
+  tags:
+    - Institutions
+  operationId: listInstitutionRegistrationRelationships
+  parameters:
+    - name: institution_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the institution.
+  responses:
+    '200':
+      description: Successfully retrieved registration relationships.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: registrations
+                id:
+                  type: string
+                  example: reg123
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: /v2/institutions/{institution_id}/relationships/registrations/
+              related:
+                type: string
+                example: /v2/institutions/{institution_id}/registrations/
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this institution's registrations.
+    '404':
+      description: Institution not found.
+
+post:
+  summary: Add registration relationships to an institution
+  description: |
+    Add registrations to an institution's affiliated registrations relationship.
+
+    ### Permissions
+    - Requires write access on each registration being added.
+    - User must be affiliated with the institution.
+
+  tags:
+    - Institutions
+  operationId: addInstitutionRegistrationRelationships
+  consumes:
+    - application/vnd.api+json
+  parameters:
+    - name: institution_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the institution.
+    - in: body
+      name: body
+      required: true
+      description: List of registration relationships to add.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: registrations
+                id:
+                  type: string
+                  example: reg123
+  responses:
+    '201':
+      description: Registrations successfully affiliated with institution.
+    '204':
+      description: No changes made (registrations already affiliated).
+    '400':
+      description: Invalid request payload.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to affiliate these registrations.
+    '404':
+      description: Institution not found.
+
+
+delete:
+  summary: Remove registration relationships from an institution
+  description: |
+    Remove registrations from an institution's affiliated registrations relationship.
+
+    ### Permissions
+    - Requires write access on each registration being removed.
+
+  tags:
+    - Institutions
+  operationId: removeInstitutionRegistrationRelationships
+  consumes:
+    - application/vnd.api+json
+  parameters:
+    - name: institution_id
+      in: path
+      required: true
+      type: string
+      description: The unique identifier of the institution.
+    - in: body
+      name: body
+      required: true
+      description: List of registration relationships to remove.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: registrations
+                id:
+                  type: string
+                  example: reg123
+  responses:
+    '204':
+      description: Registrations successfully removed from affiliation.
+    '400':
+      description: Invalid request payload.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to modify these registrations.
+    '404':
+      description: Institution not found.

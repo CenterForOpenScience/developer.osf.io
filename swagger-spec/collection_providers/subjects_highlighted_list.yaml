@@ -1,0 +1,84 @@
+# /provider/collections/{provider_id}/subjects/highlighted/
+get:
+  summary: Collections Providers Highlighted Subject List
+  description: >-
+
+    This returns a list of highlighted subjects for a Collections Provider.
+
+    #### Permissions
+
+    This information is public.
+
+    #### Returns
+
+    Returns a JSON object containing `data` and `links` keys.
+
+    The `data` key contains an array of subject ids.
+
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: provider_id
+      description: 'A short id for that collection'
+  tags:
+    - Collection Providers
+  operationId: collection_provider_detail
+  x-response-schema: Collection Provider
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+      examples:
+        application/json:
+          data:
+            - id: 5c252d520989e100220edc4f
+              type: subjects
+              attributes:
+                text: Architecture
+                taxonomy_name: bepress
+              relationships:
+                parent:
+                  data:
+                children:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/subjects/5c252d520989e100220edc4f/children/
+                      meta: { }
+              embeds:
+                parent:
+                  errors:
+                    - detail: Not found.
+              links:
+                self: https://api.staging.osf.io/v2/subjects/5c252d520989e100220edc4f/
+            - id: 5c252d510989e100220edba7
+              type: subjects
+              attributes:
+                text: Arts and Humanities
+                taxonomy_name: bepress
+              relationships:
+                parent:
+                  data:
+                children:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edba7/children/
+                      meta: { }
+              embeds:
+                parent:
+                  errors:
+                    - detail: Not found.
+              links:
+                self: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edba7/
+          meta:
+            total: 10
+            per_page: 2
+            version: '2.20'
+          links:
+            self: https://api.staging.osf.io/v2/providers/collections/temp/subjects/highlighted/?page%5Bsize%5D=2
+            first:
+            last: https://api.staging.osf.io/v2/providers/collections/temp/subjects/highlighted/?page=5&page%5Bsize%5D=2
+            prev:
+            next: https://api.staging.osf.io/v2/providers/collections/temp/subjects/highlighted/?page=2&page%5Bsize%5D=2

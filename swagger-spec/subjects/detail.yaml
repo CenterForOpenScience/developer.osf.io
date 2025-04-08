@@ -1,0 +1,95 @@
+get:
+  summary: Retrieve a single taxonomy subject
+  description: |
+    Retrieve detailed information about a specific taxonomy subject by its ID.
+
+    ### Permissions
+     - Publicly accessible (no authentication required).
+  operationId: retrieveSubject
+  tags:
+    - Subjects
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: subject_id
+      in: path
+      description: The unique identifier of the subject.
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Successfully retrieved the subject.
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - id
+              - type
+              - attributes
+              - relationships
+            properties:
+              id:
+                type: string
+                example: "abc123"
+                description: The unique ID of the subject.
+              type:
+                type: string
+                example: "subjects"
+                description: The resource type.
+              attributes:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    example: "Climate Change"
+                    description: Human-readable label for the subject.
+                  taxonomy_name:
+                    type: string
+                    example: "OSF"
+                    description: The taxonomy classification this subject belongs to.
+              relationships:
+                type: object
+                properties:
+                  parent:
+                    type: object
+                    description: The parent subject of this subject (if any).
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "parent123"
+                            description: ID of the parent subject.
+                          type:
+                            type: string
+                            example: "subjects"
+                            description: Resource type (subjects).
+                  children:
+                    type: object
+                    description: The direct children subjects of this subject.
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "child123"
+                              description: ID of the child subject.
+                            type:
+                              type: string
+                              example: "subjects"
+                              description: Resource type (subjects).
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/subjects/abc123/"
+                description: Canonical link to this subject resource.
+    '404':
+      description: Subject not found.

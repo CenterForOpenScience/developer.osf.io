@@ -1,0 +1,128 @@
+get:
+  summary: List available taxonomy subjects
+  description: |
+    Retrieve a list of taxonomy subjects. Subjects categorize content on the OSF.
+    This endpoint returns top-level subjects (those not linked to bepress subjects).
+
+    ### Permissions
+    - Publicly accessible (no authentication required).
+  operationId: listSubjects
+  tags:
+    - Subjects
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: filter[text]
+      in: query
+      description: Filter subjects by matching text.
+      required: false
+      type: string
+    - name: filter[parent]
+      in: query
+      description: Filter subjects by parent subject ID.
+      required: false
+      type: string
+    - name: page
+      in: query
+      description: Page number for paginated results.
+      required: false
+      type: integer
+    - name: page_size
+      in: query
+      description: Number of results per page (no max page size).
+      required: false
+      type: integer
+  responses:
+    '200':
+      description: Successful retrieval of subjects.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              required:
+                - id
+                - type
+                - attributes
+                - relationships
+              properties:
+                id:
+                  type: string
+                  example: "abc123"
+                type:
+                  type: string
+                  example: "subjects"
+                attributes:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      example: "Climate Change"
+                      description: The label for this subject.
+                    taxonomy_name:
+                      type: string
+                      example: "OSF"
+                      description: The taxonomy this subject belongs to.
+                relationships:
+                  type: object
+                  properties:
+                    parent:
+                      type: object
+                      properties:
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "parent123"
+                            type:
+                              type: string
+                              example: "subjects"
+                      description: The parent subject, if any.
+                    children:
+                      type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: "child123"
+                              type:
+                                type: string
+                                example: "subjects"
+                      description: Array of child subjects.
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/subjects/"
+              next:
+                type: string
+                example: "https://api.osf.io/v2/subjects/?page=2"
+              prev:
+                type: string
+                example: null
+          meta:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 100
+                description: Total number of subjects.
+              per_page:
+                type: integer
+                example: 10
+                description: Number of results per page.
+              page:
+                type: integer
+                example: 1
+                description: Current page number.
+    '400':
+      description: Bad request (e.g., invalid filter or pagination parameters)
+

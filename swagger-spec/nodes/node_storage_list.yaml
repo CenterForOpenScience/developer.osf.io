@@ -1,0 +1,170 @@
+get:
+  summary: List Storage Providers for a Node
+  description: >-
+    Retrieve the list of storage providers associated with a specific node.  
+    Each node in the OSF automatically has an OSF Storage provider, and may have additional third-party storage providers (such as Dropbox or Google Drive) if configured.
+
+    #### Permissions
+     - Public nodes expose storage provider information publicly.
+     - Private nodes require read permissions to access storage providers.
+
+    #### Returns
+     - A JSON object with a `data` array containing storage provider resources assigned to the node.
+
+  tags:
+    - Nodes
+
+  operationId: node_storage_providers_list
+
+  parameters:
+    - in: path
+      name: node_id
+      type: string
+      required: true
+      description: The unique identifier of the node.
+
+    - in: query
+      name: page
+      type: integer
+      description: Page number of results to retrieve.
+
+    - in: query
+      name: embed
+      type: string
+      description: Comma-separated list of related resources to embed in the response.
+
+  responses:
+    '200':
+      description: Successful retrieval of storage providers for the specified node.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            description: List of storage providers assigned to the node.
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Unique identifier for the storage provider.
+                  example: "osfstorage"
+                type:
+                  type: string
+                  description: The resource type.
+                  example: "providers"
+                attributes:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the storage provider.
+                      example: "OSF Storage"
+                    default:
+                      type: boolean
+                      description: Whether this provider is the default storage location for the node.
+                      example: true
+                    capability:
+                      type: array
+                      description: List of capabilities supported by the provider (e.g., upload, delete).
+                      items:
+                        type: string
+                        example: "upload"
+                    regions:
+                      type: array
+                      description: Available regions (if applicable).
+                      items:
+                        type: string
+                        example: "us-east-1"
+
+                relationships:
+                  type: object
+                  description: Related resources.
+                  properties:
+                    files:
+                      description: Files stored within this provider.
+                      type: object
+                      properties:
+                        links:
+                          type: object
+                          properties:
+                            related:
+                              type: string
+                              example: "https://api.osf.io/v2/nodes/{node_id}/files/{provider}/"
+
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      description: Canonical link to this storage provider.
+                      example: "https://api.osf.io/v2/nodes/{node_id}/files/providers/osfstorage/"
+
+          links:
+            type: object
+            description: Pagination links for the result set.
+            properties:
+              self:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/storage/"
+              next:
+                type: string
+                example: null
+              prev:
+                type: string
+                example: null
+              first:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/storage/?page=1"
+              last:
+                type: string
+                example: "https://api.osf.io/v2/nodes/{node_id}/storage/?page=1"
+
+          meta:
+            type: object
+            description: Meta information about the response.
+            properties:
+              total:
+                type: integer
+                description: Total number of storage providers available for this node.
+                example: 1
+              per_page:
+                type: integer
+                description: Number of results per page.
+                example: 10
+
+      examples:
+        application/json:
+          data:
+            - id: "osfstorage"
+              type: "providers"
+              attributes:
+                name: "OSF Storage"
+                default: true
+                capability:
+                  - "upload"
+                  - "delete"
+                regions:
+                  - "us-east-1"
+              relationships:
+                files:
+                  links:
+                    related: "https://api.osf.io/v2/nodes/abc12/files/osfstorage/"
+              links:
+                self: "https://api.osf.io/v2/nodes/abc12/files/providers/osfstorage/"
+          links:
+            self: "https://api.osf.io/v2/nodes/abc12/storage/"
+            next: null
+            prev: null
+            first: "https://api.osf.io/v2/nodes/abc12/storage/?page=1"
+            last: "https://api.osf.io/v2/nodes/abc12/storage/?page=1"
+          meta:
+            total: 1
+            per_page: 10
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to view storage providers for this node.
+    '404':
+      description: Not Found. No node matches the given ID.
