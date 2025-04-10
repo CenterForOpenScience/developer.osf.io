@@ -1,31 +1,27 @@
 # /actions/reviews/:
+
 get:
   summary: List Review Actions
-  description: >
-    Retrieve a list of review actions visible to the authenticated user.
+  description: >-
+    Retrieve a list of review actions accessible to the authenticated user. Review actions document state transitions or user comments related specifically to reviewable resources, like preprints.
 
-    Review actions represent state transitions or comments made on reviewable objects, such as preprints.
-    This endpoint returns all review actions the user is authorized to view.
-
-    #### Filtering & Pagination
-
-    Supports pagination and filtering by the following fields:
-     - `id`
-     - `trigger`
-     - `from_state`
-     - `to_state`
-     - `date_created`
-     - `date_modified`
+    Supports pagination and filtering by:
+      - `id`
+      - `trigger`
+      - `from_state`
+      - `to_state`
+      - `date_created`
+      - `date_modified`
 
     Pagination follows the [JSON:API pagination specification](https://jsonapi.org/format/#fetching-pagination).
 
-    #### Returns
+    #### Permissions
 
-    A JSON object containing an array of review actions under the `data` key.
+     - User must be authenticated and have permissions to view actions associated with the respective resources.
 
     #### Errors
 
-    Returns an `errors` object if unsuccessful. See [Errors and Error Codes](#tag/Errors-and-Error-Codes).
+    If unsuccessful, returns an `errors` object. See [Errors and Error Codes](#tag/Errors-and-Error-Codes).
 
   tags:
     - Actions
@@ -42,7 +38,7 @@ get:
     - name: per_page
       in: query
       type: integer
-      description: Number of results per page.
+      description: Number of actions per page.
       required: false
     - name: filter[id]
       in: query

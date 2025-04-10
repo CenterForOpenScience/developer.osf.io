@@ -3,30 +3,25 @@
 get:
   summary: Retrieve an Action by ID
   description: >-
-    Retrieve the details of a specific Action by its unique identifier.
+    Retrieve detailed information about a specific Action using its unique identifier.
 
-    Actions represent state transitions and comments on reviewable resources
-    such as preprints, registrations, node requests, schema responses, and
-    collection submissions.
+    Actions record state transitions, user comments, and workflow triggers related to resources like preprints, registrations, node requests, schema responses, and collection submissions.
 
-    An Action includes information about who performed the action (creator),
-    the state change it caused (from_state to to_state), the trigger used to initiate
-    the action, and any optional comment. The action may also include links to
-    related resources, such as the target and the provider.
-
-    #### Returns
-
-    A JSON object with a `data` key containing the full representation of the action.
+    An Action includes:
+      - The initiating event (`trigger`)
+      - Optional user-provided comments (`comment`)
+      - Resource state before (`from_state`) and after (`to_state`) the action
+      - Metadata such as timestamps (`date_created`, `date_modified`) and visibility settings (`visible`)
+      - Relationships linking the action to its creator, target resource, and the provider managing the process.
 
     #### Permissions
 
-    - You must have at least read permissions on the resource the action applies to.
-    - Only authorized users can view non-public actions (`visible: false`).
+     - Users must have at least read permissions on the associated resource.
+     - Non-public actions (`visible: false`) require administrative or moderator privileges.
 
     #### Errors
 
-    If the request is unsuccessful, an `errors` key will be returned. Refer to the
-    [Errors and Error Codes documentation](#tag/Errors-and-Error-Codes) for more information.
+    An unsuccessful request returns an `errors` key. Refer to the [Errors and Error Codes](#tag/Errors-and-Error-Codes) documentation.
 
   tags:
     - Actions
@@ -36,63 +31,15 @@ get:
       name: action_id
       type: string
       required: true
-      description: >-
-        The unique identifier of the action to retrieve.
-
-        Example: `abc123`
+      description: "Unique identifier for the action (e.g., `abc123`)."
   responses:
     '200':
       description: Action retrieved successfully.
-      examples:
-        application/json:
-          data:
-            id: abc123
-            type: review-actions
-            attributes:
-              trigger: accept
-              comment: "The submission was approved by the moderator."
-              from_state: pending
-              to_state: accepted
-              date_created: '2024-01-01T00:00:00Z'
-              date_modified: '2024-01-01T01:00:00Z'
-              auto: false
-              visible: true
-            relationships:
-              creator:
-                links:
-                  related:
-                    href: 'https://api.osf.io/v2/users/user456/'
-                    meta: {}
-                data:
-                  id: user456
-                  type: users
-              target:
-                links:
-                  related:
-                    href: 'https://api.osf.io/v2/preprints/preprint789/'
-                    meta: {}
-                data:
-                  id: preprint789
-                  type: preprints
-              provider:
-                links:
-                  related:
-                    href: 'https://api.osf.io/v2/providers/osf/'
-                    meta: {}
-                data:
-                  id: osf
-                  type: providers
-            links:
-              self: 'https://api.osf.io/v2/actions/abc123/'
+      schema:
+        $ref: './definition.yaml'
     '403':
       description: >-
-        Permission denied.
-
-        You do not have permission to view this action. Only users with the
-        appropriate permissions on the resource or provider can view actions.
+        Permission denied. Insufficient privileges to access the requested action.
     '404':
       description: >-
-        Action not found.
-
-        The specified action ID does not exist or is not accessible. Ensure you
-        have the correct ID and necessary permissions.
+        Action not found or inaccessible. Verify action ID and permissions.

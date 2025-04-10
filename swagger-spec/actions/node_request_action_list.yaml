@@ -1,50 +1,46 @@
 # /actions/requests/nodes/
+
 post:
   summary: Create a Node Request Action
-  description: >
+  description: >-
     Create a new action on an existing Node Request.
 
-    Node Request Actions represent state transitions or comments on node-related requests,
-    such as access or withdrawal requests. Actions document and facilitate moderation workflows
-    for node requests managed through the OSF.
+    Node Request Actions represent user-driven or automated steps in a moderation workflow for
+    requests related to project nodes (e.g., access, registration withdrawal). They capture
+    state transitions and optional comments.
 
     #### Available Triggers
 
-    Supported triggers for Node Request Actions include:
-     - submit: Submit or resubmit the node request for review. No special permissions required.
-     - accept: Approve the node request. Requires admin permissions.
-     - reject: Reject the node request. Requires admin permissions.
-     - edit_comment: Add or update a comment without changing the request’s state. Requires admin permissions.
+    Supported `trigger` values:
+     - `submit`: Submit the request for review. (No special permissions required)
+     - `accept`: Approve the request. (Requires admin permissions on the node)
+     - `reject`: Deny the request. (Requires admin permissions)
+     - `edit_comment`: Add or update a moderator/admin comment without state change. (Requires admin permissions)
 
     #### Permissions
 
-    Permission checks are enforced based on the trigger:
-     - Actions like accept, reject, and edit_comment require admin permissions on the target node.
+     - Accept/reject/edit_comment: Requires admin permissions on the associated node.
+     - Submit: Allowed by any user with write permissions on the node.
 
     #### Returns
 
-    On success, returns a 201 Created response with a data object representing the newly created
-    Node Request Action.
+    On success, returns `201 Created` with the newly created action resource in the `data` key.
 
     #### Errors
 
-    Possible errors include:
-     - 400 Bad Request: Invalid payload or missing required fields.
-     - 403 Forbidden: Insufficient permissions to perform the requested action.
-     - 409 Conflict: The trigger is invalid for the node request’s current state.
+     - `400 Bad Request`: Malformed or incomplete payload.
+     - `403 Forbidden`: Insufficient privileges to perform the trigger.
+     - `409 Conflict`: Trigger is invalid in the current state.
 
-    Refer to [Errors and Error Codes](#tag/Errors-and-Error-Codes) for more details.
+    See [Errors and Error Codes](#tag/Errors-and-Error-Codes) for full reference.
 
   tags:
     - Actions
-
   operationId: node_request_action_create
-
   consumes:
     - application/json
   produces:
     - application/json
-
   parameters:
     - in: body
       name: body
@@ -64,94 +60,46 @@ post:
             properties:
               type:
                 type: string
-                enum:
-                  - node-request-actions
+                enum: [node-request-actions]
                 example: node-request-actions
               attributes:
                 type: object
-                required:
-                  - trigger
+                required: [trigger]
                 properties:
                   trigger:
                     type: string
-                    enum:
-                      - submit
-                      - accept
-                      - reject
-                      - edit_comment
+                    enum: [submit, accept, reject, edit_comment]
                     example: accept
                   comment:
                     type: string
                     example: Approving the node access request.
               relationships:
                 type: object
-                required:
-                  - target
+                required: [target]
                 properties:
                   target:
                     type: object
-                    required:
-                      - data
+                    required: [data]
                     properties:
                       data:
                         type: object
-                        required:
-                          - type
-                          - id
+                        required: [type, id]
                         properties:
                           type:
                             type: string
-                            enum:
-                              - node-requests
+                            enum: [node-requests]
                             example: node-requests
                           id:
                             type: string
                             example: nodeReq123
-
   responses:
     '201':
       description: Node Request Action successfully created.
       schema:
         $ref: 'definition.yaml'
-      examples:
-        application/json:
-          data:
-            id: nodeAction123
-            type: node-request-actions
-            attributes:
-              trigger: accept
-              comment: Approved node request.
-              from_state: pending
-              to_state: accepted
-              date_created: '2024-03-13T15:30:00Z'
-              date_modified: '2024-03-13T15:30:00Z'
-              auto: false
-              visible: true
-            relationships:
-              creator:
-                links:
-                  related:
-                    href: 'https://api.osf.io/v2/users/user456/'
-                    meta: {}
-                data:
-                  id: user456
-                  type: users
-              target:
-                links:
-                  related:
-                    href: 'https://api.osf.io/v2/requests/nodes/nodeReq123/'
-                    meta: {}
-                data:
-                  id: nodeReq123
-                  type: node-requests
-            links:
-              self: 'https://api.osf.io/v2/actions/nodeAction123/'
-
     '400':
-      description: Bad request. The payload is invalid or missing required fields.
-
+      description: Invalid or incomplete request payload.
     '403':
-      description: Forbidden. You do not have permission to perform this action.
-
+      description: Forbidden. Insufficient permissions for requested trigger.
     '409':
-      description: Conflict. Invalid state transition for the given trigger.
+      description: Conflict. Invalid trigger for the node request's current state.
