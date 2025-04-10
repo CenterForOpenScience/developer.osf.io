@@ -48,10 +48,6 @@ properties:
         type: string
         readOnly: false
         description: 'The given name of the user, used for bibliographic citations.'
-      locale:
-        type: string
-        readOnly: false
-        description: 'The user''s locale, e.g. ''en_US''.'
       middle_names:
         type: string
         readOnly: false
@@ -60,10 +56,84 @@ properties:
         type: string
         readOnly: false
         description: 'The suffix of the user, used for bibliographic citations.'
+      locale:
+        type: string
+        readOnly: false
+        description: 'The user''s locale, e.g. ''en_US''.'
       timezone:
         type: string
         readOnly: false
         description: 'The user''s timezone, e.g. ''Etc/UTC''.'
+      social:
+        type: object
+        readOnly: false
+        additionalProperties: true
+        description: |
+          A dictionary of the user's social and academic profile links. 
+          Fields may include:
+          - `github`, `twitter`, `linkedIn`: List of profile URLs (strings)
+          - `scholar`, `orcid`, `researcherId`, `impactStory`, etc.: Single URL string
+          - `profileWebsites`: List of personal website URLs (strings)
+      employment:
+        type: array
+        readOnly: false
+        description: 'A list of the user''s employment history records.'
+        items:
+          type: object
+          required: [institution, startYear, startMonth, ongoing]
+          properties:
+            title:
+              type: string
+            institution:
+              type: string
+            department:
+              type: string
+            startYear:
+              type: integer
+              minimum: 1900
+            startMonth:
+              type: integer
+              minimum: 1
+              maximum: 12
+            endYear:
+              type: integer
+              minimum: 1900
+            endMonth:
+              type: integer
+              minimum: 1
+              maximum: 12
+            ongoing:
+              type: boolean
+      education:
+        type: array
+        readOnly: false
+        description: 'A list of the user''s educational history records.'
+        items:
+          type: object
+          required: [institution, startYear, startMonth, ongoing]
+          properties:
+            degree:
+              type: string
+            institution:
+              type: string
+            department:
+              type: string
+            startYear:
+              type: integer
+              minimum: 1900
+            startMonth:
+              type: integer
+              minimum: 1
+              maximum: 12
+            endYear:
+              type: integer
+              minimum: 1900
+            endMonth:
+              type: integer
+              minimum: 1
+              maximum: 12
+            ongoing:
+              type: boolean
 
   relationships:
     type: object
@@ -104,3 +174,22 @@ example:
     attributes:
       full_name: "Casey M. Rollins"
       middle_names: "Marie"
+      social:
+        github: ["https://github.com/caseyrollins"]
+        twitter: ["https://twitter.com/crollins"]
+      employment:
+        - title: "Data Scientist"
+          institution: "Open Science Framework"
+          department: "Engineering"
+          startYear: 2018
+          startMonth: 5
+          ongoing: true
+      education:
+        - degree: "MS in Computer Science"
+          institution: "University of Somewhere"
+          department: "Computer Science"
+          startYear: 2014
+          startMonth: 9
+          endYear: 2016
+          endMonth: 6
+          ongoing: false

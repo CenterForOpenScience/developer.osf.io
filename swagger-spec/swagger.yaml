@@ -1,11 +1,25 @@
 swagger: '2.0'
 info:
   title: OSF APIv2 Documentation
+  description: |
+    This is the official documentation for the OSF (Open Science Framework) API v2. 
+    It provides access to the full range of OSF's functionality including project management, file handling, user management, registrations, preprints, and metadata operations.
+
+    ## Getting Started
+    For detailed information on getting started, authentication, and best practices, visit our [support page](https://osf.io/support).
+
+    ## API Features
+     - RESTful resource-oriented API
+     - Supports pagination, filtering, and sparse fieldsets
+     - Comprehensive error handling and descriptive error codes
+     - OAuth-based authentication and authorization
+
   version: '2.0'
+  termsOfService: 'https://osf.io/terms_of_use/'
   contact:
-    name: OSF
+    name: OSF Support Team
     email: support@osf.io
-    url: 'https://osf.io/support'
+    url: 'https://help.osf.io/'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -13,7 +27,6 @@ info:
     url: 'https://cdn.cos.io/media/images/cos_center_logo_small.original.png'
     backgroundColor: 'transparent'
 host: 'api.test.osf.io'
-
 schemes:
   - https
 basePath: /v2
@@ -143,11 +156,11 @@ tags:
       The `test` subdomains of the OSF are intended to match, at any given time, the current production environment of the OSF.
       The test servers linked below are primarily for developing your API application on a stable system.
 
-      - Test web server: https://test.osf.io/
+       - Test web server: https://test.osf.io/
 
-      - Test API server: https://api.test.osf.io/v2/
+       - Test API server: https://api.test.osf.io/v2/
 
-      - Test Files server (known as Waterbutler): https://files.us.test.osf.io/
+       - Test Files server (known as Waterbutler): https://files.us.test.osf.io/
 
       #### Ephemerality Notice
 
@@ -161,7 +174,9 @@ tags:
 
       To use a Personal Access Token, make an `Authorization` header with the contents `Bearer <token>` as shown in the example below, replacing `<token>` with your token.
 
+          ```
           curl -X "GET" "https://api.osf.io/v2/users/me/" -H "Authorization: Bearer <token>"
+          ```
 
       To make a Personal Access Token, visit your OSF settings page (either on the [OSF](https://osf.io/settings/tokens) or our [testing server](https://test.osf.io/settings/tokens)) to create one.
       You can limit the scope of the token, but remember that it has access to all of the information that you do within the limits of the scope, so be careful with your tokens.
@@ -1164,6 +1179,36 @@ tags:
       detailed metadata about each identifier, including its category, value, and the entity it is associated with.
       This ensures that users can effectively manage and utilize identifiers in their research workflows, promoting 
       transparency and traceability of scholarly work.
+  - name: Users
+    description: >-
+      Users represent individual accounts within the OSF (Open Science Framework) platform.
+      Each user account includes identifying information such as names, email addresses, profile details, 
+      and metadata about activity and affiliations. The Users endpoints provide access to user-related resources 
+      for profile display, updates, affiliation management, node contributions, and interaction with various OSF 
+      services.
+
+      The Users API enables both read and write operations, allowing for:
+      
+       - **Retrieving user information**: Includes full name, bibliographic name parts (given, middle, family, suffix),
+        timezone, locale, account status, and registration date.
+       - **Updating user attributes**: Authenticated users can update certain profile fields such as name, locale, 
+        timezone, employment history, education, and social links.
+       - **Managing relationships**: Users can access related resources such as their affiliated institutions, 
+        nodes they contribute to, registrations, preprints, groups, and more.
+       - **Accessing nested resources**: Email addresses, settings, external identities, and export/download data.
+
+      Certain fields and actions are restricted based on authentication and permission levels. For example:
+      
+       - Viewing a user's full profile or updating information requires authentication.
+       - Some attributes and relationships (e.g., `emails`, `settings`) are only accessible to the current user.
+       - Accessing deactivated or anonymized users may return limited metadata or result in error responses.
+
+      User profiles also support structured fields for `employment` and `education` (e.g., `institution`, `title`, 
+      `dates`, `ongoing` `status`) and `social` (e.g., `GitHub`, `ORCID`, `Twitter`), which are validated and 
+      standardized for consistency and citation accuracy.
+
+      These endpoints are fundamental for user discovery, personalization, and managing identity and reputation 
+      across the OSF ecosystem.
 paths:
 
   ##############
