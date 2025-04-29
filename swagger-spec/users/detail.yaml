@@ -1,34 +1,22 @@
 get:
   summary: Retrieve a user
   description: >-
-    Retrieves the details of a given users.
+    Retrieves details of a specific user.
 
+    Includes bibliographic information, date of registration, and related resources such as affiliated institutions and nodes the user contributes to (provided the requesting user has access).
 
-    The returned information includes the user's bibliographic information and the date the user was registered.
-
-
-    Additionally, relationships to the list of institutions with which the user is affiliated,
-    and to the list of nodes which the user contributes to (that the requesting user has permission to see) are returned.
-
-
-    If `me` is given as the `user_id` in the request path, the record of the currently logged-in user will be returned.
+    Using `me` as the `user_id` retrieves the currently logged-in user's information.
 
     #### Returns
 
-    Returns a JSON object with a `data` key containing the representation of the requested
-    user, if the request is successful.
-
-
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
+    Successful responses return a JSON object under the `data` key with user details. Failed requests provide an `errors` key containing error information. Refer to the [list of error codes](#tag/Errors-and-Error-Codes) for more details.
 
   parameters:
-  - in: path
-    type: string
-    name: user_id
-    required: true
-    description: 'The unique identifier of the user.'
+    - in: path
+      type: string
+      name: user_id
+      required: true
+      description: 'The unique identifier of the user.'
   tags:
     - Users
   operationId: users_read
@@ -75,26 +63,47 @@ get:
 patch:
   summary: Update a user
   description: >-
-    Updates a user by setting the values of the attributes specified in the request body.
-    Any unspecified attributes will be left unchanged.
+    Updates user attributes specified in the request body. Unspecified attributes remain unchanged.
 
+    Updates can be performed via **PUT** or **PATCH**. The `full_name` attribute is mandatory for **PUT** requests but optional for **PATCH**.
 
-    Users can be updated with either a **PUT** or **PATCH** request.
-    The `full_name` field is mandatory in a **PUT** request, and optional in a **PATCH**.
+    **Note**: When updating via `/users/me/`, you must use your full user ID in the request body. The `me` alias is not supported in request bodies.
 
+    ### Instructions for Updating Social, Education, and Employment Fields
 
-    **Note**: if you make a PUT/PATCH request to the `/users/me/` endpoint, you must still provide your full user ID in the ID field of the request.
-    We do not support using the `me` alias in request bodies at this time.
+    - **Social Profiles**:
+      - Provide platform usernames or identifiers (not full URLs) for:
+        - `github`, `twitter`, `linkedIn`: arrays of strings
+        - `scholar`, `orcid`, `researcherId`, `impactStory`: single string
+        - `profileWebsites`: array of full URLs
+      - Example:
+        ```json
+        "social": {
+          "linkedIn": ["userLinkedInID"],
+          "github": ["githubUsername"],
+          "twitter": ["twitterHandle"],
+          "profileWebsites": ["http://example.com"]
+        }
+        ```
 
-    #### Returns
-
-    Returns a JSON object with a `data` key containing the new representation of the updated
-    node, if the request is successful.
-
-
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
+    - **Education and Employment**:
+      - Each record must include:
+        - `institution` (required, non-empty string)
+        - `startYear` and `startMonth` (required integers, startYear ≥ 1900, startMonth 1-12)
+        - `ongoing` (required boolean)
+        - Optional fields: `degree`, `title`, `department`
+        - If `ongoing` is `false`, include `endYear` and `endMonth` (end date ≥ start date)
+      - Example:
+        ```json
+        "employment": [{
+          "title": "Data Scientist",
+          "institution": "Open Science Framework",
+          "department": "Engineering",
+          "startYear": 2018,
+          "startMonth": 5,
+          "ongoing": true
+        }]
+        ```
 
   parameters:
     - in: path
