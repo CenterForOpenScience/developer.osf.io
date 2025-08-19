@@ -6593,7 +6593,7 @@ paths:
       - addon-operation-invocations
   /v1/addon-operation-invocations/{id}/:
     get:
-      description: Get singular instance of addon operation invocation by it's pk.
+      description: Get singular instance of addon operation invocation by its pk.
         May be useful to view action log
       operationId: addon_operation_invocations_retrieve
       parameters:
@@ -10468,8 +10468,8 @@ paths:
       - external-storage-services
   /v1/resource-references/:
     get:
-      description: Get resource reference by resource_uri. Even through this is a
-        list method, this endpoint returns only one entity
+      description: Get resource reference by resource_uri. Even though this is a list
+        method, this endpoint returns only one entity
       operationId: resource_references_list
       parameters:
       - description: endpoint return only specific fields in the response on a per-type
@@ -10531,7 +10531,7 @@ paths:
       - resource-references
   /v1/resource-references/{id}/:
     get:
-      description: Get resource reference by it's pk
+      description: Get resource reference by its pk
       operationId: resource_references_retrieve
       parameters:
       - description: endpoint return only specific fields in the response on a per-type
@@ -10811,7 +10811,7 @@ paths:
       tags: *id010
   /v1/user-references/:
     get:
-      description: Get user reference by user_uri. Even through this is a list method,
+      description: Get user reference by user_uri. Even though this is a list method,
         this endpoint returns only one entity
       operationId: user_references_list
       parameters:
@@ -10876,7 +10876,7 @@ paths:
       - user-references
   /v1/user-references/{id}/:
     get:
-      description: Get user reference by it's pk
+      description: Get user reference by its pk
       operationId: user_references_retrieve
       parameters:
       - description: endpoint return only specific fields in the response on a per-type
