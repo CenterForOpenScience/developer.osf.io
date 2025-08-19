@@ -14,6 +14,9 @@ info:
      - Comprehensive error handling and descriptive error codes
      - OAuth-based authentication and authorization
 
+    ## [Addons Service Documentation](/gv)
+    To view Addons Service documetation, please click [here](/gv)
+
   version: '2.0'
   termsOfService: 'https://osf.io/terms_of_use/'
   contact:
@@ -1110,7 +1113,7 @@ tags:
     description: >-
       **Personal Access Tokens** allow users to authenticate API requests without credentials.
   
-      Tokens support fine-grained permissions (scopes) to control API access levels.  
+      Tokens support fine-grained permissions (scopes) to control API access levels.
   - name: Applications
     description: >-
       **OAuth2 Applications** allow external services to securely authenticate and interact with OSF resources via OAuth2.
@@ -2124,7 +2127,7 @@ paths:
 
   /scopes/{scope_id}/:
     $ref: 'scopes/scope_detail.yaml'
-    
+
   ############################
   #        ACTIONS          #
   ############################
