@@ -76,47 +76,6 @@ get:
             type: comments
             id: twpgrpv78d8s
 
-put:
-  summary: Update a comment
-  description: >-
-      Updates the specified comment by setting the values of the parameters passed.
-      Any parameters not provided will be left unchanged.
-
-      #### Returns
-
-      Returns JSON with a `data` key containing the new representation of the updated
-      comment, if the request is successful.
-
-
-      If the request is unsuccessful, JSON with an `errors` key containing
-      information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-      to understand why this request may have failed.
-
-  parameters:
-    - in: path
-      type: string
-      required: true
-      name: comment_id
-      description: 'The unique identifier of the comment you wish to update.'
-    - in: body
-      name: body
-      required: true
-      schema:
-        type: object
-        example:
-          data:
-            type: comments
-            id: '{comment_id}'
-            attributes:
-              content: "changed comment content"
-
-  tags:
-    - Comments
-  operationId: comments_put
-  responses:
-    '200':
-      description: 'OK'
-
 delete:
   summary: Delete a comment
   description: >-
