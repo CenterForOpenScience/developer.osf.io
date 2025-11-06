@@ -14,8 +14,8 @@ info:
      - Comprehensive error handling and descriptive error codes
      - OAuth-based authentication and authorization
 
-    ## [Addons Service Documentation](/gv)
-    To view Addons Service documetation, please click [here](/gv)
+    ## Addons Service Documentation
+    To view the Addons Service documentation, please click [here](/gv.html).
 
   version: '2.0'
   termsOfService: 'https://osf.io/terms_of_use/'
