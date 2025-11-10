@@ -160,7 +160,7 @@ properties:
                   href:
                     type: string
                     format: uri
-                    example: "https://api.osf.io/v2/providers/osf/"
+                    example: "https://api.osf.io/v2/providers/preprints/osf/"
                   meta:
                     type: object
                     example: {}
@@ -172,7 +172,7 @@ properties:
                 example: "osf"
               type:
                 type: string
-                example: "providers"
+                example: "preprint-provider"
 
   links:
     type: object
