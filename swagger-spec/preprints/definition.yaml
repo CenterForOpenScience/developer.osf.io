@@ -237,5 +237,5 @@ example:
           id: '{primary_file_id}'
       provider:
         data:
-          type: providers
+          type: preprint-provider
           id: '{provider_id}'
