@@ -172,7 +172,7 @@ properties:
                 example: "osf"
               type:
                 type: string
-                example: "preprint-provider"
+                example: "preprint-providers"
 
   links:
     type: object
