@@ -1,196 +1,239 @@
-# /provider/collections/{provider_id}/moderators/:
+# /providers/collections/{provider_id}/moderators/
+
 get:
-  summary: Collections Providers Moderators List
+  summary: List Moderators for a Collection Provider
   description: >-
+    Retrieve a list of all moderators assigned to a specific collection provider.
 
-    This returns a list of moderators for a Collections Provider.
+    ## Permissions
+     - The authenticated user must be an administrator of the collection provider.
 
-    #### Permissions
+    ## Returns
+     - A JSON object with a `data` key containing an array of moderator records.
+     - Each moderator includes their permission group and basic user information.
 
-    This information is only available to Collection Provider moderators or admins.
-
-    #### Returns
-
-    Returns a JSON object containing `data` and `links` keys.
-
-    The `data` key contains an array of moderator ids.
-
-    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
-  parameters:
-    - in: path
-      type: string
-      required: true
-      name: provider_id
-      description: 'A short id for that collection'
   tags:
     - Collection Providers
-  operationId: collection_provider_detail
-  x-response-schema: Collection Provider
-  consumes:
-    - application/json
+
+  operationId: collection_provider_moderator_list
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+
+    - in: query
+      name: page
+      type: integer
+      required: false
+      description: Page number of results to view.
+
+    - in: query
+      name: filter[permission_group]
+      type: string
+      required: false
+      description: Filter moderators by permission group (`moderator` or `admin`).
+
   responses:
     '200':
-      description: 'OK'
+      description: Successful retrieval of the moderators list.
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: 'definition.yaml'
+          links:
+            type: object
+            properties:
+              self:
+                type: string
+                description: Link to the current page of results.
+              next:
+                type: string
+                description: Link to the next page of results, if available.
+              prev:
+                type: string
+                description: Link to the previous page of results, if available.
+          meta:
+            type: object
+            description: Meta information about the response, including pagination info.
       examples:
         application/json:
           data:
-          - id: nmwt5
-            type: moderators
-            attributes:
-              full_name: Blaine Butler
-              permission_group: admin
-            relationships:
-              user:
-                links:
-                  related:
-                    href: https://api.staging.osf.io/v2/users/nmwt5/
-                    meta: {}
-                data:
-                  id: nmwt5
-                  type: users
-              provider:
-                links:
-                  related:
-                    href: https://api.staging.osf.io/v2/providers/collections/colmod/
-                    meta: {}
-                data:
-                  id: colmod
-                  type: collection-providers
-            embeds:
-              user:
-                data:
-                  id: nmwt5
-                  type: users
-                  attributes:
-                    full_name: Blaine Butler
-                    given_name: Blaine
-                    middle_names: ''
-                    family_name: Butler
-                    suffix: ''
-                    date_registered: '2022-11-03T19:23:28.110924Z'
-                    active: false
-                    timezone: Etc/UTC
-                    locale: en_US
-                    social: {}
-                    employment: []
-                    education: []
-                  relationships:
-                    nodes:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/nmwt5/nodes/
-                          meta: {}
-                    groups:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/nmwt5/groups/
-                          meta: {}
-                    registrations:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/nmwt5/registrations/
-                          meta: {}
-                    institutions:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/nmwt5/institutions/
-                          meta: {}
-                        self:
-                          href: https://api.staging.osf.io/v2/users/nmwt5/relationships/institutions/
-                          meta: {}
-                    preprints:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/nmwt5/preprints/
-                          meta: {}
-                  links:
-                    html: https://staging.osf.io/nmwt5/
-                    profile_image: https://secure.gravatar.com/avatar/4a1f62c6580a151e5c1c0aec72b7fc2a?d=identicon
-                    self: https://api.staging.osf.io/v2/users/nmwt5/
-            links:
-              self: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/nmwt5/
-          - id: m8ku3
-            type: moderators
-            attributes:
-              full_name: DC Test - AMC
-              permission_group: admin
-            relationships:
-              user:
-                links:
-                  related:
-                    href: https://api.staging.osf.io/v2/users/m8ku3/
-                    meta: {}
-                data:
-                  id: m8ku3
-                  type: users
-              provider:
-                links:
-                  related:
-                    href: https://api.staging.osf.io/v2/providers/collections/colmod/
-                    meta: {}
-                data:
-                  id: colmod
-                  type: collection-providers
-            embeds:
-              user:
-                data:
-                  id: m8ku3
-                  type: users
-                  attributes:
-                    full_name: DC Test - AMC
-                    given_name: DC
-                    middle_names: Test -
-                    family_name: AMC
-                    suffix: ''
-                    date_registered: '2022-09-14T11:28:08.681787Z'
-                    active: true
-                    timezone: Etc/UTC
-                    locale: en_US
-                    social: {}
-                    employment: []
-                    education: []
-                  relationships:
-                    nodes:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/m8ku3/nodes/
-                          meta: {}
-                    groups:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/m8ku3/groups/
-                          meta: {}
-                    registrations:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/m8ku3/registrations/
-                          meta: {}
-                    institutions:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/m8ku3/institutions/
-                          meta: {}
-                        self:
-                          href: https://api.staging.osf.io/v2/users/m8ku3/relationships/institutions/
-                          meta: {}
-                    preprints:
-                      links:
-                        related:
-                          href: https://api.staging.osf.io/v2/users/m8ku3/preprints/
-                          meta: {}
-                  links:
-                    html: https://staging.osf.io/m8ku3/
-                    profile_image: https://secure.gravatar.com/avatar/ce38ca4e4a1361446468960716f57b5e?d=identicon
-                    self: https://api.staging.osf.io/v2/users/m8ku3/
-            links:
-              self: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/m8ku3/
-          meta:
-            total: 8
-            per_page: 2
-            version: '2.20'
+            - id: "moderator_1"
+              type: "moderators"
+              attributes:
+                full_name: "Ada Lovelace"
+                email: "ada.lovelace@example.com"
+                permission_group: "admin"
+                date_added: "2024-01-15T12:34:56Z"
+              relationships:
+                collection_provider:
+                  data:
+                    type: "collection_providers"
+                    id: "{provider_id}"
+              links:
+                self: "https://api.test.osf.io/v2/providers/collections/{provider_id}/moderators/moderator_1/"
+            - id: "moderator_2"
+              type: "moderators"
+              attributes:
+                full_name: "Alan Turing"
+                email: "alan.turing@example.com"
+                permission_group: "moderator"
+                date_added: "2024-01-20T10:00:00Z"
+              relationships:
+                collection_provider:
+                  data:
+                    type: "collection_providers"
+                    id: "{provider_id}"
+              links:
+                self: "https://api.test.osf.io/v2/providers/collections/{provider_id}/moderators/moderator_2/"
           links:
-            self: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/?page%5Bsize%5D=2
-            first:
-            last: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/?page=4&page%5Bsize%5D=2
-            prev:
-            next: https://api.staging.osf.io/v2/providers/collections/colmod/moderators/?page=2&page%5Bsize%5D=2
+            self: "https://api.test.osf.io/v2/providers/collections/{provider_id}/moderators/"
+            next: null
+            prev: null
+          meta:
+            total: 2
+            per_page: 10
+            page: 1
+            version: "2.0"
+
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to access this list.
+    '404':
+      description: Not Found. No collection provider matches the given ID.
+
+post:
+  summary: Add a Moderator to a Collection Provider
+  description: >-
+    Add a new moderator to the specified collection provider.
+
+    ## Permissions
+     - The authenticated user must be an administrator of the collection provider.
+
+    ## Request Body
+    Provide the `permission_group` and the `user_id` for the moderator in the `relationships` object.
+
+    #### Returns
+     - A JSON object with the newly created moderator details under the `data` key if successful.
+     - If unsuccessful, returns an `errors` object detailing the validation issues.
+
+  tags:
+    - Collection Providers
+
+  operationId: collection_provider_moderator_create
+
+  parameters:
+    - in: path
+      name: provider_id
+      type: string
+      required: true
+      description: The unique identifier of the collection provider.
+
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            required:
+              - type
+              - attributes
+              - relationships
+            properties:
+              type:
+                type: string
+                enum:
+                  - moderators
+                description: Must be `moderators`.
+              attributes:
+                type: object
+                required:
+                  - permission_group
+                properties:
+                  permission_group:
+                    type: string
+                    enum:
+                      - moderator
+                      - admin
+                    description: |
+                      The permission group for the moderator:
+                      - `moderator`: Can review and moderate collection submissions.
+                      - `admin`: Can manage submissions and other moderators.
+              relationships:
+                type: object
+                required:
+                  - user
+                properties:
+                  user:
+                    type: object
+                    required:
+                      - data
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - type
+                          - id
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                              - users
+                          id:
+                            type: string
+                            description: The user ID of the person you wish to add as a moderator.
+
+        example:
+          data:
+            type: moderators
+            attributes:
+              permission_group: moderator
+            relationships:
+              user:
+                data:
+                  type: users
+                  id: "user_123"
+
+  responses:
+    '201':
+      description: Moderator successfully added.
+      schema:
+        $ref: 'definition.yaml'
+      examples:
+        application/json:
+          data:
+            id: "moderator_3"
+            type: "moderators"
+            attributes:
+              full_name: "Grace Hopper"
+              email: "grace.hopper@example.com"
+              permission_group: "moderator"
+              date_added: "2024-02-01T14:20:00Z"
+            relationships:
+              collection_provider:
+                data:
+                  type: "collection_providers"
+                  id: "{provider_id}"
+            links:
+              self: "https://api.test.osf.io/v2/providers/collections/{provider_id}/moderators/moderator_3/"
+          meta:
+            version: "2.0"
+
+    '400':
+      description: Bad Request. Invalid input provided.
+    '401':
+      description: Unauthorized. Authentication is required.
+    '403':
+      description: Forbidden. You do not have permission to add a moderator.
+    '404':
+      description: Not Found. No collection provider matches the given ID.
+
