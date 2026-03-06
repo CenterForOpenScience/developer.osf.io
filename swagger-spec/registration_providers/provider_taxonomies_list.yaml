@@ -1,5 +1,6 @@
 get:
-  summary: List Provider Taxonomies
+  summary: List Provider Taxonomies (Deprecated)
+  deprecated: true
   description: |
     Retrieves a list of all taxonomies associated with the provider.
   tags:
