@@ -1,63 +1,180 @@
+# /provider/preprints/{provider_id}/subjects/
 get:
-  summary: List all taxonomies
+  summary: Preprints Providers Subject List
   description: >-
 
-    A paginated list of the taxonomies for a preprint provider.
-    The returned preprint providers taxonomies are sorted by their creation date, with the most recent
-    preprints appearing first.
+    This returns a list of acceptable subjects for a Preprints Provider.
+
+    #### Permissions
+
+    This information is public.
 
     #### Returns
 
     Returns a JSON object containing `data` and `links` keys.
 
+    The `data` key contains an array of subject ids.
 
-    The `data` key contains an array of 10 preprint providers.
-    Each resource in the array is a separate preprint provider object.
-
-
-    The `links` key contains a dictionary of links that can be used
-    for [pagination](#tag/Pagination).
-
-
-    If the request is unsuccessful, an `errors` key containing
-    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
-    to understand why this request may have failed.
-
+    The `links` key contains a dictionary of links that can be used for [pagination](#tag/Pagination).
   parameters:
     - in: path
       type: string
       required: true
       name: provider_id
-      description: 'The unique identifier of the preprint provider.'
+      description: 'A short id for that preprint'
   tags:
     - Preprint Providers
-  operationId: preprint_provider_taxonomies_list
-  x-response-schema: 'Taxonomies'
+  operationId: preprint_provider_detail
+  x-response-schema: Preprint Provider
+  consumes:
+    - application/json
   responses:
     '200':
       description: 'OK'
-      schema:
-        $ref: '../taxonomies/definition.yaml'
       examples:
         application/json:
           data:
-            - links:
-                self: https://api.osf.io/v2/taxonomies/584240d854be81056ceca838/
-                parents:
-                - https://api.osf.io/v2/taxonomies/584240d954be81056ceca97a/
+            - id: 5c3e311a0989e101eede6afa
+              type: subjects
               attributes:
-                text: History of Philosophy
-                parents:
-                - text: Philosophy
-                  id: 584240d954be81056ceca97a
-                child_count: 0
-              type: taxonomies
-              id: 584240d854be81056ceca838
+                text: Puppy Studies
+                taxonomy_name: bepress
+              relationships:
+                parent:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc16/
+                      meta: { }
+                  data:
+                    id: 5c252d510989e100220edc16
+                    type: subjects
+                children:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/subjects/5c3e311a0989e101eede6afa/children/
+                      meta: { }
+              embeds:
+                parent:
+                  data:
+                    id: 5c252d510989e100220edc16
+                    type: subjects
+                    attributes:
+                      text: Public Affairs, Public Policy and Public Administration
+                      taxonomy_name: bepress
+                    relationships:
+                      parent:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc1e/
+                            meta: { }
+                        data:
+                          id: 5c252d510989e100220edc1e
+                          type: subjects
+                      children:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc16/children/
+                            meta: { }
+                    embeds:
+                      parent:
+                        data:
+                          id: 5c252d510989e100220edc1e
+                          type: subjects
+                          attributes:
+                            text: Social and Behavioral Sciences
+                            taxonomy_name: bepress
+                          relationships:
+                            parent:
+                              data:
+                            children:
+                              links:
+                                related:
+                                  href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc1e/children/
+                                  meta: { }
+                          embeds:
+                            parent:
+                              errors:
+                                - detail: Not found.
+                          links:
+                            self: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc1e/
+                    links:
+                      self: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc16/
+              links:
+                self: https://api.staging.osf.io/v2/subjects/5c3e311a0989e101eede6afa/
+            - id: 5c3e311a0989e101eede6af9
+              type: subjects
+              attributes:
+                text: Transpersonal Psychology
+                taxonomy_name: bepress
+              relationships:
+                parent:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edbad/
+                      meta: { }
+                  data:
+                    id: 5c252d510989e100220edbad
+                    type: subjects
+                children:
+                  links:
+                    related:
+                      href: https://api.staging.osf.io/v2/subjects/5c3e311a0989e101eede6af9/children/
+                      meta: { }
+              embeds:
+                parent:
+                  data:
+                    id: 5c252d510989e100220edbad
+                    type: subjects
+                    attributes:
+                      text: Psychology
+                      taxonomy_name: bepress
+                    relationships:
+                      parent:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc1e/
+                            meta: { }
+                        data:
+                          id: 5c252d510989e100220edc1e
+                          type: subjects
+                      children:
+                        links:
+                          related:
+                            href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edbad/children/
+                            meta: { }
+                    embeds:
+                      parent:
+                        data:
+                          id: 5c252d510989e100220edc1e
+                          type: subjects
+                          attributes:
+                            text: Social and Behavioral Sciences
+                            taxonomy_name: bepress
+                          relationships:
+                            parent:
+                              data:
+                            children:
+                              links:
+                                related:
+                                  href: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc1e/children/
+                                  meta: { }
+                          embeds:
+                            parent:
+                              errors:
+                                - detail: Not found.
+                          links:
+                            self: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edc1e/
+                    links:
+                      self: https://api.staging.osf.io/v2/subjects/5c252d510989e100220edbad/
+              links:
+                self: https://api.staging.osf.io/v2/subjects/5c3e311a0989e101eede6af9/
+          meta:
+            total: 1239
+            per_page: 2
+            version: '2.20'
           links:
+            self: https://api.staging.osf.io/v2/providers/preprints/temp/subjects/?page%5Bsize%5D=2
             first:
-            last: https://api.osf.io/v2/preprint_providers/osf/taxonomies/?page=122
+            last: https://api.staging.osf.io/v2/providers/preprints/temp/subjects/?page=620&page%5Bsize%5D=2
             prev:
-            next: https://api.osf.io/v2/preprint_providers/osf/taxonomies/?page=2
-            meta:
-              total: 1217
-              per_page: 10
+            next: https://api.staging.osf.io/v2/providers/preprints/temp/subjects/?page=2&page%5Bsize%5D=2

@@ -81,7 +81,7 @@ get:
                 provider:
                   links:
                     related:
-                      href: 'https://api.osf.io/v2/preprint_providers/socarxiv/'
+                      href: 'https://api.osf.io/v2/providers/preprints/socarxiv/'
                       meta: {}
               links:
                 self: 'https://api.osf.io/v2/preprints/hqb2p/'

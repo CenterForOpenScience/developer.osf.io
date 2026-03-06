@@ -1,4 +1,4 @@
-# /preprint_providers/{provider_id}/moderators/
+# /providers/preprints/{provider_id}/moderators/
 
 get:
   summary: List Moderators for a Preprint Provider
@@ -49,7 +49,7 @@ get:
                     type: "preprint_providers"
                     id: "{provider_id}"
               links:
-                self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_1/"
+                self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/moderators/moderator_1/"
             - id: "moderator_2"
               type: "moderators"
               attributes:
@@ -63,7 +63,7 @@ get:
                     type: "preprint_providers"
                     id: "{provider_id}"
               links:
-                self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_2/"
+                self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/moderators/moderator_2/"
           meta:
             total: 2
             version: "2.0"
@@ -168,7 +168,7 @@ post:
                   type: "preprint_providers"
                   id: "{provider_id}"
             links:
-              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/moderator_3/"
+              self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/moderators/moderator_3/"
           meta:
             version: "2.0"
     '400':

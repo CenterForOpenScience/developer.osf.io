@@ -1,4 +1,4 @@
-# /preprint_providers/{provider_id}/moderators/{moderator_id}/
+# /providers/preprints/{provider_id}/moderators/{moderator_id}/
 
 get:
   summary: Retrieve a Preprint Provider Moderator
@@ -51,7 +51,7 @@ get:
                   type: "preprint_providers"
                   id: "{provider_id}"
             links:
-              self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/moderators/{moderator_id}/"
+              self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/moderators/{moderator_id}/"
           meta:
             version: "2.0"
     '401':
