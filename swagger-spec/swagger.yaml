@@ -1941,6 +1941,9 @@ paths:
   /providers/collections/{provider_id}/submissions/:
     $ref: 'collection_providers/submissions_list.yaml'
 
+  /provider/collections/{provider_id}/subjects/:
+    $ref: 'collection_providers/subjects.yaml'
+
   /providers/collections/{provider_id}/subjects/highlighted/:
     $ref: 'collection_providers/subjects_highlighted_list.yaml'
 
@@ -1967,37 +1970,9 @@ paths:
   /collection_submission_actions/:
     $ref: 'collection_submission_actions/list.yaml'
 
-  ############################
-  #   COLLECTIONS PROVIDER   #
-  ############################
-
-  /provider/collections/:
-    $ref: 'collection_providers/list.yaml'
-
-  /provider/collections/{provider_id}/:
-    $ref: 'collection_providers/detail.yaml'
-
-  /provider/collections/{provider_id}/licenses/:
-    $ref: 'collection_providers/licenses_list.yaml'
-
-  /provider/collections/{provider_id}/submissions/:
-    $ref: 'collection_providers/submissions_list.yaml'
-
-  /provider/collections/{provider_id}/subjects/:
-    $ref: 'collection_providers/subjects.yaml'
-
-  /provider/collections/{provider_id}/subjects/highlighted/:
-    $ref: 'collection_providers/subjects_highlighted_list.yaml'
-
-  /provider/collections/{provider_id}/moderators/:
-    $ref: 'collection_providers/moderators_list.yaml'
-
-  /provider/collections/{provider_id}/moderators/{moderator_id}/:
-    $ref: 'collection_providers/moderators_detail.yaml'
-
-#######################################
-#              REQUESTS               #
-#######################################
+  #######################################
+  #              REQUESTS               #
+  #######################################
 
   /requests/{request_id}/:
     $ref: 'requests/detail.yaml'

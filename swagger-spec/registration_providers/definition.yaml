@@ -43,12 +43,12 @@ properties:
       banner_path:
         type: string
         description: The path to the banner image displayed for the provider.
-        example: /static/img/registration_providers/cos-logo.png
+        example: /static/img/providers/registrations/cos-logo.png
 
       logo_path:
         type: string
         description: The path to the logo image for the provider.
-        example: /static/img/registration_providers/cos-logo.png
+        example: /static/img/providers/registrations/cos-logo.png
 
       header_text:
         type: string
@@ -121,7 +121,7 @@ properties:
                   href:
                     type: string
                     format: uri
-                    example: https://api.osf.io/v2/registration_providers/osf/licenses/
+                    example: https://api.osf.io/v2/providers/registrations/osf/licenses/
                   meta:
                     type: object
 
@@ -138,7 +138,7 @@ properties:
                   href:
                     type: string
                     format: uri
-                    example: https://api.osf.io/v2/registration_providers/osf/taxonomies/
+                    example: https://api.osf.io/v2/providers/registrations/osf/taxonomies/
                   meta:
                     type: object
 
@@ -155,7 +155,7 @@ properties:
                   href:
                     type: string
                     format: uri
-                    example: https://api.osf.io/v2/registration_providers/osf/registrations/
+                    example: https://api.osf.io/v2/providers/registrations/osf/registrations/
                   meta:
                     type: object
 
@@ -167,13 +167,13 @@ properties:
         type: string
         format: uri
         description: The canonical API endpoint for this provider.
-        example: https://api.osf.io/v2/registration_providers/osf/
+        example: https://api.osf.io/v2/providers/registrations/osf/
 
       registrations:
         type: string
         format: uri
         description: Link to the registrations list for this provider.
-        example: https://api.osf.io/v2/registration_providers/osf/registrations/
+        example: https://api.osf.io/v2/providers/registrations/osf/registrations/
 
       external_url:
         type: string
