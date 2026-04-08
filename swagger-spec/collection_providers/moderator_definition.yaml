@@ -1,5 +1,5 @@
 type: object
-description: A moderator for a preprint provider.
+description: A moderator for a collection provider.
 required:
   - id
   - type
@@ -41,7 +41,7 @@ properties:
           - admin
         description: |
           The permission group for the moderator.
-          - `moderator`: Can review and moderate preprint submissions.
+          - `moderator`: Can review and moderate collection submissions.
           - `admin`: Can manage submissions and other moderators.
         example: admin
       date_added:
@@ -52,7 +52,7 @@ properties:
   relationships:
     type: object
     properties:
-      preprint_provider:
+      collection_provider:
         type: object
         required:
           - data
@@ -66,12 +66,12 @@ properties:
               type:
                 type: string
                 enum:
-                  - preprint_providers
-                description: Must be 'preprint_providers'.
-                example: preprint_providers
+                  - collection_providers
+                description: Must be 'collection_providers'.
+                example: collection_providers
               id:
                 type: string
-                description: The unique identifier of the preprint provider.
+                description: The unique identifier of the collection provider.
                 example: provider_1
   links:
     type: object
@@ -80,7 +80,7 @@ properties:
         type: string
         format: uri
         description: A link to this moderator resource.
-        example: https://api.test.osf.io/v2/providers/preprints/provider_1/moderators/moderator_1/
+        example: https://api.test.osf.io/v2/providers/collections/provider_1/moderators/moderator_1/
 example:
   id: moderator_1
   type: moderators
@@ -90,9 +90,9 @@ example:
     permission_group: admin
     date_added: '2024-01-15T12:34:56Z'
   relationships:
-    preprint_provider:
+    collection_provider:
       data:
-        type: preprint_providers
+        type: collection_providers
         id: provider_1
   links:
-    self: https://api.test.osf.io/v2/providers/preprints/provider_1/moderators/moderator_1/
+    self: https://api.test.osf.io/v2/providers/collections/provider_1/moderators/moderator_1/

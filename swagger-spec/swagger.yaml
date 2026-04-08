@@ -1109,6 +1109,7 @@ tags:
         - Access to preprints associated with a given provider.
         - Access to taxonomies and licenses supported by a provider.
         - Management of moderators and submission actions within the provider's moderation system.
+        - Retrieve citation styles associated with a specific preprint provider
   - name: Tokens
     description: >-
       **Personal Access Tokens** allow users to authenticate API requests without credentials.
@@ -1546,35 +1547,41 @@ paths:
   #   PREPRINT PROVIDERS   #
   ##########################
 
-  /preprint_providers/:
+  /providers/preprints/:
     $ref: 'preprint_providers/list.yaml'
 
-  /preprint_providers/{provider_id}/:
+  /providers/preprints/{provider_id}/:
     $ref: 'preprint_providers/detail.yaml'
 
-  /preprint_providers/{provider_id}/preprints/:
+  /providers/preprints/{provider_id}/preprints/:
     $ref: 'preprint_providers/preprints_list.yaml'
 
-  /preprint_providers/{provider_id}/taxonomies/:
+  /providers/preprints/{provider_id}/taxonomies/:
     $ref: 'preprint_providers/provider_taxonomies_list.yaml'
 
-  /preprint_providers/{provider_id}/taxonomies/highlighted/:
+  /providers/preprints/{provider_id}/taxonomies/highlighted/:
     $ref: 'preprint_providers/provider_taxonomies_highlighted_list.yaml'
 
   /providers/preprints/{provider_id}/citation_styles/:
     $ref: 'preprint_providers/providers_citation_styles.yaml'
 
-  /preprint_providers/{provider_id}/licenses/:
+  /providers/preprints/{provider_id}/licenses/:
     $ref: 'preprint_providers/licenses_list.yaml'
 
-  /preprint_providers/{provider_id}/moderators/:
+  /providers/preprints/{provider_id}/moderators/:
     $ref: 'preprint_providers/provider_moderator_list.yaml'
 
-  /preprint_providers/{provider_id}/moderators/{moderator_id}/:
+  /providers/preprints/{provider_id}/moderators/{moderator_id}/:
     $ref: 'preprint_providers/provider_moderator_detail.yaml'
 
   /providers/preprints/{provider_id}/withdraw_requests/:
     $ref: 'preprint_providers/withdraw_requests.yaml'
+
+  /providers/preprints/{provider_id}/subjects/:
+    $ref: 'preprint_providers/subjects_list.yaml'
+
+  /providers/preprints/{provider_id}/subjects/highlighted/:
+    $ref: 'preprint_providers/subjects_highlighted_list.yaml'
 
   #####################
   #   REGISTRATIONS   #
@@ -1934,6 +1941,9 @@ paths:
   /providers/collections/{provider_id}/submissions/:
     $ref: 'collection_providers/submissions_list.yaml'
 
+  /provider/collections/{provider_id}/subjects/:
+    $ref: 'collection_providers/subjects.yaml'
+
   /providers/collections/{provider_id}/subjects/highlighted/:
     $ref: 'collection_providers/subjects_highlighted_list.yaml'
 
@@ -1960,37 +1970,9 @@ paths:
   /collection_submission_actions/:
     $ref: 'collection_submission_actions/list.yaml'
 
-  ############################
-  #   COLLECTIONS PROVIDER   #
-  ############################
-
-  /provider/collections/:
-    $ref: 'collection_providers/list.yaml'
-
-  /provider/collections/{provider_id}/:
-    $ref: 'collection_providers/detail.yaml'
-
-  /provider/collections/{provider_id}/licenses/:
-    $ref: 'collection_providers/licenses_list.yaml'
-
-  /provider/collections/{provider_id}/submissions/:
-    $ref: 'collection_providers/submissions_list.yaml'
-
-  /provider/collections/{provider_id}/subjects/:
-    $ref: 'collection_providers/subjects.yaml'
-
-  /provider/collections/{provider_id}/subjects/highlighted/:
-    $ref: 'collection_providers/subjects_highlighted_list.yaml'
-
-  /provider/collections/{provider_id}/moderators/:
-    $ref: 'collection_providers/moderators_list.yaml'
-
-  /provider/collections/{provider_id}/moderators/{moderator_id}/:
-    $ref: 'collection_providers/moderators_detail.yaml'
-
-#######################################
-#              REQUESTS               #
-#######################################
+  #######################################
+  #              REQUESTS               #
+  #######################################
 
   /requests/{request_id}/:
     $ref: 'requests/detail.yaml'

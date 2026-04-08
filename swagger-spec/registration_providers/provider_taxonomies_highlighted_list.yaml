@@ -1,5 +1,6 @@
 get:
-  summary: List Highlighted Taxonomies
+  summary: List Highlighted Taxonomies (Deprecated)
+  deprecated: true
   description: |
     Retrieves highlighted taxonomies associated with the provider.
   tags:

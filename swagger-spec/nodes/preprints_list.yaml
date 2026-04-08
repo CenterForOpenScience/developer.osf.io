@@ -58,7 +58,7 @@ get:
               provider:
                 links:
                   related:
-                    href: https://api.osf.io/v2/preprint_providers/osf/
+                    href: https://api.osf.io/v2/providers/preprints/osf/
                     meta: {}
             links:
               self: https://api.osf.io/v2/preprints/khbvy/

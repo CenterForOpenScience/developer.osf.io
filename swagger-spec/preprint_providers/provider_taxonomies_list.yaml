@@ -1,11 +1,13 @@
-# /preprint_providers/{provider_id}/taxonomies/
+# /providers/preprints/{provider_id}/taxonomies/
 
 get:
-  summary: List Taxonomies for a Preprint Provider
+  summary: List Taxonomies for a Preprint Provider (Deprecated)
   description: >-
     Retrieve a list of all taxonomies (subjects) associated with a specific preprint provider.
 
     These taxonomies can be used to categorize and filter preprints submitted to this provider.
+
+    **Deprecated:** Use `subjects` endpoints instead.
 
     #### Permissions
     - No authentication required for public providers.
@@ -14,6 +16,8 @@ get:
     #### Returns
     - A JSON object with a `data` key containing an array of taxonomy resources.
     - Each taxonomy represents a subject that can be assigned to preprints.
+
+  deprecated: true
 
   tags:
     - Preprint Providers
@@ -73,7 +77,7 @@ get:
               links:
                 self: "https://api.test.osf.io/v2/taxonomies/biology/"
           links:
-            self: "https://api.test.osf.io/v2/preprint_providers/{provider_id}/taxonomies/"
+            self: "https://api.test.osf.io/v2/providers/preprints/{provider_id}/taxonomies/"
             next: null
             prev: null
           meta:
