@@ -182,3 +182,6 @@ post:
 
     '404':
       description: Node not found. Verify the node ID is correct and that you have permission to view the node.
+
+    '405':
+      description: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."

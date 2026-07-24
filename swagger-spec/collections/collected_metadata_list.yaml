@@ -326,3 +326,5 @@ post:
   responses:
     '201':
       description: 'OK'
+    '405':
+      description: 'Returned if new submissions to this collection are currently restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."'
