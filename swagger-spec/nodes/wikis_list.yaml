@@ -89,3 +89,59 @@ get:
             meta:
               total: 12
               per_page: 10
+
+post:
+  summary: Create a Wiki
+  description: >-
+    Creates a new wiki page on the node with the given `name` and, optionally, initial `content`.
+
+
+    A wiki page with the given name must not already exist on the node; attempting to create a
+    duplicate will result in a **409 Conflict** response.
+
+    #### Permissions
+
+    Only contributors with write access to the node may create a wiki page (or any user, if the
+    node's wiki has been made publicly editable).
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the representation of the newly created
+    wiki, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing information about the failure will
+    be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why
+    this request may have failed.
+
+    Some common error cases:
+     - `405 Method Not Allowed`: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+  parameters:
+    - in: path
+      type: string
+      name: node_id
+      required: true
+      description: 'The unique identifier of the node.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: 'wikis'
+            attributes:
+              name: 'A New Page'
+              content: 'Some initial content for the page.'
+  tags:
+    - Nodes
+  operationId: nodes_wikis_create
+  x-response-schema: Wiki
+  consumes:
+    - application/json
+  responses:
+    '201':
+      description: 'Created'
+    '405':
+      description: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
