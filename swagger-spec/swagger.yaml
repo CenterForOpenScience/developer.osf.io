@@ -2020,6 +2020,9 @@ paths:
   /nodes/{node_id}/cedar_metadata_records/:
     $ref: 'cedar_metadata/nodes_list.yaml'
 
+  /_/cedar_metadata_records/{record_id}/:
+    $ref: 'cedar_metadata/record_detail.yaml'
+
 #######################################
 #          Custom Metadata            #
 #######################################

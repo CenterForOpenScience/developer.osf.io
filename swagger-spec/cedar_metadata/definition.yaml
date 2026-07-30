@@ -45,7 +45,7 @@ definitions:
         properties:
           self:
             type: string
-            example: https://api.osf.io/v2/_/cedar_metadata_records/record-abc123/
+            example: https://api.osf.io/_/cedar_metadata_records/record-abc123/
           metadata_download:
             type: string
-            example: https://api.osf.io/v2/_/cedar_metadata_records/record-abc123/metadata_download/
+            example: https://api.osf.io/_/cedar_metadata_records/record-abc123/metadata_download/
