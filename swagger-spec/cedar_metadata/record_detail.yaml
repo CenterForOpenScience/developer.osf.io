@@ -1,0 +1,176 @@
+get:
+  summary: Retrieve a CEDAR metadata record
+  description: >
+    Retrieve a single CEDAR metadata record by its ID.
+
+
+    **Note:** This is a private, unversioned endpoint. Its full URL is
+    `https://api.osf.io/_/cedar_metadata_records/{record_id}/` and does not include the `/v2/`
+    prefix used by the rest of the API, even though it is nested under `/v2/` in this documentation
+    for tooling reasons.
+  operationId: getCedarMetadataRecord
+  tags:
+    - CEDAR Metadata
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: record_id
+      in: path
+      description: The unique identifier of the CEDAR metadata record.
+      required: true
+      type: string
+  responses:
+    '200':
+      description: Successfully retrieved the CEDAR metadata record.
+      schema:
+        $ref: './definition.yaml#/definitions/CedarMetadataRecord'
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to view this CEDAR metadata record.
+    '404':
+      description: CEDAR metadata record not found.
+
+patch:
+  summary: Update a CEDAR metadata record
+  description: >
+    Update the `metadata` and/or `is_published` fields of an existing CEDAR metadata record.
+    Only the fields included in the request are changed.
+  operationId: updateCedarMetadataRecord
+  tags:
+    - CEDAR Metadata
+  consumes:
+    - application/vnd.api+json
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: record_id
+      in: path
+      description: The unique identifier of the CEDAR metadata record.
+      required: true
+      type: string
+    - in: body
+      name: body
+      description: CEDAR metadata record fields to update.
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: record-abc123
+              type:
+                type: string
+                example: cedar-metadata-records
+              attributes:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    example:
+                      title: Updated Title
+                  is_published:
+                    type: boolean
+                    example: true
+  responses:
+    '200':
+      description: Successfully updated the CEDAR metadata record.
+      schema:
+        $ref: './definition.yaml#/definitions/CedarMetadataRecord'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to update this CEDAR metadata record.
+    '404':
+      description: CEDAR metadata record not found.
+    '405':
+      description: Returned if write access to this CEDAR metadata record has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+put:
+  summary: Replace a CEDAR metadata record
+  description: >
+    Replace the `metadata` and/or `is_published` fields of an existing CEDAR metadata record.
+    Behaves the same as `PATCH` on this endpoint.
+  operationId: replaceCedarMetadataRecord
+  tags:
+    - CEDAR Metadata
+  consumes:
+    - application/vnd.api+json
+  produces:
+    - application/vnd.api+json
+  parameters:
+    - name: record_id
+      in: path
+      description: The unique identifier of the CEDAR metadata record.
+      required: true
+      type: string
+    - in: body
+      name: body
+      description: CEDAR metadata record fields to update.
+      required: true
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              id:
+                type: string
+                example: record-abc123
+              type:
+                type: string
+                example: cedar-metadata-records
+              attributes:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    example:
+                      title: Updated Title
+                  is_published:
+                    type: boolean
+                    example: true
+  responses:
+    '200':
+      description: Successfully updated the CEDAR metadata record.
+      schema:
+        $ref: './definition.yaml#/definitions/CedarMetadataRecord'
+    '400':
+      description: Validation error or invalid data.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to update this CEDAR metadata record.
+    '404':
+      description: CEDAR metadata record not found.
+    '405':
+      description: Returned if write access to this CEDAR metadata record has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+delete:
+  summary: Delete a CEDAR metadata record
+  description: >
+    Permanently delete a CEDAR metadata record. Unlike `PATCH`/`PUT`, this action is not blocked
+    by the write restriction described below.
+  operationId: deleteCedarMetadataRecord
+  tags:
+    - CEDAR Metadata
+  parameters:
+    - name: record_id
+      in: path
+      description: The unique identifier of the CEDAR metadata record.
+      required: true
+      type: string
+  responses:
+    '204':
+      description: Successfully deleted the CEDAR metadata record.
+    '401':
+      description: Authentication credentials were not provided or are invalid.
+    '403':
+      description: You do not have permission to delete this CEDAR metadata record.
+    '404':
+      description: CEDAR metadata record not found.
