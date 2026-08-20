@@ -173,3 +173,5 @@ post:
  responses:
    '201':
      description: 'Created'
+   '405':
+     description: 'Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."'

@@ -164,6 +164,8 @@ patch:
       description: Forbidden. You do not have permission to modify subjects on this node.
     '404':
       description: Not Found. No node matches the given ID.
+    '405':
+      description: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
 
 post:
   summary: Add relationships between a Node and Subjects
@@ -252,6 +254,8 @@ post:
       description: Forbidden. You do not have permission to modify subjects on this node.
     '404':
       description: Not Found. No node matches the given ID.
+    '405':
+      description: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
 
 delete:
   summary: Remove relationships between a Node and Subjects
@@ -317,3 +321,5 @@ delete:
       description: Forbidden. You do not have permission to modify subjects on this node.
     '404':
       description: Not Found. No node matches the given ID.
+    '405':
+      description: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."

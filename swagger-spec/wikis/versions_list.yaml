@@ -60,3 +60,5 @@ post:
       description: You do not have permission to update this wiki page.
     '404':
       description: Wiki page not found.
+    '405':
+      description: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."

@@ -148,6 +148,9 @@ post:
     If the request is unsuccessful, an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
+    Some common error cases:
+     - `405 Method Not Allowed`: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
   parameters:
     - in: path
       type: string
@@ -168,3 +171,5 @@ post:
   responses:
     '201':
       description: 'Success'
+    '405':
+      description: 'Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."'

@@ -126,6 +126,9 @@ patch:
     If the given user is not already in the contributor list, a 404 Not Found error will be returned.
     A node must always have at least one admin, and any attempt to downgrade the permissions of a sole admin will result in a 400 Bad Request error.
 
+    Some common error cases:
+     - `405 Method Not Allowed`: Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
   parameters:
     - in: path
       type: string
@@ -151,6 +154,8 @@ patch:
   responses:
     '200':
       description: 'OK'
+    '405':
+      description: 'Returned if write access to this node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."'
 
 delete:
   summary: Delete a contributor
@@ -173,6 +178,9 @@ delete:
     If the request is unsuccessful, a JSON object with an `errors` key containing information about the failure will be returned.
     Refer to the [list of error codes](#tag/Errors-and-Error-Codes) to understand why this request may have failed.
 
+    Some common error cases:
+     - `405 Method Not Allowed`: If write access to this node has been restricted, a contributor removing themselves is still permitted, but attempting to remove a different contributor will return this error with the message "This action is no longer available. Contact support if you have any questions."
+
   parameters:
     - in: path
       type: string
@@ -190,3 +198,5 @@ delete:
   responses:
     '204':
       description: 'No content'
+    '405':
+      description: 'If write access to this node has been restricted, a contributor removing themselves is still permitted, but attempting to remove a different contributor will return this error with the message "This action is no longer available. Contact support if you have any questions."'

@@ -56,3 +56,5 @@ patch:
       description: You do not have permission to modify this metadata record.
     '404':
       description: Metadata record not found.
+    '405':
+      description: Returned if write access to the referenced project has been restricted (this restriction does not apply to metadata records associated with files). The response will include the message "This action is no longer available. Contact support if you have any questions."

@@ -67,3 +67,164 @@ get:
               size: 552
             type: 'wikis'
             id: 'xu77p'
+
+patch:
+  summary: Update a Wiki
+  description: >-
+    Renames the specified wiki page by setting its `name` attribute. This is the only attribute that
+    can be changed through this endpoint; to update the content of a wiki page, create a new wiki
+    version instead.
+
+    Wiki pages can be updated with either a **PUT** or **PATCH** request.
+
+
+    The `home` wiki page cannot be renamed.
+
+    #### Permissions
+
+    Only contributors with write access to the parent node may rename a wiki page (or any user, if
+    the node's wiki has been made publicly editable). Wiki pages on registrations cannot be renamed.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    wiki, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+    Some common error cases:
+     - `405 Method Not Allowed`: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        example:
+          data:
+            type: 'wikis'
+            id: '{wiki_id}'
+            attributes:
+              name: 'A new page name'
+  tags:
+    - Wikis
+  operationId: wiki_partial_update
+  x-response-schema: Wiki
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+    '405':
+      description: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+put:
+  summary: Replace a Wiki
+  description: >-
+    Renames the specified wiki page by setting its `name` attribute. This is the only attribute that
+    can be changed through this endpoint; to update the content of a wiki page, create a new wiki
+    version instead.
+
+    Wiki pages can be updated with either a **PUT** or **PATCH** request. Unlike **PATCH**, a
+    **PUT** request must include the `name` attribute in the request body.
+
+
+    The `home` wiki page cannot be renamed.
+
+    #### Permissions
+
+    Only contributors with write access to the parent node may rename a wiki page (or any user, if
+    the node's wiki has been made publicly editable). Wiki pages on registrations cannot be renamed.
+
+    #### Returns
+
+    Returns a JSON object with a `data` key containing the new representation of the updated
+    wiki, if the request is successful.
+
+
+    If the request is unsuccessful, an `errors` key containing
+    information about the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+    Some common error cases:
+     - `405 Method Not Allowed`: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        required:
+          - data
+        example:
+          data:
+            type: 'wikis'
+            id: '{wiki_id}'
+            attributes:
+              name: 'A new page name'
+  tags:
+    - Wikis
+  operationId: wiki_update
+  x-response-schema: Wiki
+  consumes:
+    - application/json
+  responses:
+    '200':
+      description: 'OK'
+    '405':
+      description: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+delete:
+  summary: Delete a Wiki
+  description: >-
+    Permanently deletes the specified wiki page.
+
+
+    The `home` wiki page cannot be deleted.
+
+    #### Permissions
+
+    Only contributors with write access to the parent node may delete a wiki page. Wiki pages on
+    registrations cannot be deleted.
+
+    #### Returns
+
+    If the request is successful, no content is returned.
+
+
+    If the request is unsuccessful, a JSON object with an `errors` key containing information about
+    the failure will be returned. Refer to the [list of error codes](#tag/Errors-and-Error-Codes)
+    to understand why this request may have failed.
+
+    Some common error cases:
+     - `405 Method Not Allowed`: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
+
+  parameters:
+    - in: path
+      type: string
+      required: true
+      name: wiki_id
+      description: 'The unique identifier of the wiki.'
+  tags:
+    - Wikis
+  operationId: wiki_delete
+  responses:
+    '204':
+      description: 'No content'
+    '405':
+      description: Returned if write access to this wiki's node has been restricted. The response will include the message "This action is no longer available. Contact support if you have any questions."
